@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services'
+
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        disable 'InvalidPackage'
+    }
+
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "4g"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
+    defaultConfig {
+        applicationId "momo.kikiplus.com.kbucket"
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 75
+        versionName "2.0.04"
+        multiDexEnabled true
+    }
+    buildTypes {
+
+        dependencies {
+            implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+            implementation 'com.google.android.gms:play-services-basement:16.2.0'
+            implementation 'com.github.barteksc:android-pdf-viewer:2.6.1'
+            implementation 'com.google.firebase:firebase-core:16.0.8'
+            implementation 'com.google.android.gms:play-services-ads:17.2.0'
+            implementation 'com.google.android.gms:play-services-analytics:16.0.8'
+            implementation 'com.google.firebase:firebase-core:16.0.9'
+            implementation 'com.google.firebase:firebase-messaging:17.6.0'
+
+            implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+            implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+            implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+            implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+
+            implementation 'com.github.bumptech.glide:glide:4.7.1'
+            implementation 'com.android.support:appcompat-v7:28.0.1'
+            implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha4'
+
+        }
+        repositories {
+            mavenCentral()
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
+            proguardFile('proguard-rules.pro')
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
+            proguardFile('proguard-rules.pro')
+        }
+    }
+}
+repositories {
+    mavenCentral()
+}
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}

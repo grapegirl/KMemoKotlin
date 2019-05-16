@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nickname_back_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFBB33"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:background="#FFCC0000"
+        android:text="@string/setnickname_layout_title"
+        android:textColor="#FFFFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:padding="5dp"
+        android:text="@string/setnickname_layout_contents"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/nickname_editText"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ballon2"
+        android:padding="5dp"
+        android:text="" />
+
+    <Button
+        android:id="@+id/nickname_okBtn"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:background="#FF99CC00"
+        android:text="@string/ok"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+</LinearLayout>

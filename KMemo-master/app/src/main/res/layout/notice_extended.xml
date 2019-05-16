@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/notice_back_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFBB33"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/notice_list_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:background="#FFCC0000"
+        android:text="공지 목록"
+        android:textColor="#FFFFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <ExpandableListView
+        android:id="@+id/notice_listview_extended"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:layout_marginTop="20dp"
+        android:dividerHeight="0dp"
+        android:groupIndicator="@null" />
+</LinearLayout>

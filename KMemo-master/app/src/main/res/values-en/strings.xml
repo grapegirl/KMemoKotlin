@@ -1,0 +1,250 @@
+<resources>
+    <string name="app_name">KMemo</string>
+
+    <string name="hello_world">hello My world</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="share_title">Bucket, Things your dreams</string>
+    <string name="share_contents">KMemo Branch, Your Dream Bucket \nIntroducing KMemo Branch App. Market Address https://play.google.com/store/apps/details?id=momo.kikiplus.com.kbucket</string>
+
+    <string name="popup_title">popup</string>
+    <string name="popup_prepare_string">This service is coming soon</string>
+    <string name="share_popup_title">Share Buckets</string>
+    <string name="share_popup_content">Ready to share in the things of the world?</string>
+    <string name="update_popup_title">Update Alram</string>
+    <string name="update_popup_content_y">There is a new version.\nYou must be updated in order to use this app.</string>
+    <string name="update_popup_content_n">There is a new version..\nYou can update the app if you enjoy the better things memo.</string>
+
+    <string name="back_string">Pressing the back button will exit once more.</string>
+    <string name="loading_string">Please wait a moment... </string>
+
+    <string name="password_fail_string">Passwords do not match</string>
+    <string name="password_cancle_string">Release the password Set</string>
+
+    <string name="nickname_fail_string">Nickname must please enter</string>
+
+    <string name="check_input_bucket_string">You have already created content, or finished</string>
+    <string name="write_bucekt_success_string">it was shared with branch of the world \n I will support your dreams.</string>
+    <string name="write_bucekt_fail_string">Please try again failed to share.\n I would appreciate your inquiry in order to improve.</string>
+    <string name="upload_image_fail_string">Please try again failed to upload the image.\n I would appreciate your inquiry in order to improve.</string>
+    <string name="write_bucekt_image_attch">Please try again failed to attach Image.\n I would appreciate your inquiry in order to improve.</string>
+
+    <string name="server_fail_string">Please try again failed to load dataa.\n I would appreciate your inquiry in order to improve.</string>
+
+    <string name="version_fail_string">This service is coming soon</string>
+    <string name="version_update_string">I have the latest version, go to Market</string>
+    <string name="version_lastest_string">It uses the latest version</string>
+
+    <string name="db_backup_faile_string">Failed to backup the KMemo Bucket DB. \n I would appreciate your inquiry in order to improve.</string>
+    <string name="db_backup_path_string">KMemo Bucket DB backup path</string>
+    <string name="db_import_success_string">KMemo Bucket DB import Completed!</string>
+    <string name="db_import_fail_string">Failed to restore the KMemo Bucket DB.\n I would appreciate your inquiry in order to improve.</string>
+    <string name="db_delete_bucket">Deleted bucket list. \n Create a new bucket list.</string>
+
+    <string name="intro_title1">Dreams Bucket</string>
+    <string name="intro_title2">Bucket, Things your dreams</string>
+
+    <string name="main_menu1">Write\nBucket</string>
+    <string name="main_menu2">Achieved\nBucket</string>
+    <string name="main_menu3">Our\nBuckets</string>
+    <string name="main_menu4">Settings</string>
+    <string name="main_menu5">Bucket\nRanking</string>
+
+    <string name="wriete_bucket_date">Date</string>
+    <string name="wriete_bucket_content">Memo</string>
+    <string name="wriete_bucket_deadline">Time Limit</string>
+    <string name="wriete_bucket_completeYN">Go</string>
+
+    <string name="conf_update">Update</string>
+    <string name="conf_question">Contact Us</string>
+    <string name="conf_import">Import</string>
+    <string name="conf_export">Backup</string>
+    <string name="conf_db_reset">Reset</string>
+
+    <string name="conf_set_userSetting">Set NickName</string>
+    <string name="conf_set_userBackSetting">Set Background Color</string>
+    <string name="conf_set_password">Set password</string>
+    <string name="conf_cancle_password">Reset password</string>
+    <string name="conf_guide">Tutorial</string>
+    <string name="conf_back_color">After App exit, the selected color is applied to the background color</string>
+
+    <string name="ai_fail_string">This service is coming soon</string>
+    <string name="widget_write_bucket">Write Bucket</string>
+    <string name="widget_your_bucket">Bucket List</string>
+    <string name="widget_world_bucket">Ours Bucket</string>
+    <string name="widget_share_bucket">Share App</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="bucket_list_title">My Achieved Buckets</string>
+    <string name="bucket_listline_modify">Mod</string>
+    <string name="bucket_listline_delete">Del</string>
+    <string name="comment_layout_enter">Enter</string>
+    <string name="conf_layout_lastest">Lastest version</string>
+    <string name="conf_layout_current">Current version</string>
+    <string name="notice_list_title">Notice list</string>
+    <string name="password_layout_title">Set password</string>
+
+    <string name="popup_layout_title">Popup</string>
+    <string name="popup_layout_close">Close</string>
+    <string name="img_popup_layout_title">Image Popup</string>
+    <string name="notice_popup_layout_title">Notice Popup</string>
+
+    <string name="bucketrank_list_title">Bucket Rank List</string>
+    <string name="bucketrank_list_contents1">Best</string>
+    <string name="bucketrank_list_contents2">Good</string>
+    <string name="bucketrank_list_contents3">Okay</string>
+    <string name="setbackgound_layout_title">Change Theme</string>
+    <string name="setnickname_layout_title">Set nickname</string>
+    <string name="setnickname_layout_contents">   Please Your nickname.</string>
+
+    <string name="share_layout_title">Someones Bucket</string>
+    <string name="share_list_title">Our Bucket List</string>
+    <string name="share_line_show">Show</string>
+
+    <string name="write_list_title">Dream Bucket List</string>
+    <string name="write_list_sort_date">Sort Date</string>
+    <string name="write_list_sort_name">Sort Name</string>
+    <string name="write_list_sort_deadline">Sort Time Limit</string>
+    <string name="write_list_add">Add</string>
+    <string name="write_detail_save">Save</string>
+    <string name="write_detail_delete">Delete</string>
+    <string name="write_detail_share">Share</string>
+    <string name="write_detail_date">Date</string>
+    <string name="write_detail_gallery">Gallery</string>
+    <string name="write_detail_camera">Camera</string>
+
+    <string name="question_layout_type">Type</string>
+    <string name="question_layout_error">Error</string>
+    <string name="question_layout_impro">Improve</string>
+    <string name="question_layout_qest">Inquiry</string>
+    <string name="question_layout_contents">Contents</string>
+    <string name="question_layout_hint">If you write up in detail the content, staff helps to understand. Thank you. </string>
+
+    <string name="check_version_lasted">Current Version is Lastest</string>
+    <string name="check_network">Please check your network connection</string>
+    <string name="delete_popup_title">Bucket Delete</string>
+    <string name="delete_popup_content">Would you like to delete your dream bucket?</string>
+    <string name="category_popup_title">Bucket Category</string>
+    <string name="category_popup_content">Please select a category your dream bucket.</string>
+
+    <string name="chat_layout_title">Todays Story</string>
+    <string name="chat_line_input">Enter</string>
+
+    <string name="interest_bucket_list_title">Bucket List 100 </string>
+    <string name="interest_bucket_list_select">Selects</string>
+    <string name="interest_bucket_list_add">Add Interesting Bucket</string>
+    <string name="interest_bucket_list_view">Bucket List Contents</string>
+    <string name="share_add_popup_title">Add This</string>
+    <string name="share_add_popup_content">Shall I add it to My Bucket?</string>
+    <string name="share_add_popup_ok">This is Added as a bucket of Interest~</string>
+    <string name="share_delete_popup_ok">Delete My Interest Bucket~</string>
+
+    <string name="widget_memo_title">Your Mind</string>
+    <string name="widget_memo_modify">modify</string>
+    <string name="widget_memo_save">save</string>
+
+    <string-array name="dream100">
+        <item>Learning to swim</item>
+        <item>Baking lessons</item>
+        <item>Obtaining a license certificate</item>
+        <item>Learning the second foreign language</item>
+        <item>Learn how to play the piano</item>
+        <item>Learning Scuba diving</item>
+        <item>Learning Hair Beauty</item>
+        <item>Trip around the world</item>
+        <item>Tracking the Himalayas.</item>
+        <item>Go to the Great Wall of China</item>
+        <item>Traveling abroad from overseas.</item>
+        <item>Jeju Halla Mountain</item>
+        <item>View the Desert</item>
+        <item>Take a trip with my mom</item>
+        <item>Backpacking through Europe</item>
+        <item>To go to Ulleungdo Island</item>
+        <item>To go to Dokdo</item>
+        <item>Building my own house</item>
+        <item>Live with animals</item>
+        <item>Become a mentor to someone</item>
+        <item> Sharing Sharing</item>
+        <item>Lecture </item>
+        <item>Send Your Parents Abroad Abroad</item>
+        <item>Make Happy family</item>
+        <item>Social organization creation </item>
+        <item>Read 100 Books</item>
+        <item>Making foreign friends</item>
+        <item>Family photography</item>
+        <item>Running marathons</item>
+        <item>Bungee jump</item>
+        <item>A book writing</item>
+        <item>Furniture making</item>
+        <item>Paragliding</item>
+        <item>Traveling with your family</item>
+        <item>Try to live in another country</item>
+        <item>Organ donation</item>
+        <item>Driving license</item>
+        <item>Tree planting</item>
+        <item>Talent donation</item>
+        <item>Challenge triathlon challenge</item>
+        <item>Going camping on a camping trip</item>
+        <item>Send My Parents Cruise Tour</item>
+        <item>To visit kkossijang</item>
+        <item>Coupling</item>
+        <item>Language training</item>
+        <item>Love affair</item>
+        <item>Marriage </item>
+        <item>Pictorial photography</item>
+        <item>Library making</item>
+        <item>Buy My Car</item>
+        <item>Buy Camera DSLR</item>
+        <item>Keeping pets</item>
+        <item>Mount Baekdu Mountain</item>
+        <item>Make a Damgeumju</item>
+        <item>Fish market</item>
+        <item>Learn photoshop</item>
+        <item>Water skiing learning</item>
+        <item>Try and participate in auction</item>
+        <item>Make a successful diet</item>
+        <item>To submit my article to the newspaper</item>
+        <item>Hot spring travel</item>
+        <item>Learning to dance</item>
+        <item>Winning the lottery.</item>
+        <item>Autobiographical writing</item>
+        <item>Homecoming</item>
+        <item>Volunteer work</item>
+        <item>Donate</item>
+        <item>Gardening</item>
+        <item>Become an audience</item>
+        <item>Make your own videos</item>
+        <item>Create photobook</item>
+        <item>Become an expert in one field</item>
+        <item>Buying a notebook</item>
+        <item>Buy Guitar</item>
+        <item>Learn to sew</item>
+        <item>Become a Power Blogger</item>
+        <item>Business</item>
+        <item>Painting</item>
+        <item>Try a skin scuba</item>
+        <item>Top of the Milky Way Desert</item>
+        <item>Goat pasture</item>
+        <item>Wearing a bikini</item>
+        <item>Making a regular bar</item>
+        <item>Learning Leather Crafts</item>
+        <item>Setting up my house</item>
+        <item>Create a dress room</item>
+        <item>Organize your waste baggage</item>
+        <item>Tattoo</item>
+        <item>Do not smoke</item>
+        <item>Change your hairstyle</item>
+        <item>Go to space</item>
+        <item>Confess my secrets</item>
+        <item>Developing Your Own Cuisine</item>
+        <item>Join the bazaar</item>
+        <item>Appear on TV</item>
+        <item>Blood donation</item>
+        <item>Serving murals</item>
+        <item>1 night stay at a wonderful hotel abroad</item>
+        <item>Serving Dogs</item>
+        <item>Bucket list Complete all items</item>
+    </string-array>
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ok">OK</string>
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
+    <string name="db">DB Manager</string>
+
+    <string-array name="confList">
+        <item name="item1">Set Password</item>
+        <item name="item2">Reset Password</item>
+        <item name="item3">DB Manage</item>
+        <item name="item4">Set NickName</item>
+        <item name="item5">Set Background Color</item>
+        <item name="item6">Tutorial</item>
+        <item name="item7">Contact Us</item>
+        <item name="item8">Current Version</item>
+        <item name="item9">Managers Blog</item>
+        <item name="item10">Share This</item>
+        <item name="item11">Bucket List 100</item>
+     </string-array>
+
+ </resources>

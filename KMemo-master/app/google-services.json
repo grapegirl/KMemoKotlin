@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "343963170350",
+    "firebase_url": "https://kmemo-1197.firebaseio.com",
+    "project_id": "kmemo-1197",
+    "storage_bucket": "kmemo-1197.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343963170350:android:ab6885232cf08c26",
+        "android_client_info": {
+          "package_name": "momo.kikiplus.com.kbucket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "343963170350-bt1rumacgb66ufemtilg0ojm2hlcr6d1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFT1Ba9NSxG-3WrRRjQTS6K2GS9QN3Y7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "343963170350-bt1rumacgb66ufemtilg0ojm2hlcr6d1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-9950741145331464~2693538232"
+    }
+  ],
+  "configuration_version": "1"
+}

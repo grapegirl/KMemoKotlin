@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <Button
+            android:id="@+id/widget_memo_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFBB33"
+            android:text="@string/widget_memo_title"
+            android:textColor="#000" />
+
+        <!--<Button-->
+            <!--android:id="@+id/widget_memo_refresh"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="#FFCC0000"-->
+            <!--android:text="새로고침"-->
+            <!--android:textColor="#FFF" />-->
+
+        <Button
+            android:id="@+id/widget_memo_modify"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="#FFCC0000"
+            android:text="@string/widget_memo_modify"
+            android:textColor="#FFF" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/widget_memo_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#95FFFFFF"
+        android:gravity="top"
+        android:lines="20"
+        android:text="" />
+
+</LinearLayout>

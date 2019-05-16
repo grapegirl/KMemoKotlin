@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ok">확인</string>
+    <string name="no">취소</string>
+    <string name="yes">확인</string>
+    <string name="db">DB 관리</string>
+
+    <string-array name="confList">
+        <item name="item1">암호설정</item>
+        <item name="item2">암호해제</item>
+        <item name="item3">DB관리</item>
+        <item name="item4">별명설정</item>
+        <item name="item5">배경설정</item>
+        <item name="item6">튜토리얼</item>
+        <item name="item7">문의하기</item>
+        <item name="item8">현재버전</item>
+        <item name="item9">관리자 Blog</item>
+        <item name="item10">공유하기</item>
+         <item name="item11">Bucket List 100</item>
+    </string-array>
+
+</resources>
+

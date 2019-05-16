@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFFFF"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:background="#FFCC0000"
+        android:text="@string/setbackgound_layout_title"
+        android:textColor="#FFFFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="1dp">
+
+                <ImageButton
+                    android:id="@+id/set_back_btn1"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#C1EDAB" />
+
+                <ImageButton
+                    android:id="@+id/set_back_btn2"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#D9D9D9" />
+
+                <ImageButton
+                    android:id="@+id/set_back_btn3"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#FFA7A7" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="1dp">
+
+                <ImageButton
+                    android:id="@+id/set_back_btn4"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#B0E0E6" />
+
+                <ImageButton
+                    android:id="@+id/set_back_btn5"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#B3B9FF" />
+
+                <ImageButton
+                    android:id="@+id/set_back_btn6"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#FFBFF7" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="1dp">
+
+                <ImageButton
+                    android:id="@+id/set_back_btn7"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#FFFFBB33" />
+
+                <ImageButton
+                    android:id="@+id/set_back_btn8"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#DAD9FF" />
+
+                <ImageButton
+                    android:id="@+id/set_back_btn9"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#FFB3A3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="1dp">
+
+                <ImageButton
+                    android:id="@+id/set_back_btn10"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#FFD700" />
+
+                <ImageButton
+                    android:id="@+id/set_back_btn11"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#B2CCFF" />
+
+                <ImageButton
+                    android:id="@+id/set_back_btn12"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#FFA2A2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="1dp">
+
+                <ImageButton
+                    android:id="@+id/set_back_btn13"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#FFEA80" />
+
+                <ImageButton
+                    android:id="@+id/set_back_btn14"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#DEB887" />
+
+                <ImageButton
+                    android:id="@+id/set_back_btn15"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#FFCA6C" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="1dp">
+
+                <ImageButton
+                    android:id="@+id/set_back_btn16"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#DDA0DD" />
+
+                <ImageButton
+                    android:id="@+id/set_back_btn17"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#BC8F8F" />
+
+                <ImageButton
+                    android:id="@+id/set_back_btn18"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:background="#DAA520" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

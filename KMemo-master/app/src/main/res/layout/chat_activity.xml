@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bucketdetail_back_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFBB33"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/chat_detail_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:background="#FFCC0000"
+        android:text="@string/chat_layout_title"
+        android:textColor="#FFFFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/chat_listview"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_margin="10dp"
+        android:layout_weight="4"
+        android:dividerHeight="0dp" />
+
+    <include
+        layout="@layout/chat_comment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" />
+</LinearLayout>

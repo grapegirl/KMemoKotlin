@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_gravity="center_vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+
+        <EditText
+            android:id="@+id/comment_layout_text"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="8"
+            android:background="@drawable/ballon2"
+            android:padding="5dp"
+            android:text="" />
+
+        <Button
+            android:id="@+id/comment_layout_sendBtn"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="#FF99CC00"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/comment_layout_enter"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</RelativeLayout>

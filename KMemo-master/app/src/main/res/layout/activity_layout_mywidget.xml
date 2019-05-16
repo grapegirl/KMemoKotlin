@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="288dp"
+    android:layout_height="72dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="288dp"
+        android:layout_height="36dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/widget_writebtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFBB33"
+            android:text="@string/widget_write_bucket" />
+
+        <Button
+            android:id="@+id/widget_listbtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFCC0000"
+            android:text="@string/widget_your_bucket" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="288dp"
+        android:layout_height="36dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/widget_sharebtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFCC0000"
+            android:text="@string/widget_world_bucket" />
+
+        <Button
+            android:id="@+id/widget_snsbtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFBB33"
+            android:text="@string/widget_share_bucket" />
+    </LinearLayout>
+
+
+</LinearLayout>
