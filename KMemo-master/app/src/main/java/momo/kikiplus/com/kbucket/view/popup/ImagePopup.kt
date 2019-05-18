@@ -2,13 +2,11 @@ package momo.kikiplus.com.kbucket.view.popup
 
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.widget.ImageView
-
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.AppUtils
 

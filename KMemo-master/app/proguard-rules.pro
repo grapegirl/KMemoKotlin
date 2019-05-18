@@ -18,19 +18,21 @@
 -dontshrink
 -dontoptimize
 -dontpreverify
--renamesourcefileattribute SourceFile
+#-renamesourcefileattribute SourceFile
+-keepattributes LineNumberTable, SoureFile
+
 
 -dontwarn com.google.android.gms.**
 -dontwarn com.google.firebase.auth.**
 -dontwarn com.google.firebase.crash.**
 -dontwarn com.google.firebase.database.**
 
-
-
 # RetroFit2
 -dontwarn retrofit2.Platform
 -dontwarn retrofit2.Platform$Java8
+
 #OKIo
 -dontwarn okio.**
+
 # AndroidX
 -keep class androidx.core.app.CoreComponentFactory { *; }

@@ -10,11 +10,11 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.*
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.legacy.app.ActionBarDrawerToggle
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -65,7 +65,6 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
     private val RESPOND_AI = 72
     private val CHECK_VERSION = 80
 
-    private var mToggle: ActionBarDrawerToggle? = null
     private val MY_PERMISSION_REQUEST = 1000
     private var mbInitialUserUpdate = false
 
@@ -107,20 +106,6 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
 
         mDrawerList?.setOnItemClickListener(DrawerItemClickListener())
 
-//        mToggle = object : ActionBarDrawerToggle(this, mDrawer,
-//                R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-//
-//            override fun onDrawerClosed(drawerView: View) {
-//                super.onDrawerClosed(drawerView!!)
-//            }
-//
-//            override fun onDrawerOpened(drawerView: View) {
-//                super.onDrawerOpened(drawerView!!)
-//            }
-//
-//        }
-//        mDrawer?.setDrawerListener(mToggle)
-
         mHandler = Handler(this)
         Thread.setDefaultUncaughtExceptionHandler(ErrorLogUtils.UncaughtExceptionHandlerApplication())
 
@@ -134,7 +119,10 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
 
+        Log.d("mhkim", "@@ 1");
         val getIntent = intent
+
+        Log.d("mhkim", "@@ getIntent : " + getIntent);
         val data = getIntent.getStringExtra(ContextUtils.WIDGET_SEND_DATA)
         if (data != null && data == ContextUtils.WIDGET_SHARE) {
             ShareSocial()

@@ -3,13 +3,11 @@ package momo.kikiplus.com.kbucket.view.Activity
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.AppUtils
 import momo.kikiplus.com.kbucket.Utils.ContextUtils

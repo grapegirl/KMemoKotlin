@@ -2,7 +2,6 @@ package momo.kikiplus.com.kbucket.Utils
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
 
 /**
  * @author grapegirl
