@@ -15,9 +15,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.*
 import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
 import com.google.firebase.FirebaseApp
 import com.google.firebase.iid.FirebaseInstanceId
 import momo.kikiplus.com.kbucket.Managers.asynctask.AppUpdateTask
@@ -70,6 +68,7 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
 
     internal var mDrawerList: ListView? = null
     internal var mDrawer: DrawerLayout? = null
+    lateinit var mAdView : AdView
 
     /**
      * 사용자 정보업데이트 가공 데이타 만드는 메소드
@@ -115,11 +114,44 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
         sqlQuery.createImageTable(applicationContext)
 
         MobileAds.initialize(this, ContextUtils.KBUCKET_AD_UNIT_ID)
-        val adView = findViewById<View>(R.id.main_ad_layout) as AdView
+        mAdView = findViewById<View>(R.id.main_ad_layout) as AdView
         val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
+        mAdView.loadAd(adRequest)
 
-        Log.d("mhkim", "@@ 1");
+        mAdView.adListener = object: AdListener() {
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                Log.d("mhkim", "@@ onAdLoaded  ");
+            }
+
+            override fun onAdFailedToLoad(errorCode : Int) {
+                // Code to be executed when an ad request fails.
+                Log.d("mhkim", "@@ onAdFailedToLoad errorCode :   " + errorCode);
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+                Log.d("mhkim", "@@ onAdOpened");
+            }
+
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+                Log.d("mhkim", "@@ onAdClicked");
+            }
+
+            override fun onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+                Log.d("mhkim", "@@ onAdLeftApplication");
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+                Log.d("mhkim", "@@ onAdClosed");
+            }
+        }
+
         val getIntent = intent
 
         Log.d("mhkim", "@@ getIntent : " + getIntent);

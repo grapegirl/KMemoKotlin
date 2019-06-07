@@ -127,7 +127,7 @@ object ContextUtils {
     /**
      * 구글 Ads ID
      */
-    val KBUCKET_AD_UNIT_ID = "ca-app-pub-9950741145331464~2693538232"
+    val KBUCKET_AD_UNIT_ID = "ca-app-pub-9950741145331464/5719370666"
 
 
     /**

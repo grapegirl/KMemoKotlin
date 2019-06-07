@@ -26,8 +26,8 @@ android {
         applicationId "momo.kikiplus.com.kbucket"
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 76
-        versionName "2.0.04"
+        versionCode 77
+        versionName "2.0.05"
         multiDexEnabled true
     }
     buildTypes {
