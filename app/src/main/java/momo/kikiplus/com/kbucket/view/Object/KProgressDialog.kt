@@ -1,7 +1,8 @@
 package momo.kikiplus.com.kbucket.view.Object
 
-import android.app.ProgressDialog
+import android.app.AlertDialog
 import android.content.Context
+import android.widget.ProgressBar
 
 
 /***
@@ -21,8 +22,8 @@ class KProgressDialog {
         }
 
     fun setDialogStatus(percentage: Int) {
-        if (mDialog != null) {
-            mDialog!!.progress = percentage
+        if (mProgressBar != null) {
+            mProgressBar!!.progress = percentage
         }
     }
 
@@ -31,9 +32,10 @@ class KProgressDialog {
         /**
          * 다이얼로그
          */
-        private var mDialog: ProgressDialog? = null
+        private var mDialog: AlertDialog? = null
 
 
+        private var mProgressBar : ProgressBar? = null
         /**
          * 로딩설정 여부 메소드
          *
@@ -42,7 +44,13 @@ class KProgressDialog {
          */
         fun setDataLoadingDialog(context: Context?, flag: Boolean?, msg: String?, cancle: Boolean?) {
             if (flag!!) {
-                mDialog = ProgressDialog(context)
+                val builder =
+                    AlertDialog.Builder(context)
+                mProgressBar = ProgressBar(context)
+                mProgressBar!!.isIndeterminate = true
+                //mProgressBar!!.indeterminateDrawable = ContextCompat.getDrawable(context!!, circle_progress);
+                builder.setView(mProgressBar)
+                mDialog = builder.create()
                 mDialog!!.setMessage(msg)
                 if (cancle!!) {
                     mDialog!!.setCancelable(true)
@@ -66,15 +74,20 @@ class KProgressDialog {
          */
         fun setDataProgressLoadingDialog(context: Context, flag: Boolean, msg: String, cancle: Boolean) {
             if (flag) {
-                mDialog = ProgressDialog(context)
-                mDialog!!.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL)
+
+                val builder =
+                    AlertDialog.Builder(context)
+                mProgressBar = ProgressBar(context)
+                //mProgressBar!!.indeterminateDrawable = ContextCompat.getDrawable(context!!, R.drawable.circle_progress);
+                builder.setView(mProgressBar)
+                mDialog = builder.create()
                 mDialog!!.setMessage(msg)
                 if (cancle) {
                     mDialog!!.setCancelable(true)
                 } else {
                     mDialog!!.setCancelable(false)
                 }
-                mDialog!!.max = 100
+                mProgressBar!!.max = 100
                 mDialog!!.show()
             } else {
                 if (mDialog != null) {
