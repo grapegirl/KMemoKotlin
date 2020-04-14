@@ -74,7 +74,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
         setBackgroundColor()
         setTextPont()
 
-        mListView = findViewById(R.id.bucket_list_listview) as ListView
+        mListView = findViewById<ListView>(R.id.bucket_list_listview)
     }
 
     private fun setBackgroundColor() {
@@ -163,7 +163,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
                 val message = getString(R.string.write_bucekt_fail_string)
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
             } else {
-                if (mData != null) {
+                if (mData.isNotEmpty()) {
                     try {
                         val json = JSONObject(mData)
                         isValid = json.getBoolean("isValid")
@@ -189,7 +189,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
                 val message = getString(R.string.upload_image_fail_string)
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
             } else {
-                if (mData != null) {
+                if (mData.isNotEmpty()) {
                     try {
                         val json = JSONObject(mData)
                         isValid = json.getBoolean("isValid")
@@ -274,7 +274,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
                 list.add(Category("DEVELOP", 7))
                 list.add(Category("HEALTH", 8))
                 list.add(Category("ETC", 9))
-                mCategoryPopup = SpinnerListPopup(this, title, "", list, R.layout.popupview_spinner_list, this, OnPopupEventListener.POPUP_BUCKET_CATEGORY)
+                mCategoryPopup = SpinnerListPopup(this, title, content, list, R.layout.popupview_spinner_list, this, OnPopupEventListener.POPUP_BUCKET_CATEGORY)
                 mCategoryPopup!!.showDialog()
             }
         }

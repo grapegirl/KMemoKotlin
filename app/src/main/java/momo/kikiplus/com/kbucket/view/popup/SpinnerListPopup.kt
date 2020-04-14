@@ -72,15 +72,13 @@ class SpinnerListPopup
     }
 
     private fun setData(listData: ArrayList<Category>) {
-        if (listData is ArrayList<*>) {
-            val selectedItem = listData
-            m_Adapter = SpinnerListAdapter(mCotext, selectedItem, R.layout.popupview_spinner_list_line)
-            m_Adapter!!.setDefaultChecked(0)
-            m_ListView = mDialogView!!.findViewById<View>(R.id.popup_spinner_list) as ListView
-            m_ListView!!.adapter = m_Adapter
-            m_ListView!!.divider = null
-            m_ListView!!.dividerHeight = 2
-        }
+        val selectedItem = listData
+        m_Adapter = SpinnerListAdapter(mCotext, selectedItem, R.layout.popupview_spinner_list_line)
+        m_Adapter!!.setDefaultChecked(0)
+        m_ListView = mDialogView!!.findViewById<View>(R.id.popup_spinner_list) as ListView
+        m_ListView!!.adapter = m_Adapter
+        m_ListView!!.divider = null
+        m_ListView!!.dividerHeight = 2
         (mDialogView!!.findViewById<View>(R.id.basic_title_textview) as TextView).text = mTitle
     }
 

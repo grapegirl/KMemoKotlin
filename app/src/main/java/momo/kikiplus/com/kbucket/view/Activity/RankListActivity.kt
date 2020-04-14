@@ -72,7 +72,7 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
         KLog.d(this.javaClass.simpleName, "@@ onHttpReceive  obj: $obj")
         val mData = obj as String
         var isValid = false
-        if (mData != null) {
+        if (mData.isNotEmpty()) {
             try {
                 val json = JSONObject(mData)
                 isValid = json.getBoolean("isValid")

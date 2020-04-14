@@ -84,12 +84,12 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
     }
 
     fun setBtnClickListener() {
-        val btn1 = findViewById(R.id.btn_db_menu01) as Button
-        btn1.setOnClickListener(this);
-        val btn2 = findViewById(R.id.btn_db_menu02) as Button
-        btn2.setOnClickListener(this);
-        val btn3 = findViewById(R.id.btn_db_menu03) as Button
-        btn3.setOnClickListener(this);
+        val btn1 = findViewById<Button>(R.id.btn_db_menu01)
+        btn1.setOnClickListener(this)
+        val btn2 = findViewById<Button>(R.id.btn_db_menu02)
+        btn2.setOnClickListener(this)
+        val btn3 = findViewById<Button>(R.id.btn_db_menu03)
+        btn3.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -141,9 +141,6 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
         KLog.d(this.javaClass.simpleName, "@@ onHttpReceive : $obj")
         // 버킷 공유 결과
-        val mData = obj as String
-        val isValid = false
-        val message: String? = null
         if (actionId == IHttpReceive.UPLOAD_DB) {
             if (type == IHttpReceive.Companion.HTTP_OK) {
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, "메모가지 서버에 DB를 업로드하였습니다\nDB 파일이 필요하시면 문의해주세요"))

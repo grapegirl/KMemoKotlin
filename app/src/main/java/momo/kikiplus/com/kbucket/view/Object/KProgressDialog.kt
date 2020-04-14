@@ -1,6 +1,3 @@
-/**
- *
- */
 package momo.kikiplus.com.kbucket.view.Object
 
 import android.app.ProgressDialog

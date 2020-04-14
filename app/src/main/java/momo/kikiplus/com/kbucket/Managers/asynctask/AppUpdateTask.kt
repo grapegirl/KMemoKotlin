@@ -53,10 +53,6 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
         return null
     }
 
-    override fun onPostExecute(aVoid: Void?) {
-        super.onPostExecute(aVoid)
-    }
-
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
         KLog.d(this.javaClass.simpleName, " @@ onHttpReceive type:$type, object: $obj")
         if (actionId == IHttpReceive.UPDATE_VERSION) {
@@ -64,6 +60,7 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
                 val mData = obj as String
                 try {
                     val json = JSONObject(mData)
+                    KLog.e(TAG, "@@ json string : " + json)
                     val versionCode = json.getInt("versionCode")
                     val versionName = json.getString("versionName")
                     val forceYN = json.getString("forceYN")
@@ -102,7 +99,8 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
                 val serverVersionName = mVersion!!.versionName
                 KLog.d(TAG, "@@ currentVersion : " + currentVersionName!!)
                 KLog.d(TAG, "@@ serverVersionName : " + serverVersionName!!)
-                if (serverVersionName != null && serverVersionName != "null") {
+
+                if(mVersion!!.versionCode > 0){
                     if (StringUtils.compareVersion(currentVersionName, serverVersionName) > 0) {
                         if (mVersion!!.forceYN == "Y") {
                             val title = mContext.getString(R.string.update_popup_title)
@@ -119,6 +117,7 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
                         mHandler.sendEmptyMessage(TOAST_MESSAGE)
                     }
                 }
+
             }
             FAIL_VERSION -> KLog.d(TAG, "@@ Fail Version Check")
             TOAST_MESSAGE -> {

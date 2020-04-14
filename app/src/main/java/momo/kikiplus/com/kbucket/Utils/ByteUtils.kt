@@ -35,7 +35,10 @@ object ByteUtils {
         var bmp: Bitmap? = BitmapFactory.decodeResource(res, bmpResId, opts)
 
         if (bmp == null) {
+
+            //val dd = context.getDrawable(bmpResId)
             val d = res.getDrawable(bmpResId)
+
             val w = d.intrinsicWidth
             val h = d.intrinsicHeight
             bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
@@ -53,9 +56,7 @@ object ByteUtils {
      * @param photoPath 파일경로
      */
     fun setFileResize(photoPath: String, width: Int, height: Int, filter: Boolean) {
-        val options = BitmapFactory.Options()
         val bitmap = BitmapFactory.decodeFile(photoPath)
-
         val newBitmap = Bitmap.createScaledBitmap(bitmap, width, height, filter)
         saveBitmapToFile(newBitmap, photoPath)
     }

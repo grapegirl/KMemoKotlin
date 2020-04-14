@@ -1,14 +1,18 @@
 package momo.kikiplus.com.kbucket.Managers.push
 
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
+import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.RemoteMessage
 import momo.kikiplus.com.kbucket.R
+import momo.kikiplus.com.kbucket.Utils.ContextUtils
 import momo.kikiplus.com.kbucket.Utils.KLog
+import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
 import momo.kikiplus.com.kbucket.view.Activity.MainActivity
 
 /***
@@ -20,9 +24,15 @@ import momo.kikiplus.com.kbucket.view.Activity.MainActivity
  */
 class FireMessingService : com.google.firebase.messaging.FirebaseMessagingService() {
 
-    override fun onMessageReceived(remoteMessage: RemoteMessage?) {
-        KLog.d(TAG, "@@ message Message2: " + remoteMessage!!.data.toString())
-        sendNotification(remoteMessage.data["message"])
+    override fun onNewToken(p0: String) {
+        super.onNewToken(p0)
+        KLog.d(this.javaClass.simpleName, "@@ FireMessingService token : " + p0)
+        SharedPreferenceUtils.write(this, ContextUtils.KEY_USER_FCM, p0)
+    }
+
+    override fun onMessageReceived(p0: RemoteMessage) {
+        KLog.d(TAG, "@@ FireMessingService onMessageReceived: " + p0.data.toString())
+        sendNotification(p0.data["message"])
 
     }
 
@@ -33,7 +43,16 @@ class FireMessingService : com.google.firebase.messaging.FirebaseMessagingServic
                 PendingIntent.FLAG_ONE_SHOT)
 
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        val notificationBuilder = NotificationCompat.Builder(this)
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val notificationChannel = NotificationChannel("channelId","channelName", NotificationManager.IMPORTANCE_LOW)
+            notificationManager.createNotificationChannel(notificationChannel)
+            val notificationBuilder = NotificationCompat.Builder(this,"channelId")
+
+            notificationManager.notify(0, notificationBuilder.build())
+        }else{
+            val notificationBuilder = NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("메모가지 알림")
                 .setContentText(messageBody)
@@ -41,12 +60,13 @@ class FireMessingService : com.google.firebase.messaging.FirebaseMessagingServic
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent) as NotificationCompat.Builder
 
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.notify(0, notificationBuilder.build())
+
+            notificationManager.notify(0, notificationBuilder.build())
+        }
+
     }
 
     companion object {
-
         private val TAG = "FireMessingService"
     }
 }

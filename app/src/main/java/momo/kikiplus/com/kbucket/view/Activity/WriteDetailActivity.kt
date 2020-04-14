@@ -62,13 +62,13 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
     internal var mCheckbox: CheckBox? = null
     internal var mImageView: ImageView? = null
 
-    private val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+    private val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
         val msg = String.format("%d-%02d-%02d", year, monthOfYear + 1, dayOfMonth)
         mDate = msg
         (findViewById<View>(R.id.write_layout_titleView) as TextView).text = mDate
     }
 
-    private val dateSetListener2 = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+    private val dateSetListener2 = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
         val msg = String.format("%d-%02d-%02d", year, monthOfYear + 1, dayOfMonth)
         mDeadLineDate = msg
         (findViewById<View>(R.id.write_layout_deadline) as TextView).text = mDeadLineDate
@@ -94,8 +94,8 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
         setBackgroundColor()
         setTextPont()
 
-        mCheckbox = findViewById(R.id.write_layout_checkbox) as CheckBox
-        mImageView = findViewById(R.id.write_layout_imageview) as ImageView
+        mCheckbox = findViewById<CheckBox>(R.id.write_layout_checkbox)
+        mImageView = findViewById<ImageView>(R.id.write_layout_imageview)
 
     }
 
@@ -130,18 +130,18 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
     }
 
     fun setBtnClickListener(){
-        val btn1 = findViewById(R.id.write_saveButton) as Button
-        btn1.setOnClickListener(this);
-        val btn2 = findViewById(R.id.write_deleteButton) as Button
-        btn2.setOnClickListener(this);
-        val btn3 = findViewById(R.id.write_shareButton) as Button
-        btn3.setOnClickListener(this);
-        val btn4 = findViewById(R.id.write_image_camera) as Button
-        btn4.setOnClickListener(this);
-        val btn5 = findViewById(R.id.write_image_gallery) as Button
-        btn5.setOnClickListener(this);
-        val btn6 = findViewById(R.id.write_image_remove) as Button
-        btn6.setOnClickListener(this);
+        val btn1 = findViewById<Button>(R.id.write_saveButton)
+        btn1.setOnClickListener(this)
+        val btn2 = findViewById<Button>(R.id.write_deleteButton)
+        btn2.setOnClickListener(this)
+        val btn3 = findViewById<Button>(R.id.write_shareButton)
+        btn3.setOnClickListener(this)
+        val btn4 = findViewById<Button>(R.id.write_image_camera)
+        btn4.setOnClickListener(this)
+        val btn5 = findViewById<Button>(R.id.write_image_gallery)
+        btn5.setOnClickListener(this)
+        val btn6 = findViewById<Button>(R.id.write_image_remove)
+        btn6.setOnClickListener(this)
 
     }
 
@@ -194,8 +194,6 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
                 var year = gregorianCalendar.get(Calendar.YEAR)
                 var month = gregorianCalendar.get(Calendar.MONTH)
                 var day = gregorianCalendar.get(Calendar.DAY_OF_MONTH)
-                val hour = gregorianCalendar.get(Calendar.HOUR_OF_DAY)
-                val minute = gregorianCalendar.get(Calendar.MINUTE)
                 var datePickerDialog = DatePickerDialog(this@WriteDetailActivity, dateSetListener, year, month, day)
                 datePickerDialog.show()
             }
@@ -232,7 +230,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
                     try {
                         val imagePath = DataUtils.getMediaScanPath(this, imgUri)
                         KLog.d(ContextUtils.TAG, "@@ photo imagePath :$imagePath")
-                        if (imagePath == null) {
+                        if (imagePath.isEmpty()) {
                             val message = getString(R.string.write_bucekt_image_attch)
                             Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
                         }
@@ -262,17 +260,13 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
 
     private fun setData() {
         val memoMap = mSqlQuery!!.selectKbucket(applicationContext, mContents!!)
-        if (memoMap == null || memoMap.toString() == null) {
+        if (memoMap.isNullOrEmpty()) {
             return
         }
         KLog.d(this.javaClass.simpleName, "@@ memoMap" + memoMap.toString())
         mDate = memoMap["date"]
         val yn = memoMap["complete_yn"]
-        if (yn != null && yn == "Y") {
-            mCheckbox!!.isChecked = true
-        } else {
-            mCheckbox!!.isChecked = false
-        }
+        mCheckbox!!.isChecked = yn != null && yn == "Y"
         mPhotoPath = memoMap["image_path"]
 
         val bytes = mSqlQuery!!.selectImage(applicationContext, mContents!!, mDate!!)
@@ -337,7 +331,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
             val bitmaps = ByteUtils.getByteArrayFromFile(mPhotoPath!!)
             KLog.d(this.javaClass.simpleName, "@@ bitmaps : " + bitmaps)
             if(bitmaps != null){
-                mSqlQuery!!.updateMemoImage(applicationContext, mContents!!, mDate!!, bitmaps!!)
+                mSqlQuery!!.updateMemoImage(applicationContext, mContents!!, mDate!!, bitmaps)
             }
         }
     }
@@ -430,29 +424,28 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
         KLog.d(this.javaClass.simpleName, "@@ onHttpReceive type : $type")
         // 버킷 공유 결과
         val mData = obj as String
-        var isValid = false
+        var isValid : Boolean = false
         if (actionId == IHttpReceive.INSERT_BUCKET) {
             if (type == IHttpReceive.HTTP_FAIL) {
                 val message = getString(R.string.write_bucekt_fail_string)
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
             } else {
-                if (mData != null) {
-                    try {
-                        val json = JSONObject(mData)
-                        isValid = json.getBoolean("isValid")
-                        mImageIdx = json.getInt("idx")
-                    } catch (e: JSONException) {
-                        KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
-                    }
 
-                    if (isValid == true) {
-                        // 이미지가 있는 경우 전송함
-                        if (mPhotoPath != null && mPhotoPath != "") {
-                            mHandler!!.sendEmptyMessage(UPLOAD_IMAGE)
-                        } else {
-                            val message = getString(R.string.write_bucekt_success_string)
-                            mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
-                        }
+                try {
+                    val json = JSONObject(mData)
+                    isValid = json.getBoolean("isValid")
+                    mImageIdx = json.getInt("idx")
+                } catch (e: JSONException) {
+                    KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                }
+
+                if (isValid == true) {
+                    // 이미지가 있는 경우 전송함
+                    if (mPhotoPath != null && mPhotoPath != "") {
+                        mHandler!!.sendEmptyMessage(UPLOAD_IMAGE)
+                    } else {
+                        val message = getString(R.string.write_bucekt_success_string)
+                        mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
                     }
                 }
             }
@@ -462,15 +455,13 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
                 val message = getString(R.string.upload_image_fail_string)
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
             } else {
-                if (mData != null) {
-                    try {
-                        val json = JSONObject(mData)
-                        isValid = json.getBoolean("isValid")
-                    } catch (e: JSONException) {
-                        KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
-                    }
-
+                try {
+                    val json = JSONObject(mData)
+                    isValid = json.getBoolean("isValid")
+                } catch (e: JSONException) {
+                    KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
                 }
+
                 if (isValid == true) {
                     val message = getString(R.string.write_bucekt_success_string)
                     mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
@@ -513,7 +504,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
                 list.add(Category("DEVELOP", 7))
                 list.add(Category("HEALTH", 8))
                 list.add(Category("ETC", 9))
-                mCategoryPopup = SpinnerListPopup(this, title, "", list, R.layout.popupview_spinner_list, this, OnPopupEventListener.POPUP_BUCKET_CATEGORY)
+                mCategoryPopup = SpinnerListPopup(this, title, content, list, R.layout.popupview_spinner_list, this, OnPopupEventListener.POPUP_BUCKET_CATEGORY)
                 mCategoryPopup!!.showDialog()
             }
         }

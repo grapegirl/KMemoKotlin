@@ -31,19 +31,13 @@ class KMemoWidget : AppWidgetProvider() {
         }
     }
 
-    override fun onRestored(context: Context?, oldWidgetIds: IntArray?, newWidgetIds: IntArray?) {
-        //Toast.makeText(context, "onReceive onRestored : " + oldWidgetIds , Toast.LENGTH_LONG).show()
-
-        super.onRestored(context, oldWidgetIds, newWidgetIds)
-    }
-
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
 
-        val extras = intent.extras
+        //val extras = intent.extras
         val manager = AppWidgetManager.getInstance(context)
 
-        val nID = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
+        //val nID = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
         val action = intent.action
 
         //Toast.makeText(context, "onReceive action : " + action , Toast.LENGTH_LONG).show()
@@ -81,7 +75,7 @@ class KMemoWidget : AppWidgetProvider() {
         val memo = SharedPreferenceUtils.read(context, ContextUtils.KEY_USER_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         views.setTextViewText(R.id.widget_memo_content, memo)
         intent.action = KWidgetReceiver.WIDGET_ACTION_MEMO_WRITE_EVENT
-        intent.putExtra(WriteMemoActivity.Intent_WID, appWidgetIds);
+        intent.putExtra(WriteMemoActivity.Intent_WID, appWidgetIds)
 
         for (appWidgetId in appWidgetIds) {
             KLog.d(ContextUtils.TAG, "@@ initUI appWidgetId : " + appWidgetId)

@@ -48,7 +48,6 @@ class HttpUrlFileDownloadManager
             val urlConnection = url.openConnection() as HttpURLConnection
             urlConnection.connect()
 
-            val lenghtOfFile = urlConnection.contentLength
             val input = urlConnection.inputStream
 
             val saveFile = params[0] as String
@@ -80,11 +79,4 @@ class HttpUrlFileDownloadManager
         return null
     }
 
-    override fun onPreExecute() {
-        super.onPreExecute()
-    }
-
-    override fun onPostExecute(aVoid: Void) {
-        super.onPostExecute(aVoid)
-    }
 }

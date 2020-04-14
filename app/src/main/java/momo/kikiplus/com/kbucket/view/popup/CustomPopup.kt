@@ -35,6 +35,7 @@ abstract class CustomPopup
      */
     protected var mContext: Context? = null
 
+
     /**
      * 다이얼로그 뷰
      */

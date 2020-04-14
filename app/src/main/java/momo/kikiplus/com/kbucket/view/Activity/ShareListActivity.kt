@@ -77,9 +77,10 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
         KLog.d(this.javaClass.simpleName, "@@ onHttpReceive  obj: $obj")
         val mData = obj as String
         var isValid = false
-        if (mData != null) {
+        if (mData.length > 0) {
             try {
                 val json = JSONObject(mData)
+
                 isValid = json.getBoolean("isValid")
             } catch (e: JSONException) {
                 KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
@@ -224,9 +225,9 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
         for (i in mButton.indices) {
             mButton[i]!!.setOnClickListener(this)
             val typeFace = DataUtils.getHannaFont(applicationContext)
-            mButton[i]!!.setTypeface(typeFace)
-            mButton[i]!!.setText(mCategoryList!![i].categoryName)
-            mButton[i]!!.setTag(mCategoryList!![i].categoryCode)
+            mButton[i]!!.typeface = typeFace
+            mButton[i]!!.text = mCategoryList!![i].categoryName
+            mButton[i]!!.tag = mCategoryList!![i].categoryCode
         }
     }
 
@@ -237,7 +238,7 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
      */
     private fun setButtonSelected(id: Int) {
         for (i in mButton.indices) {
-            if (mButton[i]!!.getId() == id) {
+            if (mButton[i]!!.id == id) {
                 mButton[i]!!.setBackgroundColor(-0x1)
                 mButton[i]!!.setTextColor(-0x663400)
             } else {

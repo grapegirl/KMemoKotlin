@@ -26,26 +26,26 @@ object StringUtils {
      * @Return 변환된 스트링 값
      */
     fun convertString(str: String): String {
-        var str = str
-        if (str.contains("&amp;")) {
-            str = str.replace("&amp;", "&")
+        var strData = str
+        if (strData.contains("&amp;")) {
+            strData = strData.replace("&amp;", "&")
         }
-        if (str.contains("&apos;")) {
-            str = str.replace("&apos;", "'")
+        if (strData.contains("&apos;")) {
+            strData = strData.replace("&apos;", "'")
         }
-        if (str.contains("&quot;")) {
-            str = str.replace("&quot;", "\"")
+        if (strData.contains("&quot;")) {
+            strData = strData.replace("&quot;", "\"")
         }
-        if (str.contains("\\")) {
-            str = str.replace("\\", "\\")
+        if (strData.contains("\\")) {
+            strData = strData.replace("\\", "\\")
         }
-        if (str.contains("&lt;")) {
-            str = str.replace("&lt;", "<")
+        if (strData.contains("&lt;")) {
+            strData = strData.replace("&lt;", "<")
         }
-        if (str.contains("&gt;")) {
-            str = str.replace("&gt;", ">")
+        if (strData.contains("&gt;")) {
+            strData = strData.replace("&gt;", ">")
         }
-        return str
+        return strData
     }
 
     /***

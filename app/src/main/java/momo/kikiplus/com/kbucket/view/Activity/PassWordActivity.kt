@@ -22,7 +22,7 @@ import java.util.*
  */
 class PassWordActivity : Activity(), View.OnClickListener {
 
-    private var mButton: Array<Button?> = arrayOfNulls<Button>(15);
+    private var mButton: Array<Button?> = arrayOfNulls<Button>(15)
     private var mPasswordData: ArrayList<String>? = null
     private var isPasswordset = false
 
@@ -109,13 +109,11 @@ class PassWordActivity : Activity(), View.OnClickListener {
 
     private fun setButtonText() {
         KLog.d(this.javaClass.simpleName, "@@ mPasswordData size : " + mPasswordData!!.size)
-        for (i in 1..mPasswordData!!.size) {
-            mButton!![i]?.text = "*"
-        }
+        for (i in 1..mPasswordData!!.size) mButton[i]?.text = "*"
 
         for (i in 1..4 - mPasswordData!!.size) {
             KLog.d(this.javaClass.simpleName, "@@ delete index : " + (5 - i))
-            mButton!![5 - i]?.text = ""
+            mButton[5 - i]?.text = ""
         }
 
         if (mPasswordData!!.size == 4) {
@@ -131,7 +129,7 @@ class PassWordActivity : Activity(), View.OnClickListener {
                     Toast.makeText(application, message, Toast.LENGTH_LONG).show()
                     mPasswordData!!.clear()
                     for (i in 1..4) {
-                        mButton!![i]?.text = ""
+                        mButton[i]?.text = ""
                     }
                 } else {
                     val getIntent = intent

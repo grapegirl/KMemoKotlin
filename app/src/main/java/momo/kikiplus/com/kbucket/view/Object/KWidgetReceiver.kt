@@ -13,10 +13,10 @@ class KWidgetReceiver : BroadcastReceiver() {
 
 
     override fun onReceive(context: Context, intent: Intent) {
-        var intent = intent
+        var newIntent = intent
         KLog.d(ContextUtils.TAG, "@@ KWidgetReceiver action : " + intent.action!!)
 
-        val action = intent.action
+        val action = newIntent.action
 
         if (WIDGET_ACTION_WRITE_EVENT == action) {
             callActivity(context, ContextUtils.WIDGET_WRITE_BUCKET)
@@ -27,9 +27,9 @@ class KWidgetReceiver : BroadcastReceiver() {
         } else if (WIDGET_ACTION_SHARE_EVENT == action) {
             callActivity(context, ContextUtils.WIDGET_SHARE)
         } else if (WIDGET_ACTION_MEMO_WRITE_EVENT == action) {
-            intent = Intent(context, WriteMemoActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            context.startActivity(intent)
+            newIntent = Intent(context, WriteMemoActivity::class.java)
+            newIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(newIntent)
         } else if(WIDGET_ACTION_REFRESH == action){
 
         }

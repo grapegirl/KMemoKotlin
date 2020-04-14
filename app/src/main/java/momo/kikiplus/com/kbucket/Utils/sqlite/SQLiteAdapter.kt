@@ -125,11 +125,11 @@ class SQLiteAdapter(internal var mCtx: Context) {
     }
 
     fun queryImageRow(sql: String, selectionArgs: Array<String>): ByteArray? {
-        var result: Cursor? = null
+        var result: Cursor?
         var bytes: ByteArray? = null
         result = mDb!!.rawQuery(sql, selectionArgs)
         if (result != null && result.moveToFirst()) {
-            val columnCount = result.columnCount
+            //val columnCount = result.columnCount
             bytes = result.getBlob(0)
         }
         result!!.close()
@@ -146,7 +146,7 @@ class SQLiteAdapter(internal var mCtx: Context) {
     fun getRowCount(sql: String, selectionArgs: Array<String>): Int {
 
         var count = 0
-        var result: Cursor? = null
+        var result: Cursor?
 
         result = mDb!!.rawQuery(sql, selectionArgs)
 

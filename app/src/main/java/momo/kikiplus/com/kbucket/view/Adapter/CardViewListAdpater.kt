@@ -90,7 +90,7 @@ class CardViewListAdpater
         for (i in mListItem!!.indices) {
             val contents = mListItem!![i].contents
             val date = mListItem!![i].date
-            var bitmap: Bitmap? = null
+            var bitmap: Bitmap?
             val bytes = sqlQuery.selectImage(mContext!!, contents!!, date!!)
             if (bytes == null) {
                 bitmap = noImageBitmap
@@ -101,8 +101,8 @@ class CardViewListAdpater
         }
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var convertView = convertView
+    override fun getView(position: Int, childView: View?, parent: ViewGroup?): View {
+        var convertView = childView
         val viewHolder: ViewHolder
         if (convertView == null) {
             val inflater = mContext!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

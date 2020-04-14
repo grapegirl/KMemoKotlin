@@ -141,7 +141,6 @@ class ConfigurationActivity : Activity(), View.OnClickListener, IHttpReceive, an
                 val mData = obj as String
                 try {
                     val json = JSONObject(mData)
-                    val versionCode = json.getInt("versionCode")
                     mMarketVersionName = json.getString("versionName")
                 } catch (e: JSONException) {
                     KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
@@ -219,7 +218,7 @@ class ConfigurationActivity : Activity(), View.OnClickListener, IHttpReceive, an
                     Toast.makeText(applicationContext, msaage, Toast.LENGTH_LONG).show()
                 } else {
                     val msaage = getString(R.string.db_import_fail_string)
-                    Toast.makeText(applicationContext, "", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, msaage, Toast.LENGTH_LONG).show()
                 }
             }
         }

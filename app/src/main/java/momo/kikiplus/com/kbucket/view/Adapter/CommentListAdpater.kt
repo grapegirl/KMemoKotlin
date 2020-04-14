@@ -77,7 +77,7 @@ class CommentListAdpater
         }
 
         val date = mListItem!![position].date
-        var convertDate: String? = null
+        var convertDate: String?
         try {
             convertDate = StringUtils.convertTime(date!!)
         } catch (e: Exception) {

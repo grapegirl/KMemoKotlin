@@ -71,8 +71,8 @@ class ChatListAdpater
         } else 0
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var convertView = convertView
+    override fun getView(position: Int, childView: View?, parent: ViewGroup?): View {
+        var convertView = childView
         val viewHolder: ViewHolder
         if (convertView == null) {
             val inflater = mContext!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -99,7 +99,7 @@ class ChatListAdpater
         val content = mListItem!![position].content
 
         val myNickname = SharedPreferenceUtils.read(mContext!!, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
-        if (nickname != null && myNickname == nickname) {
+        if (myNickname == nickname) {
             viewHolder.otherView!!.visibility = View.INVISIBLE
             viewHolder.myView!!.visibility = View.VISIBLE
             viewHolder.myNickname!!.text = nickname

@@ -76,16 +76,16 @@ object DateUtils {
      */
     fun getCompareDate(pattern: String, date1: String, date2: String): Int {
         val format = SimpleDateFormat(pattern)
-        var compareDay1: Date? = null
-        var compareDay2: Date? = null
+        var nCompareDate : Int
         try {
-            compareDay1 = format.parse(date1)
-            compareDay2 = format.parse(date2)
+            var compareDay1 : Date? = format.parse(date1)
+            var compareDay2 : Date? = format.parse(date2)
+
+            nCompareDate =  compareDay1!!.compareTo(compareDay2)
         } catch (e: ParseException) {
             return -2
         }
-
-        return compareDay1!!.compareTo(compareDay2)
+        return nCompareDate
     }
 
     /**

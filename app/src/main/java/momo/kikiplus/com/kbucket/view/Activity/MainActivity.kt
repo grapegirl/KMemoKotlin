@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -15,14 +14,16 @@ import android.view.Gravity
 import android.view.View
 import android.widget.*
 import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
-import com.google.firebase.iid.FirebaseInstanceId
 import momo.kikiplus.com.kbucket.Managers.asynctask.AppUpdateTask
 import momo.kikiplus.com.kbucket.Managers.asynctask.UserUpdateTask
 import momo.kikiplus.com.kbucket.Managers.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
-import momo.kikiplus.com.kbucket.Managers.push.FireInstanceIDService
+import momo.kikiplus.com.kbucket.Managers.push.FireMessingService
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
 import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
@@ -103,7 +104,7 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
                 android.R.layout.simple_list_item_1, confDatas)
 
 
-        mDrawerList?.setOnItemClickListener(DrawerItemClickListener())
+        mDrawerList?.onItemClickListener = DrawerItemClickListener()
 
         mHandler = Handler(this)
         Thread.setDefaultUncaughtExceptionHandler(ErrorLogUtils.UncaughtExceptionHandlerApplication())
@@ -121,40 +122,40 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
         mAdView.adListener = object: AdListener() {
             override fun onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
-                Log.d("mhkim", "@@ onAdLoaded  ");
+                Log.d("mhkim", "@@ onAdLoaded  ")
             }
 
             override fun onAdFailedToLoad(errorCode : Int) {
                 // Code to be executed when an ad request fails.
-                Log.d("mhkim", "@@ onAdFailedToLoad errorCode :   " + errorCode);
+                Log.d("mhkim", "@@ onAdFailedToLoad errorCode :   " + errorCode)
             }
 
             override fun onAdOpened() {
                 // Code to be executed when an ad opens an overlay that
                 // covers the screen.
-                Log.d("mhkim", "@@ onAdOpened");
+                Log.d("mhkim", "@@ onAdOpened")
             }
 
             override fun onAdClicked() {
                 // Code to be executed when the user clicks on an ad.
-                Log.d("mhkim", "@@ onAdClicked");
+                Log.d("mhkim", "@@ onAdClicked")
             }
 
             override fun onAdLeftApplication() {
                 // Code to be executed when the user has left the app.
-                Log.d("mhkim", "@@ onAdLeftApplication");
+                Log.d("mhkim", "@@ onAdLeftApplication")
             }
 
             override fun onAdClosed() {
                 // Code to be executed when the user is about to return
                 // to the app after tapping on an ad.
-                Log.d("mhkim", "@@ onAdClosed");
+                Log.d("mhkim", "@@ onAdClosed")
             }
         }
 
         val getIntent = intent
 
-        Log.d("mhkim", "@@ getIntent : " + getIntent);
+        Log.d("mhkim", "@@ getIntent : " + getIntent)
         val data = getIntent.getStringExtra(ContextUtils.WIDGET_SEND_DATA)
         if (data != null && data == ContextUtils.WIDGET_SHARE) {
             ShareSocial()
@@ -175,8 +176,8 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
         setBackgroundColor()
         setTextPont()
 
-        mDrawerList = findViewById(R.id.drawer_list) as ListView
-        mDrawer = findViewById(R.id.dl_activity_main_drawer) as DrawerLayout
+        mDrawerList = findViewById<ListView>(R.id.drawer_list)
+        mDrawer = findViewById<DrawerLayout>(R.id.dl_activity_main_drawer)
     }
 
     private fun setBackgroundColor() {
@@ -204,41 +205,39 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
             startActivity(intent)
         }
 
-        val token = FirebaseInstanceId.getInstance().token
-        SharedPreferenceUtils.write(this, ContextUtils.KEY_USER_FCM, token)
-        KLog.d(ContextUtils.TAG, "@@ onStart token : " + token!!)
-        if (token == null) {
-            val intent = Intent(this, FireInstanceIDService::class.java)
+        var strToken = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_FCM, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        KLog.d(ContextUtils.TAG, "@@ onStart strToken : " + strToken)
+        if(strToken == null){
+            val intent = Intent(this, FireMessingService::class.java)
             startService(intent)
         }
 
-        if (!mbInitialUserUpdate && userNickName != null && token != null) {
+        if (!mbInitialUserUpdate && userNickName != null && strToken != null) {
             mbInitialUserUpdate = true
             mHandler!!.sendEmptyMessage(UPDATE_USER)
         }
-
     }
 
     fun setBtnClickListener(){
-        val btn1 = findViewById(R.id.main_writeBtn) as Button
-        btn1.setOnClickListener(this);
-        val btn2 = findViewById(R.id.main_update_btn) as Button
-        btn2.setOnClickListener(this);
-        val btn3 = findViewById(R.id.main_ai_btn) as Button
-        btn3.setOnClickListener(this);
-        val btn4 = findViewById(R.id.main_listBtn) as Button
-        btn4.setOnClickListener(this);
-        val btn5 = findViewById(R.id.main_bucketlistBtn) as Button
-        btn5.setOnClickListener(this);
-        val btn6 = findViewById(R.id.main_conf_btn) as Button
-        btn6.setOnClickListener(this);
-        val btn7 = findViewById(R.id.main_bucketRankBtn) as Button
-        btn7.setOnClickListener(this);
+        val btn1 = findViewById<Button>(R.id.main_writeBtn)
+        btn1.setOnClickListener(this)
+        val btn2 = findViewById<Button>(R.id.main_update_btn)
+        btn2.setOnClickListener(this)
+        val btn3 = findViewById<Button>(R.id.main_ai_btn)
+        btn3.setOnClickListener(this)
+        val btn4 = findViewById<Button>(R.id.main_listBtn)
+        btn4.setOnClickListener(this)
+        val btn5 = findViewById<Button>(R.id.main_bucketlistBtn)
+        btn5.setOnClickListener(this)
+        val btn6 = findViewById<Button>(R.id.main_conf_btn)
+        btn6.setOnClickListener(this)
+        val btn7 = findViewById<Button>(R.id.main_bucketRankBtn)
+        btn7.setOnClickListener(this)
     }
 
     @SuppressLint("WrongConstant")
     override fun onClick(view: View?) {
-        KLog.d(ContextUtils.TAG, "@@ onClick ");
+        KLog.d(ContextUtils.TAG, "@@ onClick ")
         backKeyPressedTime = 0
         when (view?.id) {
             R.id.main_writeBtn -> mHandler!!.sendEmptyMessage(WRITE_BUCEKT)
@@ -310,7 +309,9 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
             RESPOND_AI// AI 대답
             -> {
                 KProgressDialog.setDataLoadingDialog(this, false, null, false)
-                mAIPopup = AIPopup(this, message.obj as String, R.layout.popup_ai, this, OnPopupEventListener.POPUP_AI)
+                val contnet : String = message.obj as String
+
+                mAIPopup = AIPopup(this, contnet, R.layout.popup_ai, this, OnPopupEventListener.POPUP_AI)
                 mAIPopup!!.showDialog()
             }
             CHECK_VERSION//버전 체크
@@ -369,14 +370,12 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
         KLog.d(this.javaClass.simpleName, "@@ onHttpReceive : $obj")
         // 버킷 공유 결과
         val mData = obj as String
-        var isValid = false
         var message: String? = null
         if (actionId == IHttpReceive.REQUEST_AI) {
             if (type == IHttpReceive.HTTP_OK) {
-                if (mData != null) {
+                if (mData.isNotEmpty()) {
                     try {
                         val json = JSONObject(mData)
-                        isValid = json.getBoolean("isValid")
                         message = json.getString("replay")
                     } catch (e: JSONException) {
                         ErrorLogUtils.saveFileEror("@@ AI Respond jsonException message : " + e.message)
@@ -447,14 +446,9 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
             }
             7//버전체크
             -> mHandler!!.sendEmptyMessage(CHECK_VERSION)
-            8//관리자 블로그가기
-            -> {
-                intent = Intent(Intent.ACTION_VIEW, Uri.parse(ContextUtils.KBUCKET_BLOG))
-                startActivity(intent)
-            }
-            9//공유하기
+            8//공유하기
             -> ShareSocial()
-            10//관심 버킷 추가하기
+            9//관심 버킷 추가하기
             -> {
                 intent = Intent(this, AddBucketActivity::class.java)
                 startActivity(intent)

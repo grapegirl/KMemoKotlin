@@ -60,7 +60,7 @@ class SetNickNameActivity : Activity(), View.OnClickListener {
         var nickname: String? = (findViewById<View>(R.id.nickname_editText) as EditText).text.toString()
         KLog.d(this.javaClass.simpleName, "@@ nickname : " + nickname!!)
         nickname = nickname.replace(" ".toRegex(), "")
-        if (nickname == "" || nickname == null) {
+        if (nickname.isEmpty()) {
             val message = getString(R.string.nickname_fail_string)
             Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
             return

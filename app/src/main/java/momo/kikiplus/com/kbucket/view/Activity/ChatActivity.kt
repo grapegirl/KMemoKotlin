@@ -74,10 +74,6 @@ class ChatActivity : Activity(), IHttpReceive, View.OnClickListener, Handler.Cal
         this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     /**
      * 데이타 초기화
      */
@@ -95,15 +91,14 @@ class ChatActivity : Activity(), IHttpReceive, View.OnClickListener, Handler.Cal
         KLog.d(this.javaClass.simpleName, "@@ onHttpReceive  obj: $obj")
         val mData = obj as String
         var isValid = false
-        if (mData != null) {
-            try {
-                val json = JSONObject(mData)
-                isValid = json.getBoolean("isValid")
-            } catch (e: JSONException) {
-                KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
-            }
 
+        try {
+            val json = JSONObject(mData)
+            isValid = json.getBoolean("isValid")
+        } catch (e: JSONException) {
+            KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
         }
+
         if (actionId == IHttpReceive.SELECT_CHAT) {
             KProgressDialog.setDataLoadingDialog(this, false, null, false)
             if (type == IHttpReceive.HTTP_OK && isValid == true) {
@@ -153,7 +148,7 @@ class ChatActivity : Activity(), IHttpReceive, View.OnClickListener, Handler.Cal
                 val text = (findViewById<View>(R.id.chat_comment_layout_text) as EditText).text.toString()
                 if ("" == text.replace(" ".toRegex(), "")) {
                     mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, "내용을 입력해주세요~"))
-                    return;
+                    return
                 }
                 KProgressDialog.setDataLoadingDialog(this, true, this.getString(R.string.loading_string), true)
                 val httpUrlTaskManager = HttpUrlTaskManager(ContextUtils.INSERT_CHAT, true, this, IHttpReceive.INSERT_CHAT)

@@ -72,15 +72,15 @@ object DataUtils {
 
         // Transfer bytes from in to out
         val buf = ByteArray(1024)
-        var len: Int = 0
+        var len: Int
 
         do{
-            len = inn.read(buf);
+            len = inn.read(buf)
 
             if(len <= 0){
-                break;
+                break
             }
-            out.write(buf, 0, len);
+            out.write(buf, 0, len)
         }while (true)
 
 
@@ -124,7 +124,7 @@ object DataUtils {
      * @return 복원 여부(성공 true, 실패 false 반환)
      */
     fun importDB(backupDBPath: String): Boolean {
-        var backupDBPath = backupDBPath
+        var backupPath = backupDBPath
         try {
             val sd = Environment.getExternalStorageDirectory()
             val data = Environment.getDataDirectory()
@@ -135,9 +135,9 @@ object DataUtils {
 
                 if (backupDBPath.contains("/KMemo/")) {
                     val nStartIndex = backupDBPath.indexOf("/KMemo/")
-                    backupDBPath = backupDBPath.substring(nStartIndex, backupDBPath.length)
+                    backupPath = backupDBPath.substring(nStartIndex, backupDBPath.length)
                 }
-                val currentDB = File(sd, backupDBPath)
+                val currentDB = File(sd, backupPath)
                 val src = FileInputStream(currentDB).channel
                 val dst = FileOutputStream(backupDB).channel
                 dst.transferFrom(src, 0, src.size())
@@ -236,8 +236,6 @@ object DataUtils {
      */
     fun isFileExists(path: String): Boolean {
         val file = File(path)
-        return if (file.exists()) {
-            true
-        } else false
+        return file.exists()
     }
 }

@@ -45,12 +45,8 @@ class HttpUrlFileUploadManager
         mIHttpReceive = receive
     }
 
-    override fun onPreExecute() {
-        super.onPreExecute()
-    }
-
     override fun doInBackground(vararg params: Any): Void? {
-        val filePath = params[0] as String
+        //val filePath = params[0] as String
         val setValue = params[1] as String
         val reqValue = params[2] as String
         val fileName = params[3] as String
@@ -104,12 +100,12 @@ class HttpUrlFileUploadManager
             dos.flush() // finish upload...
 
             // get response
-            var ch: Int = 0
+            var ch: Int
             val `is` = conn.inputStream
             val b = StringBuffer()
 
             do{
-                ch = `is`.read();
+                ch = `is`.read()
                 if(ch != -1){
                     b.append(ch.toChar())
                 }
@@ -128,10 +124,6 @@ class HttpUrlFileUploadManager
         return null
     }
 
-
-    override fun onPostExecute(aVoid: Void) {
-        super.onPostExecute(aVoid)
-    }
 
     companion object {
 

@@ -92,7 +92,6 @@ object AppUtils {
      */
     fun printUserPoneTimezone() {
         var tz: TimeZone
-        val date = Date()
         val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss (z Z)")
 
         tz = TimeZone.getTimeZone("Asia/Seoul")
@@ -172,6 +171,8 @@ object AppUtils {
      */
     fun getRunningService(context: Context, serviceName: String): Boolean {
         val manager = context.getSystemService(Activity.ACTIVITY_SERVICE) as ActivityManager
+        
+
         for (service in manager.getRunningServices(Integer.MAX_VALUE)) {
             if (serviceName == service.service.className) {
                 return true
@@ -229,8 +230,6 @@ object AppUtils {
      * @return 실행 여부(true - 실행중, false - 실행안됨)
      */
     fun getServiceTaskName(context: Context, packName: String): Boolean {
-        val checked = false
-
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val list = am.runningAppProcesses
         for (rap in list) {
@@ -291,11 +290,14 @@ object AppUtils {
             val pm = context.packageManager
             val pi = pm.getPackageInfo(packageName, PackageManager.GET_META_DATA)
             val appInfo = pi.applicationInfo
+
+            if(appInfo != null){
+                return true
+            }
         } catch (e: PackageManager.NameNotFoundException) {
             // 패키지가 없을 경우.
             return false
         }
-
         return true
     }
 

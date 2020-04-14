@@ -28,7 +28,6 @@ class WriteMemoActivity : Activity(), View.OnClickListener {
         setContentView(R.layout.wriet_meo_activity)
 
         mIntent = intent
-        val extras = mIntent!!.extras
 
         (findViewById<View>(R.id.write_meo_modify) as Button).setOnClickListener(this)
         val memo = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?

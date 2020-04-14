@@ -53,10 +53,6 @@ class HttpUrlTaskManager
         mIHttpReceive = receive
     }
 
-    override fun onPreExecute() {
-        super.onPreExecute()
-    }
-
 
     override fun doInBackground(vararg params: String): Void? {
         var data = ""
@@ -83,15 +79,15 @@ class HttpUrlTaskManager
 
             if (isPost) {//Post 방식으로 데이타 전달시
                 val outputStream = httpURLConnection.outputStream
-                if (params != null) {
-//System.out.println("@@ sendData : " + sendData);
+                if (params.size > 0) {
+                    //System.out.println("@@ sendData : " + sendData);
                     outputStream.write(params[0].toByteArray(charset("UTF-8")))
                     outputStream.flush()
                     outputStream.close()
                 }
             }
             if (httpURLConnection.responseCode == HttpURLConnection.HTTP_OK) {
-                var buffer: String? = null
+                var buffer: String?
                 val bufferedReader: BufferedReader
                 if (isPost) {
                     bufferedReader = BufferedReader(InputStreamReader(httpURLConnection.inputStream, "UTF-8"))
@@ -100,11 +96,11 @@ class HttpUrlTaskManager
                 }
 
                 do{
-                    buffer = bufferedReader.readLine();
+                    buffer = bufferedReader.readLine()
                     if(buffer == null){
-                        break;
+                        break
                     }
-                    data += buffer;
+                    data += buffer
                 }while(true)
 
 
@@ -136,7 +132,4 @@ class HttpUrlTaskManager
         return null
     }
 
-    override fun onPostExecute(aVoid: Void?) {
-        super.onPostExecute(aVoid)
-    }
 }
