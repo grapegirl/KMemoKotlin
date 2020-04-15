@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.barteksc:android-pdf-viewer:2.6.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9352142b735258c32efd0aa40cfb7363/jetified-android-pdf-viewer-2.6.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9352142b735258c32efd0aa40cfb7363/jetified-android-pdf-viewer-2.6.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/69c2da169ec4d07c14a38ccf54af15a1/jetified-android-pdf-viewer-2.6.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/69c2da169ec4d07c14a38ccf54af15a1/jetified-android-pdf-viewer-2.6.1/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.barteksc/android-pdf-viewer/2.6.1/eb730a024ebdfea340def9e3bc95cd65648d9ef6/android-pdf-viewer-2.6.1-javadoc.jar!/" />

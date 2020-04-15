@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
 
@@ -13,7 +14,9 @@ android {
         disable 'InvalidPackage'
     }
 
-    viewBinding.enabled = true
+    viewBinding {
+        enabled = true
+    }
 
     dexOptions {
         jumboMode true
@@ -56,6 +59,13 @@ android {
             implementation 'com.android.support:appcompat-v7:28.0.1'
             implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
 
+            //리사이클러뷰 사용
+            implementation "com.android.support:recyclerview-v7:28.0.0"
+            //annotation 자동 생성자
+            compileOnly 'org.projectlombok:lombok:1.16.14'
+            annotationProcessor 'org.projectlombok:lombok:1.16.14'
+            //kotlin android extensions
+            implementation "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlin_version"
         }
         repositories {
             mavenCentral()

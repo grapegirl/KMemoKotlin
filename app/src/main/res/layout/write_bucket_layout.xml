@@ -105,10 +105,13 @@
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/write_list_listview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ListView>
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical">
+
+        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 
 </LinearLayout>

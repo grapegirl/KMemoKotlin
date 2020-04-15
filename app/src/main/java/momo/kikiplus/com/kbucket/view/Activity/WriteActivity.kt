@@ -7,14 +7,16 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ListView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
 import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
-import momo.kikiplus.com.kbucket.view.Adapter.ListAdpater
+import momo.kikiplus.com.kbucket.databinding.WriteBucketLayoutBinding
 import momo.kikiplus.com.kbucket.view.Bean.PostData
 import momo.kikiplus.com.kbucket.view.KBucketSort
+import momo.kikiplus.com.kbucket.view.recycler.RecyclerViewAdapter
 import java.util.*
 
 /**
@@ -25,44 +27,47 @@ import java.util.*
  */
 class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
 
-    private var mButton: Button? = null
-    private var mMemoSortButton: Button? = null
-    private var mDateSortButton: Button? = null
-
     /**
      * 모든 버킷 목록
      */
     private var mBucketDataList: ArrayList<PostData>? = null
     private var mDataList: ArrayList<String>? = null
-    private var mListAdapter: ListAdpater? = null
-    private var mListView: ListView? = null
+
+    private var mAdapter: RecyclerViewAdapter? = null
+    private var mListView: RecyclerView? = null
 
     private var mSqlQuery: SQLQuery? = null
+
+    private lateinit var mBinding : WriteBucketLayoutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        setContentView(R.layout.write_bucket_layout)
+
+        mBinding = WriteBucketLayoutBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
+
         setBackgroundColor()
         setTextPont()
 
         mDataList = ArrayList()
         mBucketDataList = ArrayList()
-        mListView = findViewById<View>(R.id.write_list_listview) as ListView
-        mButton = findViewById<View>(R.id.write_layout_addBtn) as Button
-        mButton!!.setOnClickListener(this)
 
-        mMemoSortButton = findViewById<View>(R.id.sort_memo) as Button
-        mMemoSortButton!!.setOnClickListener(this)
-        mDateSortButton = findViewById<View>(R.id.sort_date) as Button
-        mDateSortButton!!.setOnClickListener(this)
-        (findViewById<View>(R.id.sort_deadline) as Button).setOnClickListener(this)
-
-        (findViewById<View>(R.id.write_layout_titleView) as EditText).setOnKeyListener(this)
+        mBinding.writeLayoutAddBtn.setOnClickListener(this)
+        mBinding.sortDate.setOnClickListener(this)
+        mBinding.sortDeadline.setOnClickListener(this)
+        mBinding.sortMemo.setOnClickListener(this)
+        mBinding.writeLayoutTitleView.setOnKeyListener(this)
 
         mSqlQuery = SQLQuery()
-        mListAdapter = ListAdpater(this, R.layout.bucket_list_line, mDataList!!, this)
-        mListView!!.adapter = mListAdapter
+
+
+        var layoutMgr : LinearLayoutManager = LinearLayoutManager(this)
+        mListView = findViewById(R.id.write_list_listview)
+        mListView!!.layoutManager = layoutMgr
+        mAdapter = RecyclerViewAdapter(this)
+        mListView!!.adapter = mAdapter
+
         setListData()
         AppUtils.sendTrackerScreen(this, "가지작성화면")
     }
@@ -80,6 +85,7 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
     }
 
     override fun onClick(v: View) {
+        KLog.d(ContextUtils.TAG, "@@ onClick id: $v.id")
         when (v.id) {
             R.id.write_layout_addBtn -> {
                 val editText = (findViewById<View>(R.id.write_layout_titleView) as EditText).text.toString()
@@ -96,7 +102,7 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
                 var index = Integer.valueOf(v.tag as String)
                 removeDBData(mDataList!![index])
                 mDataList!!.removeAt(index)
-                mListAdapter!!.setDataList(mDataList!!)
+                mAdapter!!.removeItems(index)
             }
             // 수정 버튼
             R.id.bucket_list_modifyBtn -> {
@@ -182,8 +188,13 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
     private fun addDBData(Content: String) {
         mDataList!!.add(Content)
         Collections.reverse(mDataList)
-        mListAdapter = ListAdpater(this, R.layout.bucket_list_line, mDataList!!, this)
-        mListView!!.adapter = mListAdapter
+
+        if(mAdapter == null){
+            mAdapter = RecyclerViewAdapter(this)
+            mListView!!.adapter = mAdapter
+        }
+        mAdapter!!.updateItems(mDataList!!)
+
         val dateTime = Date()
         val date = DateUtils.getStringDateFormat(DateUtils.DATE_YYMMDD_PATTER, dateTime)
         mSqlQuery!!.insertUserSetting(applicationContext, Content, date, "N", "")
@@ -214,8 +225,11 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
      */
     private fun sort() {
         val sort = SharedPreferenceUtils.read(applicationContext, ContextUtils.KBUCKET_SORT_KEY, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        KLog.d(ContextUtils.TAG, "@@ sort sort: $sort")
         if (sort == null) {
-            mListAdapter!!.setDataList(mDataList!!)
+            if(mAdapter != null){
+                mAdapter!!.updateItems(mDataList!!)
+            }
             return
         }
         if (sort == ContextUtils.SORT_DATE) {
@@ -238,7 +252,7 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
 
             Collections.reverse(mDataList)
         }
-        mListAdapter!!.setDataList(mDataList!!)
+        mAdapter!!.updateItems(mDataList!!)
     }
 
     override fun onStop() {
