@@ -125,6 +125,7 @@ object DataUtils {
      */
     fun importDB(backupDBPath: String): Boolean {
         var backupDBPath = backupDBPath
+        KLog.d("DataUtils", "@@ DB importDB path :  " +  backupDBPath)
         try {
             val sd = Environment.getExternalStorageDirectory()
             val data = Environment.getDataDirectory()

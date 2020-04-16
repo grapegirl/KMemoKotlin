@@ -7,12 +7,12 @@ import android.os.Message
 import android.view.View
 import android.widget.ExpandableListView
 import android.widget.Toast
-import momo.kikiplus.com.kbucket.Data.NoticeList
-import momo.kikiplus.com.kbucket.Managers.http.NetRetrofit
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.ContextUtils
 import momo.kikiplus.com.kbucket.Utils.KLog
 import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
+import momo.kikiplus.com.kbucket.net.NetRetrofit
+import momo.kikiplus.com.kbucket.net.NoticeList
 import momo.kikiplus.com.kbucket.view.Adapter.BaseExpandableAdapter
 import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import retrofit2.Call

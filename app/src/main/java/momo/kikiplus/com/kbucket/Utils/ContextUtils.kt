@@ -116,11 +116,6 @@ object ContextUtils {
     val KEY_FILE_FOLDER = "KMemo"
 
     /**
-     * GCM 프로젝트 아이디
-     */
-    val KEY_GCM_PROJECT_ID = "343963170350"
-
-    /**
      * 데이터베이스 이름명
      */
     val KBUCKET_DB_NAME = "bucket.db"
@@ -150,9 +145,7 @@ object ContextUtils {
      * 서버 port
      */
     val KBUCKET_PORT = "9000"
-    /**
-     * 버전 업데이트 URL
-     */
+
     val KBUCKET_VERSION_UPDATE_URL = "$KBUCKET_SERVER_IP/mobile/version.jsp"
     /**
      * 가지 공유하기 URL
@@ -182,10 +175,7 @@ object ContextUtils {
      * 버킷 댓글 업로드 URL
      */
     val INSERT_COMMENT_URL = "$KBUCKET_SERVER_IP/mobile/insertComment.jsp"
-    /**
-     * 공지사항URL
-     */
-    val KBUCKET_NOTICE_URL = "$KBUCKET_SERVER_IP/mobile/update.jsp"
+
     /**
      * 사용자 정보 업데이트 URL
      */
@@ -222,11 +212,6 @@ object ContextUtils {
      * 채팅 내용 조회 URL
      */
     val SELECT_CHAT = "$KBUCKET_SERVER_IP/chat/loadChat.jsp"
-
-    /**
-     * 관리자 블로그 주소
-     */
-    val KBUCKET_BLOG = "http://blog.naver.com/kikiplus2030"
 
     /**
      * Anayltics 키값

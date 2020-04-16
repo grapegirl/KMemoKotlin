@@ -308,9 +308,9 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
             RESPOND_AI// AI 대답
             -> {
                 KProgressDialog.setDataLoadingDialog(this, false, null, false)
-                val contnet : String = message.obj as String
-
-                mAIPopup = AIPopup(this, contnet, R.layout.popup_ai, this, OnPopupEventListener.POPUP_AI)
+                val content : String = message.obj as String
+                KLog.d(ContextUtils.TAG, "@@ Respond AI msg : " + content)
+                mAIPopup = AIPopup(this, content, R.layout.popup_ai, this, OnPopupEventListener.POPUP_AI)
                 mAIPopup!!.showDialog()
             }
             CHECK_VERSION//버전 체크

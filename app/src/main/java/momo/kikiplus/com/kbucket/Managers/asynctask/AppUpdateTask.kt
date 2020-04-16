@@ -4,20 +4,18 @@ import android.content.Context
 import android.os.AsyncTask
 import android.os.Message
 import android.widget.Toast
-import momo.kikiplus.com.kbucket.Managers.http.HttpUrlTaskManager
-import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.AppUtils
-import momo.kikiplus.com.kbucket.Utils.ContextUtils
 import momo.kikiplus.com.kbucket.Utils.KLog
 import momo.kikiplus.com.kbucket.Utils.StringUtils
-import momo.kikiplus.com.kbucket.view.Bean.Version
+import momo.kikiplus.com.kbucket.net.NetRetrofit
+import momo.kikiplus.com.kbucket.net.Version
 import momo.kikiplus.com.kbucket.view.popup.BasicPopup
 import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
 import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
-import org.json.JSONException
-import org.json.JSONObject
-import java.util.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * @author grape gril
@@ -26,7 +24,7 @@ import java.util.*
  * @Description : App 업데이트 Task
  * @since 2016-01-28
  */
-class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>(), IHttpReceive, android.os.Handler.Callback, OnPopupEventListener {
+class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>(), android.os.Handler.Callback, OnPopupEventListener {
 
     private val TAG = this.javaClass.simpleName
     private var mVersion: Version? = null
@@ -53,54 +51,55 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
         return null
     }
 
-    override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
-        KLog.d(this.javaClass.simpleName, " @@ onHttpReceive type:$type, object: $obj")
-        if (actionId == IHttpReceive.UPDATE_VERSION) {
-            if (type == IHttpReceive.HTTP_OK) {
-                val mData = obj as String
-                try {
-                    val json = JSONObject(mData)
-                    KLog.e(TAG, "@@ json string : " + json)
-                    val versionCode = json.getInt("versionCode")
-                    val versionName = json.getString("versionName")
-                    val forceYN = json.getString("forceYN")
-
-                    mVersion = Version()
-                    mVersion!!.forceYN = forceYN
-                    mVersion!!.versionCode = versionCode
-                    mVersion!!.versionName = versionName
-
-                    mHandler.sendEmptyMessage(CHECK_VERSION)
-
-                } catch (e: JSONException) {
-                    KLog.e(TAG, "@@ jsonException message : " + e.message)
-                    mHandler.sendEmptyMessage(FAIL_VERSION)
-                }
-
-            } else {
-                mHandler.sendEmptyMessage(FAIL_VERSION)
-            }
-        }
-    }
-
     override fun handleMessage(msg: Message): Boolean {
 
         when (msg.what) {
             START_VERSION -> {
-                val urlTaskManager = HttpUrlTaskManager(ContextUtils.KBUCKET_VERSION_UPDATE_URL, true, this, IHttpReceive.UPDATE_VERSION)
-                KLog.d(TAG, "@@ URL : " + ContextUtils.KBUCKET_VERSION_UPDATE_URL)
-                val map = HashMap<String, Any>()
-                map["version"] = AppUtils.getVersionName(mContext)!!
-                KLog.d(TAG, "@@ StringUtils.getHTTPPostSendData(map) : " + StringUtils.getHTTPPostSendData(map))
-                urlTaskManager.execute(StringUtils.getHTTPPostSendData(map))
+
+                val strSender = AppUtils.getVersionName(mContext)!!
+                KLog.d(TAG, "@@ StringUtils.getHTTPPostSendData(map) : " + strSender)
+
+                val res = NetRetrofit.instance.service.getVersion(strSender)
+                res.enqueue(object : Callback<Version>{
+                    override fun onResponse(call: Call<Version>, response: Response<Version>) {
+                        KLog.d(TAG, "@@ onRecv ok : " + response)
+                        KLog.d(TAG, "@@ onRecv response body: " + response.body()!!.toString())
+
+                        if (response.body()!!.bIsValid) {
+                            mVersion = Version()
+                            mVersion!!.forceYN = response.body()!!.forceYN
+                            mVersion!!.versionCode = response.body()!!.versionCode
+                            mVersion!!.versionName = response.body()!!.versionName
+                            KLog.d(TAG, "@@ onRecv forceYN : " + response.body()!!.forceYN)
+                            KLog.d(TAG, "@@ onRecv versionCode : " + response.body()!!.versionCode)
+                            KLog.d(TAG, "@@ onRecv versionName : " + mVersion!!.versionName)
+                            mHandler.sendEmptyMessage(CHECK_VERSION)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<Version>, t: Throwable) {
+                        KLog.d(TAG, "@@ onRecv fail : " + t.localizedMessage)
+                        mHandler.sendEmptyMessage(FAIL_VERSION)
+                    }
+                })
+
             }
             CHECK_VERSION -> {
+
+               if(mVersion == null){
+                   KLog.d(TAG, "@@ check version mVesion is null")
+                    return false
+               }
+
                 val currentVersionName = AppUtils.getVersionName(mContext)
                 val serverVersionName = mVersion!!.versionName
-                KLog.d(TAG, "@@ currentVersion : " + currentVersionName!!)
-                KLog.d(TAG, "@@ serverVersionName : " + serverVersionName!!)
-
-                if(mVersion!!.versionCode > 0){
+                if(currentVersionName == null || serverVersionName == null){
+                    KLog.d(TAG, "@@ check version currentVersionName or serverVersionName is null")
+                    KLog.d(TAG, "@@ currentVersionName : " + currentVersionName)
+                    KLog.d(TAG, "@@ serverVersisonName : " + serverVersionName)
+                    return false
+                }
+                if(mVersion!!.versionCode > 0)
                     if (StringUtils.compareVersion(currentVersionName, serverVersionName) > 0) {
                         if (mVersion!!.forceYN == "Y") {
                             val title = mContext.getString(R.string.update_popup_title)
@@ -116,7 +115,6 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
                     } else {
                         mHandler.sendEmptyMessage(TOAST_MESSAGE)
                     }
-                }
 
             }
             FAIL_VERSION -> KLog.d(TAG, "@@ Fail Version Check")
