@@ -12,6 +12,7 @@ import momo.kikiplus.com.kbucket.Managers.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
+import momo.kikiplus.com.kbucket.databinding.ConfActivityBinding
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -33,13 +34,16 @@ class ConfigurationActivity : Activity(), View.OnClickListener, IHttpReceive, an
     private val SHOW_GOOGLE_VERSION = 20
     private val FILE_SELECT_CODE = 30
 
+    private lateinit var mBinder : ConfActivityBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        setContentView(R.layout.conf_activity)
+
+        mBinder = ConfActivityBinding.inflate(layoutInflater)
+        setContentView(mBinder.root)
 
         setBackgroundColor()
-        setTextPont()
 
         mHandler = android.os.Handler(this)
         mCurrentVersionName = AppUtils.getVersionName(this)
@@ -225,22 +229,5 @@ class ConfigurationActivity : Activity(), View.OnClickListener, IHttpReceive, an
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    private fun setTextPont() {
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.conf_password_on_btn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.conf_question_btn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.conf_import_btn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.conf_export_btn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.conf_password_off_btn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.conf_guide_btn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.conf_update_btn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.conf_userBackSetting) as Button).typeface = typeFace
-        (findViewById<View>(R.id.conf_userSetting) as Button).typeface = typeFace
-        (findViewById<View>(R.id.conf_current_textview) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.conf_current_version) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.conf_lastest_textview) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.conf_lastest_version) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.intro_textview1) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.intro_textview2) as TextView).typeface = typeFace
-    }
+
 }

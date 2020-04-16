@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.view.View
-import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.Managers.http.HttpUrlTaskManager
@@ -47,7 +46,6 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         setContentView(R.layout.rank_list_activity)
         setBackgroundColor()
-        setTextPont()
         mHandler = Handler(this)
         mBucketDataList = ArrayList()
         mHandler!!.sendEmptyMessage(CHECK_NETWORK)
@@ -188,11 +186,6 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
         } else {
             mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, "이미 의견을 반영했습니다! "))
         }
-    }
-
-    private fun setTextPont() {
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.rank_list_text) as Button).typeface = typeFace
     }
 
     private fun getCommentCount(index: Int): Boolean {

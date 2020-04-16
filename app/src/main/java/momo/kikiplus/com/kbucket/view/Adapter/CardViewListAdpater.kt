@@ -13,7 +13,6 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.ByteUtils
-import momo.kikiplus.com.kbucket.Utils.DataUtils
 import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Bean.PostData
 import java.util.*
@@ -115,11 +114,6 @@ class CardViewListAdpater
             viewHolder.contentView2 = convertView.findViewById<View>(R.id.cardview_contents_textview2) as TextView
             viewHolder.imageView = convertView.findViewById<View>(R.id.cardview_contents_imageview) as ImageView
             viewHolder.imageView2 = convertView.findViewById<View>(R.id.cardview_contents_imageview2) as ImageView
-
-            val typeFace = DataUtils.getHannaFont(mContext!!)
-            viewHolder.dateView!!.typeface = typeFace
-            viewHolder.contentView!!.typeface = typeFace
-            viewHolder.contentView2!!.typeface = typeFace
 
             convertView.tag = viewHolder
         } else {

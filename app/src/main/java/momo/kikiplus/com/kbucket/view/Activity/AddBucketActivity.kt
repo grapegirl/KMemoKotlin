@@ -3,12 +3,14 @@ package momo.kikiplus.com.kbucket.view.Activity
 import android.app.Activity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ListView
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.*
+import momo.kikiplus.com.kbucket.Utils.AppUtils
+import momo.kikiplus.com.kbucket.Utils.ContextUtils
+import momo.kikiplus.com.kbucket.Utils.DateUtils
+import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
 import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
+import momo.kikiplus.com.kbucket.databinding.InterestBucketListActivityBinding
 import momo.kikiplus.com.kbucket.view.Adapter.ListAdpater
 import momo.kikiplus.com.kbucket.view.Bean.PostData
 import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
@@ -22,36 +24,38 @@ import java.util.*
  */
 class AddBucketActivity : Activity(), View.OnClickListener {
 
-    private var mBucketDataList: ArrayList<PostData>? = null
-    private var mDataList: ArrayList<String>? = null
+    private var mBucketDataList: ArrayList<PostData> =ArrayList()
+    private var mDataList: ArrayList<String> = ArrayList()
     private var mListAdapter: ListAdpater? = null
 
     private var mSqlQuery: SQLQuery? = null
     private var mbVisible = true
     private val mConfirmPopup: ConfirmPopup? = null
 
-    internal var mListView: ListView? = null
+    private lateinit var mBinder : InterestBucketListActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        setContentView(R.layout.interest_bucket_list_activity)
+
+        mBinder = InterestBucketListActivityBinding.inflate(layoutInflater)
+        setContentView(mBinder.root)
 
         initialize()
-        mBucketDataList = ArrayList()
         mSqlQuery = SQLQuery()
-        mListAdapter = ListAdpater(this, R.layout.interest_bucket_list_line, mDataList!!, this)
-        mListView!!.adapter = mListAdapter
-        AppUtils.sendTrackerScreen(this, "관심버킷추가화면")
+        mListAdapter = ListAdpater(this, R.layout.interest_bucket_list_line, mDataList, this)
+        mBinder.interestBucketListListview.adapter = mListAdapter
+        mBinder.interestBucketListAdd.setOnClickListener(this)
 
-        setBtnClickListener()
+        AppUtils.sendTrackerScreen(this, "관심버킷추가화면")
     }
 
     private fun initialize() {
         setBackgroundColor()
-        setTextPont()
-        setListData()
-        mListView = findViewById(R.id.interest_bucket_list_listview) as ListView
+        val strArray = resources.getStringArray(R.array.dream100)
+        for (i in strArray.indices) {
+            mDataList.add(strArray[i])
+        }
     }
 
     private fun setBackgroundColor() {
@@ -66,10 +70,6 @@ class AddBucketActivity : Activity(), View.OnClickListener {
         this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
-    fun setBtnClickListener(){
-        val btn1 = findViewById(R.id.interest_bucket_list_add) as Button
-        btn1.setOnClickListener(this);
-    }
 
     override fun onClick(v: View) {
         when (v.id) {
@@ -77,32 +77,24 @@ class AddBucketActivity : Activity(), View.OnClickListener {
                 mbVisible = !mbVisible
 
                 if (mbVisible) {
-                    (findViewById<View>(R.id.interest_bucket_list_add) as Button).setText(R.string.interest_bucket_list_add)
+                    mBinder.interestBucketListAdd.setText(R.string.interest_bucket_list_add)
                 } else {
-                    (findViewById<View>(R.id.interest_bucket_list_add) as Button).setText(R.string.interest_bucket_list_view)
+                    mBinder.interestBucketListAdd.setText(R.string.interest_bucket_list_view)
                 }
                 mListAdapter!!.setDataVisible(mbVisible)
             }
             R.id.bucket_list_modifyBtn//추가
             -> {
                 var index = Integer.valueOf(v.tag as String)
-                var data = mDataList!![index]
+                var data = mDataList[index]
                 addDBData(data)
             }
             R.id.bucket_list_deleteBtn//삭제
             -> {
                 val index = Integer.valueOf(v.tag as String)
-                val data = mDataList!![index]
+                val data = mDataList[index]
                 removeDBData(data)
             }
-        }
-    }
-
-    private fun setListData() {
-        mDataList = ArrayList()
-        val strArray = resources.getStringArray(R.array.dream100)
-        for (i in strArray.indices) {
-            mDataList!!.add(strArray[i])
         }
     }
 
@@ -139,13 +131,7 @@ class AddBucketActivity : Activity(), View.OnClickListener {
 
     override fun onStop() {
         super.onStop()
-        mDataList = null
-        mBucketDataList = null
-    }
-
-    private fun setTextPont() {
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.interest_bucket_list_text) as Button).typeface = typeFace
-        (findViewById<View>(R.id.interest_bucket_list_add) as Button).typeface = typeFace
+        mDataList.clear()
+        mBucketDataList.clear()
     }
 }

@@ -72,7 +72,7 @@ object DataUtils {
 
         // Transfer bytes from in to out
         val buf = ByteArray(1024)
-        var len: Int
+        var len: Int = 0
 
         do{
             len = inn.read(buf)
@@ -124,7 +124,7 @@ object DataUtils {
      * @return 복원 여부(성공 true, 실패 false 반환)
      */
     fun importDB(backupDBPath: String): Boolean {
-        var backupPath = backupDBPath
+        var backupDBPath = backupDBPath
         try {
             val sd = Environment.getExternalStorageDirectory()
             val data = Environment.getDataDirectory()
@@ -135,9 +135,9 @@ object DataUtils {
 
                 if (backupDBPath.contains("/KMemo/")) {
                     val nStartIndex = backupDBPath.indexOf("/KMemo/")
-                    backupPath = backupDBPath.substring(nStartIndex, backupDBPath.length)
+                    backupDBPath = backupDBPath.substring(nStartIndex, backupDBPath.length)
                 }
-                val currentDB = File(sd, backupPath)
+                val currentDB = File(sd, backupDBPath)
                 val src = FileInputStream(currentDB).channel
                 val dst = FileOutputStream(backupDB).channel
                 dst.transferFrom(src, 0, src.size())
@@ -206,16 +206,6 @@ object DataUtils {
         galleryIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         galleryIntent.setDataAndType(Uri.fromFile(file), "image/*")
         context.startActivity(galleryIntent)
-    }
-
-    /**
-     * 폰트 반환하기
-     *
-     * @param context 컨텍스트
-     * @return 한나폰트
-     */
-    fun getHannaFont(context: Context): Typeface {
-        return Typeface.createFromAsset(context.assets, "hanna.ttf")
     }
 
     /**

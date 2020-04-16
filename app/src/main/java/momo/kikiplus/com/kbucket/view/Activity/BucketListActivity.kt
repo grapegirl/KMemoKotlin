@@ -5,8 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Message
 import android.view.View
-import android.widget.Button
-import android.widget.ListView
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.Managers.http.HttpUrlFileUploadManager
 import momo.kikiplus.com.kbucket.Managers.http.HttpUrlTaskManager
@@ -14,6 +12,7 @@ import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
 import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
+import momo.kikiplus.com.kbucket.databinding.BucketListActivityBinding
 import momo.kikiplus.com.kbucket.view.Adapter.CardViewListAdpater
 import momo.kikiplus.com.kbucket.view.Bean.Bucket
 import momo.kikiplus.com.kbucket.view.Bean.Category
@@ -52,12 +51,16 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
     private val UPLOAD_BUCKET = 30
     private val SELECT_BUCKET_CATEGORY = 40
 
-    internal var mListView: ListView? = null
+    private lateinit var mBinder : BucketListActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        setContentView(R.layout.bucket_list_activity)
+
+        mBinder = BucketListActivityBinding.inflate(layoutInflater)
+        setContentView(mBinder.root)
+
+
         initialize()
 
         mHandler = android.os.Handler(this)
@@ -65,16 +68,14 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
         mSqlQuery = SQLQuery()
         setListData()
         Collections.reverse(mDataList)
+
         mListAdapter = CardViewListAdpater(this, R.layout.cardview_list_line, mDataList!!, this, this)
-        mListView!!.adapter = mListAdapter
-        AppUtils.sendTrackerScreen(this, "완료가지화면")
+        mBinder.bucketListListview.adapter = mListAdapter
+
     }
 
     private fun initialize() {
         setBackgroundColor()
-        setTextPont()
-
-        mListView = findViewById<ListView>(R.id.bucket_list_listview)
     }
 
     private fun setBackgroundColor() {
@@ -279,11 +280,6 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
             }
         }
         return false
-    }
-
-    private fun setTextPont() {
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.bucket_list_text) as Button).typeface = typeFace
     }
 
 }

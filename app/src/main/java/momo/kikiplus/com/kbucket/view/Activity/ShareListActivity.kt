@@ -51,12 +51,11 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         setContentView(R.layout.share_list_activity)
         setBackgroundColor()
-        setTextPont()
         mHandler = android.os.Handler(this)
         mCategoryList = ArrayList()
         mBucketDataList = ArrayList()
         mHandler!!.sendEmptyMessage(CHECK_NETWORK)
-        AppUtils.sendTrackerScreen(this, "모두가지화면")
+
     }
 
     private fun setBackgroundColor() {
@@ -224,8 +223,6 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
 
         for (i in mButton.indices) {
             mButton[i]!!.setOnClickListener(this)
-            val typeFace = DataUtils.getHannaFont(applicationContext)
-            mButton[i]!!.typeface = typeFace
             mButton[i]!!.text = mCategoryList!![i].categoryName
             mButton[i]!!.tag = mCategoryList!![i].categoryCode
         }
@@ -264,10 +261,5 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
                 startActivity(intent)
             }
         }
-    }
-
-    private fun setTextPont() {
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.share_list_text) as Button).typeface = typeFace
     }
 }

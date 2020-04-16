@@ -1,10 +1,8 @@
 package momo.kikiplus.com.kbucket
 
 import android.app.Application
-
 import com.google.android.gms.analytics.GoogleAnalytics
 import com.google.android.gms.analytics.Tracker
-
 import momo.kikiplus.com.kbucket.Utils.ContextUtils
 
 /**
@@ -27,11 +25,5 @@ class AnalyticsApplication : Application() {
             }
             return mTracker!!
         }
-
-    override fun onCreate() {
-        super.onCreate()
-        // Initialize Realm. Should only be done once when the application starts.
-        //Realm.init(this);
-    }
 
 }

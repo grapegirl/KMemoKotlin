@@ -29,7 +29,7 @@ android {
 
     defaultConfig {
         applicationId "momo.kikiplus.com.kbucket"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 78
         versionName "2.0.07"

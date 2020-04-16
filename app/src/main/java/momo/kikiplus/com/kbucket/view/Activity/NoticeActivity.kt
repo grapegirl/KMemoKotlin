@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.view.View
-import android.widget.Button
 import android.widget.ExpandableListView
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.Data.NoticeList
 import momo.kikiplus.com.kbucket.Managers.http.NetRetrofit
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.*
+import momo.kikiplus.com.kbucket.Utils.ContextUtils
+import momo.kikiplus.com.kbucket.Utils.KLog
+import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
 import momo.kikiplus.com.kbucket.view.Adapter.BaseExpandableAdapter
 import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import retrofit2.Call
@@ -46,7 +47,6 @@ class NoticeActivity : Activity(), Handler.Callback {
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         setContentView(R.layout.notice_extended)
         setBackgroundColor()
-        setTextPont()
 
         mHandler = Handler(this)
         mList = ArrayList()
@@ -55,7 +55,7 @@ class NoticeActivity : Activity(), Handler.Callback {
         KProgressDialog.setDataLoadingDialog(this, true, this.getString(R.string.loading_string), true)
 
         mHandler!!.sendEmptyMessage(LOAD_NOTICE_LIST)
-        AppUtils.sendTrackerScreen(this, "공지화면")
+
     }
 
     private fun setBackgroundColor() {
@@ -119,10 +119,5 @@ class NoticeActivity : Activity(), Handler.Callback {
             }
         }
         return false
-    }
-
-    private fun setTextPont() {
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.notice_list_text) as Button).typeface = typeFace
     }
 }

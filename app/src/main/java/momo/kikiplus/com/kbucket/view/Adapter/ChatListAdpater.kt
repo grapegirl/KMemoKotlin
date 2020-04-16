@@ -10,7 +10,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.ContextUtils
-import momo.kikiplus.com.kbucket.Utils.DataUtils
 import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
 import momo.kikiplus.com.kbucket.view.Bean.Chat
 import java.util.*
@@ -84,12 +83,6 @@ class ChatListAdpater
             viewHolder.otherView = convertView.findViewById<View>(R.id.chat_line_other) as LinearLayout
             viewHolder.otherNickname = convertView.findViewById<View>(R.id.comment_list_nickname_other) as TextView
             viewHolder.otherContent = convertView.findViewById<View>(R.id.comment_list_text_other) as TextView
-
-            val typeFace = DataUtils.getHannaFont(mContext!!)
-            viewHolder.myNickname!!.typeface = typeFace
-            viewHolder.otherNickname!!.typeface = typeFace
-            viewHolder.myContent!!.typeface = typeFace
-            viewHolder.otherContent!!.typeface = typeFace
 
             convertView.tag = viewHolder
         } else {

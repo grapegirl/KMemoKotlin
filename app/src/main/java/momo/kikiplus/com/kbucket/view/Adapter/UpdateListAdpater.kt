@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.EditText
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.DataUtils
 import momo.kikiplus.com.kbucket.view.Bean.UpdateApp
 import java.util.*
 
@@ -76,8 +75,6 @@ class UpdateListAdpater
         }
 
         (view!!.findViewById<View>(R.id.notice_list_text) as EditText).setText(mListItem!![position].content)
-        val typeFace = DataUtils.getHannaFont(mContext!!)
-        (view.findViewById<View>(R.id.notice_list_text) as EditText).typeface = typeFace
         return view
     }
 

@@ -2,7 +2,6 @@ package momo.kikiplus.com.kbucket.view.Object
 
 import android.app.AlertDialog
 import android.content.Context
-import android.widget.ProgressBar
 
 
 /***
@@ -21,12 +20,6 @@ class KProgressDialog {
             false
         }
 
-    fun setDialogStatus(percentage: Int) {
-        if (mProgressBar != null) {
-            mProgressBar!!.progress = percentage
-        }
-    }
-
     companion object {
 
         /**
@@ -35,7 +28,6 @@ class KProgressDialog {
         private var mDialog: AlertDialog? = null
 
 
-        private var mProgressBar : ProgressBar? = null
         /**
          * 로딩설정 여부 메소드
          *
@@ -46,10 +38,6 @@ class KProgressDialog {
             if (flag!!) {
                 val builder =
                     AlertDialog.Builder(context)
-                mProgressBar = ProgressBar(context)
-                mProgressBar!!.isIndeterminate = true
-                //mProgressBar!!.indeterminateDrawable = ContextCompat.getDrawable(context!!, circle_progress);
-                builder.setView(mProgressBar)
                 mDialog = builder.create()
                 mDialog!!.setMessage(msg)
                 if (cancle!!) {
@@ -77,9 +65,6 @@ class KProgressDialog {
 
                 val builder =
                     AlertDialog.Builder(context)
-                mProgressBar = ProgressBar(context)
-                //mProgressBar!!.indeterminateDrawable = ContextCompat.getDrawable(context!!, R.drawable.circle_progress);
-                builder.setView(mProgressBar)
                 mDialog = builder.create()
                 mDialog!!.setMessage(msg)
                 if (cancle) {
@@ -87,9 +72,6 @@ class KProgressDialog {
                 } else {
                     mDialog!!.setCancelable(false)
                 }
-                mProgressBar!!.max = 100
-                mDialog!!.show()
-            } else {
                 if (mDialog != null) {
                     mDialog!!.dismiss()
                     mDialog = null

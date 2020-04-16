@@ -12,7 +12,10 @@ import android.os.Message
 import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
@@ -27,6 +30,7 @@ import momo.kikiplus.com.kbucket.Managers.push.FireMessingService
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
 import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
+import momo.kikiplus.com.kbucket.databinding.MainActivityBinding
 import momo.kikiplus.com.kbucket.view.Bean.MobileUser
 import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import momo.kikiplus.com.kbucket.view.popup.AIPopup
@@ -71,6 +75,7 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
     internal var mDrawer: DrawerLayout? = null
     lateinit var mAdView : AdView
 
+    private lateinit var mBinding : MainActivityBinding
     /**
      * 사용자 정보업데이트 가공 데이타 만드는 메소드
      *
@@ -94,7 +99,9 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        setContentView(R.layout.main_activity)
+
+        mBinding = MainActivityBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
 
         initialize()
 
@@ -165,16 +172,19 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
 
         AppUtils.sendTrackerScreen(this, "메인화면")
 
-        setBtnClickListener()
-
+        mBinding.mainWriteBtn.setOnClickListener(this)
+        mBinding.mainUpdateBtn.setOnClickListener(this)
+        mBinding.mainAiBtn.setOnClickListener(this)
+        mBinding.mainListBtn.setOnClickListener(this)
+        mBinding.mainBucketlistBtn.setOnClickListener(this)
+        mBinding.mainConfBtn.setOnClickListener(this)
+        mBinding.mainBucketRankBtn.setOnClickListener(this)
     }
 
     private fun initialize() {
-
         FirebaseApp.initializeApp(this)
 
         setBackgroundColor()
-        setTextPont()
 
         mDrawerList = findViewById<ListView>(R.id.drawer_list)
         mDrawer = findViewById<DrawerLayout>(R.id.dl_activity_main_drawer)
@@ -183,7 +193,8 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
     private fun setBackgroundColor() {
         val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
-            findViewById<View>(R.id.main_back_color).setBackgroundColor(color)
+           // findViewById<View>(R.id.main_back_color).setBackgroundColor(color)
+            mBinding.mainBackColor.setBackgroundColor(color)
         }
     }
 
@@ -218,22 +229,6 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
         }
     }
 
-    fun setBtnClickListener(){
-        val btn1 = findViewById<Button>(R.id.main_writeBtn)
-        btn1.setOnClickListener(this)
-        val btn2 = findViewById<Button>(R.id.main_update_btn)
-        btn2.setOnClickListener(this)
-        val btn3 = findViewById<Button>(R.id.main_ai_btn)
-        btn3.setOnClickListener(this)
-        val btn4 = findViewById<Button>(R.id.main_listBtn)
-        btn4.setOnClickListener(this)
-        val btn5 = findViewById<Button>(R.id.main_bucketlistBtn)
-        btn5.setOnClickListener(this)
-        val btn6 = findViewById<Button>(R.id.main_conf_btn)
-        btn6.setOnClickListener(this)
-        val btn7 = findViewById<Button>(R.id.main_bucketRankBtn)
-        btn7.setOnClickListener(this)
-    }
 
     @SuppressLint("WrongConstant")
     override fun onClick(view: View?) {
@@ -266,11 +261,13 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
             -> {
                 var intent = Intent(this, WriteActivity::class.java)
                 startActivity(intent)
+                AppUtils.sendTrackerScreen(this, "가지작성화면")
             }
             BUCKET_LIST//리스트 목록 보여주기
             -> {
                 intent = Intent(this, BucketListActivity::class.java)
                 startActivity(intent)
+                AppUtils.sendTrackerScreen(this, "완료가지화면")
             }
             SHOW_CONF//환경설정 보여주기
             -> {
@@ -281,11 +278,13 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
             -> {
                 intent = Intent(this, ShareListActivity::class.java)
                 startActivity(intent)
+                AppUtils.sendTrackerScreen(this, "모두가지화면")
             }
             NOTICE//공지사항 화면 보여주기
             -> {
                 intent = Intent(this, NoticeActivity::class.java)
                 startActivity(intent)
+                AppUtils.sendTrackerScreen(this, "공지화면")
             }
             UPDATE_USER//사용자 정보 없데이트
             -> {
@@ -388,15 +387,6 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
                 mHandler!!.sendEmptyMessage(FAIL_AI)
             }
         }
-    }
-
-    private fun setTextPont() {
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.main_writeBtn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.main_listBtn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.main_bucketlistBtn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.main_conf_btn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.main_bucketRankBtn) as Button).typeface = typeFace
     }
 
     private inner class DrawerItemClickListener : AdapterView.OnItemClickListener {

@@ -10,7 +10,7 @@
     <Button
         android:id="@+id/rank_list_text"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="50dp"
         android:layout_gravity="right"
         android:background="#FFCC0000"
         android:text="@string/bucketrank_list_title"

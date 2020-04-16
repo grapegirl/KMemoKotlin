@@ -5,14 +5,12 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.AppUtils
 import momo.kikiplus.com.kbucket.Utils.ContextUtils
-import momo.kikiplus.com.kbucket.Utils.DataUtils
 import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
+import momo.kikiplus.com.kbucket.databinding.QuestionActivityBinding
 
 /**
  * @author grapegirl
@@ -24,17 +22,23 @@ class QuestionActivity : Activity(), View.OnClickListener {
 
     private var mTitleIndex = 1
 
+    private lateinit var mBinding : QuestionActivityBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        setContentView(R.layout.question_activity)
+
+        mBinding = QuestionActivityBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
+
         setBackgroundColor()
-        setTextFont()
         setTitleIndex(1)
-        findViewById<View>(R.id.question_layout_titleView1).setOnClickListener(this)
-        findViewById<View>(R.id.question_layout_titleView2).setOnClickListener(this)
-        findViewById<View>(R.id.question_layout_titleView3).setOnClickListener(this)
-        findViewById<View>(R.id.question_layout_button).setOnClickListener(this)
+
+        mBinding.questionLayoutTitleView1.setOnClickListener(this)
+        mBinding.questionLayoutTitleView2.setOnClickListener(this)
+        mBinding.questionLayoutTitleView3.setOnClickListener(this)
+        mBinding.questionLayoutButton.setOnClickListener(this)
+
         AppUtils.sendTrackerScreen(this, "문의화면")
     }
 
@@ -43,14 +47,6 @@ class QuestionActivity : Activity(), View.OnClickListener {
         if (color != -1) {
             findViewById<View>(R.id.question_back_color).setBackgroundColor(color)
         }
-    }
-
-    private fun setTextFont() {
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.question_layout_titleView1) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.question_layout_titleView2) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.question_layout_titleView3) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.question_layout_button) as Button).typeface = typeFace
     }
 
     override fun finish() {
@@ -93,28 +89,28 @@ class QuestionActivity : Activity(), View.OnClickListener {
         mTitleIndex = index
         when (mTitleIndex) {
             1 -> {
-                (findViewById<View>(R.id.question_layout_titleView1) as TextView).setBackgroundColor(Color.WHITE)
-                (findViewById<View>(R.id.question_layout_titleView1) as TextView).setTextColor(Color.parseColor("#FF99CC00"))
-                (findViewById<View>(R.id.question_layout_titleView2) as TextView).setBackgroundColor(Color.parseColor("#FF99CC00"))
-                (findViewById<View>(R.id.question_layout_titleView2) as TextView).setTextColor(Color.WHITE)
-                (findViewById<View>(R.id.question_layout_titleView3) as TextView).setBackgroundColor(Color.parseColor("#FF99CC00"))
-                (findViewById<View>(R.id.question_layout_titleView3) as TextView).setTextColor(Color.WHITE)
+                mBinding.questionLayoutTitleView1.setBackgroundColor(Color.WHITE)
+                mBinding.questionLayoutTitleView1.setTextColor(Color.parseColor("#FF99CC00"))
+                mBinding.questionLayoutTitleView2.setBackgroundColor(Color.parseColor("#FF99CC00"))
+                mBinding.questionLayoutTitleView2.setTextColor(Color.WHITE)
+                mBinding.questionLayoutTitleView3.setBackgroundColor(Color.parseColor("#FF99CC00"))
+                mBinding.questionLayoutTitleView3.setTextColor(Color.WHITE)
             }
             2 -> {
-                (findViewById<View>(R.id.question_layout_titleView2) as TextView).setBackgroundColor(Color.WHITE)
-                (findViewById<View>(R.id.question_layout_titleView2) as TextView).setTextColor(Color.parseColor("#FF99CC00"))
-                (findViewById<View>(R.id.question_layout_titleView1) as TextView).setBackgroundColor(Color.parseColor("#FF99CC00"))
-                (findViewById<View>(R.id.question_layout_titleView1) as TextView).setTextColor(Color.WHITE)
-                (findViewById<View>(R.id.question_layout_titleView3) as TextView).setBackgroundColor(Color.parseColor("#FF99CC00"))
-                (findViewById<View>(R.id.question_layout_titleView3) as TextView).setTextColor(Color.WHITE)
+                mBinding.questionLayoutTitleView2.setBackgroundColor(Color.WHITE)
+                mBinding.questionLayoutTitleView2.setTextColor(Color.parseColor("#FF99CC00"))
+                mBinding.questionLayoutTitleView1.setBackgroundColor(Color.parseColor("#FF99CC00"))
+                mBinding.questionLayoutTitleView1.setTextColor(Color.WHITE)
+                mBinding.questionLayoutTitleView3.setBackgroundColor(Color.parseColor("#FF99CC00"))
+                mBinding.questionLayoutTitleView3.setTextColor(Color.WHITE)
             }
             3 -> {
-                (findViewById<View>(R.id.question_layout_titleView3) as TextView).setBackgroundColor(Color.WHITE)
-                (findViewById<View>(R.id.question_layout_titleView3) as TextView).setTextColor(Color.parseColor("#FF99CC00"))
-                (findViewById<View>(R.id.question_layout_titleView1) as TextView).setBackgroundColor(Color.parseColor("#FF99CC00"))
-                (findViewById<View>(R.id.question_layout_titleView1) as TextView).setTextColor(Color.WHITE)
-                (findViewById<View>(R.id.question_layout_titleView2) as TextView).setBackgroundColor(Color.parseColor("#FF99CC00"))
-                (findViewById<View>(R.id.question_layout_titleView2) as TextView).setTextColor(Color.WHITE)
+                mBinding.questionLayoutTitleView3.setBackgroundColor(Color.WHITE)
+                mBinding.questionLayoutTitleView3.setTextColor(Color.parseColor("#FF99CC00"))
+                mBinding.questionLayoutTitleView1.setBackgroundColor(Color.parseColor("#FF99CC00"))
+                mBinding.questionLayoutTitleView1.setTextColor(Color.WHITE)
+                mBinding.questionLayoutTitleView2.setBackgroundColor(Color.parseColor("#FF99CC00"))
+                mBinding.questionLayoutTitleView2.setTextColor(Color.WHITE)
             }
         }
     }

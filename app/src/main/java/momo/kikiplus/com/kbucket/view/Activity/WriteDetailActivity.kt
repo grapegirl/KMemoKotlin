@@ -17,6 +17,7 @@ import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
 import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
+import momo.kikiplus.com.kbucket.databinding.WriteDetailActivityBinding
 import momo.kikiplus.com.kbucket.view.Bean.Bucket
 import momo.kikiplus.com.kbucket.view.Bean.Category
 import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
@@ -62,6 +63,8 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
     internal var mCheckbox: CheckBox? = null
     internal var mImageView: ImageView? = null
 
+    private lateinit var mBinding : WriteDetailActivityBinding
+
     private val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
         val msg = String.format("%d-%02d-%02d", year, monthOfYear + 1, dayOfMonth)
         mDate = msg
@@ -77,7 +80,9 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        setContentView(R.layout.write_detail_activity)
+
+        mBinding = WriteDetailActivityBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
         initialize()
 
         mHandler = Handler(this)
@@ -87,12 +92,16 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
         setData()
         AppUtils.sendTrackerScreen(this, "가지상세화면")
 
-        setBtnClickListener()
+        mBinding.writeSaveButton.setOnClickListener(this)
+        mBinding.writeDeleteButton.setOnClickListener(this)
+        mBinding.writeShareButton.setOnClickListener(this)
+        mBinding.writeImageCamera.setOnClickListener(this)
+        mBinding.writeImageGallery.setOnClickListener(this)
+        mBinding.writeImageRemove.setOnClickListener(this)
     }
 
     private fun initialize() {
         setBackgroundColor()
-        setTextPont()
 
         mCheckbox = findViewById<CheckBox>(R.id.write_layout_checkbox)
         mImageView = findViewById<ImageView>(R.id.write_layout_imageview)
@@ -129,21 +138,6 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
 
     }
 
-    fun setBtnClickListener(){
-        val btn1 = findViewById<Button>(R.id.write_saveButton)
-        btn1.setOnClickListener(this)
-        val btn2 = findViewById<Button>(R.id.write_deleteButton)
-        btn2.setOnClickListener(this)
-        val btn3 = findViewById<Button>(R.id.write_shareButton)
-        btn3.setOnClickListener(this)
-        val btn4 = findViewById<Button>(R.id.write_image_camera)
-        btn4.setOnClickListener(this)
-        val btn5 = findViewById<Button>(R.id.write_image_gallery)
-        btn5.setOnClickListener(this)
-        val btn6 = findViewById<Button>(R.id.write_image_remove)
-        btn6.setOnClickListener(this)
-
-    }
 
     override fun onClick(v: View) {
         when (v.id) {
@@ -358,22 +352,6 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
             (findViewById<View>(R.id.write_image_camera) as Button).visibility = View.VISIBLE
             (findViewById<View>(R.id.write_image_gallery) as Button).visibility = View.VISIBLE
         }
-    }
-
-    private fun setTextPont() {
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.write_saveButton) as Button).typeface = typeFace
-        (findViewById<View>(R.id.write_deleteButton) as Button).typeface = typeFace
-        (findViewById<View>(R.id.write_shareButton) as Button).typeface = typeFace
-        (findViewById<View>(R.id.write_image_camera) as Button).typeface = typeFace
-        (findViewById<View>(R.id.write_image_gallery) as Button).typeface = typeFace
-        (findViewById<View>(R.id.write_detail_text1) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.write_detail_text2) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.write_detail_text3) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.write_layout_titleView) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.write_layout_contentView) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.write_detail_text4) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.write_layout_deadline) as TextView).typeface = typeFace
     }
 
     override fun onPopupAction(popId: Int, what: Int, obj: Any?) {

@@ -57,7 +57,6 @@ class ChatActivity : Activity(), IHttpReceive, View.OnClickListener, Handler.Cal
         mSaveDBList = ArrayList()
         mUserNickname = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         (findViewById<View>(R.id.chat_comment_layout_sendBtn) as Button).setOnClickListener(this)
-        setData()
         loadChatDBDat()
         AppUtils.sendTrackerScreen(this, "채팅화면")
     }
@@ -72,17 +71,6 @@ class ChatActivity : Activity(), IHttpReceive, View.OnClickListener, Handler.Cal
     override fun finish() {
         super.finish()
         this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-    }
-
-    /**
-     * 데이타 초기화
-     */
-    private fun setData() {
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.chat_detail_text) as Button).typeface = typeFace
-        (findViewById<View>(R.id.chat_comment_layout_sendBtn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.chat_comment_layout_text) as EditText).typeface = typeFace
-
     }
 
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {

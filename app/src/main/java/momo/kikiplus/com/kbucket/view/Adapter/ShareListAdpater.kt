@@ -8,7 +8,6 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.EditText
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.DataUtils
 import momo.kikiplus.com.kbucket.view.Bean.Bucket
 import java.util.*
 
@@ -76,9 +75,6 @@ class ShareListAdpater
         }
 
         (view!!.findViewById<View>(R.id.share_list_text) as EditText).setText(mListItem!![position].content)
-        val typeFace = DataUtils.getHannaFont(mContext!!)
-        (view.findViewById<View>(R.id.share_list_text) as EditText).typeface = typeFace
-
         (view.findViewById<View>(R.id.share_list_detailBtn) as Button).setOnClickListener(mClickListener)
         (view.findViewById<View>(R.id.share_list_detailBtn) as Button).tag = position
         return view

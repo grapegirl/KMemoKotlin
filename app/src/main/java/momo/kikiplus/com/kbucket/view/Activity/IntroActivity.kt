@@ -7,12 +7,10 @@ import android.os.Handler
 import android.os.Message
 import android.view.View
 import android.view.animation.AlphaAnimation
-import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.AppUtils
 import momo.kikiplus.com.kbucket.Utils.ContextUtils
-import momo.kikiplus.com.kbucket.Utils.DataUtils
 import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
+import momo.kikiplus.com.kbucket.databinding.IntroActivityBinding
 import java.util.*
 
 /**
@@ -24,18 +22,15 @@ import java.util.*
  */
 class IntroActivity : Activity(), android.os.Handler.Callback {
 
-    private var mHandler: Handler? = null
+    private var mHandler: Handler = Handler(this)
+
+    private lateinit var mBinding : IntroActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.intro_activity)
-        setBackgroundColor()
 
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.intro_textview1) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.intro_textview2) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.intro_textview3) as TextView).text = AppUtils.getVersionName(applicationContext)
-        (findViewById<View>(R.id.intro_textview3) as TextView).typeface = typeFace
+        mBinding = IntroActivityBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
 
         val anim1 = AlphaAnimation(0.0f, 1.0f)
         anim1.duration = 500
@@ -43,31 +38,31 @@ class IntroActivity : Activity(), android.os.Handler.Callback {
         anim2.duration = 1000
         val anim3 = AlphaAnimation(0.0f, 1.0f)
         anim3.duration = 1000
-        findViewById<View>(R.id.intro_imageview).setAnimation(anim1)
-        findViewById<View>(R.id.intro_imageview2).setAnimation(anim2)
-        findViewById<View>(R.id.intro_imageview3).setAnimation(anim3)
 
-        mHandler = Handler(this)
+        mBinding.introImageview.animation = anim1
+        mBinding.introImageview2.animation = anim2
+        mBinding.introImageview3.animation = anim3
+
         val timer: Timer
         val timerTask = object : TimerTask() {
             override fun run() {
                 val password = SharedPreferenceUtils.read(applicationContext, ContextUtils.KEY_CONF_PASSWORD, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
                 if (password != null && password != "") {
-                    mHandler!!.sendEmptyMessage(1)
+                    mHandler.sendEmptyMessage(1)
                 } else {
                     //위젯으로부터 화면 전환
                     val intent = intent
                     val startView = intent.getStringExtra("DATA")
                     if (startView != null && startView == ContextUtils.WIDGET_WRITE_BUCKET) {
-                        mHandler!!.sendEmptyMessage(2)
+                        mHandler.sendEmptyMessage(2)
                     } else if (startView != null && startView == ContextUtils.WIDGET_BUCKET_LIST) {
-                        mHandler!!.sendEmptyMessage(3)
+                        mHandler.sendEmptyMessage(3)
                     } else if (startView != null && startView == ContextUtils.WIDGET_OURS_BUCKET) {
-                        mHandler!!.sendEmptyMessage(4)
+                        mHandler.sendEmptyMessage(4)
                     } else if (startView != null && startView == ContextUtils.WIDGET_SHARE) {
-                        mHandler!!.sendEmptyMessage(5)
+                        mHandler.sendEmptyMessage(5)
                     } else {
-                        mHandler!!.sendEmptyMessage(0)
+                        mHandler.sendEmptyMessage(0)
                     }
                 }
             }

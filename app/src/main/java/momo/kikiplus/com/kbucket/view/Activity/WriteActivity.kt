@@ -5,13 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.*
+import momo.kikiplus.com.kbucket.Utils.ContextUtils
+import momo.kikiplus.com.kbucket.Utils.DateUtils
+import momo.kikiplus.com.kbucket.Utils.KLog
+import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
 import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.databinding.WriteBucketLayoutBinding
 import momo.kikiplus.com.kbucket.view.Bean.PostData
@@ -48,7 +50,6 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
         setContentView(mBinding.root)
 
         setBackgroundColor()
-        setTextPont()
 
         mDataList = ArrayList()
         mBucketDataList = ArrayList()
@@ -69,7 +70,7 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
         mListView!!.adapter = mAdapter
 
         setListData()
-        AppUtils.sendTrackerScreen(this, "가지작성화면")
+
     }
 
     private fun setBackgroundColor() {
@@ -259,14 +260,5 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
         super.onStop()
         mDataList = null
         mBucketDataList = null
-    }
-
-    private fun setTextPont() {
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.write_layout_addBtn) as Button).typeface = typeFace
-        (findViewById<View>(R.id.sort_memo) as Button).typeface = typeFace
-        (findViewById<View>(R.id.sort_date) as Button).typeface = typeFace
-        (findViewById<View>(R.id.sort_deadline) as Button).typeface = typeFace
-        (findViewById<View>(R.id.write_list_text) as Button).typeface = typeFace
     }
 }

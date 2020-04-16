@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.DataUtils
 import momo.kikiplus.com.kbucket.Utils.StringUtils
 import momo.kikiplus.com.kbucket.view.Bean.Comment
 import java.util.*
@@ -85,11 +84,8 @@ class CommentListAdpater
         }
 
         val data = mListItem!![position].content + "/" + convertDate
-        val typeFace = DataUtils.getHannaFont(mContext!!)
         (view!!.findViewById<View>(R.id.comment_list_text) as TextView).text = data
         (view.findViewById<View>(R.id.comment_list_nickname) as TextView).text = mListItem!![position].nickName
-        (view.findViewById<View>(R.id.comment_list_text) as TextView).typeface = typeFace
-        (view.findViewById<View>(R.id.comment_list_nickname) as TextView).typeface = typeFace
         return view
     }
 

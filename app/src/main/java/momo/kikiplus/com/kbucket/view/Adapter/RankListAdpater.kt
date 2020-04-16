@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.DataUtils
 import momo.kikiplus.com.kbucket.view.Bean.BucketRank
 import java.util.*
 
@@ -77,9 +76,6 @@ class RankListAdpater
             view = inflater.inflate(mRes, null)
         }
         (view!!.findViewById<View>(R.id.rank_list_text) as EditText).setText(mListItem!![position].content)
-        val typeFace = DataUtils.getHannaFont(mContext!!)
-        (view.findViewById<View>(R.id.rank_list_text) as EditText).typeface = typeFace
-
         (view.findViewById<View>(R.id.rank_btn1) as Button).setOnClickListener(mClickListener)
         (view.findViewById<View>(R.id.rank_btn2) as Button).setOnClickListener(mClickListener)
         (view.findViewById<View>(R.id.rank_btn3) as Button).setOnClickListener(mClickListener)
@@ -124,10 +120,6 @@ class RankListAdpater
         (view.findViewById<View>(R.id.rank_text1) as TextView).text = bestCount.toString() + ""
         (view.findViewById<View>(R.id.rank_text2) as TextView).text = goodCount.toString() + ""
         (view.findViewById<View>(R.id.rank_text3) as TextView).text = sosoCount.toString() + ""
-
-        (view.findViewById<View>(R.id.rank_btn1) as Button).typeface = typeFace
-        (view.findViewById<View>(R.id.rank_btn2) as Button).typeface = typeFace
-        (view.findViewById<View>(R.id.rank_btn3) as Button).typeface = typeFace
 
         val idx = mListItem!![position].idx
         (view.findViewById<View>(R.id.rank_btn1) as Button).tag = idx

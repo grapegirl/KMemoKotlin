@@ -101,13 +101,6 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
     private fun setData(bucket: Bucket) {
         KLog.d(this.javaClass.simpleName, "@@ setData")
         mBucketNo = bucket.idx
-        val typeFace = DataUtils.getHannaFont(applicationContext)
-        (findViewById<View>(R.id.share_detail_text) as Button).typeface = typeFace
-        (findViewById<View>(R.id.share_title_textview) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.share_contents_textview) as TextView).typeface = typeFace
-        (findViewById<View>(R.id.share_title_textview) as TextView).text = bucket.date
-        (findViewById<View>(R.id.share_contents_textview) as TextView).text = bucket.content
-        (findViewById<View>(R.id.share_add) as Button).typeface = typeFace
 
         KLog.d(ContextUtils.TAG, "@@ image exists : " + bucket.imageUrl!!)
         if (bucket.imageUrl != null && bucket.imageUrl != "N") {
@@ -174,7 +167,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
             R.id.comment_layout_sendBtn -> {
                 val text = (findViewById<View>(R.id.comment_layout_text) as EditText).text.toString()
                 if (text.replace(" ".toRegex(), "") == "") {
-                   return;
+                   return
                 }
                 KProgressDialog.setDataLoadingDialog(this, true, this.getString(R.string.loading_string), true)
                 val httpUrlTaskManager = HttpUrlTaskManager(ContextUtils.INSERT_COMMENT_URL, true, this, IHttpReceive.INSERT_COMMENT)

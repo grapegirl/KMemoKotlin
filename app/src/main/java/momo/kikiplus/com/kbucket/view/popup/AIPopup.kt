@@ -2,9 +2,6 @@ package momo.kikiplus.com.kbucket.view.popup
 
 import android.content.Context
 import android.view.View
-import android.widget.TextView
-import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.DataUtils
 import momo.kikiplus.com.kbucket.Utils.KLog
 
 /**
@@ -27,17 +24,10 @@ class AIPopup
  private val mTitle: String, contentView: Int, popupEventListener: OnPopupEventListener, popId: Int) : CustomPopup(context, mTitle, contentView, popupEventListener, true, popId) {
 
     init {
-        setData()
     }
 
     override fun initDialog() {}
 
-    private fun setData() {
-        (mDialogView!!.findViewById<View>(R.id.basic_title_textview) as TextView).text = mTitle
-        val typeFace = DataUtils.getHannaFont(mContext!!)
-        (mDialogView!!.findViewById<View>(R.id.basic_title_textview) as TextView).typeface = typeFace
-
-    }
 
     override fun destroyDialog() {
         dialog = null
