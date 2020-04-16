@@ -1,6 +1,5 @@
-package momo.kikiplus.com.kbucket.view.recycler
+package momo.kikiplus.refactoring.view.recycler
 
-import android.database.Observable
 import android.view.View
 import android.widget.Button
 import android.widget.EditText

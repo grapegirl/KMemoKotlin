@@ -18,7 +18,7 @@ import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.databinding.WriteBucketLayoutBinding
 import momo.kikiplus.com.kbucket.view.Bean.PostData
 import momo.kikiplus.com.kbucket.view.KBucketSort
-import momo.kikiplus.com.kbucket.view.recycler.RecyclerViewAdapter
+import momo.kikiplus.refactoring.view.recycler.RecyclerViewAdapter
 import java.util.*
 
 /**

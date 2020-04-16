@@ -10,7 +10,7 @@
 //import momo.kikiplus.com.kbucket.view.Bean.Comment;
 //import momo.kikiplus.com.kbucket.view.Bean.PostData;
 //import momo.kikiplus.com.kbucket.view.Bean.UpdateApp;
-//import momo.kikiplus.com.kbucket.net.Version;
+//import momo.kikiplus.refactoring.net.Version;
 //
 //public class realmMgr {
 //    private static Realm

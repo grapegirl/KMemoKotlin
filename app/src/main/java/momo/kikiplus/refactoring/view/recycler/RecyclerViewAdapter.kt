@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.view.recycler
+package momo.kikiplus.refactoring.view.recycler
 
 import android.view.LayoutInflater
 import android.view.View

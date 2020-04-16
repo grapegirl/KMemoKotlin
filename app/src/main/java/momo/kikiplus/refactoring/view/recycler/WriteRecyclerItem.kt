@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.view.recycler
+package momo.kikiplus.refactoring.view.recycler
 
 import android.widget.Button
 import lombok.AllArgsConstructor

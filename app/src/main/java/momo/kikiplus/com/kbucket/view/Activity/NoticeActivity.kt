@@ -11,10 +11,10 @@ import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.ContextUtils
 import momo.kikiplus.com.kbucket.Utils.KLog
 import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
-import momo.kikiplus.com.kbucket.net.NetRetrofit
-import momo.kikiplus.com.kbucket.net.NoticeList
 import momo.kikiplus.com.kbucket.view.Adapter.BaseExpandableAdapter
 import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
+import momo.kikiplus.refactoring.net.NetRetrofit
+import momo.kikiplus.refactoring.net.NoticeList
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

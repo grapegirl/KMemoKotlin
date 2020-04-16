@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.net
+package momo.kikiplus.refactoring.net
 
 import com.google.gson.annotations.SerializedName
 

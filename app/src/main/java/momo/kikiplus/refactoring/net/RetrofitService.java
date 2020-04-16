@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.net;
+package momo.kikiplus.refactoring.net;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -8,11 +8,11 @@ import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.AppUtils
 import momo.kikiplus.com.kbucket.Utils.KLog
 import momo.kikiplus.com.kbucket.Utils.StringUtils
-import momo.kikiplus.com.kbucket.net.NetRetrofit
-import momo.kikiplus.com.kbucket.net.Version
 import momo.kikiplus.com.kbucket.view.popup.BasicPopup
 import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
 import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
+import momo.kikiplus.refactoring.net.NetRetrofit
+import momo.kikiplus.refactoring.net.Version
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
