@@ -19,4 +19,7 @@ public interface RetrofitService {
      */
     Call<Version> getVersion(@Query("version") String version);
 
+    @GET("mobile/category.jsp")
+    Call<CategoryList> getCateryList();
+
 }

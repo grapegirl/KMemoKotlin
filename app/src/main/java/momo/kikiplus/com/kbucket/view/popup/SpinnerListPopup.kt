@@ -6,7 +6,7 @@ import android.widget.ListView
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.view.Adapter.SpinnerListAdapter
-import momo.kikiplus.com.kbucket.view.Bean.Category
+import momo.kikiplus.refactoring.model.Category
 import momo.kikiplus.refactoring.util.KLog
 import org.json.JSONException
 import org.json.JSONObject
@@ -23,19 +23,19 @@ class SpinnerListPopup
  * 선택박스 리스트뷰 팝업 생성자
  */
 (
-        /**
+    /**
          * 컨텍스트
          */
         private val mCotext: Context,
-        /**
+    /**
          * 타이틀
          */
         private val mTitle: String,
-        /**
+    /**
          * 내용
          */
         private val mContent: String, listData: ArrayList<Category>,
-        /**
+    /**
          * 레이아웃 리소스
          */
         private val m_Res: Int, popupEventListener: OnPopupEventListener, popId: Int) : CustomPopup(mCotext, mTitle, m_Res, popupEventListener, true, popId) {

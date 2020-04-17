@@ -14,13 +14,13 @@ import momo.kikiplus.com.kbucket.http.IHttpReceive
 import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Adapter.CardViewListAdpater
 import momo.kikiplus.com.kbucket.view.Bean.Bucket
-import momo.kikiplus.com.kbucket.view.Bean.Category
 import momo.kikiplus.com.kbucket.view.Bean.PostData
 import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
 import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
 import momo.kikiplus.com.kbucket.view.popup.SpinnerListPopup
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.model.Category
 import momo.kikiplus.refactoring.util.ByteUtils
 import momo.kikiplus.refactoring.util.KLog
 import momo.kikiplus.refactoring.util.StringUtils
@@ -273,7 +273,12 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
                 list.add(Category("LIEF", 1))
                 list.add(Category("LOVE", 2))
                 list.add(Category("WORK", 3))
-                list.add(Category("EDUCATION", 4))
+                list.add(
+                    Category(
+                        "EDUCATION",
+                        4
+                    )
+                )
                 list.add(Category("FAMILY", 5))
                 list.add(Category("FINANCE", 6))
                 list.add(Category("DEVELOP", 7))

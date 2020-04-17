@@ -12,7 +12,7 @@ import android.widget.BaseAdapter
 import android.widget.CheckBox
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.view.Bean.Category
+import momo.kikiplus.refactoring.model.Category
 import java.util.*
 
 /**
@@ -154,11 +154,7 @@ class SpinnerListAdapter(context: Context, data: ArrayList<Category>, res: Int) 
             -> {
                 selectedIndex = Integer.parseInt(v.tag as String)
                 for (i in m_radioBtn!!.indices) {
-                    if (i == selectedIndex) {
-                        m_radioBtn!![i] = true
-                    } else {
-                        m_radioBtn!![i] = false
-                    }
+                    m_radioBtn!![i] = i == selectedIndex
                 }
                 notifyDataSetChanged()
             }

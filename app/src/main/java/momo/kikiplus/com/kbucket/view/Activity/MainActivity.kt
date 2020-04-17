@@ -27,7 +27,6 @@ import momo.kikiplus.com.kbucket.databinding.MainActivityBinding
 import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.http.IHttpReceive
 import momo.kikiplus.com.kbucket.sqlite.SQLQuery
-import momo.kikiplus.com.kbucket.view.Bean.MobileUser
 import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import momo.kikiplus.com.kbucket.view.popup.AIPopup
 import momo.kikiplus.com.kbucket.view.popup.BasicPopup
@@ -77,25 +76,7 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
     lateinit var mAdView : AdView
 
     private lateinit var mBinding : MainActivityBinding
-    /**
-     * 사용자 정보업데이트 가공 데이타 만드는 메소드
-     *
-     * @return 사용자 정보
-     */
-    private val userData: MobileUser
-        get() {
-            val mobileUser = MobileUser()
-            val userNickName = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
-            mobileUser.userNickName = userNickName
-            mobileUser.versionName = AppUtils.getVersionName(this)
-            mobileUser.lanuage = AppUtils.getUserPhoneLanuage(this)
-            mobileUser.country = AppUtils.getUserPhoneCoutry(this)
-            val date = DateUtils.getStringDateFormat(DateUtils.DATE_YYMMDD_PATTER, Date())
-            mobileUser.createDt = date
-            val gcmToken = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_FCM, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
-            mobileUser.gcmToken = gcmToken!!
-            return mobileUser
-        }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -284,8 +265,7 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
             }
             UPDATE_USER//사용자 정보 없데이트
             -> {
-                val userUpdateTask =
-                    UserUpdateTask(userData)
+                val userUpdateTask = UserUpdateTask(this)
                 userUpdateTask.execute()
             }
             REQUEST_AI -> {

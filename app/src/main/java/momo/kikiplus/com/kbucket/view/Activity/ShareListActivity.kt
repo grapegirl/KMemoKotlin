@@ -14,10 +14,10 @@ import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.http.IHttpReceive
 import momo.kikiplus.com.kbucket.view.Adapter.ShareListAdpater
 import momo.kikiplus.com.kbucket.view.Bean.Bucket
-import momo.kikiplus.com.kbucket.view.Bean.Category
 import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.model.Category
 import momo.kikiplus.refactoring.util.KLog
 import momo.kikiplus.refactoring.util.NetworkUtils
 import momo.kikiplus.refactoring.util.StringUtils
