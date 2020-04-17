@@ -35,11 +35,6 @@ object ContextUtils {
     val KEY_USER_NICKNAME = "KEY_USER_NICKNAME"
 
     /**
-     * 프리퍼런스 이름(GCM 키)
-     */
-    val KEY_USER_GCM = "KEY_USER_GCM"
-
-    /**
      * 프리퍼런스 이름(FCM 키)
      */
     val KEY_USER_FCM = "KEY_USER_FCM"
@@ -146,7 +141,6 @@ object ContextUtils {
      */
     val KBUCKET_PORT = "9000"
 
-    val KBUCKET_VERSION_UPDATE_URL = "$KBUCKET_SERVER_IP/mobile/version.jsp"
     /**
      * 가지 공유하기 URL
      */

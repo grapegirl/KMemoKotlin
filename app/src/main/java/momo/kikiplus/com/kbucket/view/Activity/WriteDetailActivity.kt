@@ -12,7 +12,6 @@ import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.utils.*
 import momo.kikiplus.com.kbucket.databinding.WriteDetailActivityBinding
 import momo.kikiplus.com.kbucket.http.HttpUrlFileUploadManager
 import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
@@ -24,8 +23,8 @@ import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
 import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
 import momo.kikiplus.com.kbucket.view.popup.SpinnerListPopup
 import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.KLog
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.util.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.File

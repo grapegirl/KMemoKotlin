@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.utils.ScreenUtils
+import momo.kikiplus.refactoring.util.ScreenUtils
 import java.util.*
 
 /***

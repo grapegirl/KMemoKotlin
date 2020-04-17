@@ -7,10 +7,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.KLog
-import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.com.kbucket.view.Object.KMemoWidget
+import momo.kikiplus.modify.ContextUtils
+import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.util.KLog
 
 /**
  * @author grapegirl

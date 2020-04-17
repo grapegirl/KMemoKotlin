@@ -1,4 +1,4 @@
-package momo.kikiplus.refactoring.utils
+package momo.kikiplus.refactoring.util
 
 import android.os.Environment
 import android.util.Log

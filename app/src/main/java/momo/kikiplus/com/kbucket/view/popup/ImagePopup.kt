@@ -8,7 +8,7 @@ import android.view.View
 import android.view.Window
 import android.widget.ImageView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.utils.ScreenUtils
+import momo.kikiplus.refactoring.util.ScreenUtils
 
 
 /***

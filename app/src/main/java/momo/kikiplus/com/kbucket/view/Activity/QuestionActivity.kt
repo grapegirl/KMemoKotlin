@@ -7,10 +7,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.utils.AppUtils
+import momo.kikiplus.com.kbucket.databinding.QuestionActivityBinding
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
-import momo.kikiplus.com.kbucket.databinding.QuestionActivityBinding
+import momo.kikiplus.refactoring.util.AppUtils
 
 /**
  * @author grapegirl

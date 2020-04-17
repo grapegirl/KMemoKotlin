@@ -5,12 +5,11 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
-
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.utils.AppUtils
 import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.KLog
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.util.AppUtils
+import momo.kikiplus.refactoring.util.KLog
 
 /**
  * @author grapegirl

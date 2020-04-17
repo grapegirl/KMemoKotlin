@@ -1,7 +1,7 @@
 /**
  *
  */
-package momo.kikiplus.refactoring.utils
+package momo.kikiplus.refactoring.util
 
 import java.text.ParseException
 import java.text.SimpleDateFormat

@@ -1,4 +1,4 @@
-package momo.kikiplus.modify
+package momo.kikiplus.refactoring.util
 
 import android.util.Log
 
@@ -24,35 +24,45 @@ class KLog {
             if (!VIEW_LOG)
                 return
 
-            Log.d(tag, buildLogMsg(msg))
+            Log.d(tag,
+                buildLogMsg(msg)
+            )
         }
 
         fun e(tag: String, msg: String) {
             if (!VIEW_LOG)
                 return
 
-            Log.e(tag, buildLogMsg(msg))
+            Log.e(tag,
+                buildLogMsg(msg)
+            )
         }
 
         fun w(tag: String, msg: String) {
             if (!VIEW_LOG)
                 return
 
-            Log.w(tag, buildLogMsg(msg))
+            Log.w(tag,
+                buildLogMsg(msg)
+            )
         }
 
         fun i(tag: String, msg: String) {
             if (!VIEW_LOG)
                 return
 
-            Log.i(tag, buildLogMsg(msg))
+            Log.i(tag,
+                buildLogMsg(msg)
+            )
         }
 
         fun v(tag: String, msg: String) {
             if (!VIEW_LOG)
                 return
 
-            Log.v(tag, buildLogMsg(msg))
+            Log.v(tag,
+                buildLogMsg(msg)
+            )
         }
 
         fun buildLogMsg(message: String): String {

@@ -12,7 +12,7 @@ import android.view.Window
 import android.widget.LinearLayout
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.utils.MediaUtils
+import momo.kikiplus.refactoring.util.MediaUtils
 
 /**
  * @author grapegirl

@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.TextView
 
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.modify.KLog
+import momo.kikiplus.refactoring.util.KLog
 
 
 /***

@@ -12,7 +12,7 @@ import android.widget.Toast
 
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.KLog
+import momo.kikiplus.refactoring.util.KLog
 
 /**
  * Created by cs on 2015-11-19.

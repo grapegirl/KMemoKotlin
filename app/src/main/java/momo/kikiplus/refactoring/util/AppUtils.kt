@@ -1,4 +1,4 @@
-package momo.kikiplus.refactoring.utils
+package momo.kikiplus.refactoring.util
 
 import android.app.Activity
 import android.app.ActivityManager
@@ -14,7 +14,6 @@ import android.util.Base64
 import com.google.android.gms.analytics.HitBuilders
 import momo.kikiplus.com.kbucket.AnalyticsApplication
 import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.KLog
 import java.security.MessageDigest
 import java.text.SimpleDateFormat
 import java.util.*

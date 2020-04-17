@@ -23,7 +23,6 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.utils.*
 import momo.kikiplus.com.kbucket.databinding.MainActivityBinding
 import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.http.IHttpReceive
@@ -34,11 +33,11 @@ import momo.kikiplus.com.kbucket.view.popup.AIPopup
 import momo.kikiplus.com.kbucket.view.popup.BasicPopup
 import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
 import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.KLog
-import momo.kikiplus.refactoring.FireMessingService
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.FireMessingService
 import momo.kikiplus.refactoring.task.AppUpdateTask
 import momo.kikiplus.refactoring.task.UserUpdateTask
+import momo.kikiplus.refactoring.util.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -59,19 +58,18 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
     private var mBasicPopup: BasicPopup? = null
     private var mAIPopup: AIPopup? = null
 
-    private val TOAST_MASSEGE = 0
-    private val WRITE_BUCEKT = 10
-    private val BUCKET_LIST = 20
-    private val SHOW_CONF = 30
-    private val SHARE_THE_WORLD = 40
-    private val NOTICE = 50
-    private val UPDATE_USER = 60
-    private val REQUEST_AI = 70
-    private val FAIL_AI = 71
-    private val RESPOND_AI = 72
-    private val CHECK_VERSION = 80
+    private val TOAST_MASSEGE : Int = 0
+    private val WRITE_BUCEKT : Int = 10
+    private val BUCKET_LIST : Int = 20
+    private val SHARE_THE_WORLD : Int = 40
+    private val NOTICE : Int = 50
+    private val UPDATE_USER : Int = 60
+    private val REQUEST_AI : Int = 70
+    private val FAIL_AI : Int = 71
+    private val RESPOND_AI : Int = 72
+    private val CHECK_VERSION : Int = 80
 
-    private val MY_PERMISSION_REQUEST = 1000
+    private val MY_PERMISSION_REQUEST : Int = 1000
     private var mbInitialUserUpdate = false
 
     internal var mDrawerList: ListView? = null
@@ -271,11 +269,6 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
                 intent = Intent(this, BucketListActivity::class.java)
                 startActivity(intent)
                 AppUtils.sendTrackerScreen(this, "완료가지화면")
-            }
-            SHOW_CONF//환경설정 보여주기
-            -> {
-                intent = Intent(this, ConfigurationActivity::class.java)
-                startActivity(intent)
             }
             SHARE_THE_WORLD//공유화면 보여주기
             -> {
