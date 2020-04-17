@@ -6,7 +6,7 @@ import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import momo.kikiplus.com.kbucket.Utils.AppUtils
+import momo.kikiplus.refactoring.utils.StringUtils
 import java.util.*
 
 class SQLiteAdapter(internal var mCtx: Context) {
@@ -79,7 +79,7 @@ class SQLiteAdapter(internal var mCtx: Context) {
 
                     for (i in 0 until columnCount) {
                         result.getString(i)
-                        row[(result.getColumnName(i) as String).toLowerCase()] = AppUtils.checkString(result.getString(i), "")
+                        row[(result.getColumnName(i) as String).toLowerCase()] = StringUtils.checkString(result.getString(i), "")
                         //						Log.e("SQLiteAdapter=row",""+row);
                         //						Log.e("NAME",result.getColumnName(i));
                     }
@@ -109,7 +109,7 @@ class SQLiteAdapter(internal var mCtx: Context) {
                 val columnCount = result.columnCount
                 for (i in 0 until columnCount) {
                     result.getString(i)
-                    row[(result.getColumnName(i) as String).toLowerCase()] = AppUtils.checkString(result.getString(i), "")
+                    row[(result.getColumnName(i) as String).toLowerCase()] = StringUtils.checkString(result.getString(i), "")
                 }
             }
         } catch (e: Exception) {

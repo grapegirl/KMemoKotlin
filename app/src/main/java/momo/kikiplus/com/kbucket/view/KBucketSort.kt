@@ -1,6 +1,6 @@
 package momo.kikiplus.com.kbucket.view
 
-import momo.kikiplus.com.kbucket.Utils.DateUtils
+import momo.kikiplus.refactoring.utils.DateUtils
 import momo.kikiplus.com.kbucket.view.Bean.PostData
 import java.util.*
 

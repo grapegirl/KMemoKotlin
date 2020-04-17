@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.TextView
 
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.KLog
+import momo.kikiplus.modify.KLog
 
 /**
  * Created by mihyeKim on 2015-12-16.

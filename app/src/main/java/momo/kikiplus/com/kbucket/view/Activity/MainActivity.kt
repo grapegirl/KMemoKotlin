@@ -23,7 +23,7 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.*
+import momo.kikiplus.refactoring.utils.*
 import momo.kikiplus.com.kbucket.databinding.MainActivityBinding
 import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.http.IHttpReceive
@@ -33,7 +33,10 @@ import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import momo.kikiplus.com.kbucket.view.popup.AIPopup
 import momo.kikiplus.com.kbucket.view.popup.BasicPopup
 import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
+import momo.kikiplus.modify.ContextUtils
+import momo.kikiplus.modify.KLog
 import momo.kikiplus.refactoring.FireMessingService
+import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.refactoring.task.AppUpdateTask
 import momo.kikiplus.refactoring.task.UserUpdateTask
 import org.json.JSONException

@@ -9,10 +9,13 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.*
+import momo.kikiplus.refactoring.utils.*
 import momo.kikiplus.com.kbucket.databinding.ConfActivityBinding
 import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.http.IHttpReceive
+import momo.kikiplus.modify.ContextUtils
+import momo.kikiplus.modify.KLog
+import momo.kikiplus.modify.SharedPreferenceUtils
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*

@@ -11,8 +11,8 @@ import android.widget.RemoteViews
 import android.widget.Toast
 
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.ContextUtils
-import momo.kikiplus.com.kbucket.Utils.KLog
+import momo.kikiplus.modify.ContextUtils
+import momo.kikiplus.modify.KLog
 
 /**
  * Created by cs on 2015-11-19.

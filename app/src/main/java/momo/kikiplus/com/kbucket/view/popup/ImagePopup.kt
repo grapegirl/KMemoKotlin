@@ -8,7 +8,7 @@ import android.view.View
 import android.view.Window
 import android.widget.ImageView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.AppUtils
+import momo.kikiplus.refactoring.utils.ScreenUtils
 
 
 /***
@@ -78,7 +78,7 @@ class ImagePopup
      */
     fun showDialog() {
         if (dialog != null)
-            AppUtils.setSecure(mWindow!!, true)
+            ScreenUtils.setSecure(mWindow!!, true)
         dialog!!.show()
     }
 
@@ -88,7 +88,7 @@ class ImagePopup
     fun closeDialog() {
         if (dialog != null) {
             dialog!!.dismiss()
-            AppUtils.setSecure(mWindow!!, false)
+            ScreenUtils.setSecure(mWindow!!, false)
         }
     }
 

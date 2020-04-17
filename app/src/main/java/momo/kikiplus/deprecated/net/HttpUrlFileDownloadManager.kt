@@ -1,7 +1,7 @@
-package momo.kikiplus.deprecated
+package momo.kikiplus.deprecated.net
 
 import android.os.AsyncTask
-import momo.kikiplus.com.kbucket.Utils.KLog
+import momo.kikiplus.modify.KLog
 import momo.kikiplus.com.kbucket.http.IHttpReceive
 import java.io.FileOutputStream
 import java.io.IOException

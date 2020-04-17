@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.Utils
+package momo.kikiplus.refactoring.utils
 
 import android.app.Activity
 import android.app.ActivityManager
@@ -11,13 +11,11 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.net.Uri
 import android.util.Base64
-import android.util.DisplayMetrics
-import android.view.Window
-import android.view.WindowManager
 import com.google.android.gms.analytics.HitBuilders
 import momo.kikiplus.com.kbucket.AnalyticsApplication
+import momo.kikiplus.modify.ContextUtils
+import momo.kikiplus.modify.KLog
 import java.security.MessageDigest
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -138,29 +136,6 @@ object AppUtils {
         context.resources.updateConfiguration(configuration, context.resources.displayMetrics)
     }
 
-    /**
-     * String 형식의 날짜를 date 형으로 변환
-     *
-     * @param str
-     * @return
-     * @throws ParseException
-     */
-    @Throws(ParseException::class)
-    fun getDateFormatDate(str: String): Date {
-        val fdm = SimpleDateFormat("yyyy-MM-dd")
-        return fdm.parse(str)
-    }
-
-    /**
-     * 날짜 string 형 으로 변환
-     *
-     * @param
-     * @return
-     */
-    fun getDateFormatString(date: Date): String {
-        val fdm = SimpleDateFormat("yyyy-MM-dd")
-        return fdm.format(date)
-    }
 
     /**
      * 서비스가 실행중인지 반환하는 메소드
@@ -240,15 +215,6 @@ object AppUtils {
         return false
     }
 
-    /**
-     * 스트링 트림 처리.
-     */
-    fun checkString(str: String?, tmp: String): String {
-        return if (!(str == null || str.trim { it <= ' ' } == "" || str.trim { it <= ' ' } == "null"))
-            str.trim { it <= ' ' }
-        else
-            tmp
-    }
 
     /**
      * 앱 hash 값 반환 메소드
@@ -320,35 +286,6 @@ object AppUtils {
         val mgr = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent)
         System.exit(0)
-    }
-
-    //화면 캡쳐 방지
-    fun setSecure(window: Window, isSecure: Boolean) {
-        if (isSecure) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
-            val wm = window.windowManager
-            wm.removeViewImmediate(window.decorView)
-            wm.addView(window.decorView, window.attributes)
-        } else {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
-            val wm = window.windowManager
-            wm.removeViewImmediate(window.decorView)
-            wm.addView(window.decorView, window.attributes)
-        }
-    }
-
-    /**
-     * 해상도 pixel 가져오는 메소드
-     *
-     * @param windowManager
-     * @return 화면 해상도 가로 세로
-     */
-    fun getDisplay(windowManager: WindowManager): String {
-        val metrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(metrics)
-        val ScreenWidth = metrics.widthPixels
-        val ScreenHeight = metrics.heightPixels
-        return ScreenWidth.toString() + "," + ScreenHeight
     }
 
     fun sendTrackerScreen(context: Activity, screenName: String) {

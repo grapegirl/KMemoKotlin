@@ -1,7 +1,7 @@
 /**
  *
  */
-package momo.kikiplus.com.kbucket.Utils
+package momo.kikiplus.refactoring.utils
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -148,5 +148,15 @@ object StringUtils {
         }
         //System.out.println("@@ getHTTPPostSendData :  " + sb.toString());
         return sb.toString()
+    }
+
+    /**
+     * 스트링 트림 처리.
+     */
+    fun checkString(str: String?, tmp: String): String {
+        return if (!(str == null || str.trim { it <= ' ' } == "" || str.trim { it <= ' ' } == "null"))
+            str.trim { it <= ' ' }
+        else
+            tmp
     }
 }

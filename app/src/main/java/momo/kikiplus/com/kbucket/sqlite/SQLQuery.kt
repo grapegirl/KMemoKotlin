@@ -1,7 +1,7 @@
 package momo.kikiplus.com.kbucket.sqlite
 
 import android.content.Context
-import momo.kikiplus.com.kbucket.Utils.KLog
+import momo.kikiplus.modify.KLog
 import java.util.*
 
 class SQLQuery {

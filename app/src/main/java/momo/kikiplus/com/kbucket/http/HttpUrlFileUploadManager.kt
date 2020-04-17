@@ -1,7 +1,7 @@
 package momo.kikiplus.com.kbucket.http
 
 import android.os.AsyncTask
-import momo.kikiplus.com.kbucket.Utils.KLog
+import momo.kikiplus.modify.KLog
 import java.io.ByteArrayInputStream
 import java.io.DataOutputStream
 import java.net.HttpURLConnection

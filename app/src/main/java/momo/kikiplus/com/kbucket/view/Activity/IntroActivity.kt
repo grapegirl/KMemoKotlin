@@ -8,8 +8,8 @@ import android.os.Message
 import android.view.View
 import android.view.animation.AlphaAnimation
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.ContextUtils
-import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
+import momo.kikiplus.modify.ContextUtils
+import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.com.kbucket.databinding.IntroActivityBinding
 import java.util.*
 

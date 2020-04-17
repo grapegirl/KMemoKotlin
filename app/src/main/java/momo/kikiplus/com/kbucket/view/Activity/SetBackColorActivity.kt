@@ -7,10 +7,10 @@ import android.view.View
 import android.widget.ImageButton
 
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.AppUtils
-import momo.kikiplus.com.kbucket.Utils.ContextUtils
-import momo.kikiplus.com.kbucket.Utils.KLog
-import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
+import momo.kikiplus.refactoring.utils.AppUtils
+import momo.kikiplus.modify.ContextUtils
+import momo.kikiplus.modify.KLog
+import momo.kikiplus.modify.SharedPreferenceUtils
 
 /**
  * @author grapegirl

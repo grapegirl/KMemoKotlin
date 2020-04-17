@@ -1,7 +1,7 @@
 /**
  *
  */
-package momo.kikiplus.com.kbucket.Utils
+package momo.kikiplus.refactoring.utils
 
 import android.content.Context
 import android.content.Intent

@@ -3,7 +3,7 @@ package momo.kikiplus.com.kbucket
 import android.app.Application
 import com.google.android.gms.analytics.GoogleAnalytics
 import com.google.android.gms.analytics.Tracker
-import momo.kikiplus.com.kbucket.Utils.ContextUtils
+import momo.kikiplus.modify.ContextUtils
 
 /**
  * Created by mihyeKim on 2016-11-13.

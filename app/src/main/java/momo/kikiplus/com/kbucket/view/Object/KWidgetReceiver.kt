@@ -4,8 +4,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 
-import momo.kikiplus.com.kbucket.Utils.ContextUtils
-import momo.kikiplus.com.kbucket.Utils.KLog
+import momo.kikiplus.modify.ContextUtils
+import momo.kikiplus.modify.KLog
 import momo.kikiplus.com.kbucket.view.Activity.IntroActivity
 import momo.kikiplus.com.kbucket.view.Activity.WriteMemoActivity
 

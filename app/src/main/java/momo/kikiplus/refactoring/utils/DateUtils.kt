@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.Utils
+package momo.kikiplus.refactoring.utils
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -100,5 +100,29 @@ object DateUtils {
         calendar.add(Calendar.DATE, day)
         val sdf = SimpleDateFormat(pattern)
         return sdf.format(calendar.time)
+    }
+
+    /**
+     * String 형식의 날짜를 date 형으로 변환
+     *
+     * @param str
+     * @return
+     * @throws ParseException
+     */
+    @Throws(ParseException::class)
+    fun getDateFormatDate(str: String): Date {
+        val fdm = SimpleDateFormat("yyyy-MM-dd")
+        return fdm.parse(str)
+    }
+
+    /**
+     * 날짜 string 형 으로 변환
+     *
+     * @param
+     * @return
+     */
+    fun getDateFormatString(date: Date): String {
+        val fdm = SimpleDateFormat("yyyy-MM-dd")
+        return fdm.format(date)
     }
 }

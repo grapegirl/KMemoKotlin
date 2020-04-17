@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.StringUtils
+import momo.kikiplus.refactoring.utils.StringUtils
 import momo.kikiplus.com.kbucket.view.Bean.Comment
 import java.util.*
 

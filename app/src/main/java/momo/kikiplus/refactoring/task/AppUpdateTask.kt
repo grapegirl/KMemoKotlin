@@ -6,9 +6,9 @@ import android.os.Handler
 import android.os.Message
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.Utils.AppUtils
-import momo.kikiplus.com.kbucket.Utils.KLog
-import momo.kikiplus.com.kbucket.Utils.StringUtils
+import momo.kikiplus.refactoring.utils.AppUtils
+import momo.kikiplus.modify.KLog
+import momo.kikiplus.refactoring.utils.StringUtils
 import momo.kikiplus.com.kbucket.view.popup.BasicPopup
 import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
 import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
