@@ -22,20 +22,20 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
-import momo.kikiplus.com.kbucket.Managers.asynctask.AppUpdateTask
-import momo.kikiplus.com.kbucket.Managers.asynctask.UserUpdateTask
-import momo.kikiplus.com.kbucket.Managers.http.HttpUrlTaskManager
-import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
-import momo.kikiplus.com.kbucket.Managers.push.FireMessingService
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
-import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.databinding.MainActivityBinding
+import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
+import momo.kikiplus.com.kbucket.http.IHttpReceive
+import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Bean.MobileUser
 import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import momo.kikiplus.com.kbucket.view.popup.AIPopup
 import momo.kikiplus.com.kbucket.view.popup.BasicPopup
 import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
+import momo.kikiplus.refactoring.FireMessingService
+import momo.kikiplus.refactoring.task.AppUpdateTask
+import momo.kikiplus.refactoring.task.UserUpdateTask
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -288,7 +288,8 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
             }
             UPDATE_USER//사용자 정보 없데이트
             -> {
-                val userUpdateTask = UserUpdateTask(this, userData)
+                val userUpdateTask =
+                    UserUpdateTask(userData)
                 userUpdateTask.execute()
             }
             REQUEST_AI -> {
@@ -315,7 +316,8 @@ class MainActivity : Activity(), View.OnClickListener, Handler.Callback, OnPopup
             }
             CHECK_VERSION//버전 체크
             -> {
-                val appUpdateTask = AppUpdateTask(this)
+                val appUpdateTask =
+                    AppUpdateTask(this)
                 appUpdateTask.execute()
             }
         }

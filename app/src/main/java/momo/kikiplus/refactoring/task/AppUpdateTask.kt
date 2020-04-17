@@ -1,7 +1,8 @@
-package momo.kikiplus.com.kbucket.Managers.asynctask
+package momo.kikiplus.refactoring.task
 
 import android.content.Context
 import android.os.AsyncTask
+import android.os.Handler
 import android.os.Message
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
@@ -22,29 +23,23 @@ import retrofit2.Response
  * @version 1.0
  * @Class Name : AppUpdateTask
  * @Description : App 업데이트 Task
- * @since 2016-01-28
+ * @since 2020-01-28
  */
 class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>(), android.os.Handler.Callback, OnPopupEventListener {
 
     private val TAG = this.javaClass.simpleName
     private var mVersion: Version? = null
-    private val mHandler: android.os.Handler
+    private val mHandler: Handler = Handler(this)
 
-    private val START_VERSION = 10
-    private val CHECK_VERSION = 20
-    private val FAIL_VERSION = 30
-    private val TOAST_MESSAGE = 40
+    private val START_VERSION : Int = 10
+    private val CHECK_VERSION : Int = 20
+    private val FAIL_VERSION : Int = 30
+    private val TOAST_MESSAGE : Int = 40
 
     private var mBasicPopup: BasicPopup? = null
     private var mConfirmPopup: ConfirmPopup? = null
 
-    init {
-        mHandler = android.os.Handler(this)
-    }
-
     override fun onPreExecute() {}
-
-
 
     override fun doInBackground(vararg params: Void): Void? {
         mHandler.sendEmptyMessage(START_VERSION)

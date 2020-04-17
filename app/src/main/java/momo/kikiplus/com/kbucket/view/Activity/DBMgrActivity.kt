@@ -9,11 +9,11 @@ import android.os.Message
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import momo.kikiplus.com.kbucket.Managers.http.HttpUrlFileUploadManager
-import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
-import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
+import momo.kikiplus.com.kbucket.http.HttpUrlFileUploadManager
+import momo.kikiplus.com.kbucket.http.IHttpReceive
+import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import java.util.*
 
 

@@ -9,10 +9,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
-import momo.kikiplus.com.kbucket.Managers.http.HttpUrlTaskManager
-import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
+import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
+import momo.kikiplus.com.kbucket.http.IHttpReceive
 import momo.kikiplus.com.kbucket.view.Adapter.ShareListAdpater
 import momo.kikiplus.com.kbucket.view.Bean.Bucket
 import momo.kikiplus.com.kbucket.view.Bean.Category

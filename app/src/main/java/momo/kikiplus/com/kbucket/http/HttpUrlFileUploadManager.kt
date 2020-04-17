@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.Managers.http
+package momo.kikiplus.com.kbucket.http
 
 import android.os.AsyncTask
 import momo.kikiplus.com.kbucket.Utils.KLog

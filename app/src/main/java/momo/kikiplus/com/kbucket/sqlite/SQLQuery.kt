@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.Utils.sqlite
+package momo.kikiplus.com.kbucket.sqlite
 
 import android.content.Context
 import momo.kikiplus.com.kbucket.Utils.KLog
@@ -122,9 +122,7 @@ class SQLQuery {
             KLog.d(TAG, "@@ 메모 정보 가져오기 단건 오류")
         }
 
-        return if (userInfoRow != null && userInfoRow.size > 0) {
-            true
-        } else false
+        return userInfoRow != null && userInfoRow.size > 0
     }
 
     /**
@@ -269,9 +267,7 @@ class SQLQuery {
             KLog.d(TAG, "@@ 메모 정보 가져오기 단건 오류")
         }
 
-        return if (userInfoRow != null && userInfoRow.size > 0) {
-            true
-        } else false
+        return userInfoRow != null && userInfoRow.size > 0
     }
 
     /**

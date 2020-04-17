@@ -11,13 +11,13 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
-import momo.kikiplus.com.kbucket.Managers.http.HttpUrlFileUploadManager
-import momo.kikiplus.com.kbucket.Managers.http.HttpUrlTaskManager
-import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
-import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.databinding.WriteDetailActivityBinding
+import momo.kikiplus.com.kbucket.http.HttpUrlFileUploadManager
+import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
+import momo.kikiplus.com.kbucket.http.IHttpReceive
+import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Bean.Bucket
 import momo.kikiplus.com.kbucket.view.Bean.Category
 import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup

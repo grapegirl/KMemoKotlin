@@ -12,7 +12,7 @@ import momo.kikiplus.com.kbucket.Utils.AppUtils
 import momo.kikiplus.com.kbucket.Utils.ContextUtils
 import momo.kikiplus.com.kbucket.Utils.KLog
 import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
-import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
+import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 
 /**
  * @author grapegirl

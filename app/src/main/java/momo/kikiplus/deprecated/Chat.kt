@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.view.Bean
+package momo.kikiplus.deprecated
 
 
 /**  채팅 클래스  */

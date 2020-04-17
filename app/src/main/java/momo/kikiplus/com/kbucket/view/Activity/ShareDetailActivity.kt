@@ -8,11 +8,11 @@ import android.os.Message
 import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
-import momo.kikiplus.com.kbucket.Managers.http.HttpUrlTaskManager
-import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
-import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
+import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
+import momo.kikiplus.com.kbucket.http.IHttpReceive
+import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Adapter.CommentListAdpater
 import momo.kikiplus.com.kbucket.view.Bean.Bucket
 import momo.kikiplus.com.kbucket.view.Bean.Comment
@@ -23,7 +23,6 @@ import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
-
 
 
 /**

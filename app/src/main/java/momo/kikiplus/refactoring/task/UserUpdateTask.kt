@@ -1,14 +1,14 @@
-package momo.kikiplus.com.kbucket.Managers.asynctask
+package momo.kikiplus.refactoring.task
 
-import android.content.Context
 import android.os.AsyncTask
 import android.os.Build
+import android.os.Handler
 import android.os.Message
-import momo.kikiplus.com.kbucket.Managers.http.HttpUrlTaskManager
-import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
 import momo.kikiplus.com.kbucket.Utils.ContextUtils
 import momo.kikiplus.com.kbucket.Utils.KLog
 import momo.kikiplus.com.kbucket.Utils.StringUtils
+import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
+import momo.kikiplus.com.kbucket.http.IHttpReceive
 import momo.kikiplus.com.kbucket.view.Bean.MobileUser
 import java.util.*
 
@@ -19,33 +19,17 @@ import java.util.*
  * @Description : 사용자 버전 업데이트 Task
  * @since 2015-10-08
  */
-class UserUpdateTask(
-        /**
-         * 컨텍스트
-         */
-        private val mContext: Context,
-        /**
-         * 사용자 정보
-         */
-        private val mUser: MobileUser) : AsyncTask<Void, Void, Void>(), IHttpReceive, android.os.Handler.Callback {
+class UserUpdateTask(private val mUser: MobileUser) : AsyncTask<Void, Void, Void>(), IHttpReceive, android.os.Handler.Callback {
 
     private val TAG = this.javaClass.simpleName
 
-    private val mHandler: android.os.Handler
-
-    init {
-        mHandler = android.os.Handler(this)
-    }
+    private val mHandler: Handler = Handler(this)
 
     override fun onPreExecute() {}
 
     override fun doInBackground(vararg params: Void): Void? {
         mHandler.sendEmptyMessage(0)
         return null
-    }
-
-    override fun onPostExecute(aVoid: Void?) {
-        super.onPostExecute(aVoid)
     }
 
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {

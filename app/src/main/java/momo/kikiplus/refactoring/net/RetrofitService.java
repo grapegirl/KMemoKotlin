@@ -18,4 +18,5 @@ public interface RetrofitService {
      * 버전 업데이트 URL
      */
     Call<Version> getVersion(@Query("version") String version);
+
 }

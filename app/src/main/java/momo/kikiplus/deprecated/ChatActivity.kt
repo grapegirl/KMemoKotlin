@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.view.Activity
+package momo.kikiplus.deprecated
 
 import android.app.Activity
 import android.os.Bundle
@@ -9,13 +9,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
-import momo.kikiplus.com.kbucket.Managers.http.HttpUrlTaskManager
-import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
-import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
-import momo.kikiplus.com.kbucket.view.Adapter.ChatListAdpater
-import momo.kikiplus.com.kbucket.view.Bean.Chat
+import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
+import momo.kikiplus.com.kbucket.http.IHttpReceive
+import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import org.json.JSONException
 import org.json.JSONObject
@@ -167,7 +165,11 @@ class ChatActivity : Activity(), IHttpReceive, View.OnClickListener, Handler.Cal
             }
             SET_CHAT_LIST -> {
                 mListView = findViewById<View>(R.id.chat_listview) as ListView
-                mListAdapter = ChatListAdpater(this, R.layout.chat_list_line, mList!!)
+                mListAdapter = ChatListAdpater(
+                    this,
+                    R.layout.chat_list_line,
+                    mList!!
+                )
                 mListView!!.adapter = mListAdapter
                 mListView!!.divider = null
                 mListView!!.setSelection(mList!!.size)

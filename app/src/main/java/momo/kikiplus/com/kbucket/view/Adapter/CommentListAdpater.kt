@@ -14,7 +14,7 @@ import java.util.*
 /***
  * @author grapegirl
  * @version 1.0
- * @Class Name : UpdateListAdpater
+ * @Class Name : CommentListAdpater
  * @Description : 리스트 목록 어뎁터
  * @since 2015. 1. 6.
  */

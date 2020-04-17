@@ -1,7 +1,7 @@
 /**
  *
  */
-package momo.kikiplus.com.kbucket.Managers.http
+package momo.kikiplus.com.kbucket.http
 
 import android.os.AsyncTask
 import android.util.Log

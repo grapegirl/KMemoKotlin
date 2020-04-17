@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.Utils.sqlite
+package momo.kikiplus.com.kbucket.sqlite
 
 import android.content.Context
 import android.database.Cursor

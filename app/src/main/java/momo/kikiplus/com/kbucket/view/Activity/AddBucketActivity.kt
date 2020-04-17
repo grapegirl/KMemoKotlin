@@ -9,8 +9,8 @@ import momo.kikiplus.com.kbucket.Utils.AppUtils
 import momo.kikiplus.com.kbucket.Utils.ContextUtils
 import momo.kikiplus.com.kbucket.Utils.DateUtils
 import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
-import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.databinding.InterestBucketListActivityBinding
+import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Adapter.ListAdpater
 import momo.kikiplus.com.kbucket.view.Bean.PostData
 import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup

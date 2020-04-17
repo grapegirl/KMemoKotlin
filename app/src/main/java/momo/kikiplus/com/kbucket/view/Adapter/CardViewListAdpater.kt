@@ -13,7 +13,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.ByteUtils
-import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
+import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Bean.PostData
 import java.util.*
 

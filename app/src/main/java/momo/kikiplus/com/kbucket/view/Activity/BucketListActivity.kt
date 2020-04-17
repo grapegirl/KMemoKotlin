@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.os.Message
 import android.view.View
 import android.widget.Toast
-import momo.kikiplus.com.kbucket.Managers.http.HttpUrlFileUploadManager
-import momo.kikiplus.com.kbucket.Managers.http.HttpUrlTaskManager
-import momo.kikiplus.com.kbucket.Managers.http.IHttpReceive
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.*
-import momo.kikiplus.com.kbucket.Utils.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.databinding.BucketListActivityBinding
+import momo.kikiplus.com.kbucket.http.HttpUrlFileUploadManager
+import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
+import momo.kikiplus.com.kbucket.http.IHttpReceive
+import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Adapter.CardViewListAdpater
 import momo.kikiplus.com.kbucket.view.Bean.Bucket
 import momo.kikiplus.com.kbucket.view.Bean.Category

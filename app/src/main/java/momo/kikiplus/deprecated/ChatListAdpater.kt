@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.view.Adapter
+package momo.kikiplus.deprecated
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -11,7 +11,6 @@ import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.Utils.ContextUtils
 import momo.kikiplus.com.kbucket.Utils.SharedPreferenceUtils
-import momo.kikiplus.com.kbucket.view.Bean.Chat
 import java.util.*
 
 /***

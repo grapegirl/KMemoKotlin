@@ -86,7 +86,7 @@
             android:name=".view.Activity.RankListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.Activity.ChatActivity"
+            android:name="momo.kikiplus.deprecated.ChatActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Activity.AddBucketActivity"
@@ -151,7 +151,7 @@
 
         <!-- FCM 관련 -->
         <service
-            android:name=".Managers.push.FireMessingService"
+            android:name="momo.kikiplus.refactoring.FireMessingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
