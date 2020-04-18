@@ -149,10 +149,7 @@ object ContextUtils {
      * 가지 파일 업로드 URL
      */
     val KBUCKET_UPLOAD_IMAGE_URL = "$KBUCKET_SERVER_IP/mobile/uploadFile.jsp"
-    /**
-     * category URL
-     */
-    val KBUCKET_CATEGORY_URL = "$KBUCKET_SERVER_IP/mobile/category.jsp"
+
     /**
      * 버킷 리스트 URL
      */

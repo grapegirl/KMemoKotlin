@@ -20,6 +20,9 @@ public interface RetrofitService {
     Call<Version> getVersion(@Query("version") String version);
 
     @GET("mobile/category.jsp")
+    /**
+     * 카데고리 목록 가져오기 URL
+     */
     Call<CategoryList> getCateryList();
 
 }

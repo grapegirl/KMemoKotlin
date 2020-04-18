@@ -75,6 +75,8 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
         when (requestCode) {
             FILE_SELECT_CODE -> if (resultCode == Activity.RESULT_OK) {
                 val uri = data.data
+                KLog.d(ContextUtils.TAG, "@@ onActivityResult path :  " +  uri!!.path!!)
+
                 val isResult = DataUtils.importDB(uri!!.path!!)
                 if (isResult) {
                     val msaage = getString(R.string.db_import_success_string)

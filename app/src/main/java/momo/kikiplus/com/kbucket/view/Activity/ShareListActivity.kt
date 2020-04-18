@@ -1,6 +1,7 @@
 package momo.kikiplus.com.kbucket.view.Activity
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +11,8 @@ import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
+import momo.kikiplus.com.kbucket.databinding.ShareDetailActivityBinding
+import momo.kikiplus.com.kbucket.databinding.ShareListActivityBinding
 import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.http.IHttpReceive
 import momo.kikiplus.com.kbucket.view.Adapter.ShareListAdpater
@@ -18,12 +21,16 @@ import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.refactoring.model.Category
+import momo.kikiplus.refactoring.net.*
 import momo.kikiplus.refactoring.util.KLog
 import momo.kikiplus.refactoring.util.NetworkUtils
 import momo.kikiplus.refactoring.util.StringUtils
 import org.json.JSONException
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Response
 import java.util.*
+import javax.security.auth.callback.Callback
 
 /**
  * @author grapegirl
@@ -34,11 +41,11 @@ import java.util.*
  */
 class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler.Callback {
 
-    private var mCategoryList: ArrayList<Category>? = null
-    private var mHandler: Handler? = null
+    private var mCategoryList: ArrayList<Category> = ArrayList()
+    private var mHandler: Handler = Handler(this)
     private val mButton = arrayOfNulls<Button>(9)
 
-    private var mBucketDataList: ArrayList<Bucket>? = null
+    private var mBucketDataList: ArrayList<Bucket> = ArrayList()
     private var mListAdapter: ShareListAdpater? = null
     private var mListView: ListView? = null
 
@@ -50,15 +57,19 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
     private val SET_BUCKETLIST = 60
     private val CHECK_NETWORK = 70
 
+    private lateinit var mBinding : ShareListActivityBinding
+    private lateinit var mContext : Context
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        setContentView(R.layout.share_list_activity)
+
+        mBinding = ShareListActivityBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
+        mContext = applicationContext
+
         setBackgroundColor()
-        mHandler = android.os.Handler(this)
-        mCategoryList = ArrayList()
-        mBucketDataList = ArrayList()
-        mHandler!!.sendEmptyMessage(CHECK_NETWORK)
+        mHandler.sendEmptyMessage(CHECK_NETWORK)
 
     }
 
@@ -91,29 +102,7 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
 
         }
         if (actionId == IHttpReceive.CATEGORY_LIST) {
-            KProgressDialog.setDataLoadingDialog(this, false, null, false)
-            if (type == IHttpReceive.HTTP_OK && isValid == true) {
-                try {
-                    val json = JSONObject(mData)
-                    val jsonArray = json.getJSONArray("categoryVOList")
-                    KLog.d(this.javaClass.simpleName, "@@ jsonArray :   $jsonArray")
-                    val size = jsonArray.length()
-                    for (i in 0 until size) {
-                        val jsonObject = jsonArray.get(i) as JSONObject
-                        val category = Category()
-                        category.categoryCode = jsonObject.getInt("categoryCode")
-                        category.categoryName = jsonObject.getString("categoryName")
-                        mCategoryList!!.add(category)
-                    }
-                    mHandler!!.sendEmptyMessage(SET_CATEGORY)
-                } catch (e: JSONException) {
-                    KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
-                    mHandler!!.sendEmptyMessage(SERVER_LOADING_FAIL)
-                }
 
-            } else {
-                mHandler!!.sendEmptyMessage(SERVER_LOADING_FAIL)
-            }
         } else if (actionId == IHttpReceive.Companion.BUCKET_LIST) {
             KProgressDialog.setDataLoadingDialog(this, false, null, false)
             if (type == IHttpReceive.HTTP_OK && isValid == true) {
@@ -136,7 +125,6 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
 
                         mBucketDataList!!.add(bucket)
                     }
-
                     mHandler!!.sendEmptyMessage(SET_BUCKETLIST)
                 } catch (e: JSONException) {
                     KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
@@ -154,8 +142,37 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
             TOAST_MASSEGE -> Toast.makeText(applicationContext, msg.obj as String, Toast.LENGTH_LONG).show()
             CATEGORY_LIST -> {
                 KProgressDialog.setDataLoadingDialog(this, true, this.getString(R.string.loading_string), true)
-                var httpUrlTaskManager = HttpUrlTaskManager(ContextUtils.KBUCKET_CATEGORY_URL, false, this, IHttpReceive.CATEGORY_LIST)
-                httpUrlTaskManager.execute()
+
+                val res = NetRetrofit.instance.service.getCateryList()
+                res.enqueue(object : retrofit2.Callback<CategoryList> {
+                    override fun onResponse(call: Call<CategoryList>, response: Response<CategoryList>) {
+                        if (response.body()!!.bIsValid) {
+                            KProgressDialog.setDataLoadingDialog(mContext, false, null, false)
+                                try {
+                                    val size = response.body()!!.categoryList.size
+                                    if(size > 0){
+                                        mCategoryList.clear()
+                                        for (i in 0 until size) {
+                                            val item : CategoryList.Category = response.body()!!.categoryList.get(i)
+                                            var category : Category = Category(item.mCategoryName!!, item.mCategoryCode)
+                                           mCategoryList.add(category)
+                                        }
+                                    }
+                                    mHandler!!.sendEmptyMessage(SET_CATEGORY)
+                                } catch (e: JSONException) {
+                                    KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                                    mHandler!!.sendEmptyMessage(SERVER_LOADING_FAIL)
+                                }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<CategoryList>, t: Throwable) {
+                        KLog.d(ContextUtils.TAG, "@@ NoticeList onFailure call : " + call.request())
+                        KLog.d(ContextUtils.TAG, "@@ NoticeList onFailure message : " + t.message)
+                        mHandler!!.sendEmptyMessage(SERVER_LOADING_FAIL)
+                    }
+                })
+
             }
             SET_CATEGORY -> {
                 setButton()
@@ -191,23 +208,7 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
                     mHandler!!.sendEmptyMessage(CATEGORY_LIST)
                 }
             }
-        }//                realmMgr realmMgr = new realmMgr();
-        //                RealmResults<Bucket> infoList = realmMgr.selectBucketShareList();
-        //                if (infoList != null) {
-        //                    if (infoList.size() > 0) {
-        //                        mBucketDataList.clear();
-        //                        for (int i = 0; i < infoList.size(); i++) {
-        //                            Bucket bucket = infoList.get(i);
-        //                            mBucketDataList.add(bucket);
-        //                        }
-        //                        mHandler.sendEmptyMessage(SET_BUCKETLIST);
-        //                    }
-        //                } else {
-        //                    KLog.d(TAG, "@@ SERVER_LOADING_FAIL");
-        //                    String message = getString(R.string.server_fail_string);
-        //                    mHandler.sendMessage(mHandler.obtainMessage(TOAST_MASSEGE, message));
-        //                    finish();
-        //                }
+        }
         return false
     }
 

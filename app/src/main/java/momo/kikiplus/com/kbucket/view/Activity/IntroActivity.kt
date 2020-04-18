@@ -11,6 +11,7 @@ import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.com.kbucket.databinding.IntroActivityBinding
+import momo.kikiplus.refactoring.view.fragment.MainFragmentActivity
 import java.util.*
 
 /**
@@ -85,7 +86,7 @@ class IntroActivity : Activity(), android.os.Handler.Callback {
         when (msg.what) {
             0//바로 실행할때
             -> {
-                var intent = Intent(this, MainActivity::class.java)
+                var intent = Intent(this, MainFragmentActivity::class.java)
                 startActivity(intent)
                 finish()
             }

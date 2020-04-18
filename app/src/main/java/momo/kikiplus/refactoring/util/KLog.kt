@@ -1,6 +1,7 @@
 package momo.kikiplus.refactoring.util
 
 import android.util.Log
+import momo.kikiplus.modify.ContextUtils
 
 /***
  * @author grapegirl
@@ -19,6 +20,13 @@ class KLog {
     companion object {
 
         private var VIEW_LOG = true
+
+        fun log(msg: String){
+            if(!VIEW_LOG)
+                return
+
+            Log.d(ContextUtils.TAG, buildLogMsg(msg))
+        }
 
         fun d(tag: String, msg: String) {
             if (!VIEW_LOG)

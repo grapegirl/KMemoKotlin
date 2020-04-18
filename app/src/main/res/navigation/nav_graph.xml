@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/MainFragement">
+
+    <fragment
+        android:id="@+id/MainFragement"
+        android:name="momo.kikiplus.refactoring.view.fragment.ui.main.MainFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/main_fragment">
+
+        <action
+            android:id="@+id/action_MainFragment_to_WriteFragment"
+            app:destination="@id/WriteFragement"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/WriteFragement"
+        android:name="momo.kikiplus.refactoring.view.fragment.WriteFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/write_fragment"/>
+</navigation>

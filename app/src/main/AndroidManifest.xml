@@ -15,27 +15,30 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
-        android:name="AnalyticsApplication"
+        android:name=".AnalyticsApplication"
         android:allowBackup="true"
+        android:appComponentFactory="whatevetString"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_configuration"
         android:theme="@style/AppTheme"
-        tools:replace="android:appComponentFactory"
-        android:appComponentFactory="whatevetString"
-        >
+        tools:replace="android:appComponentFactory">
+
         <activity
             android:name=".view.Activity.IntroActivity"
             android:clearTaskOnLaunch="true"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="momo.kikiplus.refactoring.view.fragment.MainFragmentActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".view.Activity.WriteActivity"
             android:screenOrientation="portrait"
@@ -58,9 +61,6 @@
             android:hardwareAccelerated="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".view.Activity.ConfigurationActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Activity.SetNickNameActivity"
             android:screenOrientation="portrait" />
@@ -99,10 +99,9 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.Activity.DBMgrActivity"
-            android:screenOrientation="portrait"/>
-
-        <!-- 커스톰 위젯 -->
+        <activity
+            android:name=".view.Activity.DBMgrActivity"
+            android:screenOrientation="portrait" /> <!-- 커스톰 위젯 -->
         <receiver
             android:name=".view.Object.KWidget"
             android:label="가지">
@@ -132,10 +131,9 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE_OPTIONS" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name=".view.Object.KWidgetReceiver"
-            android:label="widgetBroadcastReceiver" >
+            android:label="widgetBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.kiki.View.widget.ACTION_WRITE_EVENT" />
                 <action android:name="com.kiki.View.widget.ACTION_LIST_EVENT" />
@@ -147,25 +145,20 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/memo_widget_configuration" />
-        </receiver>
-
-        <!-- FCM 관련 -->
+        </receiver> <!-- FCM 관련 -->
         <service
             android:name="momo.kikiplus.refactoring.FireMessingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
-        <!-- FCM 관련 END -->
+        </service> <!-- FCM 관련 END -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9950741145331464~2693538232">
-        </meta-data>
+            android:value="ca-app-pub-9950741145331464~2693538232"></meta-data>
     </application>
 
 </manifest>
