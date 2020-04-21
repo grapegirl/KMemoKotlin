@@ -17,12 +17,12 @@ import momo.kikiplus.com.kbucket.http.HttpUrlFileUploadManager
 import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.http.IHttpReceive
 import momo.kikiplus.com.kbucket.sqlite.SQLQuery
-import momo.kikiplus.com.kbucket.view.Bean.Bucket
 import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
 import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
 import momo.kikiplus.com.kbucket.view.popup.SpinnerListPopup
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.model.Bucket
 import momo.kikiplus.refactoring.model.Category
 import momo.kikiplus.refactoring.util.*
 import org.json.JSONException
@@ -395,7 +395,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
         bucket.content = mContents
         bucket.imageUrl = ""
         bucket.date = mDate
-        bucket.categoryCode = mCategory
+        bucket.category!!.categoryCode = mCategory
         return bucket.toHasnMap()
     }
 

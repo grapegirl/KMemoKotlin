@@ -13,7 +13,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.sqlite.SQLQuery
-import momo.kikiplus.com.kbucket.view.Bean.PostData
+import momo.kikiplus.refactoring.model.Bucket
 import momo.kikiplus.refactoring.util.ByteUtils
 import java.util.*
 
@@ -28,7 +28,7 @@ class CardViewListAdpater
 /**
  * 생성자
  */
-(context: Context, res: Int, list: ArrayList<PostData>,
+(context: Context, res: Int, list: ArrayList<Bucket>,
  /**
   * 클릭 리스너
   */
@@ -51,7 +51,7 @@ class CardViewListAdpater
     /**
      * 리스트 아이템
      */
-    private var mListItem: ArrayList<PostData>? = null
+    private var mListItem: ArrayList<Bucket>? = null
 
     private val noImageBitmap: Bitmap
 
@@ -87,7 +87,7 @@ class CardViewListAdpater
         mBitmapList = ArrayList()
         val sqlQuery = SQLQuery()
         for (i in mListItem!!.indices) {
-            val contents = mListItem!![i].contents
+            val contents = mListItem!![i].content
             val date = mListItem!![i].date
             var bitmap: Bitmap?
             val bytes = sqlQuery.selectImage(mContext!!, contents!!, date!!)
@@ -120,7 +120,7 @@ class CardViewListAdpater
             viewHolder = convertView.tag as ViewHolder
         }
         val date = mListItem!![position].date!! + "   "
-        val content = mListItem!![position].contents
+        val content = mListItem!![position].content
         val bitmap = mBitmapList!![position]
 
         viewHolder.dateView!!.text = date

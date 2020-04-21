@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.WriteBucketLayoutBinding
 import momo.kikiplus.com.kbucket.sqlite.SQLQuery
-import momo.kikiplus.com.kbucket.view.Bean.PostData
 import momo.kikiplus.com.kbucket.view.KBucketSort
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.model.Bucket
 import momo.kikiplus.refactoring.util.DateUtils
 import momo.kikiplus.refactoring.util.KLog
 import momo.kikiplus.refactoring.view.recycler.RecyclerViewAdapter
@@ -32,7 +32,7 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
     /**
      * 모든 버킷 목록
      */
-    private var mBucketDataList: ArrayList<PostData>? = null
+    private var mBucketDataList: ArrayList<Bucket>? = null
     private var mDataList: ArrayList<String>? = null
 
     private var mAdapter: RecyclerViewAdapter? = null
@@ -159,8 +159,8 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
         KLog.d(ContextUtils.TAG, "@@ setListData map: $map")
         for (i in map.indices) {
             val memoMap = map[i]
-            val postData = PostData("", memoMap["contents"]!!, memoMap["date"]!!, i)
-            postData.imageName = memoMap["image_path"]
+            val postData = Bucket("", memoMap["contents"]!!, memoMap["date"]!!, i)
+            postData.imageUrl = memoMap["image_path"]
             postData.completeYN = memoMap["complete_yn"]
             postData.deadLine = memoMap["deadline"]
             mBucketDataList!!.add(postData)
@@ -200,8 +200,8 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
         val date = DateUtils.getStringDateFormat(DateUtils.DATE_YYMMDD_PATTER, dateTime)
         mSqlQuery!!.insertUserSetting(applicationContext, Content, date, "N", "")
 
-        val postData = PostData("", Content, date, mBucketDataList!!.size)
-        postData.imageName = ""
+        val postData = Bucket("", Content, date, mBucketDataList!!.size)
+        postData.imageUrl = ""
         postData.completeYN = "N"
         mBucketDataList!!.add(postData)
     }
@@ -214,7 +214,7 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
      */
     private fun checkduplicateData(Content: String): Boolean {
         for (i in mBucketDataList!!.indices) {
-            if (mBucketDataList!![i].contents == Content) {
+            if (mBucketDataList!![i].content == Content) {
                 return true
             }
         }
@@ -247,7 +247,7 @@ class WriteActivity : Activity(), View.OnClickListener, View.OnKeyListener {
             if (data.completeYN == "Y") {
                 continue
             }
-            mDataList!!.add(data.contents!!)
+            mDataList!!.add(data.content!!)
         }
         if (sort == ContextUtils.SORT_DATE) {
 

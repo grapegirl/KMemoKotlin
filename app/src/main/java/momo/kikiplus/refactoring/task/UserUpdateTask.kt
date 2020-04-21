@@ -52,7 +52,7 @@ class UserUpdateTask(private  val mContext : Context) : AsyncTask<Void, Void, Vo
         val date = DateUtils.getStringDateFormat(DateUtils.DATE_YYMMDD_PATTER, Date())
         mobileUser.createDt = date
         val gcmToken = SharedPreferenceUtils.read(mContext, ContextUtils.KEY_USER_FCM, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
-        mobileUser.gcmToken = gcmToken!!
+        mobileUser.token = gcmToken!!
 
         mUserData = mobileUser
     }
@@ -82,7 +82,7 @@ class UserUpdateTask(private  val mContext : Context) : AsyncTask<Void, Void, Vo
         map["MARKET"] = mUserData.market
         map["LANG"] = mUserData.lanuage!!
         map["COUNTY"] = mUserData.country!!
-        map["GCM_TOKEN"] = mUserData.gcmToken
+        map["GCM_TOKEN"] = mUserData.token
         map["OS_VERSION"] = Build.VERSION.RELEASE
         map["TEL_GBN"] = Build.MODEL
         mHttpUrlTaskManager.execute(StringUtils.getHTTPPostSendData(map))

@@ -26,7 +26,7 @@ class MobileUser {
 
     var createDt: String? = null
 
-    var gcmToken = "N"
+    var token = "N"
 
     override fun toString(): String {
         val sb = StringBuilder()
@@ -55,7 +55,7 @@ class MobileUser {
         sb.append(createDt)
         sb.append(",")
         sb.append("GcmToken=")
-        sb.append(gcmToken)
+        sb.append(token)
         return sb.toString()
     }
 

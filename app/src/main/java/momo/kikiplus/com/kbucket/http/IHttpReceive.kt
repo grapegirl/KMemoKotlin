@@ -29,8 +29,6 @@ interface IHttpReceive {
         val INSERT_BUCKET = 2000
         /** 버킷 공유하기 (image)  */
         val INSERT_IMAGE = 2001
-        /**  버전 체크  */
-        val UPDATE_VERSION = 2002
         /**  카데고리 정보  */
         val CATEGORY_LIST = 2003
         /**  버킷 정보  */
@@ -39,8 +37,6 @@ interface IHttpReceive {
         val COMMENT_LIST = 2005
         /**  댓글 추가  */
         val INSERT_COMMENT = 2006
-        /**  공지 사항   */
-        val NOTICE_LIST = 2007
         /**  사용자 정보 업데이트 */
         val UPDATE_USER = 2008
         /**  이미지 다운로드 */
@@ -53,9 +49,5 @@ interface IHttpReceive {
         val RANK_UPDATE_COMMENT = 2012
         /**  DB 업로드  */
         val UPLOAD_DB = 2013
-        /**  채팅 내용 전송  */
-        val INSERT_CHAT = 2014
-        /**  채팅 내용 조회  */
-        val SELECT_CHAT = 2015
     }
 }

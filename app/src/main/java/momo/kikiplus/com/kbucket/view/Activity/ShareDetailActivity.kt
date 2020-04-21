@@ -13,14 +13,14 @@ import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.http.IHttpReceive
 import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Adapter.CommentListAdpater
-import momo.kikiplus.com.kbucket.view.Bean.Bucket
-import momo.kikiplus.com.kbucket.view.Bean.Comment
 import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
 import momo.kikiplus.com.kbucket.view.popup.ImagePopup
 import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.model.Bucket
+import momo.kikiplus.refactoring.model.Comment
 import momo.kikiplus.refactoring.util.AppUtils
 import momo.kikiplus.refactoring.util.DateUtils
 import momo.kikiplus.refactoring.util.KLog

@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.view.Bean.BucketRank
+import momo.kikiplus.refactoring.model.BucketRank
 import java.util.*
 
 /***
@@ -75,7 +75,7 @@ class RankListAdpater
             val inflater = mContext!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             view = inflater.inflate(mRes, null)
         }
-        (view!!.findViewById<View>(R.id.rank_list_text) as EditText).setText(mListItem!![position].content)
+        (view!!.findViewById<View>(R.id.rank_list_text) as EditText).setText(mListItem!![position].bucket!!.content)
         (view.findViewById<View>(R.id.rank_btn1) as Button).setOnClickListener(mClickListener)
         (view.findViewById<View>(R.id.rank_btn2) as Button).setOnClickListener(mClickListener)
         (view.findViewById<View>(R.id.rank_btn3) as Button).setOnClickListener(mClickListener)
@@ -121,7 +121,7 @@ class RankListAdpater
         (view.findViewById<View>(R.id.rank_text2) as TextView).text = goodCount.toString() + ""
         (view.findViewById<View>(R.id.rank_text3) as TextView).text = sosoCount.toString() + ""
 
-        val idx = mListItem!![position].idx
+        val idx = mListItem!![position].bucket!!.idx
         (view.findViewById<View>(R.id.rank_btn1) as Button).tag = idx
         (view.findViewById<View>(R.id.rank_btn2) as Button).tag = idx
         (view.findViewById<View>(R.id.rank_btn3) as Button).tag = idx

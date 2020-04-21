@@ -13,13 +13,12 @@ import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.http.IHttpReceive
 import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Adapter.CardViewListAdpater
-import momo.kikiplus.com.kbucket.view.Bean.Bucket
-import momo.kikiplus.com.kbucket.view.Bean.PostData
 import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
 import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
 import momo.kikiplus.com.kbucket.view.popup.SpinnerListPopup
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.model.Bucket
 import momo.kikiplus.refactoring.model.Category
 import momo.kikiplus.refactoring.util.ByteUtils
 import momo.kikiplus.refactoring.util.KLog
@@ -38,7 +37,7 @@ import java.util.*
  */
 class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickListener, OnPopupEventListener, IHttpReceive, android.os.Handler.Callback {
 
-    private var mDataList: ArrayList<PostData>? = null
+    private var mDataList: ArrayList<Bucket>? = null
     private var mListAdapter: CardViewListAdpater? = null
     private var mSqlQuery: SQLQuery? = null
 
@@ -108,8 +107,8 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
             if (memoMap["complete_yn"] == "N") {
                 continue
             }
-            val postData = PostData("", memoMap["contents"]!!, memoMap["date"]!!, i)
-            postData.imageName = memoMap["image_path"]
+            val postData = Bucket("", memoMap["contents"]!!, memoMap["date"]!!, i)
+            postData.imageUrl = memoMap["image_path"]
             postData.completeYN = memoMap["complete_yn"]
             mDataList!!.add(postData)
         }
@@ -118,7 +117,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
     override fun onClick(v: View) {
         val index = v.id
         val intent = Intent(this, WriteDetailActivity::class.java)
-        intent.putExtra("CONTENTS", mDataList!![index].contents)
+        intent.putExtra("CONTENTS", mDataList!![index].content)
         intent.putExtra("BACK", ContextUtils.VIEW_COMPLETE_LIST)
         startActivity(intent)
         finish()
@@ -126,7 +125,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
 
     override fun onLongClick(v: View): Boolean {
         mShareIdx = v.id
-        val memo = mDataList!![mShareIdx].contents
+        val memo = mDataList!![mShareIdx].content
 
         val title = getString(R.string.share_popup_title)
         val content = getString(R.string.share_popup_content)
@@ -179,7 +178,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
 
                     if (isValid == true) {
                         // 이미지가 있는 경우 전송함
-                        if (mDataList!![mShareIdx].imageName != null && mDataList!![mShareIdx].imageName != "") {
+                        if (mDataList!![mShareIdx].imageUrl != null && mDataList!![mShareIdx].imageUrl != "") {
                             mHandler!!.sendEmptyMessage(UPLOAD_IMAGE)
                         } else {
                             val message = getString(R.string.write_bucekt_success_string)
@@ -218,10 +217,10 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
      */
     private fun shareBucket(): HashMap<String, Any> {
         val bucket = Bucket()
-        bucket.categoryCode = 1
+        bucket.category!!.categoryCode = 1
         val userNickName = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         bucket.nickName = userNickName!!
-        bucket.content = mDataList!![mShareIdx].contents
+        bucket.content = mDataList!![mShareIdx].content
         bucket.imageUrl = ""
         bucket.date = mDataList!![mShareIdx].date
         return bucket.toHasnMap()
@@ -236,10 +235,10 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
         val bucket = Bucket()
         val userNickName = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         bucket.nickName = userNickName!!
-        bucket.content = mDataList!![mShareIdx].contents
+        bucket.content = mDataList!![mShareIdx].content
         bucket.imageUrl = ""
         bucket.date = mDataList!![mShareIdx].date
-        bucket.categoryCode = mCategory
+        bucket.category!!.categoryCode = mCategory
         return bucket.toHasnMap()
     }
 
@@ -247,7 +246,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
         when (msg.what) {
             TOAST_MASSEGE -> Toast.makeText(applicationContext, msg.obj as String, Toast.LENGTH_LONG).show()
             UPLOAD_IMAGE -> {
-                val photoPath = mDataList!![mShareIdx].imageName
+                val photoPath = mDataList!![mShareIdx].imageUrl
                 KLog.d(ContextUtils.TAG, "@@ UPLOAD IMAGE 전송 시작 !")
                 if (photoPath != null && photoPath != "") {
                     val bitmap = ByteUtils.getFileBitmap(photoPath)

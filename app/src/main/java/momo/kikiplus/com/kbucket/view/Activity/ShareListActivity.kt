@@ -11,17 +11,17 @@ import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.databinding.ShareDetailActivityBinding
 import momo.kikiplus.com.kbucket.databinding.ShareListActivityBinding
 import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.http.IHttpReceive
 import momo.kikiplus.com.kbucket.view.Adapter.ShareListAdpater
-import momo.kikiplus.com.kbucket.view.Bean.Bucket
 import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.model.Bucket
 import momo.kikiplus.refactoring.model.Category
-import momo.kikiplus.refactoring.net.*
+import momo.kikiplus.refactoring.net.CategoryList
+import momo.kikiplus.refactoring.net.NetRetrofit
 import momo.kikiplus.refactoring.util.KLog
 import momo.kikiplus.refactoring.util.NetworkUtils
 import momo.kikiplus.refactoring.util.StringUtils
@@ -30,7 +30,6 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
 import java.util.*
-import javax.security.auth.callback.Callback
 
 /**
  * @author grapegirl
@@ -111,28 +110,28 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
                     val jsonArray = json.getJSONArray("bucketList")
                     KLog.d(this.javaClass.simpleName, "@@ jsonArray :   $jsonArray")
                     val size = jsonArray.length()
-                    mBucketDataList!!.clear()
+                    mBucketDataList.clear()
                     for (i in 0 until size) {
                         val jsonObject = jsonArray.get(i) as JSONObject
                         val bucket = Bucket()
                         bucket.content = jsonObject.getString("content")
-                        bucket.phone = jsonObject.getString("phone")
                         bucket.idx = jsonObject.getInt("idx")
                         bucket.imageUrl = jsonObject.getString("imageUrl")
                         bucket.nickName = jsonObject.getString("nickName")
-                        bucket.categoryCode = jsonObject.getInt("categoryCode")
+                        var category : Category = Category("", jsonObject.getInt("categoryCode"))
+                        bucket.category = category
                         bucket.date = jsonObject.getString("createDt")
 
-                        mBucketDataList!!.add(bucket)
+                        mBucketDataList.add(bucket)
                     }
-                    mHandler!!.sendEmptyMessage(SET_BUCKETLIST)
+                    mHandler.sendEmptyMessage(SET_BUCKETLIST)
                 } catch (e: JSONException) {
                     KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
-                    mHandler!!.sendEmptyMessage(SERVER_LOADING_FAIL)
+                    mHandler.sendEmptyMessage(SERVER_LOADING_FAIL)
                 }
 
             } else {
-                mHandler!!.sendEmptyMessage(SERVER_LOADING_FAIL)
+                mHandler.sendEmptyMessage(SERVER_LOADING_FAIL)
             }
         }
     }
@@ -143,7 +142,7 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
             CATEGORY_LIST -> {
                 KProgressDialog.setDataLoadingDialog(this, true, this.getString(R.string.loading_string), true)
 
-                val res = NetRetrofit.instance.service.getCateryList()
+                val res = NetRetrofit.instance.service.cateryList
                 res.enqueue(object : retrofit2.Callback<CategoryList> {
                     override fun onResponse(call: Call<CategoryList>, response: Response<CategoryList>) {
                         if (response.body()!!.bIsValid) {
@@ -158,10 +157,10 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
                                            mCategoryList.add(category)
                                         }
                                     }
-                                    mHandler!!.sendEmptyMessage(SET_CATEGORY)
+                                    mHandler.sendEmptyMessage(SET_CATEGORY)
                                 } catch (e: JSONException) {
                                     KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
-                                    mHandler!!.sendEmptyMessage(SERVER_LOADING_FAIL)
+                                    mHandler.sendEmptyMessage(SERVER_LOADING_FAIL)
                                 }
                         }
                     }
@@ -169,7 +168,7 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
                     override fun onFailure(call: Call<CategoryList>, t: Throwable) {
                         KLog.d(ContextUtils.TAG, "@@ NoticeList onFailure call : " + call.request())
                         KLog.d(ContextUtils.TAG, "@@ NoticeList onFailure message : " + t.message)
-                        mHandler!!.sendEmptyMessage(SERVER_LOADING_FAIL)
+                        mHandler.sendEmptyMessage(SERVER_LOADING_FAIL)
                     }
                 })
 
@@ -178,7 +177,7 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
                 setButton()
                 findViewById<View>(R.id.share_category_view).visibility = View.VISIBLE
                 KLog.d(ContextUtils.TAG, "@@ SET_CATEGORY")
-                mHandler!!.sendEmptyMessage(SHARE_BUCKET_LIST)
+                mHandler.sendEmptyMessage(SHARE_BUCKET_LIST)
             }
             SERVER_LOADING_FAIL -> {
             }
@@ -196,16 +195,17 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
             }
             SET_BUCKETLIST -> {
                 mListView = findViewById<View>(R.id.share_list_listview) as ListView
-                mListAdapter = ShareListAdpater(this, R.layout.share_list_line, mBucketDataList!!, this)
+                mListAdapter = ShareListAdpater(this, R.layout.share_list_line,
+                    mBucketDataList, this)
                 mListView!!.adapter = mListAdapter
             }
             CHECK_NETWORK -> {
                 val isConnect = NetworkUtils.isConnectivityStatus(this)
                 if (!isConnect) {
                     val connectMsg = getString(R.string.check_network)
-                    mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, connectMsg))
+                    mHandler.sendMessage(mHandler.obtainMessage(TOAST_MASSEGE, connectMsg))
                 } else {
-                    mHandler!!.sendEmptyMessage(CATEGORY_LIST)
+                    mHandler.sendEmptyMessage(CATEGORY_LIST)
                 }
             }
         }
@@ -228,8 +228,8 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
 
         for (i in mButton.indices) {
             mButton[i]!!.setOnClickListener(this)
-            mButton[i]!!.text = mCategoryList!![i].categoryName
-            mButton[i]!!.tag = mCategoryList!![i].categoryCode
+            mButton[i]!!.text = mCategoryList[i].categoryName
+            mButton[i]!!.tag = mCategoryList[i].categoryCode
         }
     }
 
@@ -255,14 +255,14 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
             R.id.category_item0, R.id.category_item1, R.id.category_item2, R.id.category_item3, R.id.category_item4, R.id.category_item5, R.id.category_item6, R.id.category_item7, R.id.category_item8 -> {
                 val categoryCode = v.tag as Int
                 setButtonSelected(v.id)
-                mHandler!!.sendMessage(mHandler!!.obtainMessage(SHARE_BUCKET_LIST, categoryCode.toString() + ""))
+                mHandler.sendMessage(mHandler.obtainMessage(SHARE_BUCKET_LIST, categoryCode.toString() + ""))
             }
             R.id.share_list_detailBtn -> {
                 val sharedIdx = v.tag as Int
-                val idx = mBucketDataList!![sharedIdx].idx
+                val idx = mBucketDataList[sharedIdx].idx
                 val intent = Intent(this, ShareDetailActivity::class.java)
                 intent.putExtra(ContextUtils.NUM_SHARE_BUCKET_IDX, idx.toString() + "")
-                intent.putExtra(ContextUtils.OBJ_SHARE_BUCKET, mBucketDataList!![sharedIdx])
+                intent.putExtra(ContextUtils.OBJ_SHARE_BUCKET, mBucketDataList[sharedIdx])
                 startActivity(intent)
             }
         }

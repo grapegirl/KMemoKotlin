@@ -8,10 +8,10 @@ import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.InterestBucketListActivityBinding
 import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Adapter.ListAdpater
-import momo.kikiplus.com.kbucket.view.Bean.PostData
 import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.model.Bucket
 import momo.kikiplus.refactoring.util.AppUtils
 import momo.kikiplus.refactoring.util.DateUtils
 import java.util.*
@@ -24,7 +24,7 @@ import java.util.*
  */
 class AddBucketActivity : Activity(), View.OnClickListener {
 
-    private var mBucketDataList: ArrayList<PostData> =ArrayList()
+    private var mBucketDataList: ArrayList<Bucket> =ArrayList()
     private var mDataList: ArrayList<String> = ArrayList()
     private var mListAdapter: ListAdpater? = null
 

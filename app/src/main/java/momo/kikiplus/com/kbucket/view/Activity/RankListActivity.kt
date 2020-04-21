@@ -11,10 +11,10 @@ import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.http.IHttpReceive
 import momo.kikiplus.com.kbucket.view.Adapter.RankListAdpater
-import momo.kikiplus.com.kbucket.view.Bean.BucketRank
 import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.refactoring.model.BucketRank
 import momo.kikiplus.refactoring.util.AppUtils
 import momo.kikiplus.refactoring.util.KLog
 import momo.kikiplus.refactoring.util.NetworkUtils
@@ -96,9 +96,9 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
                     for (i in 0 until size) {
                         val jsonObject = jsonArray.get(i) as JSONObject
                         val bucket = BucketRank()
-                        bucket.categoryCode = jsonObject.getInt("categoryCode")
-                        bucket.content = jsonObject.getString("content")
-                        bucket.idx = jsonObject.getInt("idx")
+                        bucket.bucket!!.category!!.categoryCode = jsonObject.getInt("categoryCode")
+                        bucket.bucket!!.content = jsonObject.getString("content")
+                        bucket.bucket!!.idx = jsonObject.getInt("idx")
                         bucket.bestCnt = jsonObject.getInt("bestCnt")
                         bucket.goodCnt = jsonObject.getInt("goodCnt")
                         bucket.soSoCnt = jsonObject.getInt("ssoCnt")
@@ -196,7 +196,7 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
     private fun getCommentCount(index: Int): Boolean {
         if (mBucketDataList != null) {
             for (i in mBucketDataList!!.indices) {
-                if (mBucketDataList!![i].idx == index) {
+                if (mBucketDataList!![i].bucket!!.idx == index) {
                     val comment = mBucketDataList!![i].userComment
                     if (comment != 0) {
                         return true
