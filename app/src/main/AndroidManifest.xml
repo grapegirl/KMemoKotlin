@@ -25,7 +25,7 @@
         tools:replace="android:appComponentFactory">
 
         <activity
-            android:name=".view.Activity.IntroActivity"
+            android:name="momo.kikiplus.refactoring.view.IntroActivity"
             android:clearTaskOnLaunch="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait">

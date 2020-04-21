@@ -253,13 +253,14 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
     override fun onClick(v: View) {
         when (v.id) {
             R.id.category_item0, R.id.category_item1, R.id.category_item2, R.id.category_item3, R.id.category_item4, R.id.category_item5, R.id.category_item6, R.id.category_item7, R.id.category_item8 -> {
-                val categoryCode = v.tag as Int
+                val tag = v.tag as Int
                 setButtonSelected(v.id)
-                mHandler.sendMessage(mHandler.obtainMessage(SHARE_BUCKET_LIST, categoryCode.toString() + ""))
+                mHandler.sendMessage(mHandler.obtainMessage(SHARE_BUCKET_LIST, tag.toString() + ""))
             }
             R.id.share_list_detailBtn -> {
                 val sharedIdx = v.tag as Int
                 val idx = mBucketDataList[sharedIdx].idx
+                KLog.log("@@ onclick detail idx : " + idx)
                 val intent = Intent(this, ShareDetailActivity::class.java)
                 intent.putExtra(ContextUtils.NUM_SHARE_BUCKET_IDX, idx.toString() + "")
                 intent.putExtra(ContextUtils.OBJ_SHARE_BUCKET, mBucketDataList[sharedIdx])

@@ -1,7 +1,6 @@
 package momo.kikiplus.refactoring.view.fragment.ui.main
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -26,15 +25,13 @@ import momo.kikiplus.com.kbucket.view.popup.BasicPopup
 import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
-import momo.kikiplus.refactoring.task.AppUpdateTask
-import momo.kikiplus.refactoring.task.UserUpdateTask
 import momo.kikiplus.refactoring.util.AppUtils
 import momo.kikiplus.refactoring.util.ErrorLogUtils
 import momo.kikiplus.refactoring.util.KLog
 import momo.kikiplus.refactoring.util.StringUtils
 import org.json.JSONException
 import org.json.JSONObject
-import java.util.HashMap
+import java.util.*
 
 class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopupEventListener, IHttpReceive {
 
@@ -46,8 +43,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
 
     private lateinit var viewModel: MainViewModel
     private var mHandler: Handler = Handler(this)
-    private var backKeyPressedTime = 0L
-    private var finishToast: Toast? = null
     private var mBasicPopup: BasicPopup? = null
     private var mAIPopup: AIPopup? = null
 
@@ -56,11 +51,10 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
     private val BUCKET_LIST : Int = 20
     private val SHARE_THE_WORLD : Int = 40
     private val NOTICE : Int = 50
-    private val UPDATE_USER : Int = 60
+
     private val REQUEST_AI : Int = 70
     private val FAIL_AI : Int = 71
     private val RESPOND_AI : Int = 72
-    private val CHECK_VERSION : Int = 80
 
     private val MY_PERMISSION_REQUEST : Int = 1000
     private var mbInitialUserUpdate = false
@@ -93,29 +87,29 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         KLog.log("@@ onActivityCreated")
+
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
         mActivity = activity
     }
 
     override fun onClick(view: View) {
         KLog.d(ContextUtils.TAG, "@@ onClick ")
 //                    backKeyPressedTime = 0
-        when (view?.id) {
+        when (view.id) {
 //            R.id.main_writeBtn -> NavHostFragment.findNavController(this)
 //                .navigate(R.id.action_MainFragment_to_WriteFragment)
 
-            R.id.main_writeBtn -> mHandler!!.sendEmptyMessage(WRITE_BUCEKT)
-            R.id.main_listBtn -> mHandler!!.sendEmptyMessage(BUCKET_LIST)
-            R.id.main_bucketlistBtn -> mHandler!!.sendEmptyMessage(SHARE_THE_WORLD)
+            R.id.main_writeBtn -> mHandler.sendEmptyMessage(WRITE_BUCEKT)
+            R.id.main_listBtn -> mHandler.sendEmptyMessage(BUCKET_LIST)
+            R.id.main_bucketlistBtn -> mHandler.sendEmptyMessage(SHARE_THE_WORLD)
 //            R.id.main_conf_btn ->
 //                if (!mDrawer!!.isDrawerOpen(Gravity.START)) {
 //                mDrawer!!.openDrawer(Gravity.START)
 //                }
-            R.id.main_update_btn -> mHandler!!.sendEmptyMessage(NOTICE)
+            R.id.main_update_btn -> mHandler.sendEmptyMessage(NOTICE)
             R.id.main_ai_btn -> {
                 KProgressDialog.setDataLoadingDialog(mActivity, true, this.getString(R.string.loading_string), true)
-                mHandler!!.sendEmptyMessage(REQUEST_AI)
+                mHandler.sendEmptyMessage(REQUEST_AI)
             }
             R.id.main_bucketRankBtn -> {
                 val intent = Intent(mActivity, RankListActivity::class.java)
@@ -153,11 +147,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
                 startActivity(intent)
                 AppUtils.sendTrackerScreen(mActivity!!, "공지화면")
             }
-            UPDATE_USER//사용자 정보 없데이트
-            -> {
-                val userUpdateTask = UserUpdateTask(mActivity!!)
-                userUpdateTask.execute()
-            }
             REQUEST_AI -> {
                 val userNickName = SharedPreferenceUtils.read(mActivity!!, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
                 val httpUrlTaskManager = HttpUrlTaskManager(ContextUtils.KBUCKET_AI, true, this, IHttpReceive.REQUEST_AI)
@@ -179,12 +168,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
                 KLog.d(ContextUtils.TAG, "@@ Respond AI msg : " + content)
                 mAIPopup = AIPopup(mActivity!!, content, R.layout.popup_ai, this, OnPopupEventListener.POPUP_AI)
                 mAIPopup!!.showDialog()
-            }
-            CHECK_VERSION//버전 체크
-            -> {
-                val appUpdateTask =
-                    AppUpdateTask(mActivity!!)
-                appUpdateTask.execute()
             }
         }
         return false
@@ -211,13 +194,13 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
                         message = json.getString("replay")
                     } catch (e: JSONException) {
                         ErrorLogUtils.saveFileEror("@@ AI Respond jsonException message : " + e.message)
-                        mHandler!!.sendEmptyMessage(FAIL_AI)
+                        mHandler.sendEmptyMessage(FAIL_AI)
                     }
 
                 }
-                mHandler!!.sendMessage(mHandler!!.obtainMessage(RESPOND_AI, message))
+                mHandler.sendMessage(mHandler.obtainMessage(RESPOND_AI, message))
             } else {
-                mHandler!!.sendEmptyMessage(FAIL_AI)
+                mHandler.sendEmptyMessage(FAIL_AI)
             }
         }
     }

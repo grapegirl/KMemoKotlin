@@ -1,4 +1,4 @@
-package momo.kikiplus.com.kbucket.view.Activity
+package momo.kikiplus.refactoring.view
 
 import android.app.Activity
 import android.content.Intent
@@ -8,9 +8,10 @@ import android.os.Message
 import android.view.View
 import android.view.animation.AlphaAnimation
 import momo.kikiplus.com.kbucket.R
+import momo.kikiplus.com.kbucket.databinding.IntroActivityBinding
+import momo.kikiplus.com.kbucket.view.Activity.*
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
-import momo.kikiplus.com.kbucket.databinding.IntroActivityBinding
 import momo.kikiplus.refactoring.view.fragment.MainFragmentActivity
 import java.util.*
 
