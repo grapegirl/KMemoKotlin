@@ -9,7 +9,10 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.IntroActivityBinding
-import momo.kikiplus.com.kbucket.view.Activity.*
+import momo.kikiplus.com.kbucket.view.Activity.BucketListActivity
+import momo.kikiplus.com.kbucket.view.Activity.PassWordActivity
+import momo.kikiplus.com.kbucket.view.Activity.ShareListActivity
+import momo.kikiplus.com.kbucket.view.Activity.WriteActivity
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.refactoring.view.fragment.MainFragmentActivity
@@ -120,7 +123,7 @@ class IntroActivity : Activity(), android.os.Handler.Callback {
                 finish()
             }
             5 -> {
-                intent = Intent(this, MainActivity::class.java)
+                intent = Intent(this, MainFragmentActivity::class.java)
                 intent.putExtra(ContextUtils.WIDGET_SEND_DATA, ContextUtils.WIDGET_SHARE)
                 startActivity(intent)
                 finish()

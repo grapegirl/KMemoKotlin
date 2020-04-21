@@ -1,4 +1,4 @@
-package momo.kikiplus.refactoring.view.fragment
+package momo.kikiplus.refactoring.view.fragment.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import momo.kikiplus.com.kbucket.R
+import momo.kikiplus.refactoring.view.fragment.ui.viewmodel.WriteViewModel
 
 class WriteFragment : Fragment() {
 
     companion object {
-        fun newInstance() = WriteFragment()
+        fun newInstance() =
+            WriteFragment()
     }
 
     private lateinit var viewModel: WriteViewModel

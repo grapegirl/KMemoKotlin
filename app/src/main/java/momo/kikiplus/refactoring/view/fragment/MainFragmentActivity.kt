@@ -8,13 +8,20 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
 import momo.kikiplus.com.kbucket.sqlite.SQLQuery
-import momo.kikiplus.com.kbucket.view.Activity.SetNickNameActivity
+import momo.kikiplus.com.kbucket.view.Activity.*
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.refactoring.FireMessingService
@@ -35,6 +42,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
     private val MY_PERMISSION_REQUEST   : Int = 1001
     private val TOAST_MASSEGE           : Int = 1002
     private val UPDATE_USER             : Int = 1003
+    private val OPEN_DRAWER             : Int = 1004
 
     private var mbInitialUserUpdate : Boolean = false
     private lateinit var mBinding : MainFragmentActivityBinding
@@ -55,6 +63,8 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
         val data = getIntent.getStringExtra(ContextUtils.WIDGET_SEND_DATA)
         if (data != null && data == ContextUtils.WIDGET_SHARE) {
             ShareSocial()
+        }else if(data != null && data == ContextUtils.START_OPEN_DRAWER){
+            mHandler.sendEmptyMessage(OPEN_DRAWER)
         }
 
         checkPermision()
@@ -74,6 +84,51 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
         sqlQuery.createImageTable(applicationContext)
 
         setBackgroundColor()
+
+        val confDatas = resources.getStringArray(R.array.confList)
+        confDatas[7] += ": " + AppUtils.getVersionName(this)!!
+
+        mBinding.drawerList.adapter = ArrayAdapter(this,
+            android.R.layout.simple_list_item_1, confDatas)
+        mBinding.drawerList.onItemClickListener = DrawerItemClickListener()
+
+        MobileAds.initialize(this, ContextUtils.KBUCKET_AD_UNIT_ID)
+        val adRequest = AdRequest.Builder().build()
+        mBinding.mainAdLayout.loadAd(adRequest)
+        mBinding.mainAdLayout.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                Log.d("mhkim", "@@ onAdLoaded  ")
+            }
+
+            override fun onAdFailedToLoad(errorCode: Int) {
+                // Code to be executed when an ad request fails.
+                Log.d("mhkim", "@@ onAdFailedToLoad errorCode :   " + errorCode)
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+                Log.d("mhkim", "@@ onAdOpened")
+            }
+
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+                Log.d("mhkim", "@@ onAdClicked")
+            }
+
+            override fun onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+                Log.d("mhkim", "@@ onAdLeftApplication")
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+                Log.d("mhkim", "@@ onAdClosed")
+            }
+        }
+
     }
 
     private fun setBackgroundColor() {
@@ -117,17 +172,20 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
         when (msg.what) {
             CHECK_VERSION//버전 체크
             -> {
-                val appUpdateTask =
-                    AppUpdateTask(this)
-                appUpdateTask.execute()
+                AppUpdateTask(this).execute()
             }
             TOAST_MASSEGE//메시지 출력
             -> Toast.makeText(this, msg.obj as String, Toast.LENGTH_LONG).show()
             UPDATE_USER//사용자 정보 없데이트
             -> {
-                val userUpdateTask = UserUpdateTask(this)
-                userUpdateTask.execute()
+                UserUpdateTask(this).execute()
             }
+            OPEN_DRAWER ->{
+                if (!mBinding.dlActivityMainDrawer.isDrawerOpen(GravityCompat.START)) {
+                    mBinding.dlActivityMainDrawer.openDrawer(GravityCompat.END)
+                }
+            }
+
         }
         return false
     }
@@ -187,6 +245,60 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
                 }
             }
         }
+    }
+
+    private inner class DrawerItemClickListener : AdapterView.OnItemClickListener {
+        override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            selectItem(position)
+        }
+    }
+
+    private fun selectItem(position: Int) {
+        when (position) {
+            0//암호설정
+            -> {
+                var intent = Intent(this, PassWordActivity::class.java)
+                intent.putExtra("SET", "SET")
+                startActivity(intent)
+            }
+            1//암호해제
+            -> {
+                val message = getString(R.string.password_cancle_string)
+                Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
+                SharedPreferenceUtils.write(applicationContext, ContextUtils.KEY_CONF_PASSWORD, "")
+            }
+            2//DB 관리
+            -> {
+                intent = Intent(this, DBMgrActivity::class.java)
+                startActivity(intent)
+            }
+            3//별명설정
+            -> {
+                intent = Intent(this, SetNickNameActivity::class.java)
+                startActivity(intent)
+            }
+            4//배경설정
+            -> {
+                intent = Intent(this, SetBackColorActivity::class.java)
+                startActivity(intent)
+            }
+            5//튜토리얼
+            -> {
+                intent = Intent(this, TutorialActivity::class.java)
+                startActivity(intent)
+            }
+            6//문의하기
+            -> {
+                intent = Intent(this, QuestionActivity::class.java)
+                startActivity(intent)
+            }
+            9//관심 버킷 추가하기
+            -> {
+                intent = Intent(this, AddBucketActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        mBinding.dlActivityMainDrawer.closeDrawer(mBinding.drawerList)
     }
 
 }

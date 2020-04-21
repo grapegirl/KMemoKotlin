@@ -1,4 +1,4 @@
-package momo.kikiplus.refactoring.view.fragment
+package momo.kikiplus.refactoring.view.fragment.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 

@@ -10,10 +10,10 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.RemoteMessage
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.view.Activity.MainActivity
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.refactoring.util.KLog
+import momo.kikiplus.refactoring.view.fragment.MainFragmentActivity
 
 /***
  * @author grape girl
@@ -37,7 +37,7 @@ class FireMessingService : com.google.firebase.messaging.FirebaseMessagingServic
     }
 
     private fun sendNotification(messageBody: String?) {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, MainFragmentActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         val pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT)

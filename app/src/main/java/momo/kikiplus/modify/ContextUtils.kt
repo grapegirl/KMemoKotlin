@@ -87,6 +87,7 @@ object ContextUtils {
     val WIDGET_SHARE = "SHARE"
     val WIDGET_OURS_BUCKET = "OURS_BUCKET"
     val WIDGET_SEND_DATA = "WIDGET_SEND_DATA"
+    val START_OPEN_DRAWER = "START_OPEN_DRAWER"
 
     val SORT_DATE = "SORT_DATE"
     val SORT_MEMO = "SORT_MEMO"

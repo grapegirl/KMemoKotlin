@@ -48,9 +48,6 @@
             android:hardwareAccelerated="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.Activity.MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".view.Activity.PassWordActivity"
             android:screenOrientation="portrait" />
         <activity

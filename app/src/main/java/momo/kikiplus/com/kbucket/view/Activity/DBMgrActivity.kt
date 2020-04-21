@@ -77,7 +77,7 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
                 val uri = data.data
                 KLog.d(ContextUtils.TAG, "@@ onActivityResult path :  " +  uri!!.path!!)
 
-                val isResult = DataUtils.importDB(uri!!.path!!)
+                val isResult = DataUtils.importDB(uri.path!!)
                 if (isResult) {
                     val msaage = getString(R.string.db_import_success_string)
                     Toast.makeText(applicationContext, msaage, Toast.LENGTH_LONG).show()

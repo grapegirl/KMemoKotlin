@@ -1,4 +1,4 @@
-package momo.kikiplus.refactoring.view.fragment.ui.main
+package momo.kikiplus.refactoring.view.fragment.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -8,12 +8,9 @@ import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import android.widget.Toast
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.ads.AdView
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentBinding
 import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
@@ -29,6 +26,8 @@ import momo.kikiplus.refactoring.util.AppUtils
 import momo.kikiplus.refactoring.util.ErrorLogUtils
 import momo.kikiplus.refactoring.util.KLog
 import momo.kikiplus.refactoring.util.StringUtils
+import momo.kikiplus.refactoring.view.fragment.MainFragmentActivity
+import momo.kikiplus.refactoring.view.fragment.ui.viewmodel.MainViewModel
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -38,7 +37,8 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
     private lateinit var mBinding : MainFragmentBinding
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() =
+            MainFragment()
     }
 
     private lateinit var viewModel: MainViewModel
@@ -56,12 +56,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
     private val FAIL_AI : Int = 71
     private val RESPOND_AI : Int = 72
 
-    private val MY_PERMISSION_REQUEST : Int = 1000
-    private var mbInitialUserUpdate = false
-
-    internal var mDrawerList: ListView? = null
-    internal var mDrawer: DrawerLayout? = null
-    lateinit var mAdView : AdView
     private var mActivity : Activity? = null
 
     override fun onCreateView(
@@ -102,10 +96,11 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
             R.id.main_writeBtn -> mHandler.sendEmptyMessage(WRITE_BUCEKT)
             R.id.main_listBtn -> mHandler.sendEmptyMessage(BUCKET_LIST)
             R.id.main_bucketlistBtn -> mHandler.sendEmptyMessage(SHARE_THE_WORLD)
-//            R.id.main_conf_btn ->
-//                if (!mDrawer!!.isDrawerOpen(Gravity.START)) {
-//                mDrawer!!.openDrawer(Gravity.START)
-//                }
+            R.id.main_conf_btn -> {
+                val intent = Intent(mActivity, MainFragmentActivity::class.java)
+                intent.putExtra("DATA", ContextUtils.START_OPEN_DRAWER)
+                startActivity(intent)
+            }
             R.id.main_update_btn -> mHandler.sendEmptyMessage(NOTICE)
             R.id.main_ai_btn -> {
                 KProgressDialog.setDataLoadingDialog(mActivity, true, this.getString(R.string.loading_string), true)

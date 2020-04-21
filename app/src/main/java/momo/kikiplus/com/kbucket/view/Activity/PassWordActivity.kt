@@ -11,6 +11,7 @@ import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.refactoring.util.AppUtils
 import momo.kikiplus.refactoring.util.KLog
+import momo.kikiplus.refactoring.view.fragment.MainFragmentActivity
 import java.util.*
 
 /**
@@ -147,12 +148,12 @@ class PassWordActivity : Activity(), View.OnClickListener {
                         startActivity(intent)
                         finish()
                     } else if (startView != null && startView == ContextUtils.WIDGET_SHARE) {
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, MainFragmentActivity::class.java)
                         intent.putExtra(ContextUtils.WIDGET_SEND_DATA, ContextUtils.WIDGET_SHARE)
                         startActivity(intent)
                         finish()
                     } else {
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, MainFragmentActivity::class.java)
                         startActivity(intent)
                         finish()
                     }
