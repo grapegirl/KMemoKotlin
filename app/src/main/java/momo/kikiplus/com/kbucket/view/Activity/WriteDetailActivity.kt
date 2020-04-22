@@ -133,9 +133,10 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
             startActivity(intent)
             finish()
         } else {
-            val intent = Intent(this, WriteActivity::class.java)
-            startActivity(intent)
-            finish()
+            //TODO Activity->Fragemt 변경해야함
+//            val intent = Intent(this, WriteActivity::class.java)
+//            startActivity(intent)
+//            finish()
         }
 
     }

@@ -12,7 +12,6 @@ import momo.kikiplus.com.kbucket.databinding.IntroActivityBinding
 import momo.kikiplus.com.kbucket.view.Activity.BucketListActivity
 import momo.kikiplus.com.kbucket.view.Activity.PassWordActivity
 import momo.kikiplus.com.kbucket.view.Activity.ShareListActivity
-import momo.kikiplus.com.kbucket.view.Activity.WriteActivity
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.refactoring.view.fragment.MainFragmentActivity
@@ -106,9 +105,10 @@ class IntroActivity : Activity(), android.os.Handler.Callback {
             }
             2//가지 작성 화면
             -> {
-                intent = Intent(this, WriteActivity::class.java)
-                startActivity(intent)
-                finish()
+                //TODO Activity->Fragemt 변경해야함
+//                intent = Intent(this, WriteActivity::class.java)
+//                startActivity(intent)
+//                finish()
             }
             3//리스트 화면
             -> {

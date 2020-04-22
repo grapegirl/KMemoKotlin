@@ -136,9 +136,10 @@ class PassWordActivity : Activity(), View.OnClickListener {
                     val getIntent = intent
                     val startView = getIntent.getStringExtra("DATA")
                     if (startView != null && startView == ContextUtils.WIDGET_WRITE_BUCKET) {
-                        val intent = Intent(this, WriteActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        //TODO Activity->Fragemt 변경해야함
+//                        val intent = Intent(this, WriteActivity::class.java)
+//                        startActivity(intent)
+//                        finish()
                     } else if (startView != null && startView == ContextUtils.WIDGET_BUCKET_LIST) {
                         val intent = Intent(this, BucketListActivity::class.java)
                         startActivity(intent)

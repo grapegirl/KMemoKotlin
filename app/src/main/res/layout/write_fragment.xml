@@ -5,9 +5,123 @@
     android:layout_height="match_parent"
     tools:context="momo.kikiplus.refactoring.view.fragment.ui.WriteFragment">
 
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/write_back_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:background="#FFFFBB33"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/write_list_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:background="#FFCC0000"
+            android:text="@string/write_list_title"
+            android:textColor="#FFFFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/sort_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#FF33B5E5"
+                android:textStyle="bold"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/write_list_sort_date" />
+
+            <Button
+                android:id="@+id/sort_memo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#FFAA66CC"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/write_list_sort_name"
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/sort_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#FF5E00"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/write_list_sort_deadline"
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/write_layout_titleView"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="6"
+                android:background="@drawable/ballon2"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:text="" />
+
+            <Button
+                android:id="@+id/write_layout_addBtn"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#FF99CC00"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/write_list_add"
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/write_list_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </FrameLayout>

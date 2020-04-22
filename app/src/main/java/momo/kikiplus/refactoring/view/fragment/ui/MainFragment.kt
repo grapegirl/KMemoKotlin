@@ -11,11 +11,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentBinding
 import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
 import momo.kikiplus.com.kbucket.http.IHttpReceive
-import momo.kikiplus.com.kbucket.view.Activity.*
+import momo.kikiplus.com.kbucket.view.Activity.BucketListActivity
+import momo.kikiplus.com.kbucket.view.Activity.NoticeActivity
+import momo.kikiplus.com.kbucket.view.Activity.RankListActivity
+import momo.kikiplus.com.kbucket.view.Activity.ShareListActivity
 import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import momo.kikiplus.com.kbucket.view.popup.AIPopup
 import momo.kikiplus.com.kbucket.view.popup.BasicPopup
@@ -42,19 +46,18 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
     }
 
     private lateinit var viewModel: MainViewModel
-    private var mHandler: Handler = Handler(this)
+
     private var mBasicPopup: BasicPopup? = null
     private var mAIPopup: AIPopup? = null
 
-    private val TOAST_MASSEGE : Int = 0
-    private val WRITE_BUCEKT : Int = 10
-    private val BUCKET_LIST : Int = 20
-    private val SHARE_THE_WORLD : Int = 40
-    private val NOTICE : Int = 50
-
-    private val REQUEST_AI : Int = 70
-    private val FAIL_AI : Int = 71
-    private val RESPOND_AI : Int = 72
+    private var mHandler: Handler = Handler(this)
+    private val TOAST_MASSEGE   : Int = 0
+    private val BUCKET_LIST     : Int = 20
+    private val SHARE_THE_WORLD : Int = 30
+    private val NOTICE          : Int = 40
+    private val REQUEST_AI      : Int = 50
+    private val FAIL_AI         : Int = 60
+    private val RESPOND_AI      : Int = 70
 
     private var mActivity : Activity? = null
 
@@ -84,16 +87,23 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         mActivity = activity
+
+        fragmentManager!!.beginTransaction().add(newInstance(), "MainFragment")
     }
 
     override fun onClick(view: View) {
         KLog.d(ContextUtils.TAG, "@@ onClick ")
-//                    backKeyPressedTime = 0
         when (view.id) {
-//            R.id.main_writeBtn -> NavHostFragment.findNavController(this)
-//                .navigate(R.id.action_MainFragment_to_WriteFragment)
+            R.id.main_writeBtn -> {
 
-            R.id.main_writeBtn -> mHandler.sendEmptyMessage(WRITE_BUCEKT)
+                NavHostFragment
+                    .findNavController(this)
+                    .navigate(R.id.action_MainFragment_to_WriteFragment)
+
+
+                (mActivity as MainFragmentActivity).sendUserEvent("가지작성화면")
+
+            }
             R.id.main_listBtn -> mHandler.sendEmptyMessage(BUCKET_LIST)
             R.id.main_bucketlistBtn -> mHandler.sendEmptyMessage(SHARE_THE_WORLD)
             R.id.main_conf_btn -> {
@@ -114,16 +124,9 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
     }
 
     override fun handleMessage(message: Message): Boolean {
-
         when (message.what) {
             TOAST_MASSEGE//메시지 출력
             -> Toast.makeText(context, message.obj as String, Toast.LENGTH_LONG).show()
-            WRITE_BUCEKT//버킷 작성
-            -> {
-                var intent = Intent(mActivity, WriteActivity::class.java)
-                startActivity(intent)
-                AppUtils.sendTrackerScreen(mActivity!!, "가지작성화면")
-            }
             BUCKET_LIST//리스트 목록 보여주기
             -> {
                 var intent = Intent(mActivity, BucketListActivity::class.java)
@@ -191,7 +194,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, OnPopup
                         ErrorLogUtils.saveFileEror("@@ AI Respond jsonException message : " + e.message)
                         mHandler.sendEmptyMessage(FAIL_AI)
                     }
-
                 }
                 mHandler.sendMessage(mHandler.obtainMessage(RESPOND_AI, message))
             } else {

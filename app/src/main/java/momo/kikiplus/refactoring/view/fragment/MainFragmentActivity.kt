@@ -13,7 +13,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -181,8 +180,8 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
                 UserUpdateTask(this).execute()
             }
             OPEN_DRAWER ->{
-                if (!mBinding.dlActivityMainDrawer.isDrawerOpen(GravityCompat.START)) {
-                    mBinding.dlActivityMainDrawer.openDrawer(GravityCompat.END)
+                if (!mBinding.dlActivityMainDrawer.isDrawerOpen(mBinding.drawerList)) {
+                    mBinding.dlActivityMainDrawer.openDrawer(mBinding.drawerList)
                 }
             }
 
@@ -299,6 +298,10 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
             }
         }
         mBinding.dlActivityMainDrawer.closeDrawer(mBinding.drawerList)
+    }
+
+    fun sendUserEvent(screenName : String){
+        AppUtils.sendTrackerScreen(this, screenName)
     }
 
 }

@@ -40,10 +40,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".view.Activity.WriteActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
             android:name=".view.Activity.WriteDetailActivity"
             android:hardwareAccelerated="false"
             android:screenOrientation="portrait" />
@@ -81,9 +77,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Activity.RankListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="momo.kikiplus.deprecated.ChatActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Activity.AddBucketActivity"
