@@ -10,21 +10,17 @@ import android.widget.*
 import com.bumptech.glide.Glide
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.view.Adapter.CommentListAdpater
-import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
-import momo.kikiplus.com.kbucket.view.popup.ImagePopup
-import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
 import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.modify.http.HttpUrlTaskManager
 import momo.kikiplus.modify.http.IHttpReceive
 import momo.kikiplus.modify.sqlite.SQLQuery
-import momo.kikiplus.refactoring.obj.KProgressDialog
-import momo.kikiplus.refactoring.util.AppUtils
-import momo.kikiplus.refactoring.util.DateUtils
-import momo.kikiplus.refactoring.util.KLog
-import momo.kikiplus.refactoring.util.StringUtils
-import momo.kikiplus.refactoring.vo.Bucket
-import momo.kikiplus.refactoring.vo.Comment
+import momo.kikiplus.refactoring.common.util.*
+import momo.kikiplus.refactoring.common.view.KProgressDialog
+import momo.kikiplus.refactoring.common.view.popup.ConfirmPopup
+import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
+import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
+import momo.kikiplus.refactoring.kbucket.data.vo.Comment
+import momo.kikiplus.refactoring.kbucket.ui.view.popup.DetailImagePopup
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -37,7 +33,8 @@ import java.util.*
  * @Description :공유 싱세 화면
  * @since 2015-12-27.
  */
-class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Handler.Callback, OnPopupEventListener {
+class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Handler.Callback,
+    IPopupReceive {
 
     private var mHandler: android.os.Handler? = null
     private var mCommentList: ArrayList<Comment>? = null
@@ -183,13 +180,27 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
                 (findViewById<View>(R.id.comment_layout_text) as EditText).setText("")
             }
             R.id.share_contents_imageview -> if (mDetailImageFileName != null) {
-                val popup = ImagePopup(this, R.layout.popup_img, mDetailImageFileName, window)
+                val popup =
+                    DetailImagePopup(
+                        this,
+                        R.layout.popup_img,
+                        mDetailImageFileName,
+                        window
+                    )
                 popup.showDialog()
             }
             R.id.share_add -> {
                 val title = getString(R.string.share_add_popup_title)
                 val content = getString(R.string.share_add_popup_content)
-                mConfirmPopup = ConfirmPopup(this, title, content, R.layout.popup_confirm, this, OnPopupEventListener.POPUP_BUCKET_ADD)
+                mConfirmPopup =
+                    ConfirmPopup(
+                        this,
+                        title,
+                        content,
+                        R.layout.popup_confirm,
+                        this,
+                        IPopupReceive.POPUP_BUCKET_ADD
+                    )
                 mConfirmPopup!!.showDialog()
             }
         }
@@ -253,8 +264,8 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
     }
 
     override fun onPopupAction(popId: Int, what: Int, obj: Any?) {
-        if (popId == OnPopupEventListener.POPUP_BUCKET_ADD) {
-            if (what == OnPopupEventListener.POPUP_BTN_OK) {
+        if (popId == IPopupReceive.POPUP_BUCKET_ADD) {
+            if (what == IPopupReceive.POPUP_BTN_OK) {
                 val contents = (findViewById<View>(R.id.share_contents_textview) as TextView).text.toString()
                 val inContainsBucket = mSqlQuery!!.containsKbucket(applicationContext, contents)
                 if (!inContainsBucket) {

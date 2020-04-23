@@ -8,10 +8,10 @@ import android.widget.Button
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.SharedPreferenceUtils
-import momo.kikiplus.refactoring.util.AppUtils
-import momo.kikiplus.refactoring.util.KLog
-import momo.kikiplus.refactoring.view.fragment.MainFragmentActivity
+import momo.kikiplus.refactoring.common.util.AppUtils
+import momo.kikiplus.refactoring.common.util.KLog
+import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 import java.util.*
 
 /**

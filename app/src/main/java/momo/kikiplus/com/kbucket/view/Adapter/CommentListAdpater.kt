@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.util.StringUtils
-import momo.kikiplus.refactoring.vo.Comment
+import momo.kikiplus.refactoring.common.util.StringUtils
+import momo.kikiplus.refactoring.kbucket.data.vo.Comment
 import java.util.*
 
 /***

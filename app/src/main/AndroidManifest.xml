@@ -25,7 +25,7 @@
         tools:replace="android:appComponentFactory">
 
         <activity
-            android:name="momo.kikiplus.refactoring.view.IntroActivity"
+            android:name="momo.kikiplus.refactoring.kbucket.ui.view.activity.IntroActivity"
             android:clearTaskOnLaunch="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="momo.kikiplus.refactoring.view.fragment.MainFragmentActivity"
+        <activity android:name="momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -134,7 +134,7 @@
                 android:resource="@xml/memo_widget_configuration" />
         </receiver> <!-- FCM 관련 -->
         <service
-            android:name="momo.kikiplus.refactoring.FireMessingService"
+            android:name="momo.kikiplus.refactoring.kbucket.data.FireMessingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

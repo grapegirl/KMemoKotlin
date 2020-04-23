@@ -9,8 +9,8 @@ import android.widget.EditText
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.QuestionActivityBinding
 import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.SharedPreferenceUtils
-import momo.kikiplus.refactoring.util.AppUtils
+import momo.kikiplus.refactoring.common.util.AppUtils
+import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 
 /**
  * @author grapegirl

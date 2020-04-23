@@ -13,8 +13,8 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.modify.sqlite.SQLQuery
-import momo.kikiplus.refactoring.util.ByteUtils
-import momo.kikiplus.refactoring.vo.Bucket
+import momo.kikiplus.refactoring.common.util.ByteUtils
+import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import java.util.*
 
 /***

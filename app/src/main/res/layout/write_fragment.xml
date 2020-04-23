@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="momo.kikiplus.refactoring.view.fragment.ui.WriteFragment">
+    tools:context="momo.kikiplus.refactoring.kbucket.ui.view.fragment.WriteFragment">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/write_back_color"

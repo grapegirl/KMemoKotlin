@@ -8,10 +8,10 @@ import android.widget.EditText
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.modify.sqlite.SQLQuery
-import momo.kikiplus.refactoring.util.AppUtils
-import momo.kikiplus.refactoring.util.KLog
+import momo.kikiplus.refactoring.common.util.AppUtils
+import momo.kikiplus.refactoring.common.util.KLog
+import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 
 /**
  * @author grapegirl

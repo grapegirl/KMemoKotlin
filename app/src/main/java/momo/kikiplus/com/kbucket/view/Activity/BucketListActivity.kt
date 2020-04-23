@@ -9,20 +9,20 @@ import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.BucketListActivityBinding
 import momo.kikiplus.com.kbucket.view.Adapter.CardViewListAdpater
-import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
-import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
-import momo.kikiplus.com.kbucket.view.popup.SpinnerListPopup
 import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.modify.http.HttpUrlFileUploadManager
 import momo.kikiplus.modify.http.HttpUrlTaskManager
 import momo.kikiplus.modify.http.IHttpReceive
 import momo.kikiplus.modify.sqlite.SQLQuery
-import momo.kikiplus.refactoring.util.ByteUtils
-import momo.kikiplus.refactoring.util.KLog
-import momo.kikiplus.refactoring.util.StringUtils
-import momo.kikiplus.refactoring.vo.Bucket
-import momo.kikiplus.refactoring.vo.Category
+import momo.kikiplus.refactoring.common.util.ByteUtils
+import momo.kikiplus.refactoring.common.util.KLog
+import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.common.util.StringUtils
+import momo.kikiplus.refactoring.common.view.popup.ConfirmPopup
+import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
+import momo.kikiplus.refactoring.common.view.popup.SpinnerListPopup
+import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
+import momo.kikiplus.refactoring.kbucket.data.vo.Category
 import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -35,7 +35,8 @@ import java.util.*
  * @Description : 완료 가지 리스트 목록
  * @since 2015-11-02
  */
-class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickListener, OnPopupEventListener, IHttpReceive, android.os.Handler.Callback {
+class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickListener,
+    IPopupReceive, IHttpReceive, android.os.Handler.Callback {
 
     private var mDataList: ArrayList<Bucket>? = null
     private var mListAdapter: CardViewListAdpater? = null
@@ -129,19 +130,26 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
 
         val title = getString(R.string.share_popup_title)
         val content = getString(R.string.share_popup_content)
-        mConfirmPopup = ConfirmPopup(this, title, ": $memo\n\n $content", R.layout.popup_confirm, this, OnPopupEventListener.POPUP_BUCKET_SHARE)
+        mConfirmPopup = ConfirmPopup(
+            this,
+            title,
+            ": $memo\n\n $content",
+            R.layout.popup_confirm,
+            this,
+            IPopupReceive.POPUP_BUCKET_SHARE
+        )
         mConfirmPopup!!.showDialog()
         return true
     }
 
     override fun onPopupAction(popId: Int, what: Int, obj: Any?) {
-        if (popId == OnPopupEventListener.POPUP_BUCKET_SHARE) {
-            if (what == OnPopupEventListener.POPUP_BTN_OK) {
+        if (popId == IPopupReceive.POPUP_BUCKET_SHARE) {
+            if (what == IPopupReceive.POPUP_BTN_OK) {
                 mHandler!!.sendEmptyMessage(SELECT_BUCKET_CATEGORY)
             }
             mConfirmPopup!!.closeDialog()
-        } else if (popId == OnPopupEventListener.POPUP_BUCKET_CATEGORY) {
-            if (what == OnPopupEventListener.POPUP_BTN_OK) {
+        } else if (popId == IPopupReceive.POPUP_BUCKET_CATEGORY) {
+            if (what == IPopupReceive.POPUP_BTN_OK) {
                 val json = obj as JSONObject
                 try {
                     mCategory = Integer.valueOf(json.getString("styleCode"))
@@ -283,7 +291,16 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
                 list.add(Category("DEVELOP", 7))
                 list.add(Category("HEALTH", 8))
                 list.add(Category("ETC", 9))
-                mCategoryPopup = SpinnerListPopup(this, title, content, list, R.layout.popupview_spinner_list, this, OnPopupEventListener.POPUP_BUCKET_CATEGORY)
+                mCategoryPopup =
+                    SpinnerListPopup(
+                        this,
+                        title,
+                        content,
+                        list,
+                        R.layout.popupview_spinner_list,
+                        this,
+                        IPopupReceive.POPUP_BUCKET_CATEGORY
+                    )
                 mCategoryPopup!!.showDialog()
             }
         }

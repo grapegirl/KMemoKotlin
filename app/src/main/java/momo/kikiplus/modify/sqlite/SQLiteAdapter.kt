@@ -6,7 +6,7 @@ import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import momo.kikiplus.refactoring.util.StringUtils
+import momo.kikiplus.refactoring.common.util.StringUtils
 import java.util.*
 
 class SQLiteAdapter(internal var mCtx: Context) {

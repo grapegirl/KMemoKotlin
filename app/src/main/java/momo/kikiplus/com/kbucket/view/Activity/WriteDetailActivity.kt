@@ -13,18 +13,17 @@ import android.widget.*
 import com.bumptech.glide.Glide
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.WriteDetailActivityBinding
-import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
-import momo.kikiplus.com.kbucket.view.popup.OnPopupEventListener
-import momo.kikiplus.com.kbucket.view.popup.SpinnerListPopup
 import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.modify.http.HttpUrlFileUploadManager
 import momo.kikiplus.modify.http.HttpUrlTaskManager
 import momo.kikiplus.modify.http.IHttpReceive
 import momo.kikiplus.modify.sqlite.SQLQuery
-import momo.kikiplus.refactoring.util.*
-import momo.kikiplus.refactoring.vo.Bucket
-import momo.kikiplus.refactoring.vo.Category
+import momo.kikiplus.refactoring.common.util.*
+import momo.kikiplus.refactoring.common.view.popup.ConfirmPopup
+import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
+import momo.kikiplus.refactoring.common.view.popup.SpinnerListPopup
+import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
+import momo.kikiplus.refactoring.kbucket.data.vo.Category
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.File
@@ -38,7 +37,8 @@ import java.util.*
  * @Class Name : WriteDetailActivity
  * @Description : 버킷 작성 클래스
  */
-class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListener, IHttpReceive, android.os.Handler.Callback {
+class WriteDetailActivity : Activity(), View.OnClickListener,
+    IPopupReceive, IHttpReceive, android.os.Handler.Callback {
 
     private var mSqlQuery: SQLQuery? = null
     private var mContents: String? = null
@@ -153,14 +153,30 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
             R.id.write_deleteButton -> {
                 var title = getString(R.string.delete_popup_title)
                 var content = getString(R.string.delete_popup_content)
-                mConfirmPopup = ConfirmPopup(this, title, ": $mContents\n\n $content", R.layout.popup_confirm, this, OnPopupEventListener.POPUP_BUCKET_DELETE)
+                mConfirmPopup =
+                    ConfirmPopup(
+                        this,
+                        title,
+                        ": $mContents\n\n $content",
+                        R.layout.popup_confirm,
+                        this,
+                        IPopupReceive.POPUP_BUCKET_DELETE
+                    )
                 mConfirmPopup!!.showDialog()
             }
             // 공유 버튼
             R.id.write_shareButton -> {
                 var title = getString(R.string.share_popup_title)
                 var content = getString(R.string.share_popup_content)
-                mConfirmPopup = ConfirmPopup(this, title, ": $mContents\n\n $content", R.layout.popup_confirm, this, OnPopupEventListener.POPUP_BUCKET_SHARE)
+                mConfirmPopup =
+                    ConfirmPopup(
+                        this,
+                        title,
+                        ": $mContents\n\n $content",
+                        R.layout.popup_confirm,
+                        this,
+                        IPopupReceive.POPUP_BUCKET_SHARE
+                    )
                 mConfirmPopup!!.showDialog()
             }
             //이미지 첨부(카메라로 가져오기)
@@ -358,19 +374,19 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
     }
 
     override fun onPopupAction(popId: Int, what: Int, obj: Any?) {
-        if (popId == OnPopupEventListener.POPUP_BUCKET_SHARE) {
-            if (what == OnPopupEventListener.POPUP_BTN_OK) {
+        if (popId == IPopupReceive.POPUP_BUCKET_SHARE) {
+            if (what == IPopupReceive.POPUP_BTN_OK) {
                 mHandler!!.sendEmptyMessage(SELECT_BUCKET_CATEGORY)
             }
             mConfirmPopup!!.closeDialog()
-        } else if (popId == OnPopupEventListener.POPUP_BUCKET_DELETE) {
-            if (what == OnPopupEventListener.POPUP_BTN_OK) {
+        } else if (popId == IPopupReceive.POPUP_BUCKET_DELETE) {
+            if (what == IPopupReceive.POPUP_BTN_OK) {
                 removeDBData(mContents)
                 onBackPressed()
             }
             mConfirmPopup!!.closeDialog()
-        } else if (popId == OnPopupEventListener.POPUP_BUCKET_CATEGORY) {
-            if (what == OnPopupEventListener.POPUP_BTN_OK) {
+        } else if (popId == IPopupReceive.POPUP_BUCKET_CATEGORY) {
+            if (what == IPopupReceive.POPUP_BTN_OK) {
                 val json = obj as JSONObject
                 try {
                     mCategory = Integer.valueOf(json.getString("styleCode"))
@@ -490,7 +506,16 @@ class WriteDetailActivity : Activity(), View.OnClickListener, OnPopupEventListen
                 list.add(Category("DEVELOP", 7))
                 list.add(Category("HEALTH", 8))
                 list.add(Category("ETC", 9))
-                mCategoryPopup = SpinnerListPopup(this, title, content, list, R.layout.popupview_spinner_list, this, OnPopupEventListener.POPUP_BUCKET_CATEGORY)
+                mCategoryPopup =
+                    SpinnerListPopup(
+                        this,
+                        title,
+                        content,
+                        list,
+                        R.layout.popupview_spinner_list,
+                        this,
+                        IPopupReceive.POPUP_BUCKET_CATEGORY
+                    )
                 mCategoryPopup!!.showDialog()
             }
         }

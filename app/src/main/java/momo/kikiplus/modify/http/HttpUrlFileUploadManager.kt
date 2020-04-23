@@ -1,7 +1,7 @@
 package momo.kikiplus.modify.http
 
 import android.os.AsyncTask
-import momo.kikiplus.refactoring.util.KLog
+import momo.kikiplus.refactoring.common.util.KLog
 import java.io.ByteArrayInputStream
 import java.io.DataOutputStream
 import java.net.HttpURLConnection

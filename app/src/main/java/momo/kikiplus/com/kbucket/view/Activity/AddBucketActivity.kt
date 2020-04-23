@@ -7,13 +7,13 @@ import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.InterestBucketListActivityBinding
 import momo.kikiplus.com.kbucket.view.Adapter.ListAdpater
-import momo.kikiplus.com.kbucket.view.popup.ConfirmPopup
 import momo.kikiplus.modify.ContextUtils
-import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.modify.sqlite.SQLQuery
-import momo.kikiplus.refactoring.util.AppUtils
-import momo.kikiplus.refactoring.util.DateUtils
-import momo.kikiplus.refactoring.vo.Bucket
+import momo.kikiplus.refactoring.common.util.AppUtils
+import momo.kikiplus.refactoring.common.util.DateUtils
+import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.common.view.popup.ConfirmPopup
+import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import java.util.*
 
 /**

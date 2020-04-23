@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.vo.BucketRank
+import momo.kikiplus.refactoring.kbucket.data.vo.BucketRank
 import java.util.*
 
 /***

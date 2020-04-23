@@ -14,48 +14,8 @@ object ContextUtils {
      */
     val TAG = "KMemo"
 
-    /**************************************************************************
-     *
-     * Shared Preference
-     *
-     */
 
-    /**
-     * 프리퍼런스 이름
-     */
-    val KEY_PREFER_NAME = "APP_PRF_NAME"
-    /**
-     * 프리퍼런스 이름(환경설정_비밀번호)
-     */
-    val KEY_CONF_PASSWORD = "KEY_CONF_PASSWORD"
-
-    /**
-     * 프리퍼런스 이름(환경설정_닉네임)
-     */
-    val KEY_USER_NICKNAME = "KEY_USER_NICKNAME"
-
-    /**
-     * 프리퍼런스 이름(FCM 키)
-     */
-    val KEY_USER_FCM = "KEY_USER_FCM"
-
-    /**
-     * 프리퍼런스 이름(MEMO)
-     */
-    val KEY_USER_MEMO = "KEY_USER_MEMO"
-
-    /**
-     * 프리퍼런스 이름 (MEMO_WIDGET)
-     */
-    val KEY_USER_MEMO_WIDGET = "KEY_USER_MEMO_WIDGET"
-
-    /**
-     * 프리퍼런스 이름(MEMO 위젯 갱신용)
-     */
-    val KEY_USER_MEMO_PREV = "KEY_USER_MEMO_PREV"
-
-    /**************************************************************************
-     *
+    /*
      * Activity 별 상수 정의
      *
      */

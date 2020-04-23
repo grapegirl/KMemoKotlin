@@ -1,7 +1,7 @@
 package momo.kikiplus.modify.sqlite
 
 import android.content.Context
-import momo.kikiplus.refactoring.util.KLog
+import momo.kikiplus.refactoring.common.util.KLog
 import java.util.*
 
 class SQLQuery {
