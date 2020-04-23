@@ -1,6 +1,6 @@
 package momo.kikiplus.refactoring.kbucket.action.net
 
-import momo.kikiplus.modify.ContextUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,7 +18,7 @@ class NetRetrofit {
 
 
             val retrofit = Retrofit.Builder()
-                    .baseUrl(ContextUtils.KBUCKET_SERVER_IP)
+                    .baseUrl(NetworkConst.KBUCKET_SERVER_IP)
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()

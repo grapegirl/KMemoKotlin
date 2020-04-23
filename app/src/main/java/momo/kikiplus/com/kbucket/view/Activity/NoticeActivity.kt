@@ -9,12 +9,12 @@ import android.widget.ExpandableListView
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.view.Adapter.BaseExpandableAdapter
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.common.view.KProgressDialog
 import momo.kikiplus.refactoring.kbucket.action.net.NetRetrofit
 import momo.kikiplus.refactoring.kbucket.action.net.NoticeList
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -59,7 +59,7 @@ class NoticeActivity : Activity(), Handler.Callback {
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             findViewById<View>(R.id.notice_back_color).setBackgroundColor(color)
         }
@@ -98,8 +98,8 @@ class NoticeActivity : Activity(), Handler.Callback {
                     }
 
                     override fun onFailure(call: Call<NoticeList>, t: Throwable) {
-                        KLog.d(ContextUtils.TAG, "@@ NoticeList onFailure call : " + call.request())
-                        KLog.d(ContextUtils.TAG, "@@ NoticeList onFailure message : " + t.message)
+                        KLog.log("@@ NoticeList onFailure call : " + call.request())
+                        KLog.log("@@ NoticeList onFailure message : " + t.message)
                         mHandler!!.sendEmptyMessage(SERVER_LOADING_FAIL)
                     }
                 })
@@ -112,7 +112,7 @@ class NoticeActivity : Activity(), Handler.Callback {
             TOAST_MASSEGE -> Toast.makeText(applicationContext, msg.obj as String, Toast.LENGTH_LONG).show()
             SERVER_LOADING_FAIL -> {
                 KProgressDialog.setDataLoadingDialog(this, false, null, false)
-                KLog.d(ContextUtils.TAG, "@@ SERVER_LOADING_FAIL")
+                KLog.log("@@ SERVER_LOADING_FAIL")
                 val message = getString(R.string.server_fail_string)
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
                 finish()

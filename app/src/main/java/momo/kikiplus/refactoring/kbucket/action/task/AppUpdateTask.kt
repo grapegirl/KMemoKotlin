@@ -14,6 +14,7 @@ import momo.kikiplus.refactoring.common.view.popup.ConfirmPopup
 import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
 import momo.kikiplus.refactoring.kbucket.action.net.NetRetrofit
 import momo.kikiplus.refactoring.kbucket.action.net.Version
+import momo.kikiplus.refactoring.kbucket.data.finally.PopupConst
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,28 +54,28 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
             START_VERSION -> {
 
                 val strSender = AppUtils.getVersionName(mContext)!!
-                KLog.d(TAG, "@@ StringUtils.getHTTPPostSendData(map) : " + strSender)
+                KLog.d( "@@ StringUtils.getHTTPPostSendData(map) : " + strSender)
 
                 val res = NetRetrofit.instance.service.getVersion(strSender)
                 res.enqueue(object : Callback<Version>{
                     override fun onResponse(call: Call<Version>, response: Response<Version>) {
-                        KLog.d(TAG, "@@ onRecv ok : " + response)
-                        KLog.d(TAG, "@@ onRecv response body: " + response.body()!!.toString())
+                        KLog.d( "@@ onRecv ok : " + response)
+                        KLog.d( "@@ onRecv response body: " + response.body()!!.toString())
 
                         if (response.body()!!.bIsValid) {
                             mVersion = Version()
                             mVersion!!.forceYN = response.body()!!.forceYN
                             mVersion!!.versionCode = response.body()!!.versionCode
                             mVersion!!.versionName = response.body()!!.versionName
-                            KLog.d(TAG, "@@ onRecv forceYN : " + response.body()!!.forceYN)
-                            KLog.d(TAG, "@@ onRecv versionCode : " + response.body()!!.versionCode)
-                            KLog.d(TAG, "@@ onRecv versionName : " + mVersion!!.versionName)
+                            KLog.d( "@@ onRecv forceYN : " + response.body()!!.forceYN)
+                            KLog.d( "@@ onRecv versionCode : " + response.body()!!.versionCode)
+                            KLog.d( "@@ onRecv versionName : " + mVersion!!.versionName)
                             mHandler.sendEmptyMessage(CHECK_VERSION)
                         }
                     }
 
                     override fun onFailure(call: Call<Version>, t: Throwable) {
-                        KLog.d(TAG, "@@ onRecv fail : " + t.localizedMessage)
+                        KLog.d( "@@ onRecv fail : " + t.localizedMessage)
                         mHandler.sendEmptyMessage(FAIL_VERSION)
                     }
                 })
@@ -83,16 +84,16 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
             CHECK_VERSION -> {
 
                if(mVersion == null){
-                   KLog.d(TAG, "@@ check version mVesion is null")
+                   KLog.d( "@@ check version mVesion is null")
                     return false
                }
 
                 val currentVersionName = AppUtils.getVersionName(mContext)
                 val serverVersionName = mVersion!!.versionName
                 if(currentVersionName == null || serverVersionName == null){
-                    KLog.d(TAG, "@@ check version currentVersionName or serverVersionName is null")
-                    KLog.d(TAG, "@@ currentVersionName : " + currentVersionName)
-                    KLog.d(TAG, "@@ serverVersisonName : " + serverVersionName)
+                    KLog.d( "@@ check version currentVersionName or serverVersionName is null")
+                    KLog.d( "@@ currentVersionName : " + currentVersionName)
+                    KLog.d( "@@ serverVersisonName : " + serverVersionName)
                     return false
                 }
                 if(mVersion!!.versionCode > 0)
@@ -107,7 +108,7 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
                                     content,
                                     R.layout.popup_basic,
                                     this,
-                                    IPopupReceive.POPUP_UPDATE_FORCE
+                                    PopupConst.POPUP_UPDATE_FORCE
                                 )
                             mBasicPopup!!.showDialog()
                         } else {
@@ -120,7 +121,7 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
                                     content,
                                     R.layout.popup_confirm,
                                     this,
-                                    IPopupReceive.POPUP_UPDATE_SELECT
+                                    PopupConst.POPUP_UPDATE_SELECT
                                 )
                             mConfirmPopup!!.showDialog()
                         }
@@ -129,7 +130,7 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
                     }
 
             }
-            FAIL_VERSION -> KLog.d(TAG, "@@ Fail Version Check")
+            FAIL_VERSION -> KLog.d( "@@ Fail Version Check")
             TOAST_MESSAGE -> {
                 val message = mContext.getString(R.string.check_version_lasted)
                 Toast.makeText(mContext, message, Toast.LENGTH_LONG).show()
@@ -149,7 +150,7 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
 
     override fun onPopupAction(popId: Int, what: Int, obj: Any?) {
         when (popId) {
-            IPopupReceive.POPUP_UPDATE_FORCE -> {
+            PopupConst.POPUP_UPDATE_FORCE -> {
                 if (what == IPopupReceive.POPUP_BTN_OK) {
                     val message = mContext.getString(R.string.version_update_string)
                     Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
@@ -157,7 +158,7 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
                 }
                 mBasicPopup!!.closeDialog()
             }
-            IPopupReceive.POPUP_UPDATE_SELECT -> {
+            PopupConst.POPUP_UPDATE_SELECT -> {
                 if (what == IPopupReceive.POPUP_BTN_OK) {
                     val message = mContext.getString(R.string.version_update_string)
                     Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()

@@ -13,7 +13,6 @@ import android.widget.*
 import com.bumptech.glide.Glide
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.WriteDetailActivityBinding
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.http.HttpUrlFileUploadManager
 import momo.kikiplus.modify.http.HttpUrlTaskManager
 import momo.kikiplus.modify.http.IHttpReceive
@@ -22,6 +21,10 @@ import momo.kikiplus.refactoring.common.util.*
 import momo.kikiplus.refactoring.common.view.popup.ConfirmPopup
 import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
 import momo.kikiplus.refactoring.common.view.popup.SpinnerListPopup
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
+import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PopupConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.data.vo.Category
 import org.json.JSONException
@@ -111,7 +114,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             findViewById<View>(R.id.writedetail_back_color).setBackgroundColor(color)
         }
@@ -126,9 +129,9 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
         if (mPhotoPath != null) {
             DataUtils.deleteFile(mPhotoPath!!)
         }
-        KLog.d(this.javaClass.simpleName, "@@ BACK" + BACK)
+        KLog.d("@@ BACK" + BACK)
 
-        if (BACK == ContextUtils.VIEW_COMPLETE_LIST) {
+        if (BACK == DataConst.VIEW_COMPLETE_LIST) {
             val intent = Intent(this, BucketListActivity::class.java)
             startActivity(intent)
             finish()
@@ -160,7 +163,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
                         ": $mContents\n\n $content",
                         R.layout.popup_confirm,
                         this,
-                        IPopupReceive.POPUP_BUCKET_DELETE
+                        PopupConst.POPUP_BUCKET_DELETE
                     )
                 mConfirmPopup!!.showDialog()
             }
@@ -175,7 +178,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
                         ": $mContents\n\n $content",
                         R.layout.popup_confirm,
                         this,
-                        IPopupReceive.POPUP_BUCKET_SHARE
+                        PopupConst.POPUP_BUCKET_SHARE
                     )
                 mConfirmPopup!!.showDialog()
             }
@@ -238,11 +241,11 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
             if (data != null) {
                 val imgUri = data.data
                 if (imgUri != null) {
-                    KLog.d(ContextUtils.TAG, "@@ photo data: " + imgUri.path!!)
+                    KLog.log("@@ photo data: " + imgUri.path!!)
                     mPhotoPath = DataUtils.newFileName
                     try {
                         val imagePath = DataUtils.getMediaScanPath(this, imgUri)
-                        KLog.d(ContextUtils.TAG, "@@ photo imagePath :$imagePath")
+                        KLog.log("@@ photo imagePath :$imagePath")
                         if (imagePath.isEmpty()) {
                             val message = getString(R.string.write_bucekt_image_attch)
                             Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
@@ -276,7 +279,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
         if (memoMap.isNullOrEmpty()) {
             return
         }
-        KLog.d(this.javaClass.simpleName, "@@ memoMap" + memoMap.toString())
+        KLog.d("@@ memoMap" + memoMap.toString())
         mDate = memoMap["date"]
         val yn = memoMap["complete_yn"]
         mCheckbox!!.isChecked = yn != null && yn == "Y"
@@ -284,7 +287,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
 
         val bytes = mSqlQuery!!.selectImage(applicationContext, mContents!!, mDate!!)
         if (bytes != null) {
-            KLog.d(ContextUtils.TAG, "@@ bytes  : " + bytes)
+            KLog.log( "@@ bytes  : " + bytes)
             Glide.with(this)
                     .load(bytes)
                     .into(mImageView!!)
@@ -330,10 +333,10 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
         val completeYN = if (mCheckbox!!.isChecked) "Y" else "N"
         val imagePath = if (mPhotoPath != null) mPhotoPath else ""
 
-        KLog.d(this.javaClass.simpleName, "@@ NewContents : " + NewContents)
-        KLog.d(this.javaClass.simpleName, "@@ completeYN : " + completeYN)
-        KLog.d(this.javaClass.simpleName, "@@ imagePath : " + imagePath)
-        KLog.d(this.javaClass.simpleName, "@@ mPhotoPath : " + mPhotoPath)
+        KLog.d("@@ NewContents : " + NewContents)
+        KLog.d("@@ completeYN : " + completeYN)
+        KLog.d( "@@ imagePath : " + imagePath)
+        KLog.d( "@@ mPhotoPath : " + mPhotoPath)
 
         mSqlQuery!!.updateMemoContent(applicationContext, mContents!!, NewContents, completeYN, mDate!!, imagePath!!, mDeadLineDate!!)
         //수정한 상태지만 이미지는 이미 없는 상태
@@ -342,7 +345,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
         } else {
             //신규로 추가한 경우
             val bitmaps = ByteUtils.getByteArrayFromFile(mPhotoPath!!)
-            KLog.d(this.javaClass.simpleName, "@@ bitmaps : " + bitmaps)
+            KLog.d("@@ bitmaps : " + bitmaps)
             if(bitmaps != null){
                 mSqlQuery!!.updateMemoImage(applicationContext, mContents!!, mDate!!, bitmaps)
             }
@@ -353,7 +356,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
      * DB 데이타 동기화하기(삭제)
      */
     private fun removeDBData(Content: String?) {
-        KLog.d(this.javaClass.simpleName, "@@ remove Data Contents : " + Content!!)
+        KLog.d( "@@ remove Data Contents : " + Content!!)
         mSqlQuery!!.deleteUserBucket(applicationContext, Content)
         mSqlQuery!!.deleteMemoImage(applicationContext, mContents!!, mDate!!)
     }
@@ -374,18 +377,18 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
     }
 
     override fun onPopupAction(popId: Int, what: Int, obj: Any?) {
-        if (popId == IPopupReceive.POPUP_BUCKET_SHARE) {
+        if (popId == PopupConst.POPUP_BUCKET_SHARE) {
             if (what == IPopupReceive.POPUP_BTN_OK) {
                 mHandler!!.sendEmptyMessage(SELECT_BUCKET_CATEGORY)
             }
             mConfirmPopup!!.closeDialog()
-        } else if (popId == IPopupReceive.POPUP_BUCKET_DELETE) {
+        } else if (popId == PopupConst.POPUP_BUCKET_DELETE) {
             if (what == IPopupReceive.POPUP_BTN_OK) {
                 removeDBData(mContents)
                 onBackPressed()
             }
             mConfirmPopup!!.closeDialog()
-        } else if (popId == IPopupReceive.POPUP_BUCKET_CATEGORY) {
+        } else if (popId == PopupConst.POPUP_BUCKET_CATEGORY) {
             if (what == IPopupReceive.POPUP_BTN_OK) {
                 val json = obj as JSONObject
                 try {
@@ -407,7 +410,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
      */
     private fun shareBucketImage(): HashMap<String, Any> {
         val bucket = Bucket()
-        val userNickName = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        val userNickName = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         bucket.nickName = userNickName!!
         bucket.content = mContents
         bucket.imageUrl = ""
@@ -417,8 +420,8 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
     }
 
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive : $obj")
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive type : $type")
+        KLog.d("@@ onHttpReceive : $obj")
+        KLog.d("@@ onHttpReceive type : $type")
         // 버킷 공유 결과
         val mData = obj as String
         var isValid : Boolean = false
@@ -433,7 +436,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
                     isValid = json.getBoolean("isValid")
                     mImageIdx = json.getInt("idx")
                 } catch (e: JSONException) {
-                    KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                    KLog.log( "@@ jsonException message : " + e.message)
                 }
 
                 if (isValid == true) {
@@ -456,7 +459,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
                     val json = JSONObject(mData)
                     isValid = json.getBoolean("isValid")
                 } catch (e: JSONException) {
-                    KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                    KLog.e("@@ jsonException message : " + e.message)
                 }
 
                 if (isValid == true) {
@@ -478,14 +481,14 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
                     val sdf = SimpleDateFormat("yyyyMMdd_hhmmss")
                     val fileName = sdf.format(calendar.time)
 
-                    val httpUrlFileUploadManager = HttpUrlFileUploadManager(ContextUtils.KBUCKET_UPLOAD_IMAGE_URL, this, IHttpReceive.INSERT_IMAGE, bytes)
+                    val httpUrlFileUploadManager = HttpUrlFileUploadManager(NetworkConst.KBUCKET_UPLOAD_IMAGE_URL, this, IHttpReceive.INSERT_IMAGE, bytes)
                     httpUrlFileUploadManager.execute(photoPath, "idx", mImageIdx.toString() + "", "$fileName.jpg")
                 } else {
-                    KLog.d(ContextUtils.TAG, "@@ UPLOAD IMAGE NO !")
+                    KLog.d( "@@ UPLOAD IMAGE NO !")
                 }
             }
             UPLOAD_BUCKET -> {
-                val httpUrlTaskManager = HttpUrlTaskManager(ContextUtils.KBUCKET_INSERT_BUCKET_URL, true, this, IHttpReceive.INSERT_BUCKET)
+                val httpUrlTaskManager = HttpUrlTaskManager(NetworkConst.KBUCKET_INSERT_BUCKET_URL, true, this, IHttpReceive.INSERT_BUCKET)
                 httpUrlTaskManager.execute(StringUtils.getHTTPPostSendData(shareBucketImage()))
             }
             SELECT_BUCKET_CATEGORY -> {
@@ -514,7 +517,7 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
                         list,
                         R.layout.popupview_spinner_list,
                         this,
-                        IPopupReceive.POPUP_BUCKET_CATEGORY
+                        PopupConst.POPUP_BUCKET_CATEGORY
                     )
                 mCategoryPopup!!.showDialog()
             }

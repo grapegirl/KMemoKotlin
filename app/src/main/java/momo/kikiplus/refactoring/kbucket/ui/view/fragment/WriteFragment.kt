@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.WriteFragmentBinding
 import momo.kikiplus.com.kbucket.view.Activity.WriteDetailActivity
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.adapter.RecyclerViewAdapter
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.viewmodel.WriteViewModel
 import java.util.*
@@ -62,14 +63,14 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener {
 
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(activity!!.applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(activity!!.applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             mBinding.writeBackColor.setBackgroundColor(color)
         }
     }
 
     override fun onClick(v: View) {
-        KLog.d(ContextUtils.TAG, "@@ onClick id: $v.id")
+        KLog.d( "@@ onClick id: $v.id")
         when (v.id) {
             R.id.write_layout_addBtn -> {
                 val editText = mBinding.writeLayoutTitleView.text.toString()
@@ -93,24 +94,24 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener {
                 val index = Integer.valueOf(v.tag as String)
                 val intent = Intent(activity!!.applicationContext, WriteDetailActivity::class.java)
                 intent.putExtra("CONTENTS", mDataList[index])
-                intent.putExtra("BACK", ContextUtils.VIEW_WRITE)
+                intent.putExtra("BACK", DataConst.VIEW_WRITE)
                 startActivity(intent)
 
                 //fragmentManager!!.popBackStack();
             }
             //메모 정렬순
             R.id.sort_memo -> {
-                SharedPreferenceUtils.write(activity!!.applicationContext, ContextUtils.KBUCKET_SORT_KEY, ContextUtils.SORT_MEMO)
+                SharedPreferenceUtils.write(activity!!.applicationContext, DataConst.KBUCKET_SORT_KEY, DataConst.SORT_MEMO)
                 setListData()
             }
             //날짜 정렬순
             R.id.sort_date -> {
-                SharedPreferenceUtils.write(activity!!.applicationContext, ContextUtils.KBUCKET_SORT_KEY, ContextUtils.SORT_DATE)
+                SharedPreferenceUtils.write(activity!!.applicationContext, DataConst.KBUCKET_SORT_KEY, DataConst.SORT_DATE)
                 setListData()
             }
             //기한 정렬순
             R.id.sort_deadline -> {
-                SharedPreferenceUtils.write(activity!!.applicationContext, ContextUtils.KBUCKET_SORT_KEY, ContextUtils.SORT_DEADLINE)
+                SharedPreferenceUtils.write(activity!!.applicationContext, DataConst.KBUCKET_SORT_KEY, DataConst.SORT_DEADLINE)
                 setListData()
             }
         }
@@ -141,8 +142,8 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener {
         viewModel.initLocalData(activity!!)
         mDataList = viewModel.getListDoing()
 
-        val sortPrf = SharedPreferenceUtils.read(activity!!.applicationContext, ContextUtils.KBUCKET_SORT_KEY, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
-        KLog.d(ContextUtils.TAG, "@@ sort sort: $sortPrf")
+        val sortPrf = SharedPreferenceUtils.read(activity!!.applicationContext, DataConst.KBUCKET_SORT_KEY, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        KLog.d("@@ sort sort: $sortPrf")
         if (sortPrf == null) {
             mAdapter.updateItems(mDataList)
             return

@@ -13,7 +13,6 @@ import android.net.Uri
 import android.util.Base64
 import com.google.android.gms.analytics.HitBuilders
 import momo.kikiplus.AnalyticsApplication
-import momo.kikiplus.modify.ContextUtils
 import java.security.MessageDigest
 import java.text.SimpleDateFormat
 import java.util.*
@@ -56,9 +55,9 @@ object AppUtils {
         val country = locale.country
         val launage = locale.language
 
-        KLog.d(context.javaClass.simpleName, "@@ displayCountry => $displayCountry")
-        KLog.d(context.javaClass.simpleName, "@@ County => $country")
-        KLog.d(context.javaClass.simpleName, "@@ launage => $launage")
+        KLog.d( "@@ displayCountry => $displayCountry")
+        KLog.d( "@@ County => $country")
+        KLog.d("@@ launage => $launage")
     }
 
     /**
@@ -235,10 +234,10 @@ object AppUtils {
                 md = MessageDigest.getInstance("SHA")
                 md.update(signature.toByteArray())
                 hashValue = String(Base64.encode(md.digest(), 0))
-                KLog.d(context.javaClass.simpleName, "@@ Hash key : $hashValue")
+                KLog.d( "@@ Hash key : $hashValue")
             }
         } catch (e: Exception) {
-            KLog.d(context.javaClass.simpleName, "@@ name not found : " + e.toString())
+            KLog.d( "@@ name not found : " + e.toString())
         }
 
         return hashValue
@@ -292,7 +291,7 @@ object AppUtils {
         val mTracker = application.defaultTracker
         mTracker.setScreenName(screenName)
         mTracker.send(HitBuilders.ScreenViewBuilder().build())
-        KLog.d(ContextUtils.TAG, "@@ sendTrackerScreen name : $screenName")
+        KLog.d("@@ sendTrackerScreen name : $screenName")
     }
 
 }

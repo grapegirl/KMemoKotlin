@@ -12,8 +12,9 @@ import momo.kikiplus.com.kbucket.databinding.IntroActivityBinding
 import momo.kikiplus.com.kbucket.view.Activity.BucketListActivity
 import momo.kikiplus.com.kbucket.view.Activity.PassWordActivity
 import momo.kikiplus.com.kbucket.view.Activity.ShareListActivity
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import java.util.*
 
 /**
@@ -49,20 +50,20 @@ class IntroActivity : Activity(), android.os.Handler.Callback {
         val timer: Timer
         val timerTask = object : TimerTask() {
             override fun run() {
-                val password = SharedPreferenceUtils.read(applicationContext, ContextUtils.KEY_CONF_PASSWORD, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+                val password = SharedPreferenceUtils.read(applicationContext, PreferConst.KEY_CONF_PASSWORD, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
                 if (password != null && password != "") {
                     mHandler.sendEmptyMessage(1)
                 } else {
                     //위젯으로부터 화면 전환
                     val intent = intent
                     val startView = intent.getStringExtra("DATA")
-                    if (startView != null && startView == ContextUtils.WIDGET_WRITE_BUCKET) {
+                    if (startView != null && startView == DataConst.WIDGET_WRITE_BUCKET) {
                         mHandler.sendEmptyMessage(2)
-                    } else if (startView != null && startView == ContextUtils.WIDGET_BUCKET_LIST) {
+                    } else if (startView != null && startView == DataConst.WIDGET_BUCKET_LIST) {
                         mHandler.sendEmptyMessage(3)
-                    } else if (startView != null && startView == ContextUtils.WIDGET_OURS_BUCKET) {
+                    } else if (startView != null && startView == DataConst.WIDGET_OURS_BUCKET) {
                         mHandler.sendEmptyMessage(4)
-                    } else if (startView != null && startView == ContextUtils.WIDGET_SHARE) {
+                    } else if (startView != null && startView == DataConst.WIDGET_SHARE) {
                         mHandler.sendEmptyMessage(5)
                     } else {
                         mHandler.sendEmptyMessage(0)
@@ -77,7 +78,7 @@ class IntroActivity : Activity(), android.os.Handler.Callback {
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             findViewById<View>(R.id.intro_back_color).setBackgroundColor(color)
         }
@@ -123,7 +124,7 @@ class IntroActivity : Activity(), android.os.Handler.Callback {
             }
             5 -> {
                 intent = Intent(this, MainFragmentActivity::class.java)
-                intent.putExtra(ContextUtils.WIDGET_SEND_DATA, ContextUtils.WIDGET_SHARE)
+                intent.putExtra(DataConst.WIDGET_SEND_DATA, DataConst.WIDGET_SHARE)
                 startActivity(intent)
                 finish()
             }

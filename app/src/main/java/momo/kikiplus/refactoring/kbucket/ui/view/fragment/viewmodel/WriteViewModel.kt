@@ -2,10 +2,10 @@ package momo.kikiplus.refactoring.kbucket.ui.view.fragment.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.sqlite.SQLQuery
 import momo.kikiplus.refactoring.common.util.DateUtils
 import momo.kikiplus.refactoring.common.util.KLog
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import java.util.*
 import kotlin.Comparator
@@ -18,7 +18,7 @@ class WriteViewModel : ViewModel() {
 
     fun initLocalData(context : Context) {
         val map = mSqlQuery.selectKbucket(context) ?: return
-        KLog.d(ContextUtils.TAG, "@@ setListData map: $map")
+        KLog.d("@@ setListData map: $map")
         for (i in map.indices) {
             val memoMap = map[i]
             val bucket = Bucket("", memoMap["contents"]!!, memoMap["date"]!!, i)
@@ -74,9 +74,9 @@ class WriteViewModel : ViewModel() {
     }
 
     fun sort(sorting : String){
-        if (sorting == ContextUtils.SORT_DATE) {
+        if (sorting == DataConst.SORT_DATE) {
             Collections.sort(mBucketDataList, DATE_SORT)
-        } else if (sorting == ContextUtils.SORT_MEMO) {
+        } else if (sorting == DataConst.SORT_MEMO) {
             Collections.sort(mBucketDataList, MEMO_SORT)
         } else {
             Collections.sort(mBucketDataList, DEADLINE_SORT)

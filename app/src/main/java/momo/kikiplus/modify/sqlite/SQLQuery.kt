@@ -5,8 +5,6 @@ import momo.kikiplus.refactoring.common.util.KLog
 import java.util.*
 
 class SQLQuery {
-    private val TAG = this.javaClass.simpleName
-
     internal var mDBAdapter: SQLiteAdapter? = null
 
     private var sql = ""
@@ -17,14 +15,14 @@ class SQLQuery {
     private val TABLE_IMG = "KIMG"
 
     fun SQLQuery() {
-        KLog.d(TAG, "@@ create SQLQuery 생성자")
+        KLog.d( "@@ create SQLQuery 생성자")
     }
 
     /**
      * 테이블생성
      */
     fun createTable(context: Context) {
-        KLog.d(TAG, "@@ create Table 생성")
+        KLog.d("@@ create Table 생성")
         try {
             mDBAdapter = SQLiteAdapter(context)
             mDBAdapter!!.open()
@@ -53,7 +51,7 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ createTable 테이블 생성 실패" + e.toString())
+            KLog.d( "@@ createTable 테이블 생성 실패" + e.toString())
         }
 
     }
@@ -62,20 +60,20 @@ class SQLQuery {
         var userInfoRow: LinkedList<LinkedHashMap<String, String>>? = null
         try {
             mDBAdapter = SQLiteAdapter(context)
-            KLog.d(this.javaClass.simpleName, "@@ selectKbucket context: $context")
+            KLog.d("@@ selectKbucket context: $context")
 
             mDBAdapter!!.open()
-            KLog.d(this.javaClass.simpleName, "@@ selectKbucket mDBAdapter: $mDBAdapter")
+            KLog.d( "@@ selectKbucket mDBAdapter: $mDBAdapter")
             sql = "SELECT CONTENTS, DATE,COMPLETE_YN,COMPLETE_DATE,IMAGE_PATH,DEADLINE FROM $TABLE_MEMO"
-            KLog.d(this.javaClass.simpleName, "@@ selectKbucket sql: $sql")
+            KLog.d( "@@ selectKbucket sql: $sql")
             userInfoRow = mDBAdapter!!.query(sql, null)
-            KLog.d(this.javaClass.simpleName, "@@ selectKbucket 1")
+            KLog.d("@@ selectKbucket 1")
             mDBAdapter!!.close()
-            KLog.d(this.javaClass.simpleName, "@@ selectKbucket 2")
+            KLog.d( "@@ selectKbucket 2")
             mDBAdapter = null
-            KLog.d(this.javaClass.simpleName, "@@ selectKbucket 3")
+            KLog.d( "@@ selectKbucket 3")
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 메모 정보 가져오기 복수건 오류 : " + e.message)
+            KLog.d( "@@ 메모 정보 가져오기 복수건 오류 : " + e.message)
         }
 
         return userInfoRow
@@ -97,7 +95,7 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 메모 정보 가져오기 단건 오류")
+            KLog.d( "@@ 메모 정보 가져오기 단건 오류")
         }
 
         return userInfoRow
@@ -119,7 +117,7 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 메모 정보 가져오기 단건 오류")
+            KLog.d( "@@ 메모 정보 가져오기 단건 오류")
         }
 
         return userInfoRow != null && userInfoRow.size > 0
@@ -143,7 +141,7 @@ class SQLQuery {
                     "			(CONTENTS, DATE, COMPLETE_DATE, COMPLETE_YN) " +
                     "	 VALUES (?,?,?,?); "
 
-            KLog.d(TAG, "@@ insertUserSetting sql : $sql")
+            KLog.d( "@@ insertUserSetting sql : $sql")
             val bindArgs = arrayOf<String>(contents, date, completedDate, completeYN)
 
             mDBAdapter!!.update(sql, bindArgs)
@@ -151,14 +149,14 @@ class SQLQuery {
             //입력후 결과 보기
             sql = "SELECT CONTENTS FROM $TABLE_MEMO;"
             val userInfoRowsetCheck = mDBAdapter!!.query(sql, null)
-            KLog.d(TAG, "@@ result-> $userInfoRowsetCheck")
+            KLog.d("@@ result-> $userInfoRowsetCheck")
 
             mDBAdapter!!.close()
 
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ insertUserInfo 유저정보 입력 실패" + e.toString())
+            KLog.d("@@ insertUserInfo 유저정보 입력 실패" + e.toString())
             return false
         }
 
@@ -188,7 +186,7 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 사용자 메모 정보 내용으로 업데이트 오류" + e.toString())
+            KLog.d( "@@ 사용자 메모 정보 내용으로 업데이트 오류" + e.toString())
         }
 
     }
@@ -213,13 +211,13 @@ class SQLQuery {
             val bindArgs = arrayOf<String>(newContents, completeYn, date, imagePath, contents)
 
             mDBAdapter!!.update(sql, bindArgs)
-            KLog.d(this.javaClass.simpleName, "@@사용자 메모 정보 내용으로 업데이트 sql : $sql")
+            KLog.d( "@@사용자 메모 정보 내용으로 업데이트 sql : $sql")
             mDBAdapter!!.close()
 
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 사용자 메모 정보 내용으로 업데이트 오류" + e.toString())
+            KLog.d( "@@ 사용자 메모 정보 내용으로 업데이트 오류" + e.toString())
         }
 
     }
@@ -238,13 +236,13 @@ class SQLQuery {
             val bindArgs = arrayOf<String>(newContents, completeYn, date, imagePath, deadline, contents)
 
             mDBAdapter!!.update(sql, bindArgs)
-            KLog.d(this.javaClass.simpleName, "@@사용자 메모 정보 내용으로 업데이트 sql : $sql")
+            KLog.d("@@사용자 메모 정보 내용으로 업데이트 sql : $sql")
             mDBAdapter!!.close()
 
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 사용자 메모 정보 내용으로 업데이트 오류" + e.toString())
+            KLog.d( "@@ 사용자 메모 정보 내용으로 업데이트 오류" + e.toString())
         }
 
     }
@@ -264,7 +262,7 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 메모 정보 가져오기 단건 오류")
+            KLog.d("@@ 메모 정보 가져오기 단건 오류")
         }
 
         return userInfoRow != null && userInfoRow.size > 0
@@ -292,7 +290,7 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 사용자 닉네임 설정 정보 업데이트 오류" + e.toString())
+            KLog.d("@@ 사용자 닉네임 설정 정보 업데이트 오류" + e.toString())
         }
 
     }
@@ -319,7 +317,7 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 사용자 닉네임 설정 정보 업데이트 오류" + e.toString())
+            KLog.d("@@ 사용자 닉네임 설정 정보 업데이트 오류" + e.toString())
         }
 
     }
@@ -344,7 +342,7 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 메모 정보 가져오기 단건 오류" + e.toString())
+            KLog.d("@@ 메모 정보 가져오기 단건 오류" + e.toString())
         }
 
         return userInfoRow
@@ -367,15 +365,15 @@ class SQLQuery {
             mDBAdapter!!.close()
 
             mDBAdapter = null
-            //KLog.d(TAG, "@@ 유저 설정 정보 삭제 sql : " + sql);
+            //KLog.d( "@@ 유저 설정 정보 삭제 sql : " + sql);
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 유저 설정 정보 삭제 오류" + e.toString())
+            KLog.d("@@ 유저 설정 정보 삭제 오류" + e.toString())
         }
 
     }
 
     fun createChatTable(context: Context) {
-        KLog.d(TAG, "@@ create Chat Table 생성")
+        KLog.d("@@ create Chat Table 생성")
         try {
             mDBAdapter = SQLiteAdapter(context)
             mDBAdapter!!.open()
@@ -388,7 +386,7 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 테이블 생성 실패" + e.toString())
+            KLog.d("@@ 테이블 생성 실패" + e.toString())
         }
 
     }
@@ -416,12 +414,12 @@ class SQLQuery {
             // 입력후 결과 보기
             sql = "SELECT * FROM $TABLE_CHAT"
             val userInfoRowsetCheck = mDBAdapter!!.query(sql, null)
-            KLog.d(TAG, "@@ userChatInfoRowsetCheck userInfoRowsetCheck : $userInfoRowsetCheck")
+            KLog.d( "@@ userChatInfoRowsetCheck userInfoRowsetCheck : $userInfoRowsetCheck")
             mDBAdapter!!.close()
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 채팅정보 입력 실패" + e.toString())
+            KLog.d("@@ 채팅정보 입력 실패" + e.toString())
         }
 
     }
@@ -449,7 +447,7 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 채팅 정보 가져오기 단건 오류" + e.toString())
+            KLog.d( "@@ 채팅 정보 가져오기 단건 오류" + e.toString())
         }
 
         return userInfoRow
@@ -459,7 +457,7 @@ class SQLQuery {
      * 테이블 내용 삭제
      */
     fun DeleteBucketContents(context: Context) {
-        KLog.d(TAG, "@@ delelte Bucket ")
+        KLog.d( "@@ delelte Bucket ")
         try {
             mDBAdapter = SQLiteAdapter(context)
             mDBAdapter!!.open()
@@ -471,13 +469,13 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ DeleteBucketContents Exception : " + e.toString())
+            KLog.d("@@ DeleteBucketContents Exception : " + e.toString())
         }
 
     }
 
     fun createImageTable(context: Context) {
-        KLog.d(TAG, "@@ create Image Table 생성")
+        KLog.d("@@ create Image Table 생성")
         try {
             mDBAdapter = SQLiteAdapter(context)
             mDBAdapter!!.open()
@@ -490,7 +488,7 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ Image 테이블 생성 실패" + e.toString())
+            KLog.d( "@@ Image 테이블 생성 실패" + e.toString())
         }
 
     }
@@ -506,9 +504,9 @@ class SQLQuery {
      */
     fun updateMemoImage(context: Context, contents: String, date: String, bitmaps: ByteArray) {
 
-        KLog.d(this.javaClass.simpleName, "@@ updateMemoImage 1 " )
+        KLog.d( "@@ updateMemoImage 1 " )
         deleteMemoImage(context, contents, date)
-        KLog.d(this.javaClass.simpleName, "@@ updateMemoImage 2 " )
+        KLog.d( "@@ updateMemoImage 2 " )
         try {
             mDBAdapter = SQLiteAdapter(context)
             mDBAdapter!!.open()
@@ -522,13 +520,13 @@ class SQLQuery {
             mDBAdapter!!.close()
 
             mDBAdapter = null
-            KLog.d(this.javaClass.simpleName, "@@ updateMemoImage 3 " )
-            KLog.d(TAG, "@@ 사용자 이미지 업데이트 완료 contents : $contents, date : $date")
+            KLog.d( "@@ updateMemoImage 3 " )
+            KLog.d( "@@ 사용자 이미지 업데이트 완료 contents : $contents, date : $date")
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 사용자 메모 이미지 업데이트 오류" + e.toString())
+            KLog.d( "@@ 사용자 메모 이미지 업데이트 오류" + e.toString())
         }
-        KLog.d(this.javaClass.simpleName, "@@ updateMemoImage 4 " )
+        KLog.d( "@@ updateMemoImage 4 " )
 
     }
 
@@ -548,7 +546,7 @@ class SQLQuery {
             mDBAdapter = null
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 채팅 정보 가져오기 단건 오류" + e.toString())
+            KLog.d( "@@ 채팅 정보 가져오기 단건 오류" + e.toString())
         }
 
         return bytes
@@ -570,7 +568,7 @@ class SQLQuery {
             val bindArgs = arrayOf(contents, date)
             val nCount = mDBAdapter!!.getRowCount(sql, bindArgs)
             if (nCount > 0) {
-                KLog.d(TAG, "@@ DB KIMG row Count : $nCount")
+                KLog.d( "@@ DB KIMG row Count : $nCount")
                 sql = "DELETE FROM $TABLE_IMG WHERE CONTENTS = ? AND DATE = ?"
 
                 mDBAdapter!!.update(sql, bindArgs)
@@ -579,10 +577,10 @@ class SQLQuery {
             mDBAdapter!!.close()
 
             mDBAdapter = null
-            KLog.d(TAG, "@@ 사용자 이미지 삭제 완료 contents : $contents, date : $date")
+            KLog.d( "@@ 사용자 이미지 삭제 완료 contents : $contents, date : $date")
 
         } catch (e: Exception) {
-            KLog.d(TAG, "@@ 사용자 이미지 삭제 업데이트 오류" + e.toString())
+            KLog.d( "@@ 사용자 이미지 삭제 업데이트 오류" + e.toString())
         }
 
     }

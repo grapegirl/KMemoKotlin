@@ -25,7 +25,7 @@ class RecyclerViewAdapter( clickListener: View.OnClickListener) : RecyclerView.A
     }
 
     override fun getItemCount(): Int {
-        KLog.d(this.javaClass.name, "@@ getItemCount : " + mItems.size)
+        KLog.d("@@ getItemCount : " + mItems.size)
         return mItems.size
     }
 

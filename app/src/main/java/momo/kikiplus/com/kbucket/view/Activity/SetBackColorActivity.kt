@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.refactoring.common.util.AppUtils
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 
 /**
  * @author grapegirl
@@ -66,8 +66,8 @@ class SetBackColorActivity : Activity(), View.OnClickListener {
             R.id.set_back_btn1, R.id.set_back_btn2, R.id.set_back_btn3, R.id.set_back_btn4, R.id.set_back_btn5, R.id.set_back_btn6, R.id.set_back_btn7, R.id.set_back_btn8, R.id.set_back_btn9, R.id.set_back_btn10, R.id.set_back_btn11, R.id.set_back_btn12, R.id.set_back_btn13, R.id.set_back_btn14, R.id.set_back_btn15, R.id.set_back_btn16, R.id.set_back_btn17, R.id.set_back_btn18 -> {
                 val colorDrawable = (findViewById<View>(v.id) as ImageButton).background as ColorDrawable
                 val backColor = colorDrawable.color
-                SharedPreferenceUtils.write(applicationContext, ContextUtils.BACK_MEMO, backColor)
-                KLog.d(ContextUtils.TAG, "@@ select Back Color : $backColor")
+                SharedPreferenceUtils.write(applicationContext, PreferConst.BACK_MEMO, backColor)
+                KLog.log( "@@ select Back Color : $backColor")
                 checkButton(v.id)
             }
         }

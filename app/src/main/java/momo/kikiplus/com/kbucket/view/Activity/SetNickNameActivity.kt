@@ -7,11 +7,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.sqlite.SQLQuery
 import momo.kikiplus.refactoring.common.util.AppUtils
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 
 /**
  * @author grapegirl
@@ -35,7 +35,7 @@ class SetNickNameActivity : Activity(), View.OnClickListener {
         mButton = findViewById<View>(R.id.nickname_okBtn) as Button
         mButton!!.setOnClickListener(this)
 
-        val nickname = SharedPreferenceUtils.read(applicationContext, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        val nickname = SharedPreferenceUtils.read(applicationContext, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         if (nickname != null) {
             (findViewById<View>(R.id.nickname_editText) as EditText).setText(nickname)
             (findViewById<View>(R.id.nickname_editText) as EditText).requestFocus(nickname.length)
@@ -44,7 +44,7 @@ class SetNickNameActivity : Activity(), View.OnClickListener {
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             findViewById<View>(R.id.nickname_back_color).setBackgroundColor(color)
         }
@@ -57,14 +57,14 @@ class SetNickNameActivity : Activity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         var nickname: String? = (findViewById<View>(R.id.nickname_editText) as EditText).text.toString()
-        KLog.d(this.javaClass.simpleName, "@@ nickname : " + nickname!!)
+        KLog.d("@@ nickname : " + nickname!!)
         nickname = nickname.replace(" ".toRegex(), "")
         if (nickname.isEmpty()) {
             val message = getString(R.string.nickname_fail_string)
             Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
             return
         }
-        SharedPreferenceUtils.write(applicationContext, ContextUtils.KEY_USER_NICKNAME, nickname)
+        SharedPreferenceUtils.write(applicationContext, PreferConst.KEY_USER_NICKNAME, nickname)
         if (mSqlQuery!!.containsUserTable(applicationContext)) {
             mSqlQuery!!.updateUserNickName(applicationContext, nickname)
         } else {

@@ -10,7 +10,6 @@ import android.widget.*
 import com.bumptech.glide.Glide
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.view.Adapter.CommentListAdpater
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.http.HttpUrlTaskManager
 import momo.kikiplus.modify.http.IHttpReceive
 import momo.kikiplus.modify.sqlite.SQLQuery
@@ -18,6 +17,10 @@ import momo.kikiplus.refactoring.common.util.*
 import momo.kikiplus.refactoring.common.view.KProgressDialog
 import momo.kikiplus.refactoring.common.view.popup.ConfirmPopup
 import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
+import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PopupConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.data.vo.Comment
 import momo.kikiplus.refactoring.kbucket.ui.view.popup.DetailImagePopup
@@ -66,10 +69,10 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
         mCommentList = ArrayList()
         mSqlQuery = SQLQuery()
         val Intent = intent
-        val idx = Intent.getStringExtra(ContextUtils.NUM_SHARE_BUCKET_IDX)
-        mBucket = Intent.getSerializableExtra(ContextUtils.OBJ_SHARE_BUCKET) as Bucket
+        val idx = Intent.getStringExtra(DataConst.NUM_SHARE_BUCKET_IDX)
+        mBucket = Intent.getSerializableExtra(DataConst.OBJ_SHARE_BUCKET) as Bucket
 
-        mUserNickname = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        mUserNickname = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         mHandler!!.sendMessage(mHandler!!.obtainMessage(LOAD_COMMENT_LIST, idx))
 
         (findViewById<View>(R.id.comment_layout_sendBtn) as Button).setOnClickListener(this)
@@ -80,7 +83,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             findViewById<View>(R.id.bucketdetail_back_color).setBackgroundColor(color)
         }
@@ -100,19 +103,19 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
      * 데이타 초기화
      */
     private fun setData(bucket: Bucket) {
-        KLog.d(this.javaClass.simpleName, "@@ setData")
+        KLog.d("@@ setData")
         mBucketNo = bucket.idx
 
-        KLog.d(ContextUtils.TAG, "@@ image exists : " + bucket.imageUrl!!)
+        KLog.log("@@ image exists : " + bucket.imageUrl!!)
         if (bucket.imageUrl != null && bucket.imageUrl != "N") {
             mHandler!!.sendEmptyMessage(DOWNLOAD_IMAGE)
         }
     }
 
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive actionId: $actionId")
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive  type: $type")
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive  obj: $obj")
+        KLog.d( "@@ onHttpReceive actionId: $actionId")
+        KLog.d( "@@ onHttpReceive  type: $type")
+        KLog.d("@@ onHttpReceive  obj: $obj")
         val mData = obj as String
         var isValid = false
         if (actionId != IHttpReceive.DOWNLOAD_IMAGE) {
@@ -120,7 +123,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
                 val json = JSONObject(mData)
                 isValid = json.getBoolean("isValid")
             } catch (e: JSONException) {
-                KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                KLog.log("@@ jsonException message : " + e.message)
             }
 
         }
@@ -130,7 +133,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
                 try {
                     val json = JSONObject(mData)
                     val jsonArray = json.getJSONArray("CommentVOList")
-                    KLog.d(this.javaClass.simpleName, "@@ jsonArray :   $jsonArray")
+                    KLog.d( "@@ jsonArray :   $jsonArray")
                     val size = jsonArray.length()
                     mCommentList!!.clear()
                     for (i in 0 until size) {
@@ -143,7 +146,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
                     }
                     mHandler!!.sendEmptyMessage(SET_COMMENT_LIST)
                 } catch (e: Exception) {
-                    KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                    KLog.log("@@ jsonException message : " + e.message)
                     mHandler!!.sendEmptyMessage(SERVER_LOADING_FAIL)
                 }
 
@@ -157,7 +160,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
             }
         } else if (actionId == IHttpReceive.DOWNLOAD_IMAGE) {
             if (type == IHttpReceive.HTTP_OK) {
-                KLog.d(ContextUtils.TAG, "downlaod image $obj")
+                KLog.log( "downlaod image $obj")
                 mHandler!!.sendEmptyMessage(SET_IMAGE)
             }
         }
@@ -171,7 +174,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
                    return
                 }
                 KProgressDialog.setDataLoadingDialog(this, true, this.getString(R.string.loading_string), true)
-                val httpUrlTaskManager = HttpUrlTaskManager(ContextUtils.INSERT_COMMENT_URL, true, this, IHttpReceive.INSERT_COMMENT)
+                val httpUrlTaskManager = HttpUrlTaskManager(NetworkConst.INSERT_COMMENT_URL, true, this, IHttpReceive.INSERT_COMMENT)
                 val map = HashMap<String, Any>()
                 map["NICKNAME"] = mUserNickname!!
                 map["CONTENT"] = text
@@ -199,7 +202,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
                         content,
                         R.layout.popup_confirm,
                         this,
-                        IPopupReceive.POPUP_BUCKET_ADD
+                        PopupConst.POPUP_BUCKET_ADD
                     )
                 mConfirmPopup!!.showDialog()
             }
@@ -211,15 +214,15 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
             DOWNLOAD_IMAGE -> {
                 val target = findViewById<View>(R.id.share_contents_imageview) as ImageView
                 target.scaleType = ImageView.ScaleType.FIT_XY
-                val url = ContextUtils.KBUCKET_DOWNLOAD_IAMGE + "?idx=" + mBucketNo
-                KLog.d(ContextUtils.TAG, "@@ download image url : $url")
+                val url = NetworkConst.KBUCKET_DOWNLOAD_IAMGE + "?idx=" + mBucketNo
+                KLog.log("@@ download image url : $url")
                 Glide.with(this)
                         .load(url)
                         .into(target)
             }
             LOAD_COMMENT_LIST -> {
                 //KProgressDialog.setDataLoadingDialog(this, true, this.getString(R.string.loading_string));
-                val httpUrlTaskManager = HttpUrlTaskManager(ContextUtils.KBUCKET_COMMENT_URL, true, this, IHttpReceive.COMMENT_LIST)
+                val httpUrlTaskManager = HttpUrlTaskManager(NetworkConst.KBUCKET_COMMENT_URL, true, this, IHttpReceive.COMMENT_LIST)
                 val map = HashMap<String, Any>()
                 map["idx"] = mBucketNo
                 httpUrlTaskManager.execute(StringUtils.getHTTPPostSendData(map))
@@ -231,7 +234,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
             }
             TOAST_MASSEGE -> Toast.makeText(applicationContext, msg.obj as String, Toast.LENGTH_LONG).show()
             SERVER_LOADING_FAIL -> {
-                KLog.d(ContextUtils.TAG, "@@ SERVER_LOADING_FAIL")
+                KLog.log("@@ SERVER_LOADING_FAIL")
                 val message = getString(R.string.server_fail_string)
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
                 finish()
@@ -248,7 +251,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
                     (findViewById<View>(R.id.share_contents_imageview) as ImageView).setImageBitmap(bitmap)
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    KLog.d(ContextUtils.TAG, "@@ set image : " + e.toString())
+                    KLog.log( "@@ set image : " + e.toString())
                 }
 
             }
@@ -264,7 +267,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
     }
 
     override fun onPopupAction(popId: Int, what: Int, obj: Any?) {
-        if (popId == IPopupReceive.POPUP_BUCKET_ADD) {
+        if (popId == PopupConst.POPUP_BUCKET_ADD) {
             if (what == IPopupReceive.POPUP_BTN_OK) {
                 val contents = (findViewById<View>(R.id.share_contents_textview) as TextView).text.toString()
                 val inContainsBucket = mSqlQuery!!.containsKbucket(applicationContext, contents)

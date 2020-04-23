@@ -3,7 +3,7 @@ package momo.kikiplus
 import android.app.Application
 import com.google.android.gms.analytics.GoogleAnalytics
 import com.google.android.gms.analytics.Tracker
-import momo.kikiplus.modify.ContextUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
 
 /**
  * Created by mihyeKim on 2016-11-13.
@@ -21,7 +21,7 @@ class AnalyticsApplication : Application() {
         @Synchronized get() {
             if (mTracker == null) {
                 val analytics = GoogleAnalytics.getInstance(this)
-                mTracker = analytics.newTracker(ContextUtils.KEY_ANALYTICS)
+                mTracker = analytics.newTracker(NetworkConst.KEY_ANALYTICS)
             }
             return mTracker!!
         }

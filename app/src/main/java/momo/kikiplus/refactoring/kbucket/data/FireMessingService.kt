@@ -12,7 +12,7 @@ import com.google.firebase.messaging.RemoteMessage
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
-import momo.kikiplus.refactoring.kbucket.data.finall.KMemoConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 
 /***
@@ -26,12 +26,12 @@ class FireMessingService : com.google.firebase.messaging.FirebaseMessagingServic
 
     override fun onNewToken(p0: String) {
         super.onNewToken(p0)
-        KLog.d(this.javaClass.simpleName, "@@ FireMessingService token : " + p0)
-        SharedPreferenceUtils.write(this, KMemoConst.KEY_USER_FCM, p0)
+        KLog.d("@@ FireMessingService token : " + p0)
+        SharedPreferenceUtils.write(this, PreferConst.KEY_USER_FCM, p0)
     }
 
     override fun onMessageReceived(p0: RemoteMessage) {
-        KLog.d(TAG, "@@ FireMessingService onMessageReceived: " + p0.data.toString())
+        KLog.d( "@@ FireMessingService onMessageReceived: " + p0.data.toString())
         sendNotification(p0.data["message"])
 
     }

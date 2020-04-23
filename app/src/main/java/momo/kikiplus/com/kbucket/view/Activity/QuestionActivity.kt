@@ -8,9 +8,9 @@ import android.view.View
 import android.widget.EditText
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.QuestionActivityBinding
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.refactoring.common.util.AppUtils
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 
 /**
  * @author grapegirl
@@ -43,7 +43,7 @@ class QuestionActivity : Activity(), View.OnClickListener {
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             findViewById<View>(R.id.question_back_color).setBackgroundColor(color)
         }

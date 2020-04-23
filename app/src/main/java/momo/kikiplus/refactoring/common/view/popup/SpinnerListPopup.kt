@@ -83,7 +83,7 @@ class SpinnerListPopup
     }
 
     override fun destroyDialog() {
-        KLog.e(this.javaClass.simpleName, "@@ destory")
+        KLog.e("@@ destory")
         dialog = null
     }
 
@@ -98,7 +98,7 @@ class SpinnerListPopup
                     jsonObject.put("styleCode", m_Adapter!!.selectedCodeList)
                 } catch (e: JSONException) {
                     e.printStackTrace()
-                    KLog.d(this.javaClass.simpleName, "@@ JSONException ")
+                    KLog.d("@@ JSONException ")
                 }
 
                 mPopupReceive!!.onPopupAction(mPopId,

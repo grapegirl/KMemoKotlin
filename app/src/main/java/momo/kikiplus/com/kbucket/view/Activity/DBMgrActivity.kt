@@ -10,11 +10,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.http.HttpUrlFileUploadManager
 import momo.kikiplus.modify.http.IHttpReceive
 import momo.kikiplus.modify.sqlite.SQLQuery
 import momo.kikiplus.refactoring.common.util.*
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
+import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import java.util.*
 
 
@@ -41,7 +43,7 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             findViewById<View>(R.id.bg_db_view).setBackgroundColor(color)
         }
@@ -71,7 +73,7 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
         when (requestCode) {
             FILE_SELECT_CODE -> if (resultCode == Activity.RESULT_OK) {
                 val uri = data.data
-                KLog.d(ContextUtils.TAG, "@@ onActivityResult path :  " +  uri!!.path!!)
+                KLog.log( "@@ onActivityResult path :  " +  uri!!.path!!)
 
                 val isResult = DataUtils.importDB(uri.path!!)
                 if (isResult) {
@@ -106,9 +108,9 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
                 val isResult = DataUtils.exportDB(newDBName)
                 if (isResult) {
                     val mssage = getString(R.string.db_backup_path_string)
-                    val path = Environment.getExternalStorageDirectory().toString() + "/" + ContextUtils.KEY_FILE_FOLDER + "/" + newDBName + ".db"
+                    val path = Environment.getExternalStorageDirectory().toString() + "/" + DataConst.KEY_FILE_FOLDER + "/" + newDBName + ".db"
                     mHandler!!.sendMessage(mHandler!!.obtainMessage(UPLOAD_DB, path))
-                    Toast.makeText(applicationContext, mssage + "\n" + ContextUtils.KEY_FILE_FOLDER + "/" + newDBName + ".db", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, mssage + "\n" + DataConst.KEY_FILE_FOLDER + "/" + newDBName + ".db", Toast.LENGTH_LONG).show()
                 } else {
                     val message = getString(R.string.db_backup_faile_string)
                     mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
@@ -130,11 +132,11 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
             UPLOAD_DB // DB 백업
             -> {
                 val path = msg.obj as String
-                val nIndex = path.indexOf(ContextUtils.KEY_FILE_FOLDER + "/")
+                val nIndex = path.indexOf(DataConst.KEY_FILE_FOLDER + "/")
                 val fileName = path.substring(nIndex + 6, path.length)
-                val userNickName = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+                val userNickName = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
                 val bytes = ByteUtils.getByteArrayFromFile(path)
-                val httpUrlFileUploadManager = HttpUrlFileUploadManager(ContextUtils.KBUCKET_UPLOAD_DB_URL, this, IHttpReceive.UPLOAD_DB, bytes!!)
+                val httpUrlFileUploadManager = HttpUrlFileUploadManager(NetworkConst.KBUCKET_UPLOAD_DB_URL, this, IHttpReceive.UPLOAD_DB, bytes!!)
                 httpUrlFileUploadManager.execute(path, "nickname", userNickName, fileName)
             }
         }
@@ -142,7 +144,7 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
     }
 
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive : $obj")
+        KLog.d("@@ onHttpReceive : $obj")
         // 버킷 공유 결과
         if (actionId == IHttpReceive.UPLOAD_DB) {
             if (type == IHttpReceive.Companion.HTTP_OK) {

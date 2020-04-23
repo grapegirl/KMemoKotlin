@@ -13,7 +13,6 @@ import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.ShareListActivityBinding
 import momo.kikiplus.com.kbucket.view.Adapter.ShareListAdpater
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.http.HttpUrlTaskManager
 import momo.kikiplus.modify.http.IHttpReceive
 import momo.kikiplus.refactoring.common.util.KLog
@@ -23,6 +22,9 @@ import momo.kikiplus.refactoring.common.util.StringUtils
 import momo.kikiplus.refactoring.common.view.KProgressDialog
 import momo.kikiplus.refactoring.kbucket.action.net.CategoryList
 import momo.kikiplus.refactoring.kbucket.action.net.NetRetrofit
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
+import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.data.vo.Category
 import org.json.JSONException
@@ -73,7 +75,7 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             findViewById<View>(R.id.share_back_color).setBackgroundColor(color)
         }
@@ -85,9 +87,9 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
     }
 
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive actionId: $actionId")
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive  type: $type")
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive  obj: $obj")
+        KLog.d("@@ onHttpReceive actionId: $actionId")
+        KLog.d("@@ onHttpReceive  type: $type")
+        KLog.d( "@@ onHttpReceive  obj: $obj")
         val mData = obj as String
         var isValid = false
         if (mData.length > 0) {
@@ -96,7 +98,7 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
 
                 isValid = json.getBoolean("isValid")
             } catch (e: JSONException) {
-                KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                KLog.log("@@ jsonException message : " + e.message)
             }
 
         }
@@ -108,7 +110,7 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
                 try {
                     val json = JSONObject(mData)
                     val jsonArray = json.getJSONArray("bucketList")
-                    KLog.d(this.javaClass.simpleName, "@@ jsonArray :   $jsonArray")
+                    KLog.d("@@ jsonArray :   $jsonArray")
                     val size = jsonArray.length()
                     mBucketDataList.clear()
                     for (i in 0 until size) {
@@ -126,7 +128,7 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
                     }
                     mHandler.sendEmptyMessage(SET_BUCKETLIST)
                 } catch (e: JSONException) {
-                    KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                    KLog.log( "@@ jsonException message : " + e.message)
                     mHandler.sendEmptyMessage(SERVER_LOADING_FAIL)
                 }
 
@@ -159,15 +161,15 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
                                     }
                                     mHandler.sendEmptyMessage(SET_CATEGORY)
                                 } catch (e: JSONException) {
-                                    KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                                    KLog.log("@@ jsonException message : " + e.message)
                                     mHandler.sendEmptyMessage(SERVER_LOADING_FAIL)
                                 }
                         }
                     }
 
                     override fun onFailure(call: Call<CategoryList>, t: Throwable) {
-                        KLog.d(ContextUtils.TAG, "@@ NoticeList onFailure call : " + call.request())
-                        KLog.d(ContextUtils.TAG, "@@ NoticeList onFailure message : " + t.message)
+                        KLog.log( "@@ NoticeList onFailure call : " + call.request())
+                        KLog.log("@@ NoticeList onFailure message : " + t.message)
                         mHandler.sendEmptyMessage(SERVER_LOADING_FAIL)
                     }
                 })
@@ -176,7 +178,7 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
             SET_CATEGORY -> {
                 setButton()
                 findViewById<View>(R.id.share_category_view).visibility = View.VISIBLE
-                KLog.d(ContextUtils.TAG, "@@ SET_CATEGORY")
+                KLog.log("@@ SET_CATEGORY")
                 mHandler.sendEmptyMessage(SHARE_BUCKET_LIST)
             }
             SERVER_LOADING_FAIL -> {
@@ -184,11 +186,11 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
             SHARE_BUCKET_LIST -> {
                 var data = msg.obj as String?
                 if (data == null) {
-                    data = ContextUtils.DEFULAT_SHARE_BUCKET_IDX
+                    data = DataConst.DEFULAT_SHARE_BUCKET_IDX
                     setButtonSelected(R.id.category_item0)
                 }
                 KProgressDialog.setDataLoadingDialog(this, true, this.getString(R.string.loading_string), true)
-                val httpUrlTaskManager = HttpUrlTaskManager(ContextUtils.KBUCKET_BUCKET_LIST_URL, true, this, IHttpReceive.BUCKET_LIST)
+                val httpUrlTaskManager = HttpUrlTaskManager(NetworkConst.KBUCKET_BUCKET_LIST_URL, true, this, IHttpReceive.BUCKET_LIST)
                 val map = HashMap<String, Any>()
                 map["idx"] = data
                 httpUrlTaskManager.execute(StringUtils.getHTTPPostSendData(map))
@@ -262,8 +264,8 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
                 val idx = mBucketDataList[sharedIdx].idx
                 KLog.log("@@ onclick detail idx : " + idx)
                 val intent = Intent(this, ShareDetailActivity::class.java)
-                intent.putExtra(ContextUtils.NUM_SHARE_BUCKET_IDX, idx.toString() + "")
-                intent.putExtra(ContextUtils.OBJ_SHARE_BUCKET, mBucketDataList[sharedIdx])
+                intent.putExtra(DataConst.NUM_SHARE_BUCKET_IDX, idx.toString() + "")
+                intent.putExtra(DataConst.OBJ_SHARE_BUCKET, mBucketDataList[sharedIdx])
                 startActivity(intent)
             }
         }

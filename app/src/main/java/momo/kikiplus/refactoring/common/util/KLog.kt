@@ -1,7 +1,6 @@
 package momo.kikiplus.refactoring.common.util
 
 import android.util.Log
-import momo.kikiplus.modify.ContextUtils
 
 /***
  * @author grapegirl
@@ -19,56 +18,57 @@ class KLog {
 
     companion object {
 
-        private var VIEW_LOG = true
+        var VIEW_LOG = true
+        val TAG : String = "KMemo"
 
         fun log(msg: String){
             if(!VIEW_LOG)
                 return
 
-            Log.d(ContextUtils.TAG, buildLogMsg(msg))
+            Log.d(TAG, buildLogMsg(msg))
         }
 
-        fun d(tag: String, msg: String) {
+        fun d(msg: String) {
             if (!VIEW_LOG)
                 return
 
-            Log.d(tag,
+            Log.d(TAG,
                 buildLogMsg(msg)
             )
         }
 
-        fun e(tag: String, msg: String) {
+        fun e(msg: String) {
             if (!VIEW_LOG)
                 return
 
-            Log.e(tag,
+            Log.e(TAG,
                 buildLogMsg(msg)
             )
         }
 
-        fun w(tag: String, msg: String) {
+        fun w(msg: String) {
             if (!VIEW_LOG)
                 return
 
-            Log.w(tag,
+            Log.w(TAG,
                 buildLogMsg(msg)
             )
         }
 
-        fun i(tag: String, msg: String) {
+        fun i(msg: String) {
             if (!VIEW_LOG)
                 return
 
-            Log.i(tag,
+            Log.i(TAG,
                 buildLogMsg(msg)
             )
         }
 
-        fun v(tag: String, msg: String) {
+        fun v(msg: String) {
             if (!VIEW_LOG)
                 return
 
-            Log.v(tag,
+            Log.v(TAG,
                 buildLogMsg(msg)
             )
         }

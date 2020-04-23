@@ -5,10 +5,11 @@ import android.os.AsyncTask
 import android.os.Build
 import android.os.Handler
 import android.os.Message
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.http.HttpUrlTaskManager
 import momo.kikiplus.modify.http.IHttpReceive
 import momo.kikiplus.refactoring.common.util.*
+import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.data.vo.MobileUser
 import java.util.*
 
@@ -21,12 +22,9 @@ import java.util.*
  */
 class UserUpdateTask(private  val mContext : Context) : AsyncTask<Void, Void, Void>(), IHttpReceive, android.os.Handler.Callback {
 
-    private val TAG = this.javaClass.simpleName
-
     private val mHandler: Handler = Handler(this)
 
     private lateinit var mUserData: MobileUser
-
 
     override fun onPreExecute() {
         setUserData()
@@ -40,14 +38,14 @@ class UserUpdateTask(private  val mContext : Context) : AsyncTask<Void, Void, Vo
 
     fun setUserData() {
         val mobileUser = MobileUser()
-        val userNickName = SharedPreferenceUtils.read(mContext, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        val userNickName = SharedPreferenceUtils.read(mContext, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         mobileUser.userNickName = userNickName
         mobileUser.versionName = AppUtils.getVersionName(mContext)
         mobileUser.lanuage = AppUtils.getUserPhoneLanuage(mContext)
         mobileUser.country = AppUtils.getUserPhoneCoutry(mContext)
         val date = DateUtils.getStringDateFormat(DateUtils.DATE_YYMMDD_PATTER, Date())
         mobileUser.createDt = date
-        val gcmToken = SharedPreferenceUtils.read(mContext, ContextUtils.KEY_USER_FCM, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        val gcmToken = SharedPreferenceUtils.read(mContext, PreferConst.KEY_USER_FCM, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         mobileUser.token = gcmToken!!
 
         mUserData = mobileUser
@@ -62,14 +60,14 @@ class UserUpdateTask(private  val mContext : Context) : AsyncTask<Void, Void, Vo
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
         if (actionId == IHttpReceive.UPDATE_USER) {
             if (type == IHttpReceive.HTTP_OK) {
-                KLog.d(TAG, "@@ Update User Success !")
+                KLog.d( "@@ Update User Success !")
             }
         }
     }
 
     override fun handleMessage(msg: Message): Boolean {
         //서버에 내 정보 업데이트
-        val mHttpUrlTaskManager = HttpUrlTaskManager(ContextUtils.KBUCKET_UPDATE_USER, true, this, IHttpReceive.UPDATE_USER)
+        val mHttpUrlTaskManager = HttpUrlTaskManager(NetworkConst.KBUCKET_UPDATE_USER, true, this, IHttpReceive.UPDATE_USER)
         val map = HashMap<String, Any>()
         map["OS"] = mUserData.os
         map["NICKNAME"] = mUserData.userNickName!!

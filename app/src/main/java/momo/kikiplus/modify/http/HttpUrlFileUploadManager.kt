@@ -112,12 +112,12 @@ class HttpUrlFileUploadManager
             }while (ch == -1)
 
             val s = b.toString()
-            KLog.e("Test", "result = $s")
+            KLog.e( "result = $s")
             dos.close()
             mIHttpReceive!!.onHttpReceive(IHttpReceive.HTTP_OK, mId, s)
 
         } catch (e: Exception) {
-            KLog.d("Test", "exception " + e.message)
+            KLog.d( "exception " + e.message)
             mIHttpReceive!!.onHttpReceive(IHttpReceive.HTTP_FAIL, mId, this.javaClass.toString() + " @@ Exception ")
         }
 

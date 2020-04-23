@@ -4,8 +4,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import momo.kikiplus.com.kbucket.view.Activity.WriteMemoActivity
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.refactoring.common.util.KLog
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IntroActivity
 
 class KWidgetReceiver : BroadcastReceiver() {
@@ -13,18 +13,18 @@ class KWidgetReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         var newIntent = intent
-        KLog.d(ContextUtils.TAG, "@@ KWidgetReceiver action : " + intent.action!!)
+        KLog.log("@@ KWidgetReceiver action : " + intent.action!!)
 
         val action = newIntent.action
 
         if (WIDGET_ACTION_WRITE_EVENT == action) {
-            callActivity(context, ContextUtils.WIDGET_WRITE_BUCKET)
+            callActivity(context, DataConst.WIDGET_WRITE_BUCKET)
         } else if (WIDGET_ACTION_LIST_EVENT == action) {
-            callActivity(context, ContextUtils.WIDGET_BUCKET_LIST)
+            callActivity(context, DataConst.WIDGET_BUCKET_LIST)
         } else if (WIDGET_ACTION_OURS_BUCKET_EVENT == action) {
-            callActivity(context, ContextUtils.WIDGET_OURS_BUCKET)
+            callActivity(context, DataConst.WIDGET_OURS_BUCKET)
         } else if (WIDGET_ACTION_SHARE_EVENT == action) {
-            callActivity(context, ContextUtils.WIDGET_SHARE)
+            callActivity(context, DataConst.WIDGET_SHARE)
         } else if (WIDGET_ACTION_MEMO_WRITE_EVENT == action) {
             newIntent = Intent(context, WriteMemoActivity::class.java)
             newIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -38,7 +38,7 @@ class KWidgetReceiver : BroadcastReceiver() {
      * Activity 호출 (Intent.FLAG_ACTIVITY_NEW_TASK)
      */
     private fun callActivity(context: Context, message: String) {
-        KLog.d(ContextUtils.TAG, "@@ widget callActivity message : $message")
+        KLog.log("@@ widget callActivity message : $message")
         val intent = Intent(context, IntroActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         intent.putExtra("DATA", message)

@@ -1,91 +1,6 @@
-package momo.kikiplus.modify
+package momo.kikiplus.refactoring.kbucket.data.finally
 
-/***
- * @author grapegirl
- * @version 1.0
- * @Class Name : ContextUtils
- * @Description : 앱 관리 정보
- * @since 2015-08-21.
- */
-object ContextUtils {
-
-    /**
-     * App Name Tag
-     */
-    val TAG = "KMemo"
-
-
-    /*
-     * Activity 별 상수 정의
-     *
-     */
-
-    /**
-     * 가지 작성 화면
-     */
-    val VIEW_WRITE = "WriteActivity"
-    /**
-     * 완료된 가지 목록 화면
-     */
-    val VIEW_COMPLETE_LIST = "BucketListActivity"
-    /**
-     * 버킷 공유(Life)
-     */
-    val DEFULAT_SHARE_BUCKET_IDX = "1"
-    /**
-     * 공유 idx
-     */
-    val NUM_SHARE_BUCKET_IDX = "SHARE_BUCKET_IDX"
-    /**
-     * 공유 bucket
-     */
-    val OBJ_SHARE_BUCKET = "OBJ_SHARE_BUCKET"
-
-    //상수들
-    val WIDGET_WRITE_BUCKET = "WRITE"
-    val WIDGET_BUCKET_LIST = "LIST"
-    val WIDGET_SHARE = "SHARE"
-    val WIDGET_OURS_BUCKET = "OURS_BUCKET"
-    val WIDGET_SEND_DATA = "WIDGET_SEND_DATA"
-    val START_OPEN_DRAWER = "START_OPEN_DRAWER"
-
-    val SORT_DATE = "SORT_DATE"
-    val SORT_MEMO = "SORT_MEMO"
-    val SORT_DEADLINE = "SORT_DEADLINE"
-    val BACK_MEMO = "BACK_MEMO"
-
-
-    /**************************************************************************
-     *
-     * Application 상수 정의
-     *
-     */
-
-    /**
-     * 패키지명
-     */
-    val PACKAGE_NAME = "momo.kikiplus.com.kbucket"
-
-    /**
-     * 파일 저장 장소(폴더명)
-     */
-    val KEY_FILE_FOLDER = "KMemo"
-
-    /**
-     * 데이터베이스 이름명
-     */
-    val KBUCKET_DB_NAME = "bucket.db"
-    /**
-     * 구글 Ads ID
-     */
-    val KBUCKET_AD_UNIT_ID = "ca-app-pub-9950741145331464/5719370666"
-
-
-    /**
-     * Sort
-     */
-    val KBUCKET_SORT_KEY = "KBUCKET_SORT"
-
+object NetworkConst {
 
     /**************************************************************************
      *
@@ -169,4 +84,5 @@ object ContextUtils {
      * Anayltics 키값
      */
     val KEY_ANALYTICS = "UA-86096322-1"
+
 }

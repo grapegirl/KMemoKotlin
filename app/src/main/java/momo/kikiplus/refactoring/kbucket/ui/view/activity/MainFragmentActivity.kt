@@ -20,10 +20,11 @@ import com.google.firebase.FirebaseApp
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
 import momo.kikiplus.com.kbucket.view.Activity.*
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.sqlite.SQLQuery
 import momo.kikiplus.refactoring.common.util.*
 import momo.kikiplus.refactoring.kbucket.data.FireMessingService
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.task.AppUpdateTask
 import momo.kikiplus.refactoring.task.UserUpdateTask
 
@@ -55,10 +56,10 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
 
         val getIntent = intent
         Log.d("mhkim", "@@ getIntent : " + getIntent)
-        val data = getIntent.getStringExtra(ContextUtils.WIDGET_SEND_DATA)
-        if (data != null && data == ContextUtils.WIDGET_SHARE) {
+        val data = getIntent.getStringExtra(DataConst.WIDGET_SEND_DATA)
+        if (data != null && data == DataConst.WIDGET_SHARE) {
             ShareSocial()
-        }else if(data != null && data == ContextUtils.START_OPEN_DRAWER){
+        }else if(data != null && data == DataConst.START_OPEN_DRAWER){
             mHandler.sendEmptyMessage(OPEN_DRAWER)
         }
 
@@ -87,7 +88,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
             android.R.layout.simple_list_item_1, confDatas)
         mBinding.drawerList.onItemClickListener = DrawerItemClickListener()
 
-        MobileAds.initialize(this, ContextUtils.KBUCKET_AD_UNIT_ID)
+        MobileAds.initialize(this, DataConst.KBUCKET_AD_UNIT_ID)
         val adRequest = AdRequest.Builder().build()
         mBinding.mainAdLayout.loadAd(adRequest)
         mBinding.mainAdLayout.adListener = object : AdListener() {
@@ -127,7 +128,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             mBinding.mainFragementActivityBackground.setBackgroundColor(color)
         }
@@ -136,13 +137,13 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
     override fun onStart() {
         super.onStart()
 
-        var userNickName = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        var userNickName = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         val sqlQuery = SQLQuery()
         val list = sqlQuery.selectUserTable(applicationContext)
         val strDBNickName = list?.get("nickname")
 
         if (strDBNickName != null) {
-            SharedPreferenceUtils.write(this, ContextUtils.KEY_USER_NICKNAME, strDBNickName)
+            SharedPreferenceUtils.write(this, PreferConst.KEY_USER_NICKNAME, strDBNickName)
             userNickName = strDBNickName
         }
 
@@ -151,8 +152,8 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
             startActivity(intent)
         }
 
-        var strToken = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_FCM, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
-        KLog.d(ContextUtils.TAG, "@@ onStart strToken : " + strToken)
+        var strToken = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_FCM, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        KLog.log("@@ onStart strToken : " + strToken)
         if(strToken == null){
             val intent = Intent(this, FireMessingService::class.java)
             startService(intent)
@@ -260,7 +261,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
             -> {
                 val message = getString(R.string.password_cancle_string)
                 Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
-                SharedPreferenceUtils.write(applicationContext, ContextUtils.KEY_CONF_PASSWORD, "")
+                SharedPreferenceUtils.write(applicationContext, PreferConst.KEY_CONF_PASSWORD, "")
             }
             2//DB 관리
             -> {

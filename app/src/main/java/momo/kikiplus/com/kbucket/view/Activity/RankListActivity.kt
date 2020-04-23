@@ -9,11 +9,12 @@ import android.widget.ListView
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.view.Adapter.RankListAdpater
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.http.HttpUrlTaskManager
 import momo.kikiplus.modify.http.IHttpReceive
 import momo.kikiplus.refactoring.common.util.*
 import momo.kikiplus.refactoring.common.view.KProgressDialog
+import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.data.vo.BucketRank
 import org.json.JSONException
 import org.json.JSONObject
@@ -54,7 +55,7 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             findViewById<View>(R.id.share_back_color).setBackgroundColor(color)
         }
@@ -66,9 +67,9 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
     }
 
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive actionId: $actionId")
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive  type: $type")
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive  obj: $obj")
+        KLog.d("@@ onHttpReceive actionId: $actionId")
+        KLog.d( "@@ onHttpReceive  type: $type")
+        KLog.d( "@@ onHttpReceive  obj: $obj")
         val mData = obj as String
         var isValid = false
         if (mData.isNotEmpty()) {
@@ -76,7 +77,7 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
                 val json = JSONObject(mData)
                 isValid = json.getBoolean("isValid")
             } catch (e: JSONException) {
-                KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                KLog.log("@@ jsonException message : " + e.message)
             }
 
         }
@@ -86,7 +87,7 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
                 try {
                     val json = JSONObject(mData)
                     val jsonArray = json.getJSONArray("bucketList")
-                    KLog.d(this.javaClass.simpleName, "@@ jsonArray :   $jsonArray")
+                    KLog.d("@@ jsonArray :   $jsonArray")
                     val size = jsonArray.length()
                     mBucketDataList!!.clear()
                     for (i in 0 until size) {
@@ -103,7 +104,7 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
                     }
                     mHandler!!.sendEmptyMessage(SET_LIST)
                 } catch (e: JSONException) {
-                    KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                    KLog.log("@@ jsonException message : " + e.message)
                     mHandler!!.sendEmptyMessage(SERVER_LOADING_FAIL)
                 }
 
@@ -126,15 +127,15 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
         when (msg.what) {
             TOAST_MASSEGE -> Toast.makeText(applicationContext, msg.obj as String, Toast.LENGTH_LONG).show()
             SERVER_LOADING_FAIL -> {
-                KLog.d(ContextUtils.TAG, "@@ SERVER_LOADING_FAIL")
+                KLog.log( "@@ SERVER_LOADING_FAIL")
                 val message = getString(R.string.server_fail_string)
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
                 finish()
             }
             LOAD_BUCKET_RANK -> {
                 KProgressDialog.setDataLoadingDialog(this, true, this.getString(R.string.loading_string), true)
-                var userNickName: String = (SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?)!!
-                var httpUrlTaskManager = HttpUrlTaskManager(ContextUtils.KBUCKET_RANK_LIST_URL, true, this, IHttpReceive.RANK_LIST)
+                var userNickName: String = (SharedPreferenceUtils.read(this, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?)!!
+                var httpUrlTaskManager = HttpUrlTaskManager(NetworkConst.KBUCKET_RANK_LIST_URL, true, this, IHttpReceive.RANK_LIST)
                 var map = HashMap<String, Any>()
                 map["pageNm"] = "1"
                 map["nickname"] = userNickName
@@ -147,8 +148,8 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
             }
             SEND_BUCKET_RANK -> {
                 KProgressDialog.setDataLoadingDialog(this, true, this.getString(R.string.loading_string), true)
-                val userNickName = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
-                val httpUrlTaskManager = HttpUrlTaskManager(ContextUtils.KBUCKET_RANK_COMMENT, true, this, IHttpReceive.RANK_UPDATE_COMMENT)
+                val userNickName = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+                val httpUrlTaskManager = HttpUrlTaskManager(NetworkConst.KBUCKET_RANK_COMMENT, true, this, IHttpReceive.RANK_UPDATE_COMMENT)
                 val map = HashMap<String, Any>()
                 map.put("idx", mBucketRankIdx)
                 map.put("comment", mBucketRankComment)

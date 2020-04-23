@@ -6,7 +6,7 @@ import android.graphics.Typeface
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
-import momo.kikiplus.modify.ContextUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -29,7 +29,7 @@ object DataUtils {
      */
     val newFileName: String
         get() {
-            val path = File(Environment.getExternalStorageDirectory().absolutePath + "/" + ContextUtils.KEY_FILE_FOLDER)
+            val path = File(Environment.getExternalStorageDirectory().absolutePath + "/" + DataConst.KEY_FILE_FOLDER)
             if (!path.exists()) {
                 path.mkdirs()
             }
@@ -45,8 +45,8 @@ object DataUtils {
      * @return 파일 생성 완료 여부
      */
     fun createFile(): Boolean {
-        val path = File(Environment.getExternalStorageDirectory().absolutePath + "/" + ContextUtils.KEY_FILE_FOLDER)
-        val noMediaFile = File(Environment.getExternalStorageDirectory().absolutePath + "/" + ContextUtils.KEY_FILE_FOLDER + "/.nomedia")
+        val path = File(Environment.getExternalStorageDirectory().absolutePath + "/" + DataConst.KEY_FILE_FOLDER)
+        val noMediaFile = File(Environment.getExternalStorageDirectory().absolutePath + "/" + DataConst.KEY_FILE_FOLDER + "/.nomedia")
         if (!noMediaFile.exists()) {
             noMediaFile.mkdir()
         }
@@ -126,13 +126,13 @@ object DataUtils {
      */
     fun importDB(backupDBPath: String): Boolean {
         var backupDBPath = backupDBPath
-        KLog.d("DataUtils", "@@ DB importDB path :  " +  backupDBPath)
+        KLog.d( "@@ DB importDB path :  " +  backupDBPath)
         try {
             val sd = Environment.getExternalStorageDirectory()
             val data = Environment.getDataDirectory()
             if (sd.canWrite()) {
-                val currentDBPath = ("//data//" + ContextUtils.PACKAGE_NAME
-                        + "//databases//" + ContextUtils.KBUCKET_DB_NAME)
+                val currentDBPath = ("//data//" + DataConst.PACKAGE_NAME
+                        + "//databases//" + DataConst.KBUCKET_DB_NAME)
                 val backupDB = File(data, currentDBPath)
 
                 if (backupDBPath.contains("/KMemo/")) {
@@ -145,10 +145,10 @@ object DataUtils {
                 dst.transferFrom(src, 0, src.size())
                 src.close()
                 dst.close()
-                KLog.d("DataUtils", "@@ DB 파일 복원 완료 ")
+                KLog.d("@@ DB 파일 복원 완료 ")
             }
         } catch (e: Exception) {
-            KLog.d("DataUtils", "@@ DB 파일 복원 에러 : " + e.toString())
+            KLog.d("@@ DB 파일 복원 에러 : " + e.toString())
             return false
         }
 
@@ -167,13 +167,13 @@ object DataUtils {
             val data = Environment.getDataDirectory()
 
             if (sd.canWrite()) {
-                val currentDBPath = ("//data//" + ContextUtils.PACKAGE_NAME
-                        + "/databases/" + ContextUtils.KBUCKET_DB_NAME)
+                val currentDBPath = ("//data//" + DataConst.PACKAGE_NAME
+                        + "/databases/" + DataConst.KBUCKET_DB_NAME)
 
-                val backupDBPath = ContextUtils.KEY_FILE_FOLDER + "/" + NewdbName + ".db"
+                val backupDBPath = DataConst.KEY_FILE_FOLDER + "/" + NewdbName + ".db"
                 val currentDB = File(data, currentDBPath)
 
-                val kmemoFile = File(sd, ContextUtils.KEY_FILE_FOLDER)
+                val kmemoFile = File(sd, DataConst.KEY_FILE_FOLDER)
                 if (!kmemoFile.exists()) {
                     kmemoFile.mkdirs()
                 }
@@ -186,10 +186,10 @@ object DataUtils {
                 dst.transferFrom(src, 0, src.size())
                 src.close()
                 dst.close()
-                KLog.d("DataUtils", "@@ DB 파일 백업 완료 ")
+                KLog.d( "@@ DB 파일 백업 완료 ")
             }
         } catch (e: Exception) {
-            KLog.e("DataUtils", "@@ DB 파일 백업 에러 : " + e.toString())
+            KLog.e("@@ DB 파일 백업 에러 : " + e.toString())
             return false
         }
 

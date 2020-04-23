@@ -18,13 +18,16 @@ import momo.kikiplus.com.kbucket.view.Activity.BucketListActivity
 import momo.kikiplus.com.kbucket.view.Activity.NoticeActivity
 import momo.kikiplus.com.kbucket.view.Activity.RankListActivity
 import momo.kikiplus.com.kbucket.view.Activity.ShareListActivity
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.http.HttpUrlTaskManager
 import momo.kikiplus.modify.http.IHttpReceive
 import momo.kikiplus.refactoring.common.util.*
 import momo.kikiplus.refactoring.common.view.KProgressDialog
 import momo.kikiplus.refactoring.common.view.popup.BasicPopup
 import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
+import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PopupConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.viewmodel.MainViewModel
 import momo.kikiplus.refactoring.kbucket.ui.view.popup.AIPopup
@@ -89,7 +92,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback,
     }
 
     override fun onClick(view: View) {
-        KLog.d(ContextUtils.TAG, "@@ onClick ")
+        KLog.d("@@ onClick ")
         when (view.id) {
             R.id.main_writeBtn -> {
 
@@ -105,7 +108,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback,
             R.id.main_bucketlistBtn -> mHandler.sendEmptyMessage(SHARE_THE_WORLD)
             R.id.main_conf_btn -> {
                 val intent = Intent(mActivity, MainFragmentActivity::class.java)
-                intent.putExtra("DATA", ContextUtils.START_OPEN_DRAWER)
+                intent.putExtra("DATA", DataConst.START_OPEN_DRAWER)
                 startActivity(intent)
             }
             R.id.main_update_btn -> mHandler.sendEmptyMessage(NOTICE)
@@ -143,8 +146,8 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback,
                 AppUtils.sendTrackerScreen(mActivity!!, "공지화면")
             }
             REQUEST_AI -> {
-                val userNickName = SharedPreferenceUtils.read(mActivity!!, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
-                val httpUrlTaskManager = HttpUrlTaskManager(ContextUtils.KBUCKET_AI, true, this, IHttpReceive.REQUEST_AI)
+                val userNickName = SharedPreferenceUtils.read(mActivity!!, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+                val httpUrlTaskManager = HttpUrlTaskManager(NetworkConst.KBUCKET_AI, true, this, IHttpReceive.REQUEST_AI)
                 val map = HashMap<String, Any>()
                 map["nickname"] = userNickName!!
                 httpUrlTaskManager.execute(StringUtils.getHTTPPostSendData(map))
@@ -160,7 +163,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback,
                         content,
                         R.layout.popup_basic,
                         this,
-                        IPopupReceive.POPUP_BASIC
+                        PopupConst.POPUP_BASIC
                     )
                 mBasicPopup!!.showDialog()
             }
@@ -168,13 +171,13 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback,
             -> {
                 KProgressDialog.setDataLoadingDialog(context, false, null, false)
                 val content : String = message.obj as String
-                KLog.d(ContextUtils.TAG, "@@ Respond AI msg : " + content)
+                KLog.d("@@ Respond AI msg : " + content)
                 mAIPopup = AIPopup(
                     mActivity!!,
                     content,
                     R.layout.popup_ai,
                     this,
-                    IPopupReceive.POPUP_AI
+                    PopupConst.POPUP_AI
                 )
                 mAIPopup!!.showDialog()
             }
@@ -183,7 +186,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback,
     }
 
     override fun onPopupAction(popId: Int, what: Int, obj: Any?) {
-        if (popId == IPopupReceive.POPUP_BASIC) {
+        if (popId == PopupConst.POPUP_BASIC) {
             if (what == IPopupReceive.POPUP_BTN_OK || what == IPopupReceive.POPUP_BTN_CLOSEE || what == IPopupReceive.POPUP_DISPOSE) {
                 mBasicPopup!!.closeDialog()
             }
@@ -191,7 +194,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback,
     }
 
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive : $obj")
+        KLog.d("@@ onHttpReceive : $obj")
         // 버킷 공유 결과
         val mData = obj as String
         var message: String? = null

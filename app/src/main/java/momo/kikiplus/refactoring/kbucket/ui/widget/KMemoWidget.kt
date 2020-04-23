@@ -9,10 +9,9 @@ import android.content.Intent
 import android.widget.RemoteViews
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.view.Activity.WriteMemoActivity
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
-import momo.kikiplus.refactoring.kbucket.data.finall.KMemoConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 
 /**
  * Created by cs on 2017-04-05.
@@ -28,7 +27,7 @@ class KMemoWidget : AppWidgetProvider() {
             val appWidgetId = appWidgetIds[i]
             val views = RemoteViews(context.packageName, R.layout.activity_layout_memo_widget)
             appWidgetManager.updateAppWidget(appWidgetId, views)
-            KLog.d(ContextUtils.TAG, "@@ onUpdate appWidgetId : " + appWidgetId)
+            KLog.log( "@@ onUpdate appWidgetId : " + appWidgetId)
         }
     }
 
@@ -57,7 +56,7 @@ class KMemoWidget : AppWidgetProvider() {
         super.onDeleted(context, appWidgetIds)
         //Toast.makeText(context, "onDeleted : " + appWidgetIds , Toast.LENGTH_LONG).show()
 
-        SharedPreferenceUtils.write(context!!, KMemoConst.KEY_USER_MEMO, "")
+        SharedPreferenceUtils.write(context!!, PreferConst.KEY_USER_MEMO, "")
 
     }
 
@@ -73,14 +72,14 @@ class KMemoWidget : AppWidgetProvider() {
         views.setOnClickPendingIntent(R.id.widget_memo_content, writeEventPIntent)
         views.setOnClickPendingIntent(R.id.widget_memo_modify, writeEventPIntent)
 
-        val memo = SharedPreferenceUtils.read(context, KMemoConst.KEY_USER_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        val memo = SharedPreferenceUtils.read(context, PreferConst.KEY_USER_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         views.setTextViewText(R.id.widget_memo_content, memo)
         intent.action = KWidgetReceiver.WIDGET_ACTION_MEMO_WRITE_EVENT
         intent.putExtra(WriteMemoActivity.Intent_WID, appWidgetIds)
 
         for (appWidgetId in appWidgetIds) {
-            KLog.d(ContextUtils.TAG, "@@ initUI appWidgetId : " + appWidgetId)
-            SharedPreferenceUtils.write(context, KMemoConst.KEY_USER_MEMO_WIDGET, appWidgetId)
+            KLog.log("@@ initUI appWidgetId : " + appWidgetId)
+            SharedPreferenceUtils.write(context, PreferConst.KEY_USER_MEMO_WIDGET, appWidgetId)
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }
     }
@@ -90,11 +89,11 @@ class KMemoWidget : AppWidgetProvider() {
         fun updateWidget(context: Context, nID: Int) {
             val remoteViews = RemoteViews(context.packageName, R.layout.activity_layout_memo_widget)
             val appWidgetManager = AppWidgetManager.getInstance(context)
-            KLog.d(ContextUtils.TAG, "@@ updateWidget  appWidgetManager : " + appWidgetManager)
-            val memo = SharedPreferenceUtils.read(context, KMemoConst.KEY_USER_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+            KLog.log( "@@ updateWidget  appWidgetManager : " + appWidgetManager)
+            val memo = SharedPreferenceUtils.read(context, PreferConst.KEY_USER_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
             remoteViews.setTextViewText(R.id.widget_memo_content, memo)
-            KLog.d(ContextUtils.TAG, "@@ updateWidget memo : " + memo)
-            KLog.d(ContextUtils.TAG, "@@ updateWidget nId : " + nID)
+            KLog.log("@@ updateWidget memo : " + memo)
+            KLog.log("@@ updateWidget nId : " + nID)
 
             appWidgetManager.updateAppWidget(nID, remoteViews)
 

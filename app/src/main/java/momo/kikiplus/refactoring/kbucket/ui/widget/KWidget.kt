@@ -11,7 +11,6 @@ import android.widget.RemoteViews
 import android.widget.Toast
 
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.refactoring.common.util.KLog
 
 /**
@@ -27,7 +26,7 @@ class KWidget : AppWidgetProvider() {
         super.onReceive(context, intent)
 
         val action = intent.action
-        KLog.d(ContextUtils.TAG, "@@ onReceive action : " + action!!)
+        KLog.log("@@ onReceive action : " + action!!)
 
         if (AppWidgetManager.ACTION_APPWIDGET_ENABLED == action) {
             Toast.makeText(context, "메모가지 위젯 추가", Toast.LENGTH_LONG).show()
@@ -46,7 +45,7 @@ class KWidget : AppWidgetProvider() {
      * UI 설정 이벤트 설정
      */
     private fun initUI(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
-        KLog.d(ContextUtils.TAG, "@@ widget initUI")
+        KLog.log("@@ widget initUI")
 
         val views = RemoteViews(context.packageName, R.layout.activity_layout_mywidget)
 

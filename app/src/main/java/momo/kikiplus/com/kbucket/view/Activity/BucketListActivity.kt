@@ -9,7 +9,6 @@ import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.BucketListActivityBinding
 import momo.kikiplus.com.kbucket.view.Adapter.CardViewListAdpater
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.http.HttpUrlFileUploadManager
 import momo.kikiplus.modify.http.HttpUrlTaskManager
 import momo.kikiplus.modify.http.IHttpReceive
@@ -21,6 +20,10 @@ import momo.kikiplus.refactoring.common.util.StringUtils
 import momo.kikiplus.refactoring.common.view.popup.ConfirmPopup
 import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
 import momo.kikiplus.refactoring.common.view.popup.SpinnerListPopup
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
+import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PopupConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.data.vo.Category
 import org.json.JSONException
@@ -83,8 +86,8 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
-        KLog.d(ContextUtils.TAG, "@@ color : $color")
+        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        KLog.log("@@ color : $color")
         if (color != -1) {
             findViewById<View>(R.id.bucketlist_back_color).setBackgroundColor(color)
         }
@@ -119,7 +122,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
         val index = v.id
         val intent = Intent(this, WriteDetailActivity::class.java)
         intent.putExtra("CONTENTS", mDataList!![index].content)
-        intent.putExtra("BACK", ContextUtils.VIEW_COMPLETE_LIST)
+        intent.putExtra("BACK", DataConst.VIEW_COMPLETE_LIST)
         startActivity(intent)
         finish()
     }
@@ -136,19 +139,19 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
             ": $memo\n\n $content",
             R.layout.popup_confirm,
             this,
-            IPopupReceive.POPUP_BUCKET_SHARE
+            PopupConst.POPUP_BUCKET_SHARE
         )
         mConfirmPopup!!.showDialog()
         return true
     }
 
     override fun onPopupAction(popId: Int, what: Int, obj: Any?) {
-        if (popId == IPopupReceive.POPUP_BUCKET_SHARE) {
+        if (popId == PopupConst.POPUP_BUCKET_SHARE) {
             if (what == IPopupReceive.POPUP_BTN_OK) {
                 mHandler!!.sendEmptyMessage(SELECT_BUCKET_CATEGORY)
             }
             mConfirmPopup!!.closeDialog()
-        } else if (popId == IPopupReceive.POPUP_BUCKET_CATEGORY) {
+        } else if (popId == PopupConst.POPUP_BUCKET_CATEGORY) {
             if (what == IPopupReceive.POPUP_BTN_OK) {
                 val json = obj as JSONObject
                 try {
@@ -157,7 +160,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
                     mCategory = 1
                 }
 
-                KLog.d(ContextUtils.TAG, "@@ mCategory : $mCategory")
+                KLog.log("@@ mCategory : $mCategory")
                 mHandler!!.sendEmptyMessage(UPLOAD_BUCKET)
             }
             mCategoryPopup!!.closeDialog()
@@ -165,8 +168,8 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
     }
 
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive : $obj")
-        KLog.d(this.javaClass.simpleName, "@@ onHttpReceive type : $type")
+        KLog.d("@@ onHttpReceive : $obj")
+        KLog.d("@@ onHttpReceive type : $type")
         // 버킷 공유 결과
         val mData = obj as String
         var isValid = false
@@ -181,7 +184,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
                         isValid = json.getBoolean("isValid")
                         mImageIdx = json.getInt("idx")
                     } catch (e: JSONException) {
-                        KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                        KLog.log("@@ jsonException message : " + e.message)
                     }
 
                     if (isValid == true) {
@@ -206,7 +209,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
                         val json = JSONObject(mData)
                         isValid = json.getBoolean("isValid")
                     } catch (e: JSONException) {
-                        KLog.e(ContextUtils.TAG, "@@ jsonException message : " + e.message)
+                        KLog.log( "@@ jsonException message : " + e.message)
                     }
 
                 }
@@ -226,7 +229,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
     private fun shareBucket(): HashMap<String, Any> {
         val bucket = Bucket()
         bucket.category!!.categoryCode = 1
-        val userNickName = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        val userNickName = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         bucket.nickName = userNickName!!
         bucket.content = mDataList!![mShareIdx].content
         bucket.imageUrl = ""
@@ -241,7 +244,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
      */
     private fun shareBucketImage(): HashMap<String, Any> {
         val bucket = Bucket()
-        val userNickName = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        val userNickName = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         bucket.nickName = userNickName!!
         bucket.content = mDataList!![mShareIdx].content
         bucket.imageUrl = ""
@@ -255,7 +258,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
             TOAST_MASSEGE -> Toast.makeText(applicationContext, msg.obj as String, Toast.LENGTH_LONG).show()
             UPLOAD_IMAGE -> {
                 val photoPath = mDataList!![mShareIdx].imageUrl
-                KLog.d(ContextUtils.TAG, "@@ UPLOAD IMAGE 전송 시작 !")
+                KLog.log("@@ UPLOAD IMAGE 전송 시작 !")
                 if (photoPath != null && photoPath != "") {
                     val bitmap = ByteUtils.getFileBitmap(photoPath)
                     val calendar = Calendar.getInstance()
@@ -263,14 +266,14 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
                     val fileName = sdf.format(calendar.time)
 
                     val bytes = ByteUtils.getByteArrayFromBitmap(bitmap)
-                    val httpUrlFileUploadManager = HttpUrlFileUploadManager(ContextUtils.KBUCKET_UPLOAD_IMAGE_URL, this, IHttpReceive.INSERT_IMAGE, bytes)
+                    val httpUrlFileUploadManager = HttpUrlFileUploadManager(NetworkConst.KBUCKET_UPLOAD_IMAGE_URL, this, IHttpReceive.INSERT_IMAGE, bytes)
                     httpUrlFileUploadManager.execute(photoPath, "idx", mImageIdx.toString() + "", "$fileName.jpg")
                 } else {
-                    KLog.d(ContextUtils.TAG, "@@ UPLOAD IMAGE NO !")
+                    KLog.log("@@ UPLOAD IMAGE NO !")
                 }
             }
             UPLOAD_BUCKET -> {
-                val httpUrlTaskManager = HttpUrlTaskManager(ContextUtils.KBUCKET_INSERT_BUCKET_URL, true, this, IHttpReceive.INSERT_BUCKET)
+                val httpUrlTaskManager = HttpUrlTaskManager(NetworkConst.KBUCKET_INSERT_BUCKET_URL, true, this, IHttpReceive.INSERT_BUCKET)
                 httpUrlTaskManager.execute(StringUtils.getHTTPPostSendData(shareBucketImage()))
             }
             SELECT_BUCKET_CATEGORY -> {
@@ -299,7 +302,7 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
                         list,
                         R.layout.popupview_spinner_list,
                         this,
-                        IPopupReceive.POPUP_BUCKET_CATEGORY
+                        PopupConst.POPUP_BUCKET_CATEGORY
                     )
                 mCategoryPopup!!.showDialog()
             }

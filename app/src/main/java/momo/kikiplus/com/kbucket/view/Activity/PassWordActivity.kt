@@ -7,10 +7,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.refactoring.common.util.AppUtils
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 import java.util.*
 
@@ -67,7 +68,7 @@ class PassWordActivity : Activity(), View.OnClickListener {
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             findViewById<View>(R.id.password_back_color).setBackgroundColor(color)
         }
@@ -101,30 +102,30 @@ class PassWordActivity : Activity(), View.OnClickListener {
     }
 
     private fun printPassword() {
-        KLog.d(this.javaClass.simpleName, "@@ start")
+        KLog.d("@@ start")
         for (i in mPasswordData!!.indices) {
-            KLog.d(this.javaClass.simpleName, "@@ " + i + " 번쨰:" + mPasswordData!![i])
+            KLog.d( "@@ " + i + " 번쨰:" + mPasswordData!![i])
         }
-        KLog.d(this.javaClass.simpleName, "@@ end")
+        KLog.d("@@ end")
     }
 
     private fun setButtonText() {
-        KLog.d(this.javaClass.simpleName, "@@ mPasswordData size : " + mPasswordData!!.size)
+        KLog.d( "@@ mPasswordData size : " + mPasswordData!!.size)
         for (i in 1..mPasswordData!!.size) mButton[i]?.text = "*"
 
         for (i in 1..4 - mPasswordData!!.size) {
-            KLog.d(this.javaClass.simpleName, "@@ delete index : " + (5 - i))
+            KLog.d("@@ delete index : " + (5 - i))
             mButton[5 - i]?.text = ""
         }
 
         if (mPasswordData!!.size == 4) {
             if (isPasswordset) {
                 val pawd = mPasswordData!![0] + "" + mPasswordData!![1] + "" + mPasswordData!![2] + "" + mPasswordData!![3]
-                SharedPreferenceUtils.write(applicationContext, ContextUtils.KEY_CONF_PASSWORD, pawd)
+                SharedPreferenceUtils.write(applicationContext, PreferConst.KEY_CONF_PASSWORD, pawd)
                 finish()
             } else {
                 val pawd = mPasswordData!![0] + "" + mPasswordData!![1] + "" + mPasswordData!![2] + "" + mPasswordData!![3]
-                val password = SharedPreferenceUtils.read(applicationContext, ContextUtils.KEY_CONF_PASSWORD, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+                val password = SharedPreferenceUtils.read(applicationContext, PreferConst.KEY_CONF_PASSWORD, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
                 if (pawd != password) {
                     val message = getString(R.string.password_fail_string)
                     Toast.makeText(application, message, Toast.LENGTH_LONG).show()
@@ -135,22 +136,22 @@ class PassWordActivity : Activity(), View.OnClickListener {
                 } else {
                     val getIntent = intent
                     val startView = getIntent.getStringExtra("DATA")
-                    if (startView != null && startView == ContextUtils.WIDGET_WRITE_BUCKET) {
+                    if (startView != null && startView == DataConst.WIDGET_WRITE_BUCKET) {
                         //TODO Activity->Fragemt 변경해야함
 //                        val intent = Intent(this, WriteActivity::class.java)
 //                        startActivity(intent)
 //                        finish()
-                    } else if (startView != null && startView == ContextUtils.WIDGET_BUCKET_LIST) {
+                    } else if (startView != null && startView == DataConst.WIDGET_BUCKET_LIST) {
                         val intent = Intent(this, BucketListActivity::class.java)
                         startActivity(intent)
                         finish()
-                    } else if (startView != null && startView == ContextUtils.WIDGET_OURS_BUCKET) {
+                    } else if (startView != null && startView == DataConst.WIDGET_OURS_BUCKET) {
                         val intent = Intent(this, ShareListActivity::class.java)
                         startActivity(intent)
                         finish()
-                    } else if (startView != null && startView == ContextUtils.WIDGET_SHARE) {
+                    } else if (startView != null && startView == DataConst.WIDGET_SHARE) {
                         val intent = Intent(this, MainFragmentActivity::class.java)
-                        intent.putExtra(ContextUtils.WIDGET_SEND_DATA, ContextUtils.WIDGET_SHARE)
+                        intent.putExtra(DataConst.WIDGET_SEND_DATA, DataConst.WIDGET_SHARE)
                         startActivity(intent)
                         finish()
                     } else {

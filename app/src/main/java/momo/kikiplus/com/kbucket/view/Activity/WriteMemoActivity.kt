@@ -7,9 +7,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.obj.KMemoWidget
 
 /**
@@ -30,18 +30,18 @@ class WriteMemoActivity : Activity(), View.OnClickListener {
         mIntent = intent
 
         (findViewById<View>(R.id.write_meo_modify) as Button).setOnClickListener(this)
-        val memo = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        val memo = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         (findViewById<View>(R.id.write_meo_content) as EditText).setText(memo)
 
-        val widgetId = SharedPreferenceUtils.read(this, ContextUtils.KEY_USER_MEMO_WIDGET, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?
+        val widgetId = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_MEMO_WIDGET, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?
         mWidgetId = widgetId!!
-        KLog.d(ContextUtils.TAG, "@@ WriteMemoActivity  mWidgetId : " + mWidgetId)
+        KLog.d("@@ WriteMemoActivity  mWidgetId : " + mWidgetId)
 
     }
 
     override fun onClick(v: View) {
         val memo = (findViewById<View>(R.id.write_meo_content) as EditText).text.toString()
-        SharedPreferenceUtils.write(this, ContextUtils.KEY_USER_MEMO, memo)
+        SharedPreferenceUtils.write(this, PreferConst.KEY_USER_MEMO, memo)
 
         KMemoWidget.updateWidget(this, mWidgetId)
 

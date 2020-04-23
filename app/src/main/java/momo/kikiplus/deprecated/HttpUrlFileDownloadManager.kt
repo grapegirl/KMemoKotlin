@@ -52,7 +52,7 @@ class HttpUrlFileDownloadManager
             val input = urlConnection.inputStream
 
             val saveFile = params[0] as String
-            KLog.d(this.javaClass.simpleName, "@@ saveFile : $saveFile")
+            KLog.d("@@ saveFile : $saveFile")
             val output = FileOutputStream(saveFile)
 
             val data = ByteArray(1024)
@@ -61,7 +61,7 @@ class HttpUrlFileDownloadManager
 
                 while ((input.read(data)) != -1) {
                     total += count.toLong()
-                    KLog.d(this.javaClass.simpleName, "@@ data loading = " + total.toInt())
+                    KLog.d("@@ data loading = " + total.toInt())
                     output.write(data, 0, count)
                 }
                 output.flush()
@@ -74,7 +74,7 @@ class HttpUrlFileDownloadManager
             urlConnection.disconnect()
         } catch (e: IOException) {
             e.printStackTrace()
-            KLog.d(this.javaClass.simpleName, this.javaClass.toString() + "IOException ")
+            KLog.d("IOException ")
         }
 
         return null

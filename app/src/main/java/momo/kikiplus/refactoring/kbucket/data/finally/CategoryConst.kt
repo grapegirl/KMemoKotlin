@@ -1,6 +1,6 @@
-package momo.kikiplus.refactoring.kbucket.data.finall
+package momo.kikiplus.refactoring.kbucket.data.finally
 
-enum class ConstCategory {
+enum class CategoryConst {
     LIFE,
     LOVE,
     WORK,

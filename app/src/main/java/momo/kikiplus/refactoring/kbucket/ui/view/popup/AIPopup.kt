@@ -41,7 +41,7 @@ class AIPopup
     }
 
     override fun onClick(v: View) {
-        KLog.d(this.javaClass.simpleName, "@@ BasicDialog onClick!")
+        KLog.d("@@ BasicDialog onClick!")
         mPopupReceive!!.onPopupAction(mPopId,
             IPopupReceive.POPUP_BTN_OK, null)
     }

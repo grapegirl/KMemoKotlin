@@ -55,7 +55,7 @@ class ConfirmPopup
     }
 
     override fun onClick(v: View) {
-        KLog.d(this.javaClass.simpleName, "@@ ConfirmDialog onClick!")
+        KLog.d("@@ ConfirmDialog onClick!")
         when (v.id) {
             R.id.popup_close_button, R.id.popup_cancle_button -> mPopupReceive!!.onPopupAction(mPopId,
                 IPopupReceive.POPUP_BTN_CLOSEE, null)

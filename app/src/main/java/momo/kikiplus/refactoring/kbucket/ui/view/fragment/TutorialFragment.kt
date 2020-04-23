@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.TutorialFragmentBinding
-import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.viewmodel.TutorialViewModel
 
 class TutorialFragment : Fragment() , View.OnTouchListener {
@@ -54,7 +54,7 @@ class TutorialFragment : Fragment() , View.OnTouchListener {
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(activity!!.applicationContext, ContextUtils.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(activity!!.applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             mBinding.tutorialBackColor.setBackgroundColor(color)
         }
@@ -115,7 +115,7 @@ class TutorialFragment : Fragment() , View.OnTouchListener {
      */
     private fun setPageCheck() {
         for (i in 0 until viewModel.mMacPage) {
-            val checkBox : CheckBox = mCheckBox[i] as CheckBox
+            val checkBox = mCheckBox[i] as CheckBox
             checkBox.isChecked = i == viewModel.mCurrentPage
         }
     }
