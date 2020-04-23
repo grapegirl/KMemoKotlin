@@ -5,15 +5,15 @@ import android.os.AsyncTask
 import android.os.Build
 import android.os.Handler
 import android.os.Message
-import momo.kikiplus.com.kbucket.http.HttpUrlTaskManager
-import momo.kikiplus.com.kbucket.http.IHttpReceive
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
-import momo.kikiplus.refactoring.model.MobileUser
+import momo.kikiplus.modify.http.HttpUrlTaskManager
+import momo.kikiplus.modify.http.IHttpReceive
 import momo.kikiplus.refactoring.util.AppUtils
 import momo.kikiplus.refactoring.util.DateUtils
 import momo.kikiplus.refactoring.util.KLog
 import momo.kikiplus.refactoring.util.StringUtils
+import momo.kikiplus.refactoring.vo.MobileUser
 import java.util.*
 
 /**

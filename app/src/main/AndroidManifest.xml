@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
-        android:name=".AnalyticsApplication"
+        android:name="momo.kikiplus.AnalyticsApplication"
         android:allowBackup="true"
         android:appComponentFactory="whatevetString"
         android:icon="@mipmap/ic_launcher"
@@ -73,9 +73,6 @@
             android:name=".view.Activity.PushPopupActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.Activity.TutorialActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".view.Activity.RankListActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -93,7 +90,7 @@
             android:name=".view.Activity.DBMgrActivity"
             android:screenOrientation="portrait" /> <!-- 커스톰 위젯 -->
         <receiver
-            android:name=".view.Object.KWidget"
+            android:name="momo.kikiplus.refactoring.obj.KWidget"
             android:label="가지">
             <meta-data
                 android:name="android.appwidget.provider"
@@ -108,7 +105,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".view.Object.KMemoWidget"
+            android:name="momo.kikiplus.refactoring.obj.KMemoWidget"
             android:label="다짐">
             <meta-data
                 android:name="android.appwidget.provider"
@@ -122,7 +119,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".view.Object.KWidgetReceiver"
+            android:name="momo.kikiplus.refactoring.obj.KWidgetReceiver"
             android:label="widgetBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.kiki.View.widget.ACTION_WRITE_EVENT" />

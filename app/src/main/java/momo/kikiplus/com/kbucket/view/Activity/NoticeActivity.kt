@@ -9,11 +9,11 @@ import android.widget.ExpandableListView
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.view.Adapter.BaseExpandableAdapter
-import momo.kikiplus.com.kbucket.view.Object.KProgressDialog
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
 import momo.kikiplus.refactoring.net.NetRetrofit
 import momo.kikiplus.refactoring.net.NoticeList
+import momo.kikiplus.refactoring.obj.KProgressDialog
 import momo.kikiplus.refactoring.util.KLog
 import retrofit2.Call
 import retrofit2.Callback

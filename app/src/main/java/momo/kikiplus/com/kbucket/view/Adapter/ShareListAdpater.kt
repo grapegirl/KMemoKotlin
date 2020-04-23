@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.EditText
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.model.Bucket
+import momo.kikiplus.refactoring.vo.Bucket
 import java.util.*
 
 /***

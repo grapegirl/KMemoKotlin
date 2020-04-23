@@ -19,10 +19,10 @@ import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
-import momo.kikiplus.com.kbucket.sqlite.SQLQuery
 import momo.kikiplus.com.kbucket.view.Activity.*
 import momo.kikiplus.modify.ContextUtils
 import momo.kikiplus.modify.SharedPreferenceUtils
+import momo.kikiplus.modify.sqlite.SQLQuery
 import momo.kikiplus.refactoring.FireMessingService
 import momo.kikiplus.refactoring.task.AppUpdateTask
 import momo.kikiplus.refactoring.task.UserUpdateTask
@@ -283,8 +283,9 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
             }
             5//튜토리얼
             -> {
-                intent = Intent(this, TutorialActivity::class.java)
-                startActivity(intent)
+                //TODO Intent
+//                intent = Intent(this, TutorialActivity::class.java)
+//                startActivity(intent)
             }
             6//문의하기
             -> {
@@ -303,5 +304,4 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
     fun sendUserEvent(screenName : String){
         AppUtils.sendTrackerScreen(this, screenName)
     }
-
 }

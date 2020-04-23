@@ -12,7 +12,7 @@ import android.content.res.Configuration
 import android.net.Uri
 import android.util.Base64
 import com.google.android.gms.analytics.HitBuilders
-import momo.kikiplus.com.kbucket.AnalyticsApplication
+import momo.kikiplus.AnalyticsApplication
 import momo.kikiplus.modify.ContextUtils
 import java.security.MessageDigest
 import java.text.SimpleDateFormat

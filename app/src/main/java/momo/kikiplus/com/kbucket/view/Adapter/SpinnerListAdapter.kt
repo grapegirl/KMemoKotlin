@@ -12,7 +12,7 @@ import android.widget.BaseAdapter
 import android.widget.CheckBox
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.model.Category
+import momo.kikiplus.refactoring.vo.Category
 import java.util.*
 
 /**

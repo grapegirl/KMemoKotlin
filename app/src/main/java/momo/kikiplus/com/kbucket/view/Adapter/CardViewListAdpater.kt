@@ -12,9 +12,9 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.sqlite.SQLQuery
-import momo.kikiplus.refactoring.model.Bucket
+import momo.kikiplus.modify.sqlite.SQLQuery
 import momo.kikiplus.refactoring.util.ByteUtils
+import momo.kikiplus.refactoring.vo.Bucket
 import java.util.*
 
 /***

@@ -251,6 +251,9 @@
         <item>유기견 봉사하기</item>
         <item>버킷리스트 모든 항목 완료하기</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
 
 
