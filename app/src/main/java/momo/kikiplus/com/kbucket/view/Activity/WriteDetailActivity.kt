@@ -300,22 +300,6 @@ class WriteDetailActivity : Activity(), View.OnClickListener,
             mImageView!!.visibility = View.INVISIBLE
         }
 
-        // 로컬 파일
-        //        File file = new File(mPhotoPath);
-        //        KLog.d(ContextUtils.TAG, "@@ local file path : " + mPhotoPath);
-        //        if(file.exists()){
-        //            Glide.with(this)
-        //                    .load(file)
-        //                    .into(mImageView);
-        //            hideImageAttachButton(true);
-        //            mImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        //            mImageView.setVisibility(View.VISIBLE);
-        //            ((Button) findViewById(R.id.write_image_remove)).setVisibility(View.VISIBLE);
-        //        }else{
-        //            hideImageAttachButton(false);
-        //            mImageView.setVisibility(View.INVISIBLE);
-        //        }
-
         mDeadLineDate = memoMap["deadline"]
 
         (findViewById<View>(R.id.write_layout_titleView) as TextView).text = mDate

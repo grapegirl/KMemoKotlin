@@ -11,11 +11,7 @@ import momo.kikiplus.refactoring.kbucket.ui.view.recycler.ContentViewHolder
 class RecyclerViewAdapter( clickListener: View.OnClickListener) : RecyclerView.Adapter<ContentViewHolder>() {
 
     var mItems : ArrayList<String> = ArrayList<String>()
-    var mClickListener : View.OnClickListener?
-
-    init {
-        mClickListener = clickListener
-    }
+    var mClickListener : View.OnClickListener = clickListener
 
     //뷰 홀더를 생성하고 뷰를 붙여주는 부
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
@@ -41,17 +37,9 @@ class RecyclerViewAdapter( clickListener: View.OnClickListener) : RecyclerView.A
     }
 
     fun updateItems(items : ArrayList<String>){
+        mItems.clear()
         mItems = items
-        notifyDataSetChanged()
-    }
-
-    fun updateItems(item : String){
-        mItems.add(item)
-        notifyDataSetChanged()
-    }
-
-    fun removeItems(index : Int){
-        mItems.removeAt(index)
+        KLog.d("@@ updateItems mItems size : ${mItems.size}")
         notifyDataSetChanged()
     }
 

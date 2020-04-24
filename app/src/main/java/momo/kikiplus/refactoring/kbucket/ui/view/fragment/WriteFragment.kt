@@ -140,20 +140,15 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener {
 
     private fun setListData() {
         viewModel.initLocalData(activity!!)
-        mDataList = viewModel.getListDoing()
-
-        val sortPrf = SharedPreferenceUtils.read(activity!!.applicationContext, DataConst.KBUCKET_SORT_KEY, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
-        KLog.d("@@ sort sort: $sortPrf")
-        if (sortPrf == null) {
-            mAdapter.updateItems(mDataList)
-            return
-        }
-        viewModel.sort(sortPrf)
         mDataList.clear()
         mDataList = viewModel.getListDoing()
+        KLog.d("@@ setListData mDataList size : ${mDataList.size}")
+        val sortPrf = SharedPreferenceUtils.read(activity!!.applicationContext, DataConst.KBUCKET_SORT_KEY, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        KLog.d("@@ sort sort: $sortPrf")
+        if (sortPrf != null) {
+            viewModel.sort(sortPrf)
+        }
         mAdapter.updateItems(mDataList)
-
-
     }
 
     override fun onStop() {

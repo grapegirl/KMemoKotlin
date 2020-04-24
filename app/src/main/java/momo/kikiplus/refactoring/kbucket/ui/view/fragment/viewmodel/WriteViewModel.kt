@@ -18,7 +18,8 @@ class WriteViewModel : ViewModel() {
 
     fun initLocalData(context : Context) {
         val map = mSqlQuery.selectKbucket(context) ?: return
-        KLog.d("@@ setListData map: $map")
+        mBucketDataList.clear()
+        KLog.d("@@ setListData map: $map size : ${map.size}" )
         for (i in map.indices) {
             val memoMap = map[i]
             val bucket = Bucket("", memoMap["contents"]!!, memoMap["date"]!!, i)

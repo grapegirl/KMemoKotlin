@@ -67,11 +67,8 @@ class SQLQuery {
             sql = "SELECT CONTENTS, DATE,COMPLETE_YN,COMPLETE_DATE,IMAGE_PATH,DEADLINE FROM $TABLE_MEMO"
             KLog.d( "@@ selectKbucket sql: $sql")
             userInfoRow = mDBAdapter!!.query(sql, null)
-            KLog.d("@@ selectKbucket 1")
             mDBAdapter!!.close()
-            KLog.d( "@@ selectKbucket 2")
             mDBAdapter = null
-            KLog.d( "@@ selectKbucket 3")
         } catch (e: Exception) {
             KLog.d( "@@ 메모 정보 가져오기 복수건 오류 : " + e.message)
         }

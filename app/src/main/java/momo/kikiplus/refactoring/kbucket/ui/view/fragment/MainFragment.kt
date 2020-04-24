@@ -18,25 +18,25 @@ import momo.kikiplus.com.kbucket.view.Activity.BucketListActivity
 import momo.kikiplus.com.kbucket.view.Activity.NoticeActivity
 import momo.kikiplus.com.kbucket.view.Activity.RankListActivity
 import momo.kikiplus.com.kbucket.view.Activity.ShareListActivity
-import momo.kikiplus.modify.http.HttpUrlTaskManager
-import momo.kikiplus.modify.http.IHttpReceive
-import momo.kikiplus.refactoring.common.util.*
+import momo.kikiplus.refactoring.common.util.AppUtils
+import momo.kikiplus.refactoring.common.util.KLog
+import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.common.view.KProgressDialog
 import momo.kikiplus.refactoring.common.view.popup.BasicPopup
 import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
+import momo.kikiplus.refactoring.kbucket.action.net.AIRespond
+import momo.kikiplus.refactoring.kbucket.action.net.NetRetrofit
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
-import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PopupConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.viewmodel.MainViewModel
 import momo.kikiplus.refactoring.kbucket.ui.view.popup.AIPopup
-import org.json.JSONException
-import org.json.JSONObject
-import java.util.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class MainFragment : Fragment(), View.OnClickListener, Handler.Callback,
-    IPopupReceive, IHttpReceive {
+class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupReceive {
 
     private lateinit var mBinding : MainFragmentBinding
 
@@ -147,10 +147,22 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback,
             }
             REQUEST_AI -> {
                 val userNickName = SharedPreferenceUtils.read(mActivity!!, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
-                val httpUrlTaskManager = HttpUrlTaskManager(NetworkConst.KBUCKET_AI, true, this, IHttpReceive.REQUEST_AI)
-                val map = HashMap<String, Any>()
-                map["nickname"] = userNickName!!
-                httpUrlTaskManager.execute(StringUtils.getHTTPPostSendData(map))
+                val res = NetRetrofit.instance.service.getAIRespond(userNickName)
+                res.enqueue(object : Callback<AIRespond>{
+                    override fun onResponse(call: Call<AIRespond>, response: Response<AIRespond>) {
+                        KLog.d( "@@ onRecv ok : " + response)
+                        KLog.d( "@@ onRecv response body: " + response.body()!!.toString())
+                        if(response.body()!!.bIsValid){
+                            val message = response.body()!!.replay
+                            mHandler.sendMessage(mHandler.obtainMessage(RESPOND_AI, message))
+                        }else{
+                            mHandler.sendEmptyMessage(FAIL_AI)
+                        }
+                    }
+                    override fun onFailure(call: Call<AIRespond>, t: Throwable) {
+                        mHandler.sendEmptyMessage(FAIL_AI)
+                    }
+                })
             }
             FAIL_AI -> {
                 KProgressDialog.setDataLoadingDialog(context, false, null, false)
@@ -189,29 +201,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback,
         if (popId == PopupConst.POPUP_BASIC) {
             if (what == IPopupReceive.POPUP_BTN_OK || what == IPopupReceive.POPUP_BTN_CLOSEE || what == IPopupReceive.POPUP_DISPOSE) {
                 mBasicPopup!!.closeDialog()
-            }
-        }
-    }
-
-    override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
-        KLog.d("@@ onHttpReceive : $obj")
-        // 버킷 공유 결과
-        val mData = obj as String
-        var message: String? = null
-        if (actionId == IHttpReceive.REQUEST_AI) {
-            if (type == IHttpReceive.HTTP_OK) {
-                if (mData.isNotEmpty()) {
-                    try {
-                        val json = JSONObject(mData)
-                        message = json.getString("replay")
-                    } catch (e: JSONException) {
-                        ErrorLogUtils.saveFileEror("@@ AI Respond jsonException message : " + e.message)
-                        mHandler.sendEmptyMessage(FAIL_AI)
-                    }
-                }
-                mHandler.sendMessage(mHandler.obtainMessage(RESPOND_AI, message))
-            } else {
-                mHandler.sendEmptyMessage(FAIL_AI)
             }
         }
     }

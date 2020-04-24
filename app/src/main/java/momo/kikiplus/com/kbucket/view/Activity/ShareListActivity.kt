@@ -102,9 +102,7 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
             }
 
         }
-        if (actionId == IHttpReceive.CATEGORY_LIST) {
-
-        } else if (actionId == IHttpReceive.Companion.BUCKET_LIST) {
+        if (actionId == IHttpReceive.Companion.BUCKET_LIST) {
             KProgressDialog.setDataLoadingDialog(this, false, null, false)
             if (type == IHttpReceive.HTTP_OK && isValid == true) {
                 try {

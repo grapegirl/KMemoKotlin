@@ -118,15 +118,13 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
         KLog.d("@@ onHttpReceive  obj: $obj")
         val mData = obj as String
         var isValid = false
-        if (actionId != IHttpReceive.DOWNLOAD_IMAGE) {
-            try {
-                val json = JSONObject(mData)
-                isValid = json.getBoolean("isValid")
-            } catch (e: JSONException) {
-                KLog.log("@@ jsonException message : " + e.message)
-            }
-
+        try {
+            val json = JSONObject(mData)
+            isValid = json.getBoolean("isValid")
+        } catch (e: JSONException) {
+            KLog.log("@@ jsonException message : " + e.message)
         }
+
         if (actionId == IHttpReceive.COMMENT_LIST) {
             KProgressDialog.setDataLoadingDialog(this, false, null, false)
             if (type == IHttpReceive.HTTP_OK && isValid == true) {
@@ -157,11 +155,6 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(LOAD_COMMENT_LIST, mBucketNo))
             } else {
                 mHandler!!.sendEmptyMessage(SERVER_LOADING_FAIL)
-            }
-        } else if (actionId == IHttpReceive.DOWNLOAD_IMAGE) {
-            if (type == IHttpReceive.HTTP_OK) {
-                KLog.log( "downlaod image $obj")
-                mHandler!!.sendEmptyMessage(SET_IMAGE)
             }
         }
     }

@@ -25,4 +25,10 @@ public interface RetrofitService {
      */
     Call<CategoryList> getCateryList();
 
+    @POST("mobile/getAIReplay.jsp")
+    /**
+     * AI 응답받기
+     */
+    Call<AIRespond> getAIRespond(@Query("nickname") String nickname);
+
 }
