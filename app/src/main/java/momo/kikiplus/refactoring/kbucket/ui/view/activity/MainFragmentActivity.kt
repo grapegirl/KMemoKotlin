@@ -33,7 +33,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
     private var backKeyPressedTime = 0L
     private var finishToast: Toast? = null
 
-    private var mHandler: Handler = Handler(this)
+    private var handler: Handler = Handler(this)
     private val CHECK_VERSION           : Int = 1000
     private val MY_PERMISSION_REQUEST   : Int = 1001
     private val TOAST_MASSEGE           : Int = 1002
@@ -42,6 +42,8 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
 
     private var mbInitialUserUpdate : Boolean = false
     private lateinit var mBinding : MainFragmentActivityBinding
+
+    private var backReceive : IBackReceive? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,11 +62,11 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
         if (data != null && data == DataConst.WIDGET_SHARE) {
             ShareSocial()
         }else if(data != null && data == DataConst.START_OPEN_DRAWER){
-            mHandler.sendEmptyMessage(OPEN_DRAWER)
+            handler.sendEmptyMessage(OPEN_DRAWER)
         }
 
         checkPermision()
-        mHandler.sendEmptyMessage(CHECK_VERSION)
+        handler.sendEmptyMessage(CHECK_VERSION)
 
         AppUtils.sendTrackerScreen(this, "메인화면")
     }
@@ -161,7 +163,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
 
         if (!mbInitialUserUpdate && userNickName != null && strToken != null) {
             mbInitialUserUpdate = true
-            mHandler.sendEmptyMessage(UPDATE_USER)
+            handler.sendEmptyMessage(UPDATE_USER)
         }
     }
     override fun handleMessage(msg: Message): Boolean {
@@ -198,7 +200,12 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
     }
 
     override fun onBackPressed() {
-        openExitToast()
+        KLog.log("@@ onBackPressed")
+        if(backReceive != null){
+            backReceive!!.onBackKey()
+        }else{
+            openExitToast()
+        }
     }
 
     /**
@@ -237,7 +244,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
             MY_PERMISSION_REQUEST -> {
                 val isReulst = DataUtils.createFile()
                 if (!isReulst) {
-                    mHandler.sendMessage(mHandler.obtainMessage(TOAST_MASSEGE, "권한을 모두 허용해주셔야 앱을 정상적으로 사용할 수 있습니다."))
+                    handler.sendMessage(handler.obtainMessage(TOAST_MASSEGE, "권한을 모두 허용해주셔야 앱을 정상적으로 사용할 수 있습니다."))
                 }
             }
         }
@@ -300,5 +307,11 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
 
     fun sendUserEvent(screenName : String){
         AppUtils.sendTrackerScreen(this, screenName)
+    }
+
+    fun setBackReceive(receive: IBackReceive?){
+        KLog.log("@@ setBackReceive")
+        backReceive = receive
+
     }
 }

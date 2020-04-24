@@ -54,7 +54,7 @@ class TutorialFragment : Fragment() , View.OnTouchListener {
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(activity!!.applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(requireActivity().applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             mBinding.tutorialBackColor.setBackgroundColor(color)
         }
@@ -126,7 +126,7 @@ class TutorialFragment : Fragment() , View.OnTouchListener {
     fun setViewImgData() {
         for (i in 0 until viewModel.mMacPage) {
             val resource = getImgResource(i)
-            val img = ImageView(activity!!.applicationContext)
+            val img = ImageView(requireActivity().applicationContext)
             try {
                 val options = BitmapFactory.Options()
                 options.inPreferredConfig = Bitmap.Config.RGB_565

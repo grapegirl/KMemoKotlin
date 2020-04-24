@@ -1,6 +1,7 @@
 package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -29,6 +30,7 @@ import momo.kikiplus.refactoring.kbucket.action.net.NetRetrofit
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PopupConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.viewmodel.MainViewModel
 import momo.kikiplus.refactoring.kbucket.ui.view.popup.AIPopup
@@ -36,7 +38,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupReceive {
+class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupReceive, IBackReceive {
 
     private lateinit var mBinding : MainFragmentBinding
 
@@ -88,7 +90,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         mActivity = activity
 
-        fragmentManager!!.beginTransaction().add(newInstance(), "MainFragment")
     }
 
     override fun onClick(view: View) {
@@ -204,4 +205,17 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
             }
         }
     }
+
+    override fun onBackKey() {
+        KLog.log("@@ onBackKey")
+        (activity as MainFragmentActivity).setBackReceive(null)
+        parentFragmentManager.beginTransaction().addToBackStack(null).commit()
+    }
+
+    override fun onAttach(context: Context) {
+        KLog.log("@@ onAttach")
+        super.onAttach(context)
+        (activity as MainFragmentActivity).setBackReceive(this)
+    }
+
 }

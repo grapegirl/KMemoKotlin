@@ -80,7 +80,7 @@ class HttpUrlTaskManager
             if (isPost) {//Post 방식으로 데이타 전달시
                 val outputStream = httpURLConnection.outputStream
                 if (params.size > 0) {
-                    //System.out.println("@@ sendData : " + sendData);
+                    System.out.println("@@ sendData : " + params[0])
                     outputStream.write(params[0].toByteArray(charset("UTF-8")))
                     outputStream.flush()
                     outputStream.close()

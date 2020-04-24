@@ -1,5 +1,6 @@
 package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
@@ -17,11 +18,13 @@ import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 import momo.kikiplus.refactoring.kbucket.ui.view.adapter.RecyclerViewAdapter
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.viewmodel.WriteViewModel
 import java.util.*
 
-class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener {
+class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBackReceive {
 
     companion object {
         fun newInstance() = WriteFragment()
@@ -63,7 +66,7 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener {
 
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(activity!!.applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(requireActivity().applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             mBinding.writeBackColor.setBackgroundColor(color)
         }
@@ -76,9 +79,9 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener {
                 val editText = mBinding.writeLayoutTitleView.text.toString()
                 if (viewModel.checkduplicateData(editText)) {
                     val message = getString(R.string.check_input_bucket_string)
-                    Toast.makeText(activity!!.applicationContext, message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireActivity().applicationContext, message, Toast.LENGTH_LONG).show()
                 } else {
-                    viewModel.addData(editText, activity!!)
+                    viewModel.addData(editText, requireActivity())
                     setListData()
                 }
                 mBinding.writeLayoutTitleView.setText("")
@@ -86,13 +89,13 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener {
             // 삭제 버튼
             R.id.bucket_list_deleteBtn -> {
                 var index = Integer.valueOf(v.tag as String)
-                viewModel.removeData(mDataList[index], activity!!)
+                viewModel.removeData(mDataList[index], requireActivity())
                 setListData()
             }
             // 수정 버튼
             R.id.bucket_list_modifyBtn -> {
                 val index = Integer.valueOf(v.tag as String)
-                val intent = Intent(activity!!.applicationContext, WriteDetailActivity::class.java)
+                val intent = Intent(requireActivity().applicationContext, WriteDetailActivity::class.java)
                 intent.putExtra("CONTENTS", mDataList[index])
                 intent.putExtra("BACK", DataConst.VIEW_WRITE)
                 startActivity(intent)
@@ -101,17 +104,17 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener {
             }
             //메모 정렬순
             R.id.sort_memo -> {
-                SharedPreferenceUtils.write(activity!!.applicationContext, DataConst.KBUCKET_SORT_KEY, DataConst.SORT_MEMO)
+                SharedPreferenceUtils.write(requireActivity().applicationContext, DataConst.KBUCKET_SORT_KEY, DataConst.SORT_MEMO)
                 setListData()
             }
             //날짜 정렬순
             R.id.sort_date -> {
-                SharedPreferenceUtils.write(activity!!.applicationContext, DataConst.KBUCKET_SORT_KEY, DataConst.SORT_DATE)
+                SharedPreferenceUtils.write(requireActivity().applicationContext, DataConst.KBUCKET_SORT_KEY, DataConst.SORT_DATE)
                 setListData()
             }
             //기한 정렬순
             R.id.sort_deadline -> {
-                SharedPreferenceUtils.write(activity!!.applicationContext, DataConst.KBUCKET_SORT_KEY, DataConst.SORT_DEADLINE)
+                SharedPreferenceUtils.write(requireActivity().applicationContext, DataConst.KBUCKET_SORT_KEY, DataConst.SORT_DEADLINE)
                 setListData()
             }
         }
@@ -124,9 +127,9 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener {
                 val editText = mBinding.writeLayoutTitleView.text.toString()
                 if (viewModel.checkduplicateData(editText)) {
                     val message = getString(R.string.check_input_bucket_string)
-                    Toast.makeText(activity!!.applicationContext, message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireActivity().applicationContext, message, Toast.LENGTH_LONG).show()
                 } else {
-                    viewModel.addData(editText, activity!!)
+                    viewModel.addData(editText, requireActivity())
                     setListData()
                 }
                 mBinding.writeLayoutTitleView.setText("")
@@ -139,11 +142,11 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener {
 
 
     private fun setListData() {
-        viewModel.initLocalData(activity!!)
+        viewModel.initLocalData(requireActivity())
         mDataList.clear()
         mDataList = viewModel.getListDoing()
         KLog.d("@@ setListData mDataList size : ${mDataList.size}")
-        val sortPrf = SharedPreferenceUtils.read(activity!!.applicationContext, DataConst.KBUCKET_SORT_KEY, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        val sortPrf = SharedPreferenceUtils.read(requireActivity().applicationContext, DataConst.KBUCKET_SORT_KEY, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         KLog.d("@@ sort sort: $sortPrf")
         if (sortPrf != null) {
             viewModel.sort(sortPrf)
@@ -155,4 +158,17 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener {
         super.onStop()
         mDataList.clear()
     }
+
+    override fun onBackKey() {
+        KLog.log("@@ onBackKey")
+        (activity as MainFragmentActivity).setBackReceive(null)
+        parentFragmentManager.beginTransaction().addToBackStack(null).commit()
+    }
+
+    override fun onAttach(context: Context) {
+        KLog.log("@@ onAttach")
+        super.onAttach(context)
+        (activity as MainFragmentActivity).setBackReceive(this)
+    }
+
 }
