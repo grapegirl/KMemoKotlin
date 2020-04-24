@@ -96,14 +96,11 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
         KLog.d("@@ onClick ")
         when (view.id) {
             R.id.main_writeBtn -> {
-
                 NavHostFragment
                     .findNavController(this)
                     .navigate(R.id.action_MainFragment_to_WriteFragment)
 
-
-                (mActivity as MainFragmentActivity).sendUserEvent("가지작성화면")
-
+                (activity as MainFragmentActivity).sendUserEvent("가지작성화면")
             }
             R.id.main_listBtn -> mHandler.sendEmptyMessage(BUCKET_LIST)
             R.id.main_bucketlistBtn -> mHandler.sendEmptyMessage(SHARE_THE_WORLD)
@@ -209,7 +206,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
     override fun onBackKey() {
         KLog.log("@@ onBackKey")
         (activity as MainFragmentActivity).setBackReceive(null)
-        parentFragmentManager.beginTransaction().addToBackStack(null).commit()
     }
 
     override fun onAttach(context: Context) {

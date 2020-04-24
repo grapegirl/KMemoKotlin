@@ -65,6 +65,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
         setContentView(R.layout.share_detail_activity)
         setBackgroundColor()
 
+        KLog.d("@@ oncreate")
         mHandler = Handler(this)
         mCommentList = ArrayList()
         mSqlQuery = SQLQuery()

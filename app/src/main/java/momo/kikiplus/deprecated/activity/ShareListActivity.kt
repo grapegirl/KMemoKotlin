@@ -263,10 +263,11 @@ class ShareListActivity : Activity(), IHttpReceive, View.OnClickListener, Handle
                 val sharedIdx = v.tag as Int
                 val idx = mBucketDataList[sharedIdx].idx
                 KLog.log("@@ onclick detail idx : " + idx)
+                KLog.log("@@ onclick detail mBucketDataList[sharedIdx] : " + mBucketDataList[sharedIdx])
                 val intent = Intent(this, ShareDetailActivity::class.java)
                 intent.putExtra(DataConst.NUM_SHARE_BUCKET_IDX, idx.toString() + "")
                 intent.putExtra(DataConst.OBJ_SHARE_BUCKET, mBucketDataList[sharedIdx])
-                startActivity(intent)
+                //startActivity(intent)
             }
         }
     }

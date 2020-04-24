@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.WriteFragmentBinding
@@ -162,7 +163,9 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
     override fun onBackKey() {
         KLog.log("@@ onBackKey")
         (activity as MainFragmentActivity).setBackReceive(null)
-        parentFragmentManager.beginTransaction().addToBackStack(null).commit()
+        NavHostFragment
+            .findNavController(this)
+            .navigate(R.id.action_WriteFragment_to_MainFragment)
     }
 
     override fun onAttach(context: Context) {

@@ -24,5 +24,16 @@
         android:id="@+id/WriteFragement"
         android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.WriteFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/write_fragment"/>
+        tools:layout="@layout/write_fragment">
+
+        <action
+            android:id="@+id/action_WriteFragment_to_MainFragment"
+            app:destination="@id/MainFragement"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            />
+
+    </fragment>
 </navigation>

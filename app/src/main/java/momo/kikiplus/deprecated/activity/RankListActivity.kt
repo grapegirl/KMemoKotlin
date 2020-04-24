@@ -15,7 +15,9 @@ import momo.kikiplus.refactoring.common.util.*
 import momo.kikiplus.refactoring.common.view.KProgressDialog
 import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
+import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.data.vo.BucketRank
+import momo.kikiplus.refactoring.kbucket.data.vo.Category
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -92,15 +94,18 @@ class RankListActivity : Activity(), IHttpReceive, View.OnClickListener, Handler
                     mBucketDataList!!.clear()
                     for (i in 0 until size) {
                         val jsonObject = jsonArray.get(i) as JSONObject
-                        val bucket = BucketRank()
-                        bucket.bucket!!.category!!.categoryCode = jsonObject.getInt("categoryCode")
-                        bucket.bucket!!.content = jsonObject.getString("content")
-                        bucket.bucket!!.idx = jsonObject.getInt("idx")
-                        bucket.bestCnt = jsonObject.getInt("bestCnt")
-                        bucket.goodCnt = jsonObject.getInt("goodCnt")
-                        bucket.soSoCnt = jsonObject.getInt("ssoCnt")
-                        bucket.userComment = jsonObject.getInt("comment")
-                        mBucketDataList!!.add(bucket)
+                        val rank = BucketRank()
+
+                        rank.bucket = Bucket()
+                        rank.bucket!!.category = Category()
+                        rank.bucket!!.category!!.categoryCode = jsonObject.getInt("categoryCode")
+                        rank.bucket!!.content = jsonObject.getString("content")
+                        rank.bucket!!.idx = jsonObject.getInt("idx")
+                        rank.bestCnt = jsonObject.getInt("bestCnt")
+                        rank.goodCnt = jsonObject.getInt("goodCnt")
+                        rank.soSoCnt = jsonObject.getInt("ssoCnt")
+                        rank.userComment = jsonObject.getInt("comment")
+                        mBucketDataList!!.add(rank)
                     }
                     mHandler!!.sendEmptyMessage(SET_LIST)
                 } catch (e: JSONException) {
