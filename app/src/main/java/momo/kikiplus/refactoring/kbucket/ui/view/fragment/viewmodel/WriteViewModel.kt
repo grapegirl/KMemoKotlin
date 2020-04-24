@@ -2,7 +2,7 @@ package momo.kikiplus.refactoring.kbucket.ui.view.fragment.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import momo.kikiplus.modify.sqlite.SQLQuery
+import momo.kikiplus.deprecated.sqlite.SQLQuery
 import momo.kikiplus.refactoring.common.util.DateUtils
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
@@ -14,7 +14,8 @@ class WriteViewModel : ViewModel() {
 
     private var mBucketDataList: ArrayList<Bucket> = ArrayList()
 
-    private var mSqlQuery: SQLQuery = SQLQuery()
+    private var mSqlQuery: SQLQuery =
+        SQLQuery()
 
     fun initLocalData(context : Context) {
         val map = mSqlQuery.selectKbucket(context) ?: return

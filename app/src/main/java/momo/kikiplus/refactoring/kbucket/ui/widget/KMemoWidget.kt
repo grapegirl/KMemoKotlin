@@ -8,7 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.view.Activity.WriteMemoActivity
+import momo.kikiplus.deprecated.activity.WriteMemoActivity
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst

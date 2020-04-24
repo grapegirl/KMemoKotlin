@@ -5,8 +5,8 @@ import android.os.AsyncTask
 import android.os.Build
 import android.os.Handler
 import android.os.Message
-import momo.kikiplus.modify.http.HttpUrlTaskManager
-import momo.kikiplus.modify.http.IHttpReceive
+import momo.kikiplus.deprecated.http.HttpUrlTaskManager
+import momo.kikiplus.deprecated.http.IHttpReceive
 import momo.kikiplus.refactoring.common.util.*
 import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst

@@ -7,7 +7,7 @@
     android:background="#FFFFBB33"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Activity.DBMgrActivity">
+    tools:context="momo.kikiplus.deprecated.activity.DBMgrActivity">
 
     <Button
         android:id="@+id/db_title_text"

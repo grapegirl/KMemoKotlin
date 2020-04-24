@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.WriteFragmentBinding
-import momo.kikiplus.com.kbucket.view.Activity.WriteDetailActivity
+import momo.kikiplus.deprecated.activity.WriteDetailActivity
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst

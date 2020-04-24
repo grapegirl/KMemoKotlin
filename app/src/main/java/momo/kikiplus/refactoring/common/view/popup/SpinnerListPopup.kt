@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.ListView
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.view.Adapter.SpinnerListAdapter
+import momo.kikiplus.deprecated.adapter.SpinnerListAdapter
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.kbucket.data.vo.Category
 import org.json.JSONException
@@ -73,7 +73,11 @@ class SpinnerListPopup
 
     private fun setData(listData: ArrayList<Category>) {
         val selectedItem = listData
-        m_Adapter = SpinnerListAdapter(mCotext, selectedItem, R.layout.popupview_spinner_list_line)
+        m_Adapter = SpinnerListAdapter(
+            mCotext,
+            selectedItem,
+            R.layout.popupview_spinner_list_line
+        )
         m_Adapter!!.setDefaultChecked(0)
         m_ListView = mDialogView!!.findViewById<View>(R.id.popup_spinner_list) as ListView
         m_ListView!!.adapter = m_Adapter

@@ -14,10 +14,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentBinding
-import momo.kikiplus.com.kbucket.view.Activity.BucketListActivity
-import momo.kikiplus.com.kbucket.view.Activity.NoticeActivity
-import momo.kikiplus.com.kbucket.view.Activity.RankListActivity
-import momo.kikiplus.com.kbucket.view.Activity.ShareListActivity
+import momo.kikiplus.deprecated.activity.BucketListActivity
+import momo.kikiplus.deprecated.activity.NoticeActivity
+import momo.kikiplus.deprecated.activity.RankListActivity
+import momo.kikiplus.deprecated.activity.ShareListActivity
 import momo.kikiplus.refactoring.common.util.AppUtils
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils

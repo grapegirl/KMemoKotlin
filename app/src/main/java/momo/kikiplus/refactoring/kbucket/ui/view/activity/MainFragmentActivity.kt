@@ -19,8 +19,8 @@ import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
-import momo.kikiplus.com.kbucket.view.Activity.*
-import momo.kikiplus.modify.sqlite.SQLQuery
+import momo.kikiplus.deprecated.activity.*
+import momo.kikiplus.deprecated.sqlite.SQLQuery
 import momo.kikiplus.refactoring.common.util.*
 import momo.kikiplus.refactoring.kbucket.data.FireMessingService
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
