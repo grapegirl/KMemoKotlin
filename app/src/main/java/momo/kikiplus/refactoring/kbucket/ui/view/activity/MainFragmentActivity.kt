@@ -28,7 +28,7 @@ import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.task.AppUpdateTask
 import momo.kikiplus.refactoring.task.UserUpdateTask
 
-class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
+class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.OnItemClickListener {
 
     private var backKeyPressedTime = 0L
     private var finishToast: Toast? = null
@@ -88,7 +88,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
 
         mBinding.drawerList.adapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1, confDatas)
-        mBinding.drawerList.onItemClickListener = DrawerItemClickListener()
+        mBinding.drawerList.onItemClickListener = this
 
         MobileAds.initialize(this, DataConst.KBUCKET_AD_UNIT_ID)
         val adRequest = AdRequest.Builder().build()
@@ -250,13 +250,8 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback {
         }
     }
 
-    private inner class DrawerItemClickListener : AdapterView.OnItemClickListener {
-        override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-            selectItem(position)
-        }
-    }
-
-    private fun selectItem(position: Int) {
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        KLog.d("@@ selectItem position : "  + position)
         when (position) {
             0//암호설정
             -> {

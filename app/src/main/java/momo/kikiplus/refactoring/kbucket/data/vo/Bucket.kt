@@ -9,21 +9,21 @@ import java.util.*
 
 class Bucket : Serializable {
 
-    var category : Category? = null
+    var category : Category = Category()
 
-    var content: String? = null
+    var content: String = ""
 
-    var date: String? = null
+    var date: String = ""
 
     var idx: Int = 0
 
-    var nickName : String? = null
+    var nickName : String = ""
 
-    var imageUrl: String? = null
+    var imageUrl: String = ""
 
-    var completeYN: String? = null
+    var completeYN: String = ""
 
-    var deadLine: String? = null
+    var deadLine: String = ""
 
     fun toHasnMap(): HashMap<String, Any> {
         val map = HashMap<String, Any>()
@@ -53,9 +53,10 @@ class Bucket : Serializable {
      * 생성자
      */
 
-    constructor()
+    constructor(){}
+
     constructor(contents: String) {
-        date = null
+        date = ""
         content = contents
         idx = 0
     }

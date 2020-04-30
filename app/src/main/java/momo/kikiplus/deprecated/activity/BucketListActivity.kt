@@ -118,19 +118,19 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
                 continue
             }
             val postData = Bucket("", memoMap["contents"]!!, memoMap["date"]!!, i)
-            postData.imageUrl = memoMap["image_path"]
-            postData.completeYN = memoMap["complete_yn"]
+            postData.imageUrl = memoMap["image_path"].toString()
+            postData.completeYN = memoMap["complete_yn"].toString()
             mDataList!!.add(postData)
         }
     }
 
     override fun onClick(v: View) {
         val index = v.id
-        val intent = Intent(this, WriteDetailActivity::class.java)
-        intent.putExtra("CONTENTS", mDataList!![index].content)
-        intent.putExtra("BACK", DataConst.VIEW_COMPLETE_LIST)
-        startActivity(intent)
-        finish()
+//        val intent = Intent(this, WriteDetailActivity::class.java)
+//        intent.putExtra("CONTENTS", mDataList!![index].content)
+//        intent.putExtra("BACK", DataConst.VIEW_COMPLETE_LIST)
+//        startActivity(intent)
+//        finish()
     }
 
     override fun onLongClick(v: View): Boolean {

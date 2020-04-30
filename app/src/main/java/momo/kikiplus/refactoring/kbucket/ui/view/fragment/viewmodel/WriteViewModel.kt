@@ -24,9 +24,9 @@ class WriteViewModel : ViewModel() {
         for (i in map.indices) {
             val memoMap = map[i]
             val bucket = Bucket("", memoMap["contents"]!!, memoMap["date"]!!, i)
-            bucket.imageUrl = memoMap["image_path"]
-            bucket.completeYN = memoMap["complete_yn"]
-            bucket.deadLine = memoMap["deadline"]
+            bucket.imageUrl = memoMap["image_path"].toString()
+            bucket.completeYN = memoMap["complete_yn"].toString()
+            bucket.deadLine = memoMap["deadline"].toString()
 
             if (memoMap["complete_yn"] == "Y") {
                 continue
@@ -55,7 +55,7 @@ class WriteViewModel : ViewModel() {
             if (data.completeYN == "Y") {
                 continue
             }
-            list.add(data.content!!)
+            list.add(data.content)
         }
         return list
     }
@@ -87,7 +87,7 @@ class WriteViewModel : ViewModel() {
 
     //날짜순 정렬
     var DATE_SORT: java.util.Comparator<Bucket> = Comparator { lhs, rhs -> DateUtils.getCompareDate(
-        DateUtils.DATE_YYMMDD_PATTER, lhs.date!!, rhs.date!!) }
+        DateUtils.DATE_YYMMDD_PATTER, lhs.date, rhs.date) }
 
     //내용순 정렬
     var MEMO_SORT: java.util.Comparator<Bucket> = Comparator { lhs, rhs -> lhs.content!!.compareTo(rhs.content!!) }

@@ -35,5 +35,32 @@
             app:popExitAnim="@anim/slide_out_left"
             />
 
+        <action
+            android:id="@+id/action_WriteFragment_to_DetailFragment"
+            app:destination="@id/DetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/DetailFragment"
+        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.DetailFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/detail_fragment">
+
+        <action
+            android:id="@+id/action_DetailFragment_to_MainFragment"
+            app:destination="@id/MainFragement"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            />
+
+
     </fragment>
 </navigation>

@@ -107,7 +107,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
             R.id.main_conf_btn -> {
                 val intent = Intent(mActivity, MainFragmentActivity::class.java)
                 intent.putExtra("DATA", DataConst.START_OPEN_DRAWER)
-                startActivity(intent)
+                //startActivity(intent)
             }
             R.id.main_update_btn -> mHandler.sendEmptyMessage(NOTICE)
             R.id.main_ai_btn -> {
