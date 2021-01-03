@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="shortcuts1"
+        android:enabled="true"
+        android:icon="@drawable/anim2"
+        android:shortcutShortLabel="@string/appshortcuts1">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="momo.kikiplus.com.kbucket"
+            android:targetClass="momo.kikiplus.refactoring.kbucket.ui.view.activity.IntroActivity" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="shortcuts2"
+        android:enabled="true"
+        android:icon="@drawable/anim2"
+        android:shortcutShortLabel="@string/appshortcuts2">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="momo.kikiplus.com.kbucket"
+            android:targetClass="momo.kikiplus.deprecated.activity.BucketListActivity" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="shortcuts3"
+        android:enabled="true"
+        android:icon="@drawable/anim2"
+        android:shortcutShortLabel="@string/appshortcuts3">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="momo.kikiplus.com.kbucket"
+            android:targetClass="momo.kikiplus.deprecated.activity.ShareListActivity" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="shortcuts4"
+        android:enabled="true"
+        android:icon="@drawable/anim2"
+        android:shortcutShortLabel="@string/appshortcuts4">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="momo.kikiplus.com.kbucket"
+            android:targetClass="momo.kikiplus.deprecated.activity.RankListActivity" />
+    </shortcut>
+
+
+</shortcuts>

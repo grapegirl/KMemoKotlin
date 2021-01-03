@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/KMemo.iml" filepath="$PROJECT_DIR$/KMemo.iml" group="KMemo" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="KMemo/app" />
+      <module fileurl="file://$PROJECT_DIR$/KMemo.iml" filepath="$PROJECT_DIR$/KMemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/KMemo.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/KMemo.app.iml" />
     </modules>
   </component>
 </project>

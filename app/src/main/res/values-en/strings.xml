@@ -252,4 +252,10 @@
         <item>Serving Dogs</item>
         <item>Bucket list Complete all items</item>
     </string-array>
+
+    <string name="appshortcuts1">Home</string>
+    <string name="appshortcuts2">Dream List</string>
+    <string name="appshortcuts3">Our Dreams</string>
+    <string name="appshortcuts4">Dream Rank</string>
+
 </resources>
