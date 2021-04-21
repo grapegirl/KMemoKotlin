@@ -9,6 +9,8 @@ import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
 import momo.kikiplus.com.kbucket.R
+import momo.kikiplus.com.kbucket.databinding.ShareDetailActivityBinding
+import momo.kikiplus.com.kbucket.databinding.ShareListActivityBinding
 import momo.kikiplus.deprecated.adapter.CommentListAdpater
 import momo.kikiplus.deprecated.http.HttpUrlTaskManager
 import momo.kikiplus.deprecated.http.IHttpReceive
@@ -27,6 +29,7 @@ import momo.kikiplus.refactoring.kbucket.ui.view.popup.DetailImagePopup
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
+import kotlin.collections.HashMap
 
 
 /**
@@ -58,11 +61,14 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
 
     private var mSqlQuery: SQLQuery? = null
     private var mConfirmPopup: ConfirmPopup? = null
+    private lateinit var mBinding : ShareDetailActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        setContentView(R.layout.share_detail_activity)
+
+        mBinding = ShareDetailActivityBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
         setBackgroundColor()
 
         KLog.d("@@ oncreate")
@@ -71,7 +77,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
         mSqlQuery = SQLQuery()
         val Intent = intent
         val idx = Intent.getStringExtra(DataConst.NUM_SHARE_BUCKET_IDX)
-        mBucket = Intent.getSerializableExtra(DataConst.OBJ_SHARE_BUCKET) as Bucket
+        mBucket = Intent.getParcelableExtra<Bucket>(DataConst.OBJ_SHARE_BUCKET);
 
         mUserNickname = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         mHandler!!.sendMessage(mHandler!!.obtainMessage(LOAD_COMMENT_LIST, idx))
@@ -106,8 +112,11 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
     private fun setData(bucket: Bucket) {
         KLog.d("@@ setData")
         mBucketNo = bucket.idx
-
         KLog.log("@@ image exists : " + bucket.imageUrl!!)
+
+        (findViewById<View>(R.id.share_contents_textview) as TextView).text = bucket.content
+        (findViewById<View>(R.id.share_title_textview) as TextView).text = bucket.date
+
         if (bucket.imageUrl != null && bucket.imageUrl != "N") {
             mHandler!!.sendEmptyMessage(DOWNLOAD_IMAGE)
         }
