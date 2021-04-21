@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
 import momo.kikiplus.com.kbucket.R
@@ -74,7 +75,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
     private fun initialize() {
         FirebaseApp.initializeApp(this)
 
-        Thread.setDefaultUncaughtExceptionHandler(ErrorLogUtils.UncaughtExceptionHandlerApplication())
+        //Thread.setDefaultUncaughtExceptionHandler(ErrorLogUtils.UncaughtExceptionHandlerApplication())
 
         val sqlQuery = SQLQuery()
         sqlQuery.createTable(applicationContext)
@@ -90,7 +91,8 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
             android.R.layout.simple_list_item_1, confDatas)
         mBinding.drawerList.onItemClickListener = this
 
-        MobileAds.initialize(this, DataConst.KBUCKET_AD_UNIT_ID)
+        MobileAds.initialize(this){}
+
         val adRequest = AdRequest.Builder().build()
         mBinding.mainAdLayout.loadAd(adRequest)
         mBinding.mainAdLayout.adListener = object : AdListener() {
@@ -99,9 +101,10 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
                 Log.d("mhkim", "@@ onAdLoaded  ")
             }
 
-            override fun onAdFailedToLoad(errorCode: Int) {
-                // Code to be executed when an ad request fails.
-                Log.d("mhkim", "@@ onAdFailedToLoad errorCode :   " + errorCode)
+            override fun onAdFailedToLoad(error: LoadAdError) {
+                super.onAdFailedToLoad(error)
+                Log.d("mhkim", "@@ onAdFailedToLoad errorCode :   " + error.code)
+                Log.d("mhkim", "@@ onAdFailedToLoad errorMessage :   " + error.message)
             }
 
             override fun onAdOpened() {
@@ -115,9 +118,9 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
                 Log.d("mhkim", "@@ onAdClicked")
             }
 
-            override fun onAdLeftApplication() {
-                // Code to be executed when the user has left the app.
-                Log.d("mhkim", "@@ onAdLeftApplication")
+            override fun onAdImpression() {
+                super.onAdImpression()
+                Log.d("mhkim", "@@ onAdImpression")
             }
 
             override fun onAdClosed() {
