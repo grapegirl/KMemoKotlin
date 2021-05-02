@@ -8,10 +8,10 @@ import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.deprecated.activity.WriteMemoActivity
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.WriteMemoActivity
 
 /**
  * Created by cs on 2017-04-05.

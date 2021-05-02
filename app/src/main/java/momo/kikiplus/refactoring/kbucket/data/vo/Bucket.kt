@@ -2,7 +2,6 @@ package momo.kikiplus.refactoring.kbucket.data.vo
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.io.Serializable
 import java.util.*
 
 /**

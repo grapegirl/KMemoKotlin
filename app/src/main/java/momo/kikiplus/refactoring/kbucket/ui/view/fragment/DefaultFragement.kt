@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.databinding.NoticeExtendedBinding
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst

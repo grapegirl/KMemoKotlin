@@ -3,10 +3,10 @@ package momo.kikiplus.refactoring.obj
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import momo.kikiplus.deprecated.activity.WriteMemoActivity
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IntroActivity
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.WriteMemoActivity
 
 class KWidgetReceiver : BroadcastReceiver() {
 

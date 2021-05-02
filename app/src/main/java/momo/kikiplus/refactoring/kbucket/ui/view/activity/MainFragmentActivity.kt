@@ -13,7 +13,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -21,7 +20,8 @@ import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
-import momo.kikiplus.deprecated.activity.*
+import momo.kikiplus.deprecated.activity.AddBucketActivity
+import momo.kikiplus.deprecated.activity.DBMgrActivity
 import momo.kikiplus.deprecated.sqlite.SQLQuery
 import momo.kikiplus.refactoring.common.util.AppUtils
 import momo.kikiplus.refactoring.common.util.DataUtils
@@ -30,11 +30,10 @@ import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.FireMessingService
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
-import momo.kikiplus.refactoring.kbucket.ui.view.fragment.MainFragment
 import momo.kikiplus.refactoring.task.AppUpdateTask
 import momo.kikiplus.refactoring.task.UserUpdateTask
 
-class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
+class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.OnItemClickListener {
 
     private var backKeyPressedTime = 0L
     private var finishToast: Toast? = null
@@ -97,9 +96,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
 
         mBinding.drawerList.adapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1, confDatas)
-        //mBinding.drawerList.onItemClickListener = this
-
-        mBinding.drawerList.onItemSelectedListener = this
+        mBinding.drawerList.onItemClickListener = this
 
         MobileAds.initialize(this){}
 
@@ -163,8 +160,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
         }
 
         if (userNickName == null || userNickName == "null") {
-            val intent = Intent(this, SetNickNameActivity::class.java)
-            startActivity(intent)
+            changeMenu(3)
         }
 
         var strToken = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_FCM, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
@@ -265,6 +261,20 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         KLog.d("@@ selectItem position : "  + position)
+        changeMenu(position)
+        mBinding.dlActivityMainDrawer.closeDrawer(mBinding.drawerList)
+    }
+
+    fun sendUserEvent(screenName : String){
+        AppUtils.sendTrackerScreen(this, screenName)
+    }
+
+    fun sendConfEvent() {
+        handler.sendEmptyMessage(OPEN_DRAWER)
+    }
+
+    fun changeMenu(position: Int){
+        KLog.d("@@ changeMenu position : " + position)
         when (position) {
             0//암호설정
             -> {
@@ -272,15 +282,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
 //                intent.putExtra("SET", "SET")
 //                startActivity(intent)
 
-//                NavHostFragment
-//                    .findNavController(this)
-//                    .navigate(R.id.action_MainFragment_to_WriteFragment)
-
-                NavHostFragment
-                    .findNavController(MainFragment.newInstance())
-                    .navigate(R.id.action_MainFragment_to_PassFragment)
-
-                sendUserEvent("패스워드설정")
+                sendUserEvent("암호설정")
             }
             1//암호해제
             -> {
@@ -295,13 +297,16 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
             }
             3//별명설정
             -> {
-                intent = Intent(this, SetNickNameActivity::class.java)
-                startActivity(intent)
+//                intent = Intent(this, SetNickNameActivity::class.java)
+//                startActivity(intent)
+                sendUserEvent("이름설정")
             }
             4//배경설정
             -> {
-                intent = Intent(this, SetBackColorActivity::class.java)
-                startActivity(intent)
+//                intent = Intent(this, SetBackColorActivity::class.java)
+//                startActivity(intent)
+                sendUserEvent("배경설정")
+
             }
             5//튜토리얼
             -> {
@@ -311,8 +316,9 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
             }
             6//문의하기
             -> {
-                intent = Intent(this, QuestionActivity::class.java)
-                startActivity(intent)
+//                intent = Intent(this, QuestionActivity::class.java)
+//                startActivity(intent)
+                sendUserEvent("문의개선")
             }
             9//관심 버킷 추가하기
             -> {
@@ -320,32 +326,10 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
                 startActivity(intent)
             }
         }
-        mBinding.dlActivityMainDrawer.closeDrawer(mBinding.drawerList)
     }
-
-    fun sendUserEvent(screenName : String){
-        AppUtils.sendTrackerScreen(this, screenName)
-    }
-
-    fun sendConfEvent() {
-        //KLog.log("@@ sendConfEvent data : " +screenName )
-        Log.d("mhkim", "@@ opendrawer")
-        handler.sendEmptyMessage(OPEN_DRAWER)
-    }
-
     fun setBackReceive(receive: IBackReceive?){
         KLog.log("@@ setBackReceive receive : "+ receive)
         backReceive = receive
 
-    }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        TODO("Not yet implemented")
-        KLog.log("@@ onItemSelected :  ")
-    }
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-        TODO("Not yet implemented")
-        KLog.log("@@ onNothingSelected :  ")
     }
 }

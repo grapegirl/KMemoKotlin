@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.refactoring.common.util.KLog
-import momo.kikiplus.refactoring.kbucket.ui.view.recycler.ContentViewHolder
+import momo.kikiplus.refactoring.kbucket.ui.view.holder.ContentViewHolder
 
 class RecyclerViewAdapter( clickListener: View.OnClickListener) : RecyclerView.Adapter<ContentViewHolder>() {
 

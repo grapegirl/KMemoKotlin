@@ -5,12 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import android.view.View
 import android.view.animation.AlphaAnimation
-import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.IntroActivityBinding
-import momo.kikiplus.deprecated.activity.BucketListActivity
-import momo.kikiplus.deprecated.activity.ShareListActivity
+import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
@@ -34,6 +31,8 @@ class IntroActivity : Activity(), android.os.Handler.Callback {
 
         mBinding = IntroActivityBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+
+        setBackgroundColor()
 
         val anim1 = AlphaAnimation(0.0f, 1.0f)
         anim1.duration = 500
@@ -79,12 +78,13 @@ class IntroActivity : Activity(), android.os.Handler.Callback {
     private fun setBackgroundColor() {
         val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
-            findViewById<View>(R.id.intro_back_color).setBackgroundColor(color)
+            mBinding.introBackColor.setBackgroundColor(color)
         }
     }
 
 
     override fun handleMessage(msg: Message): Boolean {
+        KLog.d("@@ IntroActivity msg : " + msg.what)
         when (msg.what) {
             0//바로 실행할때
             -> {
@@ -94,13 +94,13 @@ class IntroActivity : Activity(), android.os.Handler.Callback {
             }
             1//비밀번호 맞추기
             -> {
-                intent = Intent(this, PassWordActivity::class.java)
-                val intent2 = intent
-                val startView = intent2.getStringExtra("DATA")
-                intent.putExtra("SET", "GET")
-                intent.putExtra("DATA", startView)
-                startActivity(intent)
-                finish()
+//                intent = Intent(this, PassWordActivity::class.java)
+//                val intent2 = intent
+//                val startView = intent2.getStringExtra("DATA")
+//                intent.putExtra("SET", "GET")
+//                intent.putExtra("DATA", startView)
+//                startActivity(intent)
+//                finish()finish
             }
             2//가지 작성 화면
             -> {
@@ -108,16 +108,30 @@ class IntroActivity : Activity(), android.os.Handler.Callback {
 //                intent = Intent(this, WriteActivity::class.java)
 //                startActivity(intent)
 //                finish()
+                intent = Intent(this, MainFragmentActivity::class.java)
+                intent.putExtra(DataConst.WIDGET_SEND_DATA, DataConst.WIDGET_WRITE_BUCKET)
+                startActivity(intent)
+                finish()
+
             }
             3//리스트 화면
             -> {
-                intent = Intent(this, BucketListActivity::class.java)
+//                intent = Intent(this, BucketListActivity::class.java)
+//                startActivity(intent)
+//                finish()
+                intent = Intent(this, MainFragmentActivity::class.java)
+                intent.putExtra(DataConst.WIDGET_SEND_DATA, DataConst.WIDGET_BUCKET_LIST)
                 startActivity(intent)
                 finish()
             }
             4//모두의 가지화면
             -> {
-                intent = Intent(this, ShareListActivity::class.java)
+//                intent = Intent(this, ShareListActivity::class.java)
+//                startActivity(intent)
+//                finish()
+
+                intent = Intent(this, MainFragmentActivity::class.java)
+                intent.putExtra(DataConst.WIDGET_SEND_DATA, DataConst.WIDGET_OURS_BUCKET)
                 startActivity(intent)
                 finish()
             }

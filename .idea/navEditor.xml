@@ -60,6 +60,27 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="ColorFragement">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_ColorFragment_to_MainFragement">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="DetailFragment">
                     <value>
                       <LayoutPositions>
@@ -86,6 +107,27 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="Fragement">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_ColorFragment_to_MainFragement">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="MainFragement">
                     <value>
                       <LayoutPositions>
@@ -97,6 +139,16 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_MainFragment_to_ColorFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_MainFragment_to_NameFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_MainFragment_to_NoticeFragment">
                               <value>
                                 <LayoutPositions />
@@ -113,6 +165,27 @@
                               </value>
                             </entry>
                             <entry key="action_MainFragment_to_WriteFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="NameFragement">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_NameFragment_to_MainFragement">
                               <value>
                                 <LayoutPositions />
                               </value>

@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.com.kbucket.databinding.NoticeExtendedBinding
 import momo.kikiplus.com.kbucket.databinding.PasswordActivityBinding
 import momo.kikiplus.deprecated.activity.BucketListActivity
 import momo.kikiplus.deprecated.activity.ShareListActivity
@@ -21,7 +20,7 @@ import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
-import java.util.ArrayList
+import java.util.*
 
 class PassFragment: Fragment(), IBackReceive,  View.OnClickListener  {
 

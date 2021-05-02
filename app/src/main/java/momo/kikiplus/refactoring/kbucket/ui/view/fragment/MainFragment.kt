@@ -25,7 +25,6 @@ import momo.kikiplus.refactoring.common.view.popup.BasicPopup
 import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
 import momo.kikiplus.refactoring.kbucket.action.net.AIRespond
 import momo.kikiplus.refactoring.kbucket.action.net.NetRetrofit
-import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PopupConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
@@ -42,9 +41,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
 
     companion object {
         fun newInstance() =
-            MainFragment()
-
-        fun getInstace() =
             MainFragment()
     }
 
@@ -86,10 +82,18 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         KLog.log("@@ onActivityCreated")
-
+        setBackgroundColor()
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         mActivity = activity
 
+    }
+
+    private fun setBackgroundColor() {
+        KLog.d("@@ setBackgroundColor")
+        val color = (SharedPreferenceUtils.read(requireContext(), PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        if (color != -1) {
+            mBinding.mainBackColor.setBackgroundColor(color)
+        }
     }
 
     override fun onClick(view: View) {
@@ -105,10 +109,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
             R.id.main_listBtn -> mHandler.sendEmptyMessage(BUCKET_LIST)
             R.id.main_bucketlistBtn -> mHandler.sendEmptyMessage(SHARE_THE_WORLD)
             R.id.main_conf_btn -> {
-//                val intent = Intent(mActivity, MainFragmentActivity::class.java)
-//                intent.putExtra(DataConst.WIDGET_SEND_DATA, DataConst.START_OPEN_DRAWER)
-//                startActivity(intent)
-
                 (activity as MainFragmentActivity).sendConfEvent()
             }
             R.id.main_update_btn -> {
@@ -128,9 +128,9 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
 
                 NavHostFragment
                     .findNavController(this)
-                    .navigate(R.id.action_MainFragment_to_RankFragment)
+                    .navigate(R.id.action_MainFragment_to_UpgradeFragment)
 
-                (activity as MainFragmentActivity).sendUserEvent("버킷랭킹")
+               // (activity as MainFragmentActivity).sendUserEvent("버킷랭킹")
             }
         }
     }
