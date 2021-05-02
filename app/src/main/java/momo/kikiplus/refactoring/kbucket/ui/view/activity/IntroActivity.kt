@@ -10,7 +10,6 @@ import android.view.animation.AlphaAnimation
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.IntroActivityBinding
 import momo.kikiplus.deprecated.activity.BucketListActivity
-import momo.kikiplus.deprecated.activity.PassWordActivity
 import momo.kikiplus.deprecated.activity.ShareListActivity
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst

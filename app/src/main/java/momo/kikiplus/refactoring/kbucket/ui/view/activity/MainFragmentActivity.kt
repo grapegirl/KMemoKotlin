@@ -13,6 +13,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -22,14 +23,18 @@ import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
 import momo.kikiplus.deprecated.activity.*
 import momo.kikiplus.deprecated.sqlite.SQLQuery
-import momo.kikiplus.refactoring.common.util.*
+import momo.kikiplus.refactoring.common.util.AppUtils
+import momo.kikiplus.refactoring.common.util.DataUtils
+import momo.kikiplus.refactoring.common.util.KLog
+import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.FireMessingService
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.MainFragment
 import momo.kikiplus.refactoring.task.AppUpdateTask
 import momo.kikiplus.refactoring.task.UserUpdateTask
 
-class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.OnItemClickListener {
+class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
 
     private var backKeyPressedTime = 0L
     private var finishToast: Toast? = null
@@ -60,11 +65,14 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
         val getIntent = intent
         Log.d("mhkim", "@@ getIntent : " + getIntent)
         val data = getIntent.getStringExtra(DataConst.WIDGET_SEND_DATA)
+        Log.d("mhkim", "@@ data : " + data)
         if (data != null && data == DataConst.WIDGET_SHARE) {
             ShareSocial()
-        }else if(data != null && data == DataConst.START_OPEN_DRAWER){
-            handler.sendEmptyMessage(OPEN_DRAWER)
         }
+//        else if(data != null && data == DataConst.START_OPEN_DRAWER){
+//            Log.d("mhkim", "@@ opendrawer")
+//            handler.sendEmptyMessage(OPEN_DRAWER)
+//        }
 
         checkPermision()
         handler.sendEmptyMessage(CHECK_VERSION)
@@ -89,12 +97,14 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
 
         mBinding.drawerList.adapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1, confDatas)
-        mBinding.drawerList.onItemClickListener = this
+        //mBinding.drawerList.onItemClickListener = this
+
+        mBinding.drawerList.onItemSelectedListener = this
 
         MobileAds.initialize(this){}
 
         val adRequest = AdRequest.Builder().build()
-        mBinding.mainAdLayout.loadAd(adRequest)
+        //mBinding.mainAdLayout.loadAd(adRequest)
         mBinding.mainAdLayout.adListener = object : AdListener() {
             override fun onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
@@ -258,9 +268,19 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
         when (position) {
             0//암호설정
             -> {
-                var intent = Intent(this, PassWordActivity::class.java)
-                intent.putExtra("SET", "SET")
-                startActivity(intent)
+//                var intent = Intent(this, PassWordActivity::class.java)
+//                intent.putExtra("SET", "SET")
+//                startActivity(intent)
+
+//                NavHostFragment
+//                    .findNavController(this)
+//                    .navigate(R.id.action_MainFragment_to_WriteFragment)
+
+                NavHostFragment
+                    .findNavController(MainFragment.newInstance())
+                    .navigate(R.id.action_MainFragment_to_PassFragment)
+
+                sendUserEvent("패스워드설정")
             }
             1//암호해제
             -> {
@@ -307,9 +327,25 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
         AppUtils.sendTrackerScreen(this, screenName)
     }
 
+    fun sendConfEvent() {
+        //KLog.log("@@ sendConfEvent data : " +screenName )
+        Log.d("mhkim", "@@ opendrawer")
+        handler.sendEmptyMessage(OPEN_DRAWER)
+    }
+
     fun setBackReceive(receive: IBackReceive?){
-        KLog.log("@@ setBackReceive")
+        KLog.log("@@ setBackReceive receive : "+ receive)
         backReceive = receive
 
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        TODO("Not yet implemented")
+        KLog.log("@@ onItemSelected :  ")
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        TODO("Not yet implemented")
+        KLog.log("@@ onNothingSelected :  ")
     }
 }

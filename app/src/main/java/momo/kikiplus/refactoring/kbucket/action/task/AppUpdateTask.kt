@@ -54,22 +54,22 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
             START_VERSION -> {
 
                 val strSender = AppUtils.getVersionName(mContext)!!
-                KLog.d( "@@ StringUtils.getHTTPPostSendData(map) : " + strSender)
+                //KLog.d( "@@ StringUtils.getHTTPPostSendData(map) : " + strSender)
 
                 val res = NetRetrofit.instance.service.getVersion(strSender)
                 res.enqueue(object : Callback<Version>{
                     override fun onResponse(call: Call<Version>, response: Response<Version>) {
-                        KLog.d( "@@ onRecv ok : " + response)
-                        KLog.d( "@@ onRecv response body: " + response.body()!!.toString())
+                        //KLog.d( "@@ onRecv ok : " + response)
+                        //KLog.d( "@@ onRecv response body: " + response.body()!!.toString())
 
                         if (response.body()!!.bIsValid) {
                             mVersion = Version()
                             mVersion!!.forceYN = response.body()!!.forceYN
                             mVersion!!.versionCode = response.body()!!.versionCode
                             mVersion!!.versionName = response.body()!!.versionName
-                            KLog.d( "@@ onRecv forceYN : " + response.body()!!.forceYN)
-                            KLog.d( "@@ onRecv versionCode : " + response.body()!!.versionCode)
-                            KLog.d( "@@ onRecv versionName : " + mVersion!!.versionName)
+                            //KLog.d( "@@ onRecv forceYN : " + response.body()!!.forceYN)
+                            //KLog.d( "@@ onRecv versionCode : " + response.body()!!.versionCode)
+                            //KLog.d( "@@ onRecv versionName : " + mVersion!!.versionName)
                             mHandler.sendEmptyMessage(CHECK_VERSION)
                         }
                     }
@@ -85,15 +85,15 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
 
                if(mVersion == null){
                    KLog.d( "@@ check version mVesion is null")
-                    return false
+                   return false
                }
 
                 val currentVersionName = AppUtils.getVersionName(mContext)
                 val serverVersionName = mVersion!!.versionName
                 if(currentVersionName == null || serverVersionName == null){
-                    KLog.d( "@@ check version currentVersionName or serverVersionName is null")
-                    KLog.d( "@@ currentVersionName : " + currentVersionName)
-                    KLog.d( "@@ serverVersisonName : " + serverVersionName)
+                    // KLog.d( "@@ check version currentVersionName or serverVersionName is null")
+                    //KLog.d( "@@ currentVersionName : " + currentVersionName)
+                    //KLog.d( "@@ serverVersisonName : " + serverVersionName)
                     return false
                 }
                 if(mVersion!!.versionCode > 0)

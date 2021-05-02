@@ -19,7 +19,7 @@
         android:allowBackup="true"
         android:appComponentFactory="whatevetString"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="${appLabel}"
         android:networkSecurityConfig="@xml/network_configuration"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
@@ -27,7 +27,6 @@
         <activity
             android:name="momo.kikiplus.refactoring.kbucket.ui.view.activity.IntroActivity"
             android:clearTaskOnLaunch="true"
-            android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,9 +45,6 @@
             android:hardwareAccelerated="false"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name="momo.kikiplus.deprecated.activity.PassWordActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name="momo.kikiplus.deprecated.activity.ShareListActivity"
             android:screenOrientation="portrait" />
@@ -73,17 +69,14 @@
             android:name="momo.kikiplus.deprecated.activity.QuestionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="momo.kikiplus.deprecated.activity.NoticeActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="momo.kikiplus.deprecated.activity.PushPopupActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="momo.kikiplus.deprecated.activity.RankListActivity"
-            android:screenOrientation="portrait" >
-            <meta-data android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts" />
-        </activity>
+<!--        <activity-->
+<!--            android:name="momo.kikiplus.deprecated.activity.RankListActivity"-->
+<!--            android:screenOrientation="portrait" >-->
+<!--            <meta-data android:name="android.app.shortcuts"-->
+<!--                android:resource="@xml/shortcuts" />-->
+<!--        </activity>-->
         <activity
             android:name="momo.kikiplus.deprecated.activity.AddBucketActivity"
             android:screenOrientation="portrait" >

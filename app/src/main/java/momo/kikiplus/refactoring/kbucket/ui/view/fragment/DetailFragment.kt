@@ -2,6 +2,7 @@ package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,8 +13,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.Glide
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.DetailFragmentBinding
@@ -24,11 +27,14 @@ import momo.kikiplus.refactoring.common.util.*
 import momo.kikiplus.refactoring.common.view.popup.ConfirmPopup
 import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
 import momo.kikiplus.refactoring.common.view.popup.SpinnerListPopup
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PopupConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.data.vo.Category
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.viewmodel.DetailViewModel
 import org.json.JSONException
 import org.json.JSONObject
@@ -38,7 +44,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class DetailFragment : Fragment() , View.OnClickListener,
-    IPopupReceive, IHttpReceive, android.os.Handler.Callback{
+    IPopupReceive, IHttpReceive, android.os.Handler.Callback, IBackReceive {
 
     companion object {
         fun newInstance() = DetailFragment()
@@ -157,32 +163,51 @@ class DetailFragment : Fragment() , View.OnClickListener,
         }
     }
 
-//    override fun onBackKey() {
-//        KLog.log("@@ onBackKey")
-//        if (mPhotoPath != null) {
-//            DataUtils.deleteFile(mPhotoPath!!)
-//        }
-//        KLog.d("@@ BACK" + BACK)
-//
-//        if (BACK == DataConst.VIEW_COMPLETE_LIST) {
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as MainFragmentActivity).setBackReceive(this)
+    }
+
+    override fun onBackKey() {
+        KLog.log("@@ DetailFragment onBackKey")
+
+        (activity as MainFragmentActivity).setBackReceive(null)
+
+
+        if (mPhotoPath != null) {
+            KLog.log("@@ DetailFragment mphoto path " + mPhotoPath)
+            DataUtils.deleteFile(mPhotoPath!!)
+        }
+        KLog.d("@@ DetailFragment BACK : " + back)
+
+        if (back == DataConst.VIEW_COMPLETE_LIST) {
 //            val intent = Intent(this, BucketListActivity::class.java)
 //            startActivity(intent)
 //            finish()
-//        } else {
-//            //TODO Activity->Fragemt 변경해야함
-////            val intent = Intent(this, WriteActivity::class.java)
-////            startActivity(intent)
-////            finish()
-//        }
-//    }
+
+        } else {
+            parentFragmentManager.beginTransaction()
+
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                    R.anim.slide_in_left, R.anim.slide_out_right)
+                .detach(this)
+                .commit()
+
+
+        }
+    }
 
 
     override fun onClick(v: View) {
         when (v.id) {
             // 저장 버튼
             R.id.write_saveButton -> {
+
+                contents = binding.detailContentView.text.toString()
+                KLog.log("@@ 저장하기 내용 : " + contents!!)
+                KLog.log("@@ 저장하기 내용2 : " + buckets!!)
                 viewModel.updateDBDate(requireContext(), contents!!, buckets!!)
-                //onBackKey()
+                onBackKey()
             }
             // 삭제 버튼
             R.id.write_deleteButton -> {

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/notice_back_color"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFBB33"
-    android:orientation="vertical">
+    tools:context="momo.kikiplus.refactoring.kbucket.ui.view.fragment.NoticeFragment">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/notice_back_color"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFBB33"
+        android:orientation="vertical">
 
     <Button
         android:id="@+id/notice_list_text"
@@ -25,4 +31,7 @@
         android:layout_marginTop="20dp"
         android:dividerHeight="0dp"
         android:groupIndicator="@null" />
-</LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

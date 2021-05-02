@@ -109,7 +109,7 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
                     .add(R.id.fragment_main, fragment)
                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
                         R.anim.slide_in_left, R.anim.slide_out_right)
-                    .addToBackStack("")
+                    .addToBackStack("WriteFragment")
                     .commit()
 
                 (activity as MainFragmentActivity).sendUserEvent("가지상세화면")
@@ -166,13 +166,18 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
         mAdapter.updateItems(mDataList)
     }
 
+    override fun onStart() {
+        KLog.log("@@ WriteFragement onStart")
+        super.onStart()
+    }
     override fun onStop() {
+        KLog.log("@@ WriteFragement onStop")
         super.onStop()
         mDataList.clear()
     }
 
     override fun onBackKey() {
-        KLog.log("@@ onBackKey")
+        KLog.log("@@ WriteFragement onBackKey")
         (activity as MainFragmentActivity).setBackReceive(null)
         NavHostFragment
             .findNavController(this)
@@ -180,9 +185,14 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
     }
 
     override fun onAttach(context: Context) {
-        KLog.log("@@ onAttach")
+        KLog.log("@@  WriteFragement onAttach")
         super.onAttach(context)
         (activity as MainFragmentActivity).setBackReceive(this)
     }
 
+    override fun onDetach() {
+        KLog.log("@@ WriteFragement onDetach")
+        super.onDetach()
+        (activity as MainFragmentActivity).setBackReceive(null)
+    }
 }

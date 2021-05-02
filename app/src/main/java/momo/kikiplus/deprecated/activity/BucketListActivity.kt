@@ -26,6 +26,8 @@ import momo.kikiplus.refactoring.kbucket.data.finally.PopupConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.data.vo.Category
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.DetailFragment
 import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -126,12 +128,12 @@ class BucketListActivity : Activity(), View.OnClickListener, View.OnLongClickLis
 
     override fun onClick(v: View) {
         val index = v.id
-//        val intent = Intent(this, WriteDetailActivity::class.java)
-//        intent.putExtra("CONTENTS", mDataList!![index].content)
-//        intent.putExtra("BACK", DataConst.VIEW_COMPLETE_LIST)
-//        startActivity(intent)
-//        finish()
-    }
+        val intent = Intent(this, DetailFragment::class.java)
+        intent.putExtra("CONTENTS", mDataList!![index].content)
+        intent.putExtra("BACK", DataConst.VIEW_COMPLETE_LIST)
+        startActivity(intent)
+        finish()
+        }
 
     override fun onLongClick(v: View): Boolean {
         mShareIdx = v.id

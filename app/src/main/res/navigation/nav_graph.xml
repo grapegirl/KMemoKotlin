@@ -19,6 +19,33 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             />
+
+        <action
+            android:id="@+id/action_MainFragment_to_NoticeFragment"
+            app:destination="@id/NoticeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+        <action
+            android:id="@+id/action_MainFragment_to_RankFragment"
+            app:destination="@id/RankFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+        <action
+            android:id="@+id/action_MainFragment_to_PassFragment"
+            app:destination="@id/PassFragement"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/WriteFragement"
@@ -61,6 +88,61 @@
             app:popExitAnim="@anim/slide_out_left"
             />
 
+        <action
+            android:id="@+id/action_DetailFragment_to_WriteFragement"
+            app:destination="@id/WriteFragement"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            />
 
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/NoticeFragment"
+        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.NoticeFragment"
+        tools:layout="@layout/notice_extended">
+
+        <action
+            android:id="@+id/action_NoticeFragment_to_MainFragement"
+            app:destination="@id/MainFragement"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            />
+    </fragment>/
+
+    <fragment
+        android:id="@+id/RankFragment"
+        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.RankFragment"
+        tools:layout="@layout/rank_list_activity">
+
+        <action
+            android:id="@+id/action_RankFragment_to_MainFragement"
+            app:destination="@id/MainFragement"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PassFragement"
+        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.PassFragment"
+        tools:layout="@layout/password_activity">
+
+        <action
+            android:id="@+id/action_PassFragment_to_MainFragement"
+            app:destination="@id/MainFragement"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            />
     </fragment>
 </navigation>

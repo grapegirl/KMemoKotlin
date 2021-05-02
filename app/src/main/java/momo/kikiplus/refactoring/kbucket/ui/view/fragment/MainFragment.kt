@@ -16,8 +16,6 @@ import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentBinding
 import momo.kikiplus.deprecated.activity.BucketListActivity
-import momo.kikiplus.deprecated.activity.NoticeActivity
-import momo.kikiplus.deprecated.activity.RankListActivity
 import momo.kikiplus.deprecated.activity.ShareListActivity
 import momo.kikiplus.refactoring.common.util.AppUtils
 import momo.kikiplus.refactoring.common.util.KLog
@@ -45,6 +43,9 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
     companion object {
         fun newInstance() =
             MainFragment()
+
+        fun getInstace() =
+            MainFragment()
     }
 
     private lateinit var viewModel: MainViewModel
@@ -56,7 +57,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
     private val TOAST_MASSEGE   : Int = 0
     private val BUCKET_LIST     : Int = 20
     private val SHARE_THE_WORLD : Int = 30
-    private val NOTICE          : Int = 40
     private val REQUEST_AI      : Int = 50
     private val FAIL_AI         : Int = 60
     private val RESPOND_AI      : Int = 70
@@ -105,18 +105,32 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
             R.id.main_listBtn -> mHandler.sendEmptyMessage(BUCKET_LIST)
             R.id.main_bucketlistBtn -> mHandler.sendEmptyMessage(SHARE_THE_WORLD)
             R.id.main_conf_btn -> {
-                val intent = Intent(mActivity, MainFragmentActivity::class.java)
-                intent.putExtra("DATA", DataConst.START_OPEN_DRAWER)
-                //startActivity(intent)
+//                val intent = Intent(mActivity, MainFragmentActivity::class.java)
+//                intent.putExtra(DataConst.WIDGET_SEND_DATA, DataConst.START_OPEN_DRAWER)
+//                startActivity(intent)
+
+                (activity as MainFragmentActivity).sendConfEvent()
             }
-            R.id.main_update_btn -> mHandler.sendEmptyMessage(NOTICE)
+            R.id.main_update_btn -> {
+                NavHostFragment
+                    .findNavController(this)
+                    .navigate(R.id.action_MainFragment_to_NoticeFragment)
+
+                AppUtils.sendTrackerScreen(mActivity!!, "공지화면")
+
+            }
+
             R.id.main_ai_btn -> {
                 KProgressDialog.setDataLoadingDialog(mActivity, true, this.getString(R.string.loading_string), true)
                 mHandler.sendEmptyMessage(REQUEST_AI)
             }
             R.id.main_bucketRankBtn -> {
-                val intent = Intent(mActivity, RankListActivity::class.java)
-                startActivity(intent)
+
+                NavHostFragment
+                    .findNavController(this)
+                    .navigate(R.id.action_MainFragment_to_RankFragment)
+
+                (activity as MainFragmentActivity).sendUserEvent("버킷랭킹")
             }
         }
     }
@@ -136,12 +150,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
                 var intent = Intent(mActivity, ShareListActivity::class.java)
                 startActivity(intent)
                 AppUtils.sendTrackerScreen(mActivity!!, "모두가지화면")
-            }
-            NOTICE//공지사항 화면 보여주기
-            -> {
-                var intent = Intent(mActivity, NoticeActivity::class.java)
-                startActivity(intent)
-                AppUtils.sendTrackerScreen(mActivity!!, "공지화면")
             }
             REQUEST_AI -> {
                 val userNickName = SharedPreferenceUtils.read(mActivity!!, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
@@ -204,12 +212,12 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
     }
 
     override fun onBackKey() {
-        KLog.log("@@ onBackKey")
+        KLog.log("@@ MainFragement onBackKey")
         (activity as MainFragmentActivity).setBackReceive(null)
     }
 
     override fun onAttach(context: Context) {
-        KLog.log("@@ onAttach")
+        KLog.log("@@ MainFragement onAttach")
         super.onAttach(context)
         (activity as MainFragmentActivity).setBackReceive(this)
     }
