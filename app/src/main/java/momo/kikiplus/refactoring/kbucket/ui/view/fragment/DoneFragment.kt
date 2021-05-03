@@ -1,11 +1,13 @@
 package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
@@ -61,6 +63,8 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
     private val UPLOAD_IMAGE = 20
     private val UPLOAD_BUCKET = 30
     private val SELECT_BUCKET_CATEGORY = 40
+    private var mListView: ListView? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -94,6 +98,7 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
         setListData()
         Collections.reverse(mDataList)
 
+        mListView = binding.bucketListListview as ListView
         mListAdapter = CardViewListAdpater(
             requireContext(),
             R.layout.cardview_list_line,
@@ -101,7 +106,7 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
             this,
             this
         )
-        binding.bucketListListview.adapter = mListAdapter
+        mListView!!.adapter = mListAdapter
     }
 
     override fun onBackKey() {
@@ -139,7 +144,10 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
 
     override fun onClick(v: View) {
         val index = v.id
-
+//        val intent = Intent(this, DetailFragment::class.java)
+//        intent.putExtra("CONTENTS", mDataList!![index].content)
+//        intent.putExtra("BACK", DataConst.VIEW_COMPLETE_LIST)
+//        startActivity(intent)
         val fragment: DetailFragment = DetailFragment()
         val bundle: Bundle = Bundle()
         bundle.putString("CONTENTS", mDataList!![index].content)

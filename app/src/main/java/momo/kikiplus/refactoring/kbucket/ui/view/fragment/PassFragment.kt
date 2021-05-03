@@ -12,8 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.PasswordActivityBinding
-import momo.kikiplus.deprecated.activity.BucketListActivity
-import momo.kikiplus.deprecated.activity.ShareListActivity
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
@@ -165,12 +163,12 @@ class PassFragment: Fragment(), IBackReceive,  View.OnClickListener  {
 //                        startActivity(intent)
 //                        finish()
                     } else if (startView != null && startView == DataConst.WIDGET_BUCKET_LIST) {
-                        val intent = Intent(context, BucketListActivity::class.java)
-                        startActivity(intent)
+//                        val intent = Intent(context, BucketListActivity::class.java)
+//                        startActivity(intent)
                         onBackKey()
                     } else if (startView != null && startView == DataConst.WIDGET_OURS_BUCKET) {
-                        val intent = Intent(context, ShareListActivity::class.java)
-                        startActivity(intent)
+//                        val intent = Intent(context, ShareListActivity::class.java)
+//                        startActivity(intent)
                         onBackKey()
                     } else if (startView != null && startView == DataConst.WIDGET_SHARE) {
                         val intent = Intent(context, MainFragmentActivity::class.java)

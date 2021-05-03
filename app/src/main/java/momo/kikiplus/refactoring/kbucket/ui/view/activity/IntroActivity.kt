@@ -101,6 +101,11 @@ class IntroActivity : Activity(), android.os.Handler.Callback {
 //                intent.putExtra("DATA", startView)
 //                startActivity(intent)
 //                finish()finish
+
+                intent = Intent(this, MainFragmentActivity::class.java)
+                intent.putExtra(DataConst.WIDGET_SEND_DATA, DataConst.WIDGET_WRITE_BUCKET)
+                startActivity(intent)
+                finish()
             }
             2//가지 작성 화면
             -> {

@@ -2,7 +2,6 @@ package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
@@ -15,7 +14,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentBinding
-import momo.kikiplus.deprecated.activity.BucketListActivity
 import momo.kikiplus.refactoring.common.util.AppUtils
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
@@ -50,11 +48,9 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
 
     private var mHandler: Handler = Handler(this)
     private val TOAST_MASSEGE   : Int = 0
-    private val BUCKET_LIST     : Int = 20
-    private val SHARE_THE_WORLD : Int = 30
-    private val REQUEST_AI      : Int = 50
-    private val FAIL_AI         : Int = 60
-    private val RESPOND_AI      : Int = 70
+    private val REQUEST_AI      : Int = 10
+    private val FAIL_AI         : Int = 20
+    private val RESPOND_AI      : Int = 30
 
     private var mActivity : Activity? = null
 
@@ -150,12 +146,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
         when (message.what) {
             TOAST_MASSEGE//메시지 출력
             -> Toast.makeText(context, message.obj as String, Toast.LENGTH_LONG).show()
-            BUCKET_LIST//리스트 목록 보여주기
-            -> {
-                var intent = Intent(mActivity, BucketListActivity::class.java)
-                startActivity(intent)
-                AppUtils.sendTrackerScreen(mActivity!!, "완료가지화면")
-            }
             REQUEST_AI -> {
                 val userNickName = SharedPreferenceUtils.read(mActivity!!, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
                 val res = NetRetrofit.instance.service.getAIRespond(userNickName)

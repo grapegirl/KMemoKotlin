@@ -72,7 +72,7 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
     }
 
     private fun setBackgroundColor() {
-        KLog.d("@@ setBackgroundColor", "@@ memoMap" + memoMap.toString())
+        KLog.log("@@ setBackgroundColor")
         val color = (SharedPreferenceUtils.read(
             requireContext(),
             PreferConst.BACK_MEMO,
@@ -104,9 +104,9 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
 
 
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
-        KLog.d("@@ onHttpReceive actionId: $actionId", "@@ memoMap" + memoMap.toString())
-        KLog.d("@@ onHttpReceive  type: $type", "@@ memoMap" + memoMap.toString())
-        KLog.d("@@ onHttpReceive  obj: $obj", "@@ memoMap" + memoMap.toString())
+        KLog.d("@@ onHttpReceive actionId: $actionId")
+        KLog.d("@@ onHttpReceive  type: $type")
+        KLog.d("@@ onHttpReceive  obj: $obj")
         val mData = obj as String
         var isValid = false
         if (mData.length > 0) {
@@ -125,7 +125,7 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
                 try {
                     val json = JSONObject(mData)
                     val jsonArray = json.getJSONArray("bucketList")
-                    KLog.d("@@ jsonArray :   $jsonArray", "@@ memoMap" + memoMap.toString())
+                    KLog.d("@@ jsonArray :   $jsonArray")
                     val size = jsonArray.length()
                     mBucketDataList.clear()
                     for (i in 0 until size) {

@@ -16,10 +16,10 @@
         android:enabled="true"
         android:icon="@drawable/anim2"
         android:shortcutShortLabel="@string/appshortcuts2">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetPackage="momo.kikiplus.com.kbucket"
-            android:targetClass="momo.kikiplus.deprecated.activity.BucketListActivity" />
+<!--        <intent-->
+<!--            android:action="android.intent.action.VIEW"-->
+<!--            android:targetPackage="momo.kikiplus.com.kbucket"-->
+<!--            android:targetClass="momo.kikiplus.deprecated.activity.BucketListActivity" />-->
     </shortcut>
     <shortcut
         android:shortcutId="shortcuts3"
