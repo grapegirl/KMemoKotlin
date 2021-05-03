@@ -26,10 +26,10 @@
         android:enabled="true"
         android:icon="@drawable/anim2"
         android:shortcutShortLabel="@string/appshortcuts3">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetPackage="momo.kikiplus.com.kbucket"
-            android:targetClass="momo.kikiplus.deprecated.activity.ShareListActivity" />
+<!--        <intent-->
+<!--            android:action="android.intent.action.VIEW"-->
+<!--            android:targetPackage="momo.kikiplus.com.kbucket"-->
+<!--            android:targetClass="momo.kikiplus.deprecated.activity.ShareListActivity" />-->
     </shortcut>
     <shortcut
         android:shortcutId="shortcuts4"

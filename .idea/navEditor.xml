@@ -107,7 +107,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="Fragement">
+                  <entry key="DonFragement">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -118,7 +118,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_ColorFragment_to_MainFragement">
+                            <entry key="action_ShareFragement_to_MainFragement">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -160,6 +160,16 @@
                               </value>
                             </entry>
                             <entry key="action_MainFragment_to_RankFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_MainFragment_to_ShareFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_MainFragment_to_UpgradeFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -249,6 +259,48 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_RankFragment_to_MainFragement">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="ShareFragement">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_ShareFragement_to_MainFragement">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="UpgradeFragement">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_UpgradeFragement_to_MainFragement">
                               <value>
                                 <LayoutPositions />
                               </value>

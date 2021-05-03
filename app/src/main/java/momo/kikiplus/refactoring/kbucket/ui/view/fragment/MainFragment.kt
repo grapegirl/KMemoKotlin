@@ -16,7 +16,6 @@ import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentBinding
 import momo.kikiplus.deprecated.activity.BucketListActivity
-import momo.kikiplus.deprecated.activity.ShareListActivity
 import momo.kikiplus.refactoring.common.util.AppUtils
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
@@ -89,7 +88,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
     }
 
     private fun setBackgroundColor() {
-        KLog.d("@@ setBackgroundColor")
+        KLog.log("@@ setBackgroundColor")
         val color = (SharedPreferenceUtils.read(requireContext(), PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
             mBinding.mainBackColor.setBackgroundColor(color)
@@ -97,7 +96,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
     }
 
     override fun onClick(view: View) {
-        KLog.d("@@ onClick ")
+        KLog.log("@@ onClick ")
         when (view.id) {
             R.id.main_writeBtn -> {
                 NavHostFragment
@@ -106,8 +105,20 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
 
                 (activity as MainFragmentActivity).sendUserEvent("가지작성화면")
             }
-            R.id.main_listBtn -> mHandler.sendEmptyMessage(BUCKET_LIST)
-            R.id.main_bucketlistBtn -> mHandler.sendEmptyMessage(SHARE_THE_WORLD)
+            R.id.main_listBtn -> {
+                NavHostFragment
+                    .findNavController(this)
+                    .navigate(R.id.action_MainFragment_to_DoneFragment)
+
+                (activity as MainFragmentActivity).sendUserEvent("완료가지화면")
+            }
+            R.id.main_bucketlistBtn ->{
+                NavHostFragment
+                    .findNavController(this)
+                    .navigate(R.id.action_MainFragment_to_ShareFragment)
+
+                (activity as MainFragmentActivity).sendUserEvent("모두가지화면")
+            }
             R.id.main_conf_btn -> {
                 (activity as MainFragmentActivity).sendConfEvent()
             }
@@ -128,9 +139,9 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
 
                 NavHostFragment
                     .findNavController(this)
-                    .navigate(R.id.action_MainFragment_to_UpgradeFragment)
+                    .navigate(R.id.action_MainFragment_to_RankFragment)
 
-               // (activity as MainFragmentActivity).sendUserEvent("버킷랭킹")
+                (activity as MainFragmentActivity).sendUserEvent("버킷랭킹")
             }
         }
     }
@@ -145,19 +156,13 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
                 startActivity(intent)
                 AppUtils.sendTrackerScreen(mActivity!!, "완료가지화면")
             }
-            SHARE_THE_WORLD//공유화면 보여주기
-            -> {
-                var intent = Intent(mActivity, ShareListActivity::class.java)
-                startActivity(intent)
-                AppUtils.sendTrackerScreen(mActivity!!, "모두가지화면")
-            }
             REQUEST_AI -> {
                 val userNickName = SharedPreferenceUtils.read(mActivity!!, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
                 val res = NetRetrofit.instance.service.getAIRespond(userNickName)
                 res.enqueue(object : Callback<AIRespond>{
                     override fun onResponse(call: Call<AIRespond>, response: Response<AIRespond>) {
-                        KLog.d( "@@ onRecv ok : " + response)
-                        KLog.d( "@@ onRecv response body: " + response.body()!!.toString())
+                        KLog.log("@@ onRecv ok : " + response)
+                        KLog.log("@@ onRecv response body: " + response.body()!!.toString())
                         if(response.body()!!.bIsValid){
                             val message = response.body()!!.replay
                             mHandler.sendMessage(mHandler.obtainMessage(RESPOND_AI, message))
@@ -189,7 +194,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
             -> {
                 KProgressDialog.setDataLoadingDialog(context, false, null, false)
                 val content : String = message.obj as String
-                KLog.d("@@ Respond AI msg : " + content)
+                KLog.log("@@ Respond AI msg : " + content)
                 mAIPopup = AIPopup(
                     mActivity!!,
                     content,

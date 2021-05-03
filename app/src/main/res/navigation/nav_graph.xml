@@ -73,6 +73,24 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             />
+
+        <action
+            android:id="@+id/action_MainFragment_to_ShareFragment"
+            app:destination="@id/ShareFragement"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+        <action
+            android:id="@+id/action_MainFragment_to_DoneFragment"
+            app:destination="@id/DoneFragement"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/WriteFragement"
@@ -210,6 +228,36 @@
 
         <action
             android:id="@+id/action_UpgradeFragement_to_MainFragement"
+            app:destination="@id/MainFragement"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ShareFragement"
+        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.ShareFragment"
+        tools:layout="@layout/share_list_activity">
+
+        <action
+            android:id="@+id/action_ShareFragement_to_MainFragement"
+            app:destination="@id/MainFragement"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/DoneFragement"
+        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.DoneFragment"
+        tools:layout="@layout/bucket_list_activity">
+
+        <action
+            android:id="@+id/action_DoneFragement_to_MainFragement"
             app:destination="@id/MainFragement"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right"

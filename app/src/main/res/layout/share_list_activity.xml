@@ -1,50 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/share_back_color"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFBB33"
-    android:orientation="vertical">
+    tools:context="momo.kikiplus.refactoring.kbucket.ui.view.fragment.ShareFragment">
 
-    <Button
-        android:id="@+id/share_list_text"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/share_back_color"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="right"
-        android:background="#FFCC0000"
-        android:text="@string/share_list_title"
-        android:textColor="#FFFFFFFF"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="1"
-        app:layout_constraintVertical_chainStyle="spread"/>
+        android:layout_height="match_parent"
+        android:background="#FFFFBB33"
+        android:orientation="vertical">
 
-    <include
-        layout="@layout/category_list"
-        android:id="@+id/share_category_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="15dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/share_list_text"
-        app:layout_constraintVertical_weight="1"
-        app:layout_constraintVertical_chainStyle="spread"
-        ></include>
+        <Button
+            android:id="@+id/share_list_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:background="#FFCC0000"
+            android:text="@string/share_list_title"
+            android:textColor="#FFFFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread"
+            app:layout_constraintVertical_weight="1" />
 
-    <ListView
-        android:id="@+id/share_list_listview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="15dp"
-        android:dividerHeight="0dp"
-        app:layout_constraintVertical_weight="1"
-        app:layout_constraintVertical_chainStyle="spread"
-        app:layout_constraintTop_toBottomOf="@id/share_category_view"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        <include
+            android:id="@+id/share_category_view"
+            layout="@layout/category_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/share_list_text"
+            app:layout_constraintVertical_chainStyle="spread"
+            app:layout_constraintVertical_weight="1"></include>
 
-</androidx.constraintlayout.widget.ConstraintLayout >
+        <ListView
+            android:id="@+id/share_list_listview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="15dp"
+            android:dividerHeight="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/share_category_view"
+            app:layout_constraintVertical_chainStyle="spread"
+            app:layout_constraintVertical_weight="1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
