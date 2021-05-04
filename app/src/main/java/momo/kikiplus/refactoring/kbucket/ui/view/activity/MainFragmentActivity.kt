@@ -29,6 +29,9 @@ import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.FireMessingService
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.DoneFragment
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.ShareFragment
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.WriteFragment
 import momo.kikiplus.refactoring.task.AppUpdateTask
 import momo.kikiplus.refactoring.task.UserUpdateTask
 
@@ -61,16 +64,49 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
         initialize()
 
         val getIntent = intent
-        Log.d("mhkim", "@@ getIntent : " + getIntent)
+        Log.d("KMemo", "@@ MainFragmentActivity getIntent : " + getIntent)
         val data = getIntent.getStringExtra(DataConst.WIDGET_SEND_DATA)
-        Log.d("mhkim", "@@ data : " + data)
-        if (data != null && data == DataConst.WIDGET_SHARE) {
-            ShareSocial()
+        Log.d("KMemo", "@@ MainFragmentActivity data : " + data)
+        if(data != null){
+            val bundle = Bundle()
+            bundle.putString(DataConst.WIDGET_SEND_DATA, data)
+
+            if(data == DataConst.WIDGET_WRITE_BUCKET){
+                val fragment = WriteFragment()
+                fragment.arguments =bundle
+
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.fragment_main, fragment)
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_left, R.anim.slide_out_right)
+                    .commit()
+
+            }else if(data == DataConst.WIDGET_BUCKET_LIST){
+
+                val fragment = DoneFragment()
+                fragment.arguments =bundle
+
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.fragment_main, fragment)
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_left, R.anim.slide_out_right)
+                    .commit()
+
+            }else if(data == DataConst.WIDGET_OURS_BUCKET){
+
+                val fragment = ShareFragment()
+                fragment.arguments =bundle
+
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.fragment_main, fragment)
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_left, R.anim.slide_out_right)
+                    .commit()
+
+            }else if(data == DataConst.WIDGET_SHARE){
+                ShareSocial()
+            }
         }
-//        else if(data != null && data == DataConst.START_OPEN_DRAWER){
-//            Log.d("mhkim", "@@ opendrawer")
-//            handler.sendEmptyMessage(OPEN_DRAWER)
-//        }
 
         checkPermision()
         handler.sendEmptyMessage(CHECK_VERSION)
@@ -208,7 +244,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
     }
 
     override fun onBackPressed() {
-        KLog.log("@@ onBackPressed")
+        KLog.log("@@ onBackPressed backReceive : " + backReceive)
         if(backReceive != null){
             backReceive!!.onBackKey()
         }else{

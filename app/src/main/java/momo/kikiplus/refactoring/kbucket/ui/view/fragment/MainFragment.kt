@@ -58,7 +58,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        KLog.log("@@ onCreateView")
+        KLog.log("@@  MainFragment onCreateView")
 
         val view = inflater.inflate(R.layout.main_fragment, container, false)
         mBinding = MainFragmentBinding.bind(view)
@@ -76,11 +76,10 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        KLog.log("@@ onActivityCreated")
+        KLog.log("@@ MainFragment onActivityCreated")
         setBackgroundColor()
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         mActivity = activity
-
     }
 
     private fun setBackgroundColor() {

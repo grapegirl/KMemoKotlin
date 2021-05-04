@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.kbucket.ui.view.holder.ContentViewHolder
 
 class RecyclerViewAdapter( clickListener: View.OnClickListener) : RecyclerView.Adapter<ContentViewHolder>() {
@@ -21,7 +20,7 @@ class RecyclerViewAdapter( clickListener: View.OnClickListener) : RecyclerView.A
     }
 
     override fun getItemCount(): Int {
-        KLog.d("@@ getItemCount : " + mItems.size)
+        //KLog.d("@@ getItemCount : " + mItems.size)
         return mItems.size
     }
 
@@ -39,7 +38,7 @@ class RecyclerViewAdapter( clickListener: View.OnClickListener) : RecyclerView.A
     fun updateItems(items : ArrayList<String>){
         mItems.clear()
         mItems = items
-        KLog.d("@@ updateItems mItems size : ${mItems.size}")
+        //KLog.d("@@ updateItems mItems size : ${mItems.size}")
         notifyDataSetChanged()
     }
 

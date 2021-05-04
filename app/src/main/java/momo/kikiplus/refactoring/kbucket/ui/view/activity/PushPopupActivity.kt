@@ -1,4 +1,4 @@
-package momo.kikiplus.deprecated.activity
+package momo.kikiplus.refactoring.kbucket.ui.view.activity
 
 import android.app.Activity
 import android.content.Context

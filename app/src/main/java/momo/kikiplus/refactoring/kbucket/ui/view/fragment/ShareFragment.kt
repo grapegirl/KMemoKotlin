@@ -17,7 +17,10 @@ import momo.kikiplus.com.kbucket.databinding.ShareListActivityBinding
 import momo.kikiplus.deprecated.adapter.ShareListAdpater
 import momo.kikiplus.deprecated.http.HttpUrlTaskManager
 import momo.kikiplus.deprecated.http.IHttpReceive
-import momo.kikiplus.refactoring.common.util.*
+import momo.kikiplus.refactoring.common.util.KLog
+import momo.kikiplus.refactoring.common.util.NetworkUtils
+import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.common.util.StringUtils
 import momo.kikiplus.refactoring.common.view.KProgressDialog
 import momo.kikiplus.refactoring.kbucket.action.net.CategoryList
 import momo.kikiplus.refactoring.kbucket.action.net.NetRetrofit
@@ -32,7 +35,6 @@ import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
-import java.text.SimpleDateFormat
 import java.util.*
 
 class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListener,

@@ -60,7 +60,7 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="AFragement">
+                  <entry key="AddFragement">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -71,7 +71,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_DoneFragement_to_MainFragement">
+                            <entry key="action_AddFragement_to_MainFragement">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -160,6 +160,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_MainFragment_to_AddFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_MainFragment_to_ColorFragment">
                               <value>
                                 <LayoutPositions />

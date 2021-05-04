@@ -10,7 +10,6 @@ import android.widget.*
 import com.bumptech.glide.Glide
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.ShareDetailActivityBinding
-import momo.kikiplus.com.kbucket.databinding.ShareListActivityBinding
 import momo.kikiplus.deprecated.adapter.CommentListAdpater
 import momo.kikiplus.deprecated.http.HttpUrlTaskManager
 import momo.kikiplus.deprecated.http.IHttpReceive

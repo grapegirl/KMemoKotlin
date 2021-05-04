@@ -1,7 +1,6 @@
 package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Message
 import android.view.LayoutInflater
