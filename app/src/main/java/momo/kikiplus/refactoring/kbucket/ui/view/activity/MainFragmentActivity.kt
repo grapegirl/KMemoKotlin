@@ -20,7 +20,6 @@ import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
-import momo.kikiplus.deprecated.activity.AddBucketActivity
 import momo.kikiplus.deprecated.activity.DBMgrActivity
 import momo.kikiplus.deprecated.sqlite.SQLQuery
 import momo.kikiplus.refactoring.common.util.AppUtils
@@ -322,8 +321,9 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
             }
             9//관심 버킷 추가하기
             -> {
-                intent = Intent(this, AddBucketActivity::class.java)
-                startActivity(intent)
+//                intent = Intent(this, AddBucketActivity::class.java)
+//                startActivity(intent)
+                sendUserEvent("관심버킷추가화면")
             }
         }
     }

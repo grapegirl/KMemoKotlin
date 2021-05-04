@@ -60,6 +60,27 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="AFragement">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_DoneFragement_to_MainFragement">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="ColorFragement">
                     <value>
                       <LayoutPositions>
@@ -107,7 +128,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="DonFragement">
+                  <entry key="DoneFragement">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -118,7 +139,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_ShareFragement_to_MainFragement">
+                            <entry key="action_DoneFragement_to_MainFragement">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -140,6 +161,11 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_MainFragment_to_ColorFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_MainFragment_to_DoneFragment">
                               <value>
                                 <LayoutPositions />
                               </value>

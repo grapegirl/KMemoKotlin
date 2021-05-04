@@ -91,6 +91,15 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             />
+
+        <action
+            android:id="@+id/action_MainFragment_to_AddFragment"
+            app:destination="@id/AddFragement"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/WriteFragement"
@@ -141,7 +150,6 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"
             />
-
 
     </fragment>
 
@@ -258,6 +266,21 @@
 
         <action
             android:id="@+id/action_DoneFragement_to_MainFragement"
+            app:destination="@id/MainFragement"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/AddFragement"
+        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.AddFragement"
+        tools:layout="@layout/interest_bucket_list_activity">
+
+        <action
+            android:id="@+id/action_AddFragement_to_MainFragement"
             app:destination="@id/MainFragement"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right"

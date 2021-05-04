@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/bucketlist_back_color"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFBB33"
-    android:orientation="vertical">
+    tools:context="momo.kikiplus.refactoring.kbucket.ui.view.fragment.AddFragement">
 
-    <Button
-        android:id="@+id/interest_bucket_list_text"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="right"
-        android:background="#FFCC0000"
-        android:text="@string/interest_bucket_list_title"
-        android:textColor="#FFFFFFFF"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/interest_bucket_list_add"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:background="#FF99CC00"
-        android:text="@string/interest_bucket_list_add"
-        android:textColor="#FFFFFFFF"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <ListView
-        android:id="@+id/interest_bucket_list_listview"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/bucketlist_back_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="15dp"
-        android:layout_marginTop="20dp"
-        android:dividerHeight="0dp" />
-</LinearLayout>
+        android:background="#FFFFBB33"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/interest_bucket_list_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:background="#FFCC0000"
+            android:text="@string/interest_bucket_list_title"
+            android:textColor="#FFFFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/interest_bucket_list_add"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="#FF99CC00"
+            android:text="@string/interest_bucket_list_add"
+            android:textColor="#FFFFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/interest_bucket_list_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:layout_marginTop="20dp"
+            android:dividerHeight="0dp" />
+    </LinearLayout>
+</FrameLayout>

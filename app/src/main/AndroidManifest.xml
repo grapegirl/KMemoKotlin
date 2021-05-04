@@ -65,12 +65,12 @@
 <!--            <meta-data android:name="android.app.shortcuts"-->
 <!--                android:resource="@xml/shortcuts" />-->
 <!--        </activity>-->
-        <activity
-            android:name="momo.kikiplus.deprecated.activity.AddBucketActivity"
-            android:screenOrientation="portrait" >
-            <meta-data android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts" />
-        </activity>
+<!--        <activity-->
+<!--            android:name="momo.kikiplus.deprecated.activity.AddBucketActivity"-->
+<!--            android:screenOrientation="portrait" >-->
+<!--            <meta-data android:name="android.app.shortcuts"-->
+<!--                android:resource="@xml/shortcuts" />-->
+<!--        </activity>-->
         <activity
             android:name="momo.kikiplus.refactoring.kbucket.ui.view.activity.WriteMemoActivity"
             android:launchMode="singleInstance"
