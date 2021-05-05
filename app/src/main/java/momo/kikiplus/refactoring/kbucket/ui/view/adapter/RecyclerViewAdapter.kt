@@ -5,12 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.refactoring.kbucket.ui.view.holder.ContentViewHolder
+import momo.kikiplus.refactoring.kbucket.ui.view.adapter.holder.ContentViewHolder
 
-class RecyclerViewAdapter( clickListener: View.OnClickListener) : RecyclerView.Adapter<ContentViewHolder>() {
+open class RecyclerViewAdapter<T>(clickListener: View.OnClickListener) : RecyclerView.Adapter<ContentViewHolder>() {
 
     var mItems : ArrayList<String> = ArrayList<String>()
-    var mClickListener : View.OnClickListener = clickListener
+    open var mClickListener : View.OnClickListener = clickListener
 
     //뷰 홀더를 생성하고 뷰를 붙여주는 부
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
@@ -35,7 +35,7 @@ class RecyclerViewAdapter( clickListener: View.OnClickListener) : RecyclerView.A
 
     }
 
-    fun updateItems(items : ArrayList<String>){
+    open fun updateItems(items : ArrayList<String>){
         mItems.clear()
         mItems = items
         //KLog.d("@@ updateItems mItems size : ${mItems.size}")

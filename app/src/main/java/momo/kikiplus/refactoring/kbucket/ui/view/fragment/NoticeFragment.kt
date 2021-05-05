@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.NoticeExtendedBinding
-import momo.kikiplus.deprecated.adapter.BaseExpandableAdapter
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.common.view.KProgressDialog
@@ -22,6 +21,7 @@ import momo.kikiplus.refactoring.kbucket.action.net.NoticeList
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
+import momo.kikiplus.refactoring.kbucket.ui.view.adapter.BaseExpandableAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

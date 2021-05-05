@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.BucketListActivityBinding
-import momo.kikiplus.deprecated.adapter.CardViewListAdpater
 import momo.kikiplus.deprecated.http.HttpUrlFileUploadManager
 import momo.kikiplus.deprecated.http.HttpUrlTaskManager
 import momo.kikiplus.deprecated.http.IHttpReceive
@@ -32,6 +31,7 @@ import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.data.vo.Category
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
+import momo.kikiplus.refactoring.kbucket.ui.view.adapter.CardViewListAdpater
 import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -143,12 +143,9 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
 
     override fun onClick(v: View) {
         val index = v.id
-//        val intent = Intent(this, DetailFragment::class.java)
-//        intent.putExtra("CONTENTS", mDataList!![index].content)
-//        intent.putExtra("BACK", DataConst.VIEW_COMPLETE_LIST)
-//        startActivity(intent)
-        val fragment: DetailFragment = DetailFragment()
-        val bundle: Bundle = Bundle()
+
+        val fragment = DetailFragment()
+        val bundle = Bundle()
         bundle.putString("CONTENTS", mDataList!![index].content)
         bundle.putString("BACK", DataConst.VIEW_WRITE)
         fragment.arguments = bundle
@@ -163,8 +160,6 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
             .commit()
 
         (activity as MainFragmentActivity).sendUserEvent("가지상세화면")
-
-        onBackKey()
     }
 
     override fun onLongClick(v: View): Boolean {

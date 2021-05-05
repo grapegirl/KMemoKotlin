@@ -5,9 +5,9 @@ import android.view.View
 import android.widget.ListView
 import android.widget.TextView
 import momo.kikiplus.com.kbucket.R
-import momo.kikiplus.deprecated.adapter.SpinnerListAdapter
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.kbucket.data.vo.Category
+import momo.kikiplus.refactoring.kbucket.ui.view.adapter.SpinnerListAdapter
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*

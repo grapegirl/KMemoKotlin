@@ -32,7 +32,7 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
     private lateinit var viewModel: WriteViewModel
     private lateinit var mBinding : WriteFragmentBinding
 
-    private var mAdapter: RecyclerViewAdapter =
+    private var mAdapter: RecyclerViewAdapter<Any?> =
         RecyclerViewAdapter(this)
     private var mDataList: ArrayList<String> = ArrayList()
 

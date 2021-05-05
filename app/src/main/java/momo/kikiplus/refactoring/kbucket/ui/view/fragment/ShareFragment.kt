@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.ShareListActivityBinding
-import momo.kikiplus.deprecated.adapter.ShareListAdpater
 import momo.kikiplus.deprecated.http.HttpUrlTaskManager
 import momo.kikiplus.deprecated.http.IHttpReceive
 import momo.kikiplus.refactoring.common.util.KLog
@@ -31,6 +30,7 @@ import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.data.vo.Category
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
+import momo.kikiplus.refactoring.kbucket.ui.view.adapter.ShareListAdpater
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call

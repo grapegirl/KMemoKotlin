@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.ShareDetailActivityBinding
-import momo.kikiplus.deprecated.adapter.CommentListAdpater
 import momo.kikiplus.deprecated.http.HttpUrlTaskManager
 import momo.kikiplus.deprecated.http.IHttpReceive
 import momo.kikiplus.deprecated.sqlite.SQLQuery
@@ -32,6 +31,7 @@ import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.data.vo.Comment
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
+import momo.kikiplus.refactoring.kbucket.ui.view.adapter.CommentListAdpater
 import momo.kikiplus.refactoring.kbucket.ui.view.popup.DetailImagePopup
 import org.json.JSONException
 import org.json.JSONObject

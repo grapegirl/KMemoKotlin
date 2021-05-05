@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.RankListActivityBinding
-import momo.kikiplus.deprecated.adapter.RankListAdpater
 import momo.kikiplus.deprecated.http.HttpUrlTaskManager
 import momo.kikiplus.deprecated.http.IHttpReceive
 import momo.kikiplus.refactoring.common.util.KLog
@@ -28,6 +27,7 @@ import momo.kikiplus.refactoring.kbucket.data.vo.BucketRank
 import momo.kikiplus.refactoring.kbucket.data.vo.Category
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
+import momo.kikiplus.refactoring.kbucket.ui.view.adapter.RankListAdpater
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
