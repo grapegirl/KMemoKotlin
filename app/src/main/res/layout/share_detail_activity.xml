@@ -1,121 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/bucketdetail_back_color"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFBB33"
-    android:orientation="vertical">
+    tools:context="momo.kikiplus.refactoring.kbucket.ui.view.fragment.ShareInfoFragement">
 
-    <Button
-        android:id="@+id/share_detail_text"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/bucketdetail_back_color"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="right"
-        android:background="#FFCC0000"
-        android:text="@string/share_layout_title"
-        android:textColor="#FFFFFFFF"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:background="#FFFFBB33"
+        android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/carview_main_cardview"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="15dp">
-
-        <LinearLayout
+        <Button
+            android:id="@+id/share_detail_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:background="#FFCC0000"
+            android:text="@string/share_layout_title"
+            android:textColor="#FFFFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
+        <RelativeLayout
+            android:id="@+id/carview_main_cardview"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
-                <Button
-                    android:id="@+id/share_add"
-                    android:layout_width="70dp"
-                    android:layout_height="35dp"
-                    android:layout_margin="5dp"
-                    android:background="#FFCEF279"
-                    android:text="@string/write_list_add"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/share_title_textview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#FF99CC00"
-                    android:gravity="center_vertical|right"
-                    android:padding="10dp"
-                    android:text="2015-12-11 01:32:53"
-                    android:textSize="15sp" />
-            </RelativeLayout>
-
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/share_contents_imageview"
-                    android:layout_width="100dp"
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <Button
+                        android:id="@+id/share_add"
+                        android:layout_width="70dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="5dp"
+                        android:background="#FFCEF279"
+                        android:text="@string/write_list_add"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/share_title_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#FF99CC00"
+                        android:gravity="center_vertical|right"
+                        android:padding="10dp"
+                        android:text="2015-12-11 01:32:53"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_toRightOf="@+id/share_contents_textview"
-                    android:background="#FFCC0000"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/nophoto" />
+                    android:orientation="horizontal">
 
-                <ProgressBar
-                    android:id="@+id/share_contents_loadingbar"
-                    style="@android:style/Widget.ProgressBar.Small"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="25dp"
-                    android:layout_toRightOf="@+id/share_contents_textview"
-                    android:indeterminate="false"
-                    android:visibility="invisible" />
+                    <ImageView
+                        android:id="@+id/share_contents_imageview"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/share_contents_textview"
+                        android:background="#FFCC0000"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/nophoto" />
 
-                <TextView
-                    android:id="@+id/share_contents_textview"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/edit2"
-                    android:gravity="center_vertical"
-                    android:padding="15dp"
-                    android:scrollbars="vertical"
-                    android:text="안녕하세요"
-                    android:textSize="15sp" />
-            </RelativeLayout>
-        </LinearLayout>
-    </RelativeLayout>
+                    <ProgressBar
+                        android:id="@+id/share_contents_loadingbar"
+                        style="@android:style/Widget.ProgressBar.Small"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="25dp"
+                        android:layout_toRightOf="@+id/share_contents_textview"
+                        android:indeterminate="false"
+                        android:visibility="invisible" />
 
-    <include
-        layout="@layout/comment_layout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:orientation="vertical" />
+                    <TextView
+                        android:id="@+id/share_contents_textview"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/edit2"
+                        android:gravity="center_vertical"
+                        android:padding="15dp"
+                        android:scrollbars="vertical"
+                        android:text="안녕하세요"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:text="Comments"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        <include
+            layout="@layout/comment_layout"
+            android:id="@+id/share_comment"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:orientation="vertical" />
 
-    <ListView
-        android:id="@+id/share_comment_listview"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_margin="10dp"
-        android:layout_weight="4"
-        android:dividerHeight="0dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Comments"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <ListView
+            android:id="@+id/share_comment_listview"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="10dp"
+            android:layout_weight="4"
+            android:dividerHeight="0dp" />
+
+    </LinearLayout>
+</FrameLayout>

@@ -184,11 +184,14 @@ class DetailFragment : Fragment() , View.OnClickListener,
 //            finish()
 
         } else {
+
+//
             parentFragmentManager.beginTransaction()
 
                 .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
                     R.anim.slide_in_left, R.anim.slide_out_right)
                 .detach(this)
+                .show(WriteFragment.newInstance())
                 .commit()
 
 

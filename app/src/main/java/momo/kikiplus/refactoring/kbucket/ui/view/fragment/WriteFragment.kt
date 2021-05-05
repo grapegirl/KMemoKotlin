@@ -169,6 +169,7 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
     override fun onStart() {
         KLog.log("@@ WriteFragement onStart")
         super.onStart()
+        setListData()
     }
     override fun onStop() {
         KLog.log("@@ WriteFragement onStop")

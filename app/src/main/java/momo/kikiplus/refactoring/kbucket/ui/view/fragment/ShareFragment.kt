@@ -308,10 +308,21 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
                 val idx = mBucketDataList[sharedIdx].idx
                 KLog.log("@@ onclick detail idx : " + idx)
                 KLog.log("@@ onclick detail mBucketDataList[sharedIdx] : " + mBucketDataList[sharedIdx])
-//                val intent = Intent(this, ShareDetailActivity::class.java)
-//                intent.putExtra(DataConst.NUM_SHARE_BUCKET_IDX, idx.toString())
-//                intent.putExtra(DataConst.OBJ_SHARE_BUCKET, mBucketDataList[sharedIdx])
-//                startActivity(intent)
+
+                val fragment = ShareInfoFragement()
+                val bundle : Bundle = Bundle()
+                bundle.putString(DataConst.NUM_SHARE_BUCKET_IDX, idx.toString())
+                bundle.putParcelable(DataConst.OBJ_SHARE_BUCKET, mBucketDataList[sharedIdx])
+                fragment.arguments =bundle
+
+                parentFragmentManager.beginTransaction()
+                    .add(R.id.fragment_main, fragment)
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_left, R.anim.slide_out_right)
+                    .addToBackStack("ShareFragment")
+                    .commit()
+
+                (activity as MainFragmentActivity).sendUserEvent("모두가지상세화면")
             }
         }
     }

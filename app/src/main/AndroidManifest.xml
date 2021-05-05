@@ -45,11 +45,11 @@
 <!--            android:hardwareAccelerated="false"-->
 <!--            android:screenOrientation="portrait" >-->
 <!--        </activity>-->
-        <activity
-            android:name="momo.kikiplus.deprecated.activity.ShareDetailActivity"
-            android:hardwareAccelerated="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+<!--        <activity-->
+<!--            android:name="momo.kikiplus.deprecated.activity.ShareDetailActivity"-->
+<!--            android:hardwareAccelerated="false"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:windowSoftInputMode="adjustPan" />-->
 <!--        <activity-->
 <!--            android:name="momo.kikiplus.deprecated.activity.BucketListActivity"-->
 <!--            android:screenOrientation="portrait" >-->
@@ -80,7 +80,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="momo.kikiplus.deprecated.activity.DBMgrActivity"
+            android:name="momo.kikiplus.refactoring.kbucket.ui.view.activity.DBMgrActivity"
             android:screenOrientation="portrait" /> <!-- 커스톰 위젯 -->
         <receiver
             android:name="momo.kikiplus.refactoring.obj.KWidget"

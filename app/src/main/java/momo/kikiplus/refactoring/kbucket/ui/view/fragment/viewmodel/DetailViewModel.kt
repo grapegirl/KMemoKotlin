@@ -27,11 +27,12 @@ class DetailViewModel : ViewModel() {
 
     fun updateDBDate(context : Context, contents : String, bucket : Bucket) {
         KLog.d( "@@ updateDBDate Data : " + bucket)
+        KLog.d( "@@ updateDBDate bucket.imageUrl : " + bucket.imageUrl)
 
-        mSqlQuery.updateMemoContent(context, contents,  bucket.content,
+        mSqlQuery.updateMemoContent(context, bucket.content!!,  contents,
             bucket.completeYN, bucket!!.date, bucket.imageUrl, bucket!!.deadLine)
         //수정한 상태지만 이미지는 이미 없는 상태
-        if (bucket.imageUrl == null) {
+        if (bucket.imageUrl.length == 0) {
             mSqlQuery.deleteMemoImage(context, contents, bucket.date)
         } else {
             //신규로 추가한 경우

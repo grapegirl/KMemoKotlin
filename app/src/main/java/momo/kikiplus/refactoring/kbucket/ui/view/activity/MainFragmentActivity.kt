@@ -20,7 +20,6 @@ import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
-import momo.kikiplus.deprecated.activity.DBMgrActivity
 import momo.kikiplus.deprecated.sqlite.SQLQuery
 import momo.kikiplus.refactoring.common.util.AppUtils
 import momo.kikiplus.refactoring.common.util.DataUtils

@@ -1,12 +1,15 @@
-package momo.kikiplus.deprecated.activity
+package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 
-import android.app.Activity
+import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.ShareDetailActivityBinding
@@ -14,7 +17,10 @@ import momo.kikiplus.deprecated.adapter.CommentListAdpater
 import momo.kikiplus.deprecated.http.HttpUrlTaskManager
 import momo.kikiplus.deprecated.http.IHttpReceive
 import momo.kikiplus.deprecated.sqlite.SQLQuery
-import momo.kikiplus.refactoring.common.util.*
+import momo.kikiplus.refactoring.common.util.DateUtils
+import momo.kikiplus.refactoring.common.util.KLog
+import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.common.util.StringUtils
 import momo.kikiplus.refactoring.common.view.KProgressDialog
 import momo.kikiplus.refactoring.common.view.popup.ConfirmPopup
 import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
@@ -24,22 +30,22 @@ import momo.kikiplus.refactoring.kbucket.data.finally.PopupConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.data.vo.Comment
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 import momo.kikiplus.refactoring.kbucket.ui.view.popup.DetailImagePopup
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 import kotlin.collections.HashMap
 
-
-/**
- * @author grapegirl
- * @version 1.0
- * @Class Name : ShareDetailActivity
- * @Description :공유 싱세 화면
- * @since 2015-12-27.
- */
-class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Handler.Callback,
+class ShareInfoFragement : Fragment(), IBackReceive ,  IHttpReceive, View.OnClickListener, Handler.Callback,
     IPopupReceive {
+
+    companion object {
+        fun newInstance() = ShareInfoFragement()
+    }
+
+    private lateinit var binding: ShareDetailActivityBinding
 
     private var mHandler: android.os.Handler? = null
     private var mCommentList: ArrayList<Comment>? = null
@@ -60,49 +66,62 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
 
     private var mSqlQuery: SQLQuery? = null
     private var mConfirmPopup: ConfirmPopup? = null
-    private lateinit var mBinding : ShareDetailActivityBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-
-        mBinding = ShareDetailActivityBinding.inflate(layoutInflater)
-        setContentView(mBinding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.share_detail_activity, container, false)
+        binding = ShareDetailActivityBinding.bind(view)
         setBackgroundColor()
-
-        KLog.d("@@ oncreate")
-        mHandler = Handler(this)
-        mCommentList = ArrayList()
-        mSqlQuery = SQLQuery()
-        val Intent = intent
-        val idx = Intent.getStringExtra(DataConst.NUM_SHARE_BUCKET_IDX)
-        mBucket = Intent.getParcelableExtra<Bucket>(DataConst.OBJ_SHARE_BUCKET);
-
-        mUserNickname = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
-        mHandler!!.sendMessage(mHandler!!.obtainMessage(LOAD_COMMENT_LIST, idx))
-
-        (findViewById<View>(R.id.comment_layout_sendBtn) as Button).setOnClickListener(this)
-        (findViewById<View>(R.id.share_add) as Button).setOnClickListener(this)
-        (findViewById<View>(R.id.share_contents_imageview) as ImageView).setOnClickListener(this)
-        setData(mBucket!!)
-        AppUtils.sendTrackerScreen(this, "모두가지상세화면")
+        return view
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        KLog.d("@@ setBackgroundColor")
+        val color = (SharedPreferenceUtils.read(requireContext(), PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
         if (color != -1) {
-            findViewById<View>(R.id.bucketdetail_back_color).setBackgroundColor(color)
+            binding.bucketdetailBackColor.setBackgroundColor(color)
         }
     }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        mHandler = Handler(this)
+        mCommentList = ArrayList()
+        mSqlQuery = SQLQuery()
 
-    override fun finish() {
-        super.finish()
-        this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        mUserNickname = SharedPreferenceUtils.read(requireContext(), PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+
+        if(arguments != null){
+            val idx = requireArguments().getString(DataConst.NUM_SHARE_BUCKET_IDX)
+            mBucket = requireArguments().getParcelable(DataConst.OBJ_SHARE_BUCKET)
+            mHandler!!.sendMessage(mHandler!!.obtainMessage(LOAD_COMMENT_LIST, idx))
+            setData(mBucket!!)
+
+        }else{
+            KLog.d("@@ argument is null")
+        }
+
+        (binding.shareComment.commentLayoutSendBtn as Button).setOnClickListener(this)
+        (binding.shareAdd as Button).setOnClickListener(this)
+        (binding.shareContentsImageview as ImageView).setOnClickListener(this)
+
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        deleteImageResource()
+    override fun onBackKey() {
+        KLog.log("@@ ShareInfoFragement onBackKey")
+        (activity as MainFragmentActivity).setBackReceive(null)
+//        NavHostFragment
+//            .findNavController(this)
+//            .navigate(R.id.action_ShareInfoFragement_to_MainFragement)
+      //  deleteImageResource()
+    }
+
+    override fun onAttach(context: Context) {
+        KLog.log("@@  ShareInfoFragement onAttach")
+        super.onAttach(context)
+        (activity as MainFragmentActivity).setBackReceive(this)
     }
 
     /**
@@ -113,8 +132,8 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
         mBucketNo = bucket.idx
         KLog.log("@@ image exists : " + bucket.imageUrl!!)
 
-        (findViewById<View>(R.id.share_contents_textview) as TextView).text = bucket.content
-        (findViewById<View>(R.id.share_title_textview) as TextView).text = bucket.date
+        (binding.shareContentsTextview as TextView).text = bucket.content
+        (binding.shareTitleTextview as TextView).text = bucket.date
 
         if (bucket.imageUrl != null && bucket.imageUrl != "N") {
             mHandler!!.sendEmptyMessage(DOWNLOAD_IMAGE)
@@ -135,7 +154,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
         }
 
         if (actionId == IHttpReceive.COMMENT_LIST) {
-            KProgressDialog.setDataLoadingDialog(this, false, null, false)
+            KProgressDialog.setDataLoadingDialog(requireContext(), false, null, false)
             if (type == IHttpReceive.HTTP_OK && isValid == true) {
                 try {
                     val json = JSONObject(mData)
@@ -159,7 +178,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
 
             }
         } else if (actionId == IHttpReceive.INSERT_COMMENT) {
-            KProgressDialog.setDataLoadingDialog(this, false, null, false)
+            KProgressDialog.setDataLoadingDialog(requireContext(), false, null, false)
             if (type == IHttpReceive.HTTP_OK && isValid == true) {
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(LOAD_COMMENT_LIST, mBucketNo))
             } else {
@@ -171,26 +190,27 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.comment_layout_sendBtn -> {
-                val text = (findViewById<View>(R.id.comment_layout_text) as EditText).text.toString()
+                val text = (binding.shareComment.commentLayoutText as EditText).text.toString()
                 if (text.replace(" ".toRegex(), "") == "") {
-                   return
+                    return
                 }
-                KProgressDialog.setDataLoadingDialog(this, true, this.getString(R.string.loading_string), true)
+                KProgressDialog.setDataLoadingDialog(requireContext(), true, this.getString(R.string.loading_string), true)
                 val httpUrlTaskManager = HttpUrlTaskManager(NetworkConst.INSERT_COMMENT_URL, true, this, IHttpReceive.INSERT_COMMENT)
                 val map = HashMap<String, Any>()
                 map["NICKNAME"] = mUserNickname!!
                 map["CONTENT"] = text
                 map["BUCKET_NO"] = mBucketNo.toString() + ""
                 httpUrlTaskManager.execute(StringUtils.getHTTPPostSendData(map))
-                (findViewById<View>(R.id.comment_layout_text) as EditText).setText("")
+                (binding.shareComment.commentLayoutText as EditText).setText("")
             }
             R.id.share_contents_imageview -> if (mDetailImageFileName != null) {
+
                 val popup =
                     DetailImagePopup(
-                        this,
+                        requireContext(),
                         R.layout.popup_img,
                         mDetailImageFileName,
-                        window
+                        requireActivity().window
                     )
                 popup.showDialog()
             }
@@ -199,7 +219,7 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
                 val content = getString(R.string.share_add_popup_content)
                 mConfirmPopup =
                     ConfirmPopup(
-                        this,
+                        requireContext(),
                         title,
                         content,
                         R.layout.popup_confirm,
@@ -214,13 +234,13 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
     override fun handleMessage(msg: Message): Boolean {
         when (msg.what) {
             DOWNLOAD_IMAGE -> {
-                val target = findViewById<View>(R.id.share_contents_imageview) as ImageView
+                val target = binding.shareContentsImageview as ImageView
                 target.scaleType = ImageView.ScaleType.FIT_XY
                 val url = NetworkConst.KBUCKET_DOWNLOAD_IAMGE + "?idx=" + mBucketNo
                 KLog.log("@@ download image url : $url")
                 Glide.with(this)
-                        .load(url)
-                        .into(target)
+                    .load(url)
+                    .into(target)
             }
             LOAD_COMMENT_LIST -> {
                 //KProgressDialog.setDataLoadingDialog(this, true, this.getString(R.string.loading_string));
@@ -230,33 +250,33 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
                 httpUrlTaskManager.execute(StringUtils.getHTTPPostSendData(map))
             }
             SET_COMMENT_LIST -> {
-                mListView = findViewById<View>(R.id.share_comment_listview) as ListView
+                mListView = binding.shareCommentListview as ListView
                 mListAdapter =
                     CommentListAdpater(
-                        this,
+                        requireContext(),
                         R.layout.comment_list_line,
                         mCommentList!!,
                         this
                     )
                 mListView!!.adapter = mListAdapter
             }
-            TOAST_MASSEGE -> Toast.makeText(applicationContext, msg.obj as String, Toast.LENGTH_LONG).show()
+            TOAST_MASSEGE -> Toast.makeText(requireContext(), msg.obj as String, Toast.LENGTH_LONG).show()
             SERVER_LOADING_FAIL -> {
                 KLog.log("@@ SERVER_LOADING_FAIL")
                 val message = getString(R.string.server_fail_string)
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
-                finish()
+                onBackKey()
             }
             SET_IMAGE -> {
-                findViewById<View>(R.id.share_contents_loadingbar).visibility = View.INVISIBLE
+                binding.shareContentsLoadingbar.visibility = View.INVISIBLE
                 try {
                     //Bitmap bitmap = BitmapFactory.decodeFile(mDetailImageFileName);
                     val options = BitmapFactory.Options()
                     options.outWidth = 150
                     options.outHeight = 150
                     val bitmap = BitmapFactory.decodeFile(mDetailImageFileName, options)
-                    (findViewById<View>(R.id.share_contents_imageview) as ImageView).scaleType = ImageView.ScaleType.FIT_XY
-                    (findViewById<View>(R.id.share_contents_imageview) as ImageView).setImageBitmap(bitmap)
+                    (binding.shareContentsImageview as ImageView).scaleType = ImageView.ScaleType.FIT_XY
+                    (binding.shareContentsImageview as ImageView).setImageBitmap(bitmap)
                 } catch (e: Exception) {
                     e.printStackTrace()
                     KLog.log( "@@ set image : " + e.toString())
@@ -271,18 +291,18 @@ class ShareDetailActivity : Activity(), IHttpReceive, View.OnClickListener, Hand
      * 이미지 리소스 해제하기
      */
     private fun deleteImageResource() {
-        (findViewById<View>(R.id.share_contents_imageview) as ImageView).setImageBitmap(null)
+        (binding.shareContentsImageview as ImageView).setImageBitmap(null)
     }
 
     override fun onPopupAction(popId: Int, what: Int, obj: Any?) {
         if (popId == PopupConst.POPUP_BUCKET_ADD) {
             if (what == IPopupReceive.POPUP_BTN_OK) {
-                val contents = (findViewById<View>(R.id.share_contents_textview) as TextView).text.toString()
-                val inContainsBucket = mSqlQuery!!.containsKbucket(applicationContext, contents)
+                val contents = (binding.shareContentsTextview as TextView).text.toString()
+                val inContainsBucket = mSqlQuery!!.containsKbucket(requireContext(), contents)
                 if (!inContainsBucket) {
                     val dateTime = Date()
                     val date = DateUtils.getStringDateFormat(DateUtils.DATE_YYMMDD_PATTER, dateTime)
-                    mSqlQuery!!.insertUserSetting(applicationContext, contents, date, "N", "")
+                    mSqlQuery!!.insertUserSetting(requireContext(), contents, date, "N", "")
                     mConfirmPopup!!.closeDialog()
 
                     val message = getString(R.string.share_add_popup_ok)

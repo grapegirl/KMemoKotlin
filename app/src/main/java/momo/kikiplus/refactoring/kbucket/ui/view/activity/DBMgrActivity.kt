@@ -1,4 +1,4 @@
-package momo.kikiplus.deprecated.activity
+package momo.kikiplus.refactoring.kbucket.ui.view.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -18,7 +18,6 @@ import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import java.util.*
-
 
 class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Callback {
 
@@ -43,7 +42,11 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
     }
 
     private fun setBackgroundColor() {
-        val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        val color = (SharedPreferenceUtils.read(
+            applicationContext,
+            PreferConst.BACK_MEMO,
+            SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER
+        ) as Int?)!!
         if (color != -1) {
             findViewById<View>(R.id.bg_db_view).setBackgroundColor(color)
         }
@@ -60,20 +63,22 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
 
         try {
             startActivityForResult(
-                    Intent.createChooser(intent, "Select a File"),
+                Intent.createChooser(intent, "Select a File"),
                     FILE_SELECT_CODE)
         } catch (ex: android.content.ActivityNotFoundException) {
-            Toast.makeText(this, "파일 선택 오류 발생",
-                    Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this, "파일 선택 오류 발생",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         when (requestCode) {
-            FILE_SELECT_CODE -> if (resultCode == Activity.RESULT_OK) {
+            FILE_SELECT_CODE -> if (resultCode == RESULT_OK) {
                 val uri = data.data
-                KLog.log( "@@ onActivityResult path :  " +  uri!!.path!!)
+                KLog.log("@@ onActivityResult path :  " + uri!!.path!!)
 
                 val isResult = DataUtils.importDB(uri.path!!)
                 if (isResult) {
@@ -104,13 +109,19 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
             R.id.btn_db_menu02 //DB 백업
             -> {
                 val date = Date()
-                val newDBName = DateUtils.getStringDateFormat(DateUtils.KBUCKET_DB_DATE_PATTER, date)
+                val newDBName =
+                    DateUtils.getStringDateFormat(DateUtils.KBUCKET_DB_DATE_PATTER, date)
                 val isResult = DataUtils.exportDB(newDBName)
                 if (isResult) {
                     val mssage = getString(R.string.db_backup_path_string)
-                    val path = Environment.getExternalStorageDirectory().toString() + "/" + DataConst.KEY_FILE_FOLDER + "/" + newDBName + ".db"
+                    val path = Environment.getExternalStorageDirectory()
+                        .toString() + "/" + DataConst.KEY_FILE_FOLDER + "/" + newDBName + ".db"
                     mHandler!!.sendMessage(mHandler!!.obtainMessage(UPLOAD_DB, path))
-                    Toast.makeText(applicationContext, mssage + "\n" + DataConst.KEY_FILE_FOLDER + "/" + newDBName + ".db", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        applicationContext,
+                        mssage + "\n" + DataConst.KEY_FILE_FOLDER + "/" + newDBName + ".db",
+                        Toast.LENGTH_LONG
+                    ).show()
                 } else {
                     val message = getString(R.string.db_backup_faile_string)
                     mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
@@ -134,9 +145,18 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
                 val path = msg.obj as String
                 val nIndex = path.indexOf(DataConst.KEY_FILE_FOLDER + "/")
                 val fileName = path.substring(nIndex + 6, path.length)
-                val userNickName = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+                val userNickName = SharedPreferenceUtils.read(
+                    this,
+                    PreferConst.KEY_USER_NICKNAME,
+                    SharedPreferenceUtils.SHARED_PREF_VALUE_STRING
+                ) as String?
                 val bytes = ByteUtils.getByteArrayFromFile(path)
-                val httpUrlFileUploadManager = HttpUrlFileUploadManager(NetworkConst.KBUCKET_UPLOAD_DB_URL, this, IHttpReceive.UPLOAD_DB, bytes!!)
+                val httpUrlFileUploadManager = HttpUrlFileUploadManager(
+                    NetworkConst.KBUCKET_UPLOAD_DB_URL,
+                    this,
+                    IHttpReceive.UPLOAD_DB,
+                    bytes!!
+                )
                 httpUrlFileUploadManager.execute(path, "nickname", userNickName, fileName)
             }
         }
@@ -147,7 +167,7 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
         KLog.d("@@ onHttpReceive : $obj")
         // 버킷 공유 결과
         if (actionId == IHttpReceive.UPLOAD_DB) {
-            if (type == IHttpReceive.Companion.HTTP_OK) {
+            if (type == IHttpReceive.HTTP_OK) {
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, "메모가지 서버에 DB를 업로드하였습니다\nDB 파일이 필요하시면 문의해주세요"))
             } else {
                 mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, "메모가지 서버에 DB를 업로드하는데 실패하였습니다"))
