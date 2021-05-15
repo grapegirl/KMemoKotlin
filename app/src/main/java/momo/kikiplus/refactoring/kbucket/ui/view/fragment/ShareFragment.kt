@@ -100,9 +100,8 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
         (activity as MainFragmentActivity).setBackReceive(null)
         if(back == DataConst.VIEW_MAIN){
             (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                 .replace(R.id.fragment_main, MainFragment.newInstance())
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                    R.anim.slide_in_left, R.anim.slide_out_right)
                 .commit()
         }
     }
@@ -112,7 +111,6 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
         super.onAttach(context)
         (activity as MainFragmentActivity).setBackReceive(this)
     }
-
 
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
         KLog.d("@@ onHttpReceive actionId: $actionId")
@@ -326,10 +324,9 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
                 fragment.arguments =bundle
 
                 parentFragmentManager.beginTransaction()
-                    .add(R.id.fragment_main, fragment)
-                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                        R.anim.slide_in_left, R.anim.slide_out_right)
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
                     .addToBackStack("ShareFragment")
+                    .add(R.id.fragment_main, fragment)
                     .commit()
 
                 (activity as MainFragmentActivity).sendUserEvent("모두가지상세화면")

@@ -6,10 +6,11 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.WriteFragmentBinding
@@ -17,12 +18,12 @@ import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
-import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 import momo.kikiplus.refactoring.kbucket.ui.view.adapter.RecyclerViewAdapter
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.viewmodel.WriteViewModel
 import java.util.*
+
 
 class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBackReceive {
 
@@ -100,22 +101,18 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
             // 수정 버튼
             R.id.bucket_list_modifyBtn -> {
                 val index = Integer.valueOf(v.tag as String)
-//                val intent = Intent(requireContext(), WriteDetailActivity::class.java)
-//                intent.putExtra("CONTENTS", mDataList[index])
-//                intent.putExtra("BACK", DataConst.VIEW_WRITE)
-//                startActivity(intent)
 
-                val fragment : DetailFragment = DetailFragment()
-                val bundle : Bundle = Bundle()
+                val fragment = DetailFragment()
+                val bundle = Bundle()
                 bundle.putString("CONTENTS", mDataList[index])
                 bundle.putString("BACK", DataConst.VIEW_WRITE)
                 fragment.arguments =bundle
 
                 parentFragmentManager.beginTransaction()
-                    .add(R.id.fragment_main, fragment)
                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
                         R.anim.slide_in_left, R.anim.slide_out_right)
                     .addToBackStack("WriteFragment")
+                    .add(R.id.fragment_main, fragment)
                     .commit()
 
                 (activity as MainFragmentActivity).sendUserEvent("가지상세화면")
@@ -185,12 +182,12 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
 
     override fun onBackKey() {
         KLog.log("@@ WriteFragement onBackKey")
+        KLog.d("@@ WriteFragement back : "+ back)
         (activity as MainFragmentActivity).setBackReceive(null)
         if(back == DataConst.VIEW_MAIN){
             (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                 .replace(R.id.fragment_main, MainFragment.newInstance())
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                    R.anim.slide_in_left, R.anim.slide_out_right)
                 .commit()
         }
     }
@@ -199,11 +196,5 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
         KLog.log("@@  WriteFragement onAttach")
         super.onAttach(context)
         (activity as MainFragmentActivity).setBackReceive(this)
-    }
-
-    override fun onDetach() {
-        KLog.log("@@ WriteFragement onDetach")
-        super.onDetach()
-        (activity as MainFragmentActivity).setBackReceive(null)
     }
 }

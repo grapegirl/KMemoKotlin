@@ -26,7 +26,7 @@ object DataConst {
     /**
      * 완료된 가지 목록 화면
      */
-    val VIEW_COMPLETE_LIST = "BucketListActivity"
+    val VIEW_DONE = "DoneFragment"
     /**
      * 버킷 공유(Life)
      */

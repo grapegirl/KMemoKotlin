@@ -118,13 +118,18 @@ class ShareInfoFragement : Fragment(), IBackReceive ,  IHttpReceive, View.OnClic
         KLog.log("@@ ShareInfoFragement onBackKey")
         (activity as MainFragmentActivity).setBackReceive(null)
         if(back == DataConst.VIEW_SHARE){
+
+            val fragment = ShareFragment()
+            val bundle = Bundle()
+            fragment.arguments = bundle
+            bundle.putString("BACK", DataConst.VIEW_MAIN)
+
             (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_main, ShareFragment.newInstance())
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                    R.anim.slide_in_left, R.anim.slide_out_right)
+                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                .replace(R.id.fragment_main, fragment)
                 .commit()
         }
-      //  deleteImageResource()
+        deleteImageResource()
     }
 
     override fun onAttach(context: Context) {

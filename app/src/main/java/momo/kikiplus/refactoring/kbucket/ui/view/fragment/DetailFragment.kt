@@ -168,9 +168,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
 
     override fun onBackKey() {
         KLog.log("@@ DetailFragment onBackKey")
-
         (activity as MainFragmentActivity).setBackReceive(null)
-
 
         if (mPhotoPath != null) {
             KLog.log("@@ DetailFragment mphoto path " + mPhotoPath)
@@ -178,22 +176,27 @@ class DetailFragment : Fragment() , View.OnClickListener,
         }
         KLog.d("@@ DetailFragment BACK : " + back)
 
-        if (back == DataConst.VIEW_COMPLETE_LIST) {
-//            val intent = Intent(this, BucketListActivity::class.java)
-//            startActivity(intent)
-//            finish()
+        if (back == DataConst.VIEW_DONE) {
+            val fragment = DoneFragment()
+            val bundle = Bundle()
+            fragment.arguments = bundle
+            bundle.putString("BACK", DataConst.VIEW_MAIN)
 
-        } else {
-
-//
-            parentFragmentManager.beginTransaction()
-
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                    R.anim.slide_in_left, R.anim.slide_out_right)
-                .detach(this)
-                .show(WriteFragment.newInstance())
+            (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                .replace(R.id.fragment_main, fragment)
                 .commit()
 
+        } else {
+            val fragment = WriteFragment()
+            val bundle = Bundle()
+            fragment.arguments = bundle
+            bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+            (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                .replace(R.id.fragment_main, fragment)
+                .commit()
 
         }
     }

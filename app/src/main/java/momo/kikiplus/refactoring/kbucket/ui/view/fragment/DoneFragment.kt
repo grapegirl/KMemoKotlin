@@ -118,9 +118,8 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
         (activity as MainFragmentActivity).setBackReceive(null)
         if(back == DataConst.VIEW_MAIN){
             (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                 .replace(R.id.fragment_main, MainFragment.newInstance())
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                    R.anim.slide_in_left, R.anim.slide_out_right)
                 .commit()
         }
     }
@@ -156,16 +155,16 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
         val fragment = DetailFragment()
         val bundle = Bundle()
         bundle.putString("CONTENTS", mDataList!![index].content)
-        bundle.putString("BACK", DataConst.VIEW_WRITE)
+        bundle.putString("BACK", DataConst.VIEW_DONE)
         fragment.arguments = bundle
 
         parentFragmentManager.beginTransaction()
-            .add(R.id.fragment_main, fragment)
             .setCustomAnimations(
                 R.anim.slide_in_right, R.anim.slide_out_left,
                 R.anim.slide_in_left, R.anim.slide_out_right
             )
-            .addToBackStack("WriteFragment")
+            .addToBackStack("DoneFragment")
+            .add(R.id.fragment_main, fragment)
             .commit()
 
         (activity as MainFragmentActivity).sendUserEvent("가지상세화면")

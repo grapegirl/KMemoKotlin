@@ -54,7 +54,6 @@ class NoticeFragment : Fragment(), Handler.Callback , IBackReceive {
         savedInstanceState: Bundle?
     ): View? {
         KLog.d("@@ onCreateView")
-
         val view = inflater.inflate(R.layout.notice_extended, container, false)
         binding = NoticeExtendedBinding.bind(view)
         setBackgroundColor()

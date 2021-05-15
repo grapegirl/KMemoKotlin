@@ -101,9 +101,8 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
                 bundle.putString("BACK", DataConst.VIEW_MAIN)
 
                 (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
                     .add(R.id.fragment_main, fragment)
-                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                        R.anim.slide_in_left, R.anim.slide_out_right)
                     .commit()
 
                 (activity as MainFragmentActivity).sendUserEvent("가지작성화면")
@@ -114,9 +113,8 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
                 bundle.putString("BACK", DataConst.VIEW_MAIN)
 
                 (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
                     .add(R.id.fragment_main, fragment)
-                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                        R.anim.slide_in_left, R.anim.slide_out_right)
                     .commit()
 
                 (activity as MainFragmentActivity).sendUserEvent("완료가지화면")
@@ -127,9 +125,8 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
                 bundle.putString("BACK", DataConst.VIEW_MAIN)
 
                 (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
                     .add(R.id.fragment_main, fragment)
-                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                        R.anim.slide_in_left, R.anim.slide_out_right)
                     .commit()
 
                 (activity as MainFragmentActivity).sendUserEvent("모두가지화면")
@@ -151,7 +148,6 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
                 mHandler.sendEmptyMessage(REQUEST_AI)
             }
             R.id.main_bucketRankBtn -> {
-
                 NavHostFragment
                     .findNavController(this)
                     .navigate(R.id.action_MainFragment_to_RankFragment)
