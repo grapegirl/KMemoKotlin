@@ -29,10 +29,12 @@ import momo.kikiplus.refactoring.kbucket.data.FireMessingService
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.DoneFragment
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.MainFragment
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.ShareFragment
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.WriteFragment
 import momo.kikiplus.refactoring.task.AppUpdateTask
 import momo.kikiplus.refactoring.task.UserUpdateTask
+import kotlin.reflect.typeOf
 
 class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.OnItemClickListener {
 
@@ -75,7 +77,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
                 fragment.arguments =bundle
 
                 supportFragmentManager.beginTransaction()
-                    .add(R.id.fragment_main, fragment)
+                    .replace(R.id.fragment_main, fragment)
                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
                         R.anim.slide_in_left, R.anim.slide_out_right)
                     .commit()
@@ -86,7 +88,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
                 fragment.arguments =bundle
 
                 supportFragmentManager.beginTransaction()
-                    .add(R.id.fragment_main, fragment)
+                    .replace(R.id.fragment_main, fragment)
                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
                         R.anim.slide_in_left, R.anim.slide_out_right)
                     .commit()
@@ -97,7 +99,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
                 fragment.arguments =bundle
 
                 supportFragmentManager.beginTransaction()
-                    .add(R.id.fragment_main, fragment)
+                    .replace(R.id.fragment_main, fragment)
                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
                         R.anim.slide_in_left, R.anim.slide_out_right)
                     .commit()
@@ -244,7 +246,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
 
     override fun onBackPressed() {
         KLog.log("@@ onBackPressed backReceive : " + backReceive)
-        if(backReceive != null){
+        if(backReceive != null ){
             backReceive!!.onBackKey()
         }else{
             openExitToast()

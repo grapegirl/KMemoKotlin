@@ -17,6 +17,7 @@ import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
+import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 import momo.kikiplus.refactoring.kbucket.ui.view.adapter.RecyclerViewAdapter
@@ -29,6 +30,7 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
         fun newInstance() = WriteFragment()
     }
 
+    private var back: String? = null
     private lateinit var viewModel: WriteViewModel
     private lateinit var mBinding : WriteFragmentBinding
 
@@ -40,6 +42,10 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if(arguments != null){
+            back = requireArguments().getString("BACK")
+            KLog.d("@@ back : "+ back)
+        }
         val view = inflater.inflate(R.layout.write_fragment, container, false)
         mBinding = WriteFragmentBinding.bind(view)
         setBackgroundColor()
@@ -180,9 +186,13 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
     override fun onBackKey() {
         KLog.log("@@ WriteFragement onBackKey")
         (activity as MainFragmentActivity).setBackReceive(null)
-        NavHostFragment
-            .findNavController(this)
-            .navigate(R.id.action_WriteFragment_to_MainFragment)
+        if(back == DataConst.VIEW_MAIN){
+            (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_main, MainFragment.newInstance())
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                    R.anim.slide_in_left, R.anim.slide_out_right)
+                .commit()
+        }
     }
 
     override fun onAttach(context: Context) {

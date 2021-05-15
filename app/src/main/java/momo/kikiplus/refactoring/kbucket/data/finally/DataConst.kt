@@ -10,7 +10,19 @@ object DataConst {
     /**
      * 가지 작성 화면
      */
-    val VIEW_WRITE = "WriteActivity"
+    val VIEW_WRITE = "WriteFragment"
+
+    /**
+     * 메인 화면
+     */
+    val VIEW_MAIN = "MainFragment"
+
+
+    /**
+     * 공 화면
+     */
+    val VIEW_SHARE = "ShareFragment"
+
     /**
      * 완료된 가지 목록 화면
      */

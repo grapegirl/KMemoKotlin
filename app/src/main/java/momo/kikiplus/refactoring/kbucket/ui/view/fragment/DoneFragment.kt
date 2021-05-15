@@ -64,12 +64,17 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
     private val SELECT_BUCKET_CATEGORY = 40
     private var mListView: ListView? = null
 
+    private var back: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if(arguments != null){
+            back = requireArguments().getString("BACK")
+            KLog.d("@@ back : "+ back)
+        }
         val view = inflater.inflate(R.layout.bucket_list_activity, container, false)
         binding = BucketListActivityBinding.bind(view)
         setBackgroundColor()
@@ -111,9 +116,13 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
     override fun onBackKey() {
         KLog.log("@@ DoneFragment onBackKey")
         (activity as MainFragmentActivity).setBackReceive(null)
-        NavHostFragment
-            .findNavController(this)
-            .navigate(R.id.action_DoneFragement_to_MainFragement)
+        if(back == DataConst.VIEW_MAIN){
+            (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_main, MainFragment.newInstance())
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                    R.anim.slide_in_left, R.anim.slide_out_right)
+                .commit()
+        }
     }
 
     override fun onAttach(context: Context) {

@@ -22,6 +22,7 @@ import momo.kikiplus.refactoring.common.view.popup.BasicPopup
 import momo.kikiplus.refactoring.common.view.popup.IPopupReceive
 import momo.kikiplus.refactoring.kbucket.action.net.AIRespond
 import momo.kikiplus.refactoring.kbucket.action.net.NetRetrofit
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PopupConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
@@ -92,25 +93,44 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
 
     override fun onClick(view: View) {
         KLog.log("@@ onClick ")
+        val bundle = Bundle()
         when (view.id) {
             R.id.main_writeBtn -> {
-                NavHostFragment
-                    .findNavController(this)
-                    .navigate(R.id.action_MainFragment_to_WriteFragment)
+                val fragment = WriteFragment()
+                fragment.arguments =bundle
+                bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                    .add(R.id.fragment_main, fragment)
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_left, R.anim.slide_out_right)
+                    .commit()
 
                 (activity as MainFragmentActivity).sendUserEvent("가지작성화면")
             }
             R.id.main_listBtn -> {
-                NavHostFragment
-                    .findNavController(this)
-                    .navigate(R.id.action_MainFragment_to_DoneFragment)
+                val fragment = DoneFragment()
+                fragment.arguments =bundle
+                bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                    .add(R.id.fragment_main, fragment)
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_left, R.anim.slide_out_right)
+                    .commit()
 
                 (activity as MainFragmentActivity).sendUserEvent("완료가지화면")
             }
             R.id.main_bucketlistBtn ->{
-                NavHostFragment
-                    .findNavController(this)
-                    .navigate(R.id.action_MainFragment_to_ShareFragment)
+                val fragment = ShareFragment()
+                fragment.arguments =bundle
+                bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                    .add(R.id.fragment_main, fragment)
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_left, R.anim.slide_out_right)
+                    .commit()
 
                 (activity as MainFragmentActivity).sendUserEvent("모두가지화면")
             }

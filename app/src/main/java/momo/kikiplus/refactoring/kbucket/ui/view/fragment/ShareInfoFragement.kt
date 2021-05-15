@@ -44,6 +44,7 @@ class ShareInfoFragement : Fragment(), IBackReceive ,  IHttpReceive, View.OnClic
     companion object {
         fun newInstance() = ShareInfoFragement()
     }
+    private var back: String? = null
 
     private lateinit var binding: ShareDetailActivityBinding
 
@@ -72,6 +73,10 @@ class ShareInfoFragement : Fragment(), IBackReceive ,  IHttpReceive, View.OnClic
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if(arguments != null){
+            back = requireArguments().getString("BACK")
+            KLog.d("@@ back : "+ back)
+        }
         val view = inflater.inflate(R.layout.share_detail_activity, container, false)
         binding = ShareDetailActivityBinding.bind(view)
         setBackgroundColor()
@@ -112,9 +117,13 @@ class ShareInfoFragement : Fragment(), IBackReceive ,  IHttpReceive, View.OnClic
     override fun onBackKey() {
         KLog.log("@@ ShareInfoFragement onBackKey")
         (activity as MainFragmentActivity).setBackReceive(null)
-//        NavHostFragment
-//            .findNavController(this)
-//            .navigate(R.id.action_ShareInfoFragement_to_MainFragement)
+        if(back == DataConst.VIEW_SHARE){
+            (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_main, ShareFragment.newInstance())
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                    R.anim.slide_in_left, R.anim.slide_out_right)
+                .commit()
+        }
       //  deleteImageResource()
     }
 

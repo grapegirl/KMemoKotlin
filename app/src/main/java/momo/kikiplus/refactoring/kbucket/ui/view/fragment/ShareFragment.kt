@@ -44,6 +44,7 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
         fun newInstance() = ShareFragment()
     }
 
+    private var back: String? = null
     private lateinit var binding: ShareListActivityBinding
     private var mCategoryList: ArrayList<Category> = ArrayList()
     private var mHandler: Handler = Handler(this)
@@ -67,6 +68,10 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if(arguments != null){
+            back = requireArguments().getString("BACK")
+            KLog.d("@@ back : "+ back)
+        }
         val view = inflater.inflate(R.layout.share_list_activity, container, false)
         binding = ShareListActivityBinding.bind(view)
         setBackgroundColor()
@@ -93,9 +98,13 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
     override fun onBackKey() {
         KLog.log("@@ ShareFragment onBackKey")
         (activity as MainFragmentActivity).setBackReceive(null)
-        NavHostFragment
-            .findNavController(this)
-            .navigate(R.id.action_ShareFragement_to_MainFragement)
+        if(back == DataConst.VIEW_MAIN){
+            (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_main, MainFragment.newInstance())
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                    R.anim.slide_in_left, R.anim.slide_out_right)
+                .commit()
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -114,7 +123,6 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
         if (mData.length > 0) {
             try {
                 val json = JSONObject(mData)
-
                 isValid = json.getBoolean("isValid")
             } catch (e: JSONException) {
                 KLog.log("@@ jsonException message : " + e.message)
@@ -311,6 +319,8 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
 
                 val fragment = ShareInfoFragement()
                 val bundle : Bundle = Bundle()
+                bundle.putString("BACK", DataConst.VIEW_SHARE)
+
                 bundle.putString(DataConst.NUM_SHARE_BUCKET_IDX, idx.toString())
                 bundle.putParcelable(DataConst.OBJ_SHARE_BUCKET, mBucketDataList[sharedIdx])
                 fragment.arguments =bundle

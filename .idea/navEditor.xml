@@ -200,6 +200,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_MainFragment_to_ShareInfoFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_MainFragment_to_UpgradeFragment">
                               <value>
                                 <LayoutPositions />
@@ -320,7 +325,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="ShareInFragement">
+                  <entry key="ShareInfoFragement">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -331,7 +336,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_AddFragement_to_MainFragement">
+                            <entry key="action_ShareInfoFragement_to_MainFragement">
                               <value>
                                 <LayoutPositions />
                               </value>
