@@ -16,6 +16,7 @@ import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
+import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 import java.util.*
@@ -37,6 +38,19 @@ class PassFragment: Fragment(), IBackReceive,  View.OnClickListener  {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if(arguments != null){
+            val setting  = requireArguments().getString("SET")
+            //암호 설정
+            if (setting != null && setting == "SET") {
+                isPasswordset = true
+            }// 암호 맞추기
+            else if (setting != null && setting == "GET") {
+                isPasswordset = false
+            }
+        }else{
+            KLog.d("@@ argument is null")
+        }
+        KLog.d("@@ PassFragment argument is isPasswordset : " + isPasswordset)
         val view = inflater.inflate(R.layout.password_activity, container, false)
         binding = PasswordActivityBinding.bind(view)
         setBackgroundColor()
@@ -74,24 +88,13 @@ class PassFragment: Fragment(), IBackReceive,  View.OnClickListener  {
         for (i in 0..14) {
             mButton[i]!!.setOnClickListener(this)
         }
-
-        val getIntent = requireActivity().intent!!
-        val setting = getIntent.getStringExtra("SET")
-        //암호 설정
-        if (setting != null && setting == "SET") {
-            isPasswordset = true
-        }// 암호 맞추기
-        else if (setting != null && setting == "GET") {
-            isPasswordset = false
-        }
     }
 
     override fun onBackKey() {
         KLog.log("@@ PassFragment onBackKey back : " + requireArguments().getString("BACK") )
-        (activity as MainFragmentActivity).setBackReceive(null)
-        if(requireArguments().getString("BACK") == DataConst.VIEW_MAIN){
+        if(isPasswordset) {
+            (activity as MainFragmentActivity).setBackReceive(null)
             (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                 .replace(R.id.fragment_main, MainFragment.newInstance())
                 .commit()
         }
@@ -158,30 +161,57 @@ class PassFragment: Fragment(), IBackReceive,  View.OnClickListener  {
                         mButton[i]?.text = ""
                     }
                 } else {
-                    val getIntent = requireActivity().intent!!
-                    val startView = getIntent.getStringExtra("DATA")
+                    val startView = requireArguments().getString("DATA")
+                    KLog.d( "@@ startView : " +  requireArguments().getString("DATA"))
+                    val bundle = Bundle()
+
                     if (startView != null && startView == DataConst.WIDGET_WRITE_BUCKET) {
-                        //TODO Activity->Fragemt 변경해야함
-//                        val intent = Intent(this, WriteActivity::class.java)
-//                        startActivity(intent)
-//                        finish()
+                        val fragment = WriteFragment()
+                        fragment.arguments =bundle
+                        bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                        (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                            .replace(R.id.fragment_main, fragment)
+                            .commit()
+
                     } else if (startView != null && startView == DataConst.WIDGET_BUCKET_LIST) {
-//                        val intent = Intent(context, BucketListActivity::class.java)
-//                        startActivity(intent)
-                        onBackKey()
+                        val fragment = DoneFragment()
+                        fragment.arguments =bundle
+                        bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                        (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                            .replace(R.id.fragment_main, fragment)
+                            .commit()
+
                     } else if (startView != null && startView == DataConst.WIDGET_OURS_BUCKET) {
-//                        val intent = Intent(context, ShareListActivity::class.java)
-//                        startActivity(intent)
-                        onBackKey()
+                        val fragment = ShareFragment()
+                        fragment.arguments =bundle
+                        bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                        (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                            .replace(R.id.fragment_main, fragment)
+                            .commit()
+                        
                     } else if (startView != null && startView == DataConst.WIDGET_SHARE) {
-                        val intent = Intent(context, MainFragmentActivity::class.java)
-                        intent.putExtra(DataConst.WIDGET_SEND_DATA, DataConst.WIDGET_SHARE)
-                        startActivity(intent)
-                        onBackKey()
+                        val fragment = MainFragment()
+                        fragment.arguments =bundle
+                        bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                        (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                            .replace(R.id.fragment_main, fragment)
+                            .commit()
+
+                        (activity as MainFragmentActivity).ShareSocial()
                     } else {
-                        val intent = Intent(context, MainFragmentActivity::class.java)
-                        startActivity(intent)
-                        onBackKey()
+                        (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                            .replace(R.id.fragment_main, MainFragment.newInstance())
+                            .commit()
+
                     }
                 }
             }

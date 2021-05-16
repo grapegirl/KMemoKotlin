@@ -92,7 +92,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
     }
 
     override fun onClick(view: View) {
-        KLog.log("@@ onClick id : " + view.id)
+        KLog.log("@@ onClick ")
         val bundle = Bundle()
         when (view.id) {
             R.id.main_writeBtn -> {

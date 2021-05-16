@@ -46,6 +46,7 @@ object DataConst {
     val WIDGET_SHARE : String = "SHARE"
     val WIDGET_OURS_BUCKET : String = "OURS_BUCKET"
     val WIDGET_SEND_DATA : String = "WIDGET_SEND_DATA"
+    val WIDGET_PASS : String = "PASS"
     val START_OPEN_DRAWER : String = "START_OPEN_DRAWER"
 
     val SORT_DATE : String = "SORT_DATE"

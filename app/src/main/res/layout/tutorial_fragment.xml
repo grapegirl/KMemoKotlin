@@ -80,10 +80,9 @@
             android:id="@+id/tutorial_main_viewFlipper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"></ViewFlipper>
+           android:padding="20dp">
+
+        </ViewFlipper>
 
     </LinearLayout>
 

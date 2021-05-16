@@ -14,6 +14,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -42,7 +43,7 @@ import momo.kikiplus.refactoring.task.UserUpdateTask
 import kotlin.reflect.typeOf
 
 class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
-    NavigationView.OnNavigationItemSelectedListener, View.OnLongClickListener {
+    NavigationView.OnNavigationItemSelectedListener{
 
     private var backKeyPressedTime = 0L
     private var finishToast: Toast? = null
@@ -70,10 +71,10 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
 
         initialize()
 
-        val getIntent = intent
-        Log.d("KMemo", "@@ MainFragmentActivity getIntent : " + getIntent)
-        val data = getIntent.getStringExtra(DataConst.WIDGET_SEND_DATA)
-        Log.d("KMemo", "@@ MainFragmentActivity data : " + data)
+        val data = intent.getStringExtra(DataConst.WIDGET_SEND_DATA)
+        Log.d("KMemo", "@@ MainFragmentActivity WIDGET_SEND_DATA : " + data)
+        Log.d("KMemo", "@@ MainFragmentActivity DATA : " + intent.getStringExtra("DATA"))
+        Log.d("KMemo", "@@ MainFragmentActivity SET : " + intent.getStringExtra("SET"))
         if(data != null){
             val bundle = Bundle()
             bundle.putString(DataConst.WIDGET_SEND_DATA, data)
@@ -112,6 +113,18 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
 
             }else if(data == DataConst.WIDGET_SHARE){
                 ShareSocial()
+            }else if(data == DataConst.WIDGET_PASS){
+                val fragment = PassFragment()
+                fragment.arguments =bundle
+                bundle.putString("SET", "GET")
+                bundle.putString("DATA", intent.getStringExtra("DATA"))
+                bundle.putString(DataConst.WIDGET_SEND_DATA,intent.getStringExtra(DataConst.WIDGET_SEND_DATA) )
+
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_main, fragment)
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_left, R.anim.slide_out_right)
+                    .commit()
             }
         }
 
@@ -133,11 +146,10 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
 
         setBackgroundColor()
 
-        val navController =    this.findNavController(R.id.fragment_main)
+        val navController =  this.findNavController(R.id.fragment_main)
         mBinding.drawerList.setupWithNavController(navController)
         mBinding.drawerList.setNavigationItemSelectedListener(this)
-        mBinding.drawerList.setOnLongClickListener(this)
-
+        mBinding.drawerList.bringToFront()
 
         MobileAds.initialize(this){}
 
@@ -240,7 +252,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     /**
      * 소셜로 가지 앱 홍보하기
      */
-    private fun ShareSocial() {
+    fun ShareSocial() {
         val msg = Intent(Intent.ACTION_SEND)
         msg.addCategory(Intent.CATEGORY_DEFAULT)
         msg.putExtra(Intent.EXTRA_SUBJECT, this.getString(R.string.share_title))
@@ -317,8 +329,8 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
 
         }
 
-        mBinding.dlActivityMainDrawer.closeDrawer(mBinding.drawerList)
-        return false
+        mBinding.dlActivityMainDrawer.closeDrawer(GravityCompat.START)
+        return true
     }
 
 
@@ -411,6 +423,14 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
                     .commit()
                 sendUserEvent("문의개선")
             }
+            7 -> {
+                //현재버전
+                handler.sendEmptyMessage(CHECK_VERSION)
+            }
+            8 ->{
+                //공유하기
+                ShareSocial()
+            }
             9//관심 버킷 추가하기
             -> {
                 val fragment = AddFragement()
@@ -429,10 +449,5 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     fun setBackReceive(receive: IBackReceive?){
         KLog.log("@@ setBackReceive receive : "+ receive)
         backReceive = receive
-    }
-
-    override fun onLongClick(p0: View?): Boolean {
-        KLog.log("@@ onLongClick view : "+ p0)
-        return true
     }
 }

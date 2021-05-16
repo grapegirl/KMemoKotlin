@@ -1,5 +1,6 @@
 package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -30,7 +31,6 @@ class TutorialFragment : Fragment() , View.OnTouchListener, IBackReceive {
 
     private lateinit var viewModel: TutorialViewModel
 
-    private var mViewFlipper: ViewFlipper? = null
     private val mCheckBox = intArrayOf(R.id.tutorial_main_checkbox1, R.id.tutorial_main_checkbox2, R.id.tutorial_main_checkbox3, R.id.tutorial_main_checkbox4, R.id.tutorial_main_checkbox5)
 
     private lateinit var mBinding : TutorialFragmentBinding
@@ -40,8 +40,6 @@ class TutorialFragment : Fragment() , View.OnTouchListener, IBackReceive {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.tutorial_fragment, container, false)
-        setBackgroundColor()
-
         mBinding = TutorialFragmentBinding.bind(view)
         return view
     }
@@ -49,10 +47,10 @@ class TutorialFragment : Fragment() , View.OnTouchListener, IBackReceive {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(TutorialViewModel::class.java)
-
-        mViewFlipper!!.setOnTouchListener(this)
+        mBinding.tutorialMainViewFlipper!!.setOnTouchListener(this)
         viewModel.mCurrentPage = 0
         viewModel.mMacPage = 5
+        setBackgroundColor()
         setViewImgData()
     }
 
@@ -66,7 +64,7 @@ class TutorialFragment : Fragment() , View.OnTouchListener, IBackReceive {
 
     override fun onDestroy() {
         super.onDestroy()
-        mViewFlipper!!.removeAllViews()
+        mBinding.tutorialMainViewFlipper!!.removeAllViews()
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
@@ -95,7 +93,7 @@ class TutorialFragment : Fragment() , View.OnTouchListener, IBackReceive {
             viewModel.mCurrentPage++
             //            mViewFlipper.setInAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.apper_from_right));
             //            mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.disapper_from_left));
-            mViewFlipper!!.showNext()
+            mBinding.tutorialMainViewFlipper!!.showNext()
             setPageCheck()
         }
     }
@@ -108,7 +106,7 @@ class TutorialFragment : Fragment() , View.OnTouchListener, IBackReceive {
             viewModel.mCurrentPage--
             //            mViewFlipper.setInAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.apper_from_left));
             //            mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.disapper_from_right));
-            mViewFlipper!!.showPrevious()
+            mBinding.tutorialMainViewFlipper!!.showPrevious()
             setPageCheck()
         }
     }
@@ -118,7 +116,7 @@ class TutorialFragment : Fragment() , View.OnTouchListener, IBackReceive {
      */
     private fun setPageCheck() {
         for (i in 0 until viewModel.mMacPage) {
-            val checkBox = mCheckBox[i] as CheckBox
+            val checkBox = requireActivity().findViewById<View>(mCheckBox[i]) as CheckBox
             checkBox.isChecked = i == viewModel.mCurrentPage
         }
     }
@@ -137,12 +135,12 @@ class TutorialFragment : Fragment() , View.OnTouchListener, IBackReceive {
                 val src = BitmapFactory.decodeResource(resources, resource, options)
                 val resize = Bitmap.createScaledBitmap(src, options.outWidth, options.outHeight, true)
                 img.setImageBitmap(resize)
-                img.scaleType = ImageView.ScaleType.FIT_XY
+                img.scaleType = ImageView.ScaleType.FIT_CENTER
             } catch (e: Exception) {
                 e.printStackTrace()
             }
 
-            mViewFlipper!!.addView(img)
+            mBinding.tutorialMainViewFlipper!!.addView(img)
         }
         setPageCheck()
     }
@@ -172,6 +170,12 @@ class TutorialFragment : Fragment() , View.OnTouchListener, IBackReceive {
                 .replace(R.id.fragment_main, MainFragment.newInstance())
                 .commit()
         }
+    }
+
+    override fun onAttach(context: Context) {
+        KLog.log("@@  TutorialFragment onAttach")
+        super.onAttach(context)
+        (activity as MainFragmentActivity).setBackReceive(this)
     }
 
 }
