@@ -44,7 +44,6 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
         fun newInstance() = ShareFragment()
     }
 
-    private var back: String? = null
     private lateinit var binding: ShareListActivityBinding
     private var mCategoryList: ArrayList<Category> = ArrayList()
     private var mHandler: Handler = Handler(this)
@@ -68,10 +67,6 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if(arguments != null){
-            back = requireArguments().getString("BACK")
-            KLog.d("@@ back : "+ back)
-        }
         val view = inflater.inflate(R.layout.share_list_activity, container, false)
         binding = ShareListActivityBinding.bind(view)
         setBackgroundColor()
@@ -98,9 +93,9 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
     override fun onBackKey() {
         KLog.log("@@ ShareFragment onBackKey")
         (activity as MainFragmentActivity).setBackReceive(null)
-        if(back == DataConst.VIEW_MAIN){
+        if(requireArguments().getString("BACK") == DataConst.VIEW_MAIN){
             (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                //.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                 .replace(R.id.fragment_main, MainFragment.newInstance())
                 .commit()
         }

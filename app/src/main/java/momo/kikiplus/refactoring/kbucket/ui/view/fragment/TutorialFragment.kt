@@ -14,11 +14,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.TutorialFragmentBinding
+import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
+import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.viewmodel.TutorialViewModel
 
-class TutorialFragment : Fragment() , View.OnTouchListener {
+class TutorialFragment : Fragment() , View.OnTouchListener, IBackReceive {
 
     companion object {
         fun newInstance() = TutorialFragment()
@@ -35,7 +39,6 @@ class TutorialFragment : Fragment() , View.OnTouchListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.tutorial_fragment, container, false)
         setBackgroundColor()
 
@@ -159,6 +162,16 @@ class TutorialFragment : Fragment() , View.OnTouchListener {
             4 -> resId = R.drawable.tutorial05
         }
         return resId
+    }
+
+    override fun onBackKey() {
+        KLog.log("@@ TutorialFragment onBackKey back : " + requireArguments().getString("BACK") )
+        (activity as MainFragmentActivity).setBackReceive(null)
+        if(requireArguments().getString("BACK") == DataConst.VIEW_MAIN){
+            (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_main, MainFragment.newInstance())
+                .commit()
+        }
     }
 
 }

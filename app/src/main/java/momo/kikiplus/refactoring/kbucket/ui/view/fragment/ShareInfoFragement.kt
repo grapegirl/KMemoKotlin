@@ -125,7 +125,7 @@ class ShareInfoFragement : Fragment(), IBackReceive ,  IHttpReceive, View.OnClic
             bundle.putString("BACK", DataConst.VIEW_MAIN)
 
             (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                //.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                 .replace(R.id.fragment_main, fragment)
                 .commit()
         }

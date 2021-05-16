@@ -14,6 +14,7 @@ import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.QuestionActivityBinding
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
@@ -57,11 +58,13 @@ class UpgradeFragment : Fragment(), IBackReceive , View.OnClickListener{
     }
 
     override fun onBackKey() {
-        KLog.log("@@ UpgradeFragment onBackKey")
+        KLog.log("@@ UpgradeFragment onBackKey back : " + requireArguments().getString("BACK") )
         (activity as MainFragmentActivity).setBackReceive(null)
-        NavHostFragment
-            .findNavController(this)
-            .navigate(R.id.action_UpgradeFragement_to_MainFragement)
+        if(requireArguments().getString("BACK") == DataConst.VIEW_MAIN){
+            (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_main, MainFragment.newInstance())
+                .commit()
+        }
     }
 
     override fun onAttach(context: Context) {

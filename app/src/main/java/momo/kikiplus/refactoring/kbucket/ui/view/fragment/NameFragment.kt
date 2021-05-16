@@ -15,6 +15,7 @@ import momo.kikiplus.com.kbucket.databinding.SetNicknameActivityBinding
 import momo.kikiplus.deprecated.sqlite.SQLQuery
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity
@@ -62,11 +63,13 @@ class NameFragment : Fragment() , IBackReceive, View.OnClickListener  {
     }
 
     override fun onBackKey() {
-        KLog.log("@@ NameFragment onBackKey")
+        KLog.log("@@ NameFragment onBackKey back : " + requireArguments().getString("BACK") )
         (activity as MainFragmentActivity).setBackReceive(null)
-        NavHostFragment
-            .findNavController(this)
-            .navigate(R.id.action_NameFragment_to_MainFragement)
+        if(requireArguments().getString("BACK") == DataConst.VIEW_MAIN){
+            (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_main, MainFragment.newInstance())
+                .commit()
+        }
     }
 
     override fun onAttach(context: Context) {

@@ -24,7 +24,7 @@
             app:navGraph="@navigation/nav_graph" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ListView
+    <com.google.android.material.navigation.NavigationView
         android:id="@+id/drawer_list"
         android:layout_width="240dp"
         android:layout_height="match_parent"
@@ -32,6 +32,7 @@
         android:background="#EDEDED"
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
+        app:menu="@menu/menu_main"
         android:dividerHeight="0dp" />
 
 

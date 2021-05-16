@@ -87,11 +87,14 @@ class PassFragment: Fragment(), IBackReceive,  View.OnClickListener  {
     }
 
     override fun onBackKey() {
-        KLog.log("@@ PassFragment onBackKey")
+        KLog.log("@@ PassFragment onBackKey back : " + requireArguments().getString("BACK") )
         (activity as MainFragmentActivity).setBackReceive(null)
-        NavHostFragment
-            .findNavController(this)
-            .navigate(R.id.action_PassFragment_to_MainFragement)
+        if(requireArguments().getString("BACK") == DataConst.VIEW_MAIN){
+            (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                .replace(R.id.fragment_main, MainFragment.newInstance())
+                .commit()
+        }
     }
 
     override fun onAttach(context: Context) {

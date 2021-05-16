@@ -52,7 +52,6 @@ class DetailFragment : Fragment() , View.OnClickListener,
     private lateinit var binding : DetailFragmentBinding
 
     private var buckets: Bucket? = null
-    private var back: String? = null
     private var contents : String? = null
 
     private val REQ_CODE_PICKCUTRE = 1000
@@ -78,9 +77,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
     ): View? {
         if(arguments != null){
             contents = requireArguments().getString("CONTENTS")
-            back = requireArguments().getString("BACK")
             KLog.d("@@ contents : " + contents)
-            KLog.d("@@ back : "+ back)
             buckets = Bucket(contents!!)
         }else{
             KLog.d("@@ argument is null")
@@ -167,16 +164,15 @@ class DetailFragment : Fragment() , View.OnClickListener,
     }
 
     override fun onBackKey() {
-        KLog.log("@@ DetailFragment onBackKey")
+        KLog.log("@@ DetailFragment onBackKey back : " + requireArguments().getString("BACK") )
         (activity as MainFragmentActivity).setBackReceive(null)
 
         if (mPhotoPath != null) {
             KLog.log("@@ DetailFragment mphoto path " + mPhotoPath)
             DataUtils.deleteFile(mPhotoPath!!)
         }
-        KLog.d("@@ DetailFragment BACK : " + back)
 
-        if (back == DataConst.VIEW_DONE) {
+        if (requireArguments().getString("BACK") == DataConst.VIEW_DONE) {
             val fragment = DoneFragment()
             val bundle = Bundle()
             fragment.arguments = bundle

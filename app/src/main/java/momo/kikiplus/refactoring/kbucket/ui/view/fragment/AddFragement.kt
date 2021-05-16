@@ -15,6 +15,7 @@ import momo.kikiplus.refactoring.common.util.DateUtils
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.common.view.popup.ConfirmPopup
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
 import momo.kikiplus.refactoring.kbucket.ui.view.activity.IBackReceive
@@ -78,11 +79,13 @@ class AddFragement : Fragment(), IBackReceive, View.OnClickListener {
     }
 
     override fun onBackKey() {
-        KLog.log("@@ AddFragement onBackKey")
+        KLog.log("@@ AddFragement onBackKey back : " + requireArguments().getString("BACK") )
         (activity as MainFragmentActivity).setBackReceive(null)
-        NavHostFragment
-            .findNavController(this)
-            .navigate(R.id.action_AddFragement_to_MainFragement)
+        if(requireArguments().getString("BACK") == DataConst.VIEW_MAIN){
+            (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_main, MainFragment.newInstance())
+                .commit()
+        }
         mDataList.clear()
         mBucketDataList.clear()
     }

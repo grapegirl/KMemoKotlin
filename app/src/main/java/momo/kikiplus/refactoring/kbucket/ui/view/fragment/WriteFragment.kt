@@ -31,7 +31,6 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
         fun newInstance() = WriteFragment()
     }
 
-    private var back: String? = null
     private lateinit var viewModel: WriteViewModel
     private lateinit var mBinding : WriteFragmentBinding
 
@@ -43,10 +42,6 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if(arguments != null){
-            back = requireArguments().getString("BACK")
-            KLog.d("@@ back : "+ back)
-        }
         val view = inflater.inflate(R.layout.write_fragment, container, false)
         mBinding = WriteFragmentBinding.bind(view)
         setBackgroundColor()
@@ -182,11 +177,11 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
 
     override fun onBackKey() {
         KLog.log("@@ WriteFragement onBackKey")
-        KLog.d("@@ WriteFragement back : "+ back)
+        KLog.d("@@ WriteFragement back : "+ requireArguments().getString("BACK"))
         (activity as MainFragmentActivity).setBackReceive(null)
-        if(back == DataConst.VIEW_MAIN){
+        if(requireArguments().getString("BACK") == DataConst.VIEW_MAIN){
             (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+           //     .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                 .replace(R.id.fragment_main, MainFragment.newInstance())
                 .commit()
         }

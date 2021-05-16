@@ -8,16 +8,24 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
+import kotlinx.android.synthetic.main.pager_item.*
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
 import momo.kikiplus.deprecated.sqlite.SQLQuery
@@ -28,15 +36,13 @@ import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.FireMessingService
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
-import momo.kikiplus.refactoring.kbucket.ui.view.fragment.DoneFragment
-import momo.kikiplus.refactoring.kbucket.ui.view.fragment.MainFragment
-import momo.kikiplus.refactoring.kbucket.ui.view.fragment.ShareFragment
-import momo.kikiplus.refactoring.kbucket.ui.view.fragment.WriteFragment
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.*
 import momo.kikiplus.refactoring.task.AppUpdateTask
 import momo.kikiplus.refactoring.task.UserUpdateTask
 import kotlin.reflect.typeOf
 
-class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.OnItemClickListener {
+class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
+    NavigationView.OnNavigationItemSelectedListener, View.OnLongClickListener {
 
     private var backKeyPressedTime = 0L
     private var finishToast: Toast? = null
@@ -127,12 +133,11 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
 
         setBackgroundColor()
 
-        val confDatas = resources.getStringArray(R.array.confList)
-        confDatas[7] += ": " + AppUtils.getVersionName(this)!!
+        val navController =    this.findNavController(R.id.fragment_main)
+        mBinding.drawerList.setupWithNavController(navController)
+        mBinding.drawerList.setNavigationItemSelectedListener(this)
+        mBinding.drawerList.setOnLongClickListener(this)
 
-        mBinding.drawerList.adapter = ArrayAdapter(this,
-            android.R.layout.simple_list_item_1, confDatas)
-        mBinding.drawerList.onItemClickListener = this
 
         MobileAds.initialize(this){}
 
@@ -295,11 +300,27 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
         }
     }
 
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        KLog.d("@@ selectItem position : "  + position)
-        changeMenu(position)
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        KLog.d("@@ selectItem position : "  + item)
+        KLog.d("@@ selectItem position : "  + item.menuInfo)
+        when(item.itemId){
+            R.id.menu_item1-> changeMenu(0)
+            R.id.menu_item2-> changeMenu(1)
+            R.id.menu_item3-> changeMenu(2)
+            R.id.menu_item4-> changeMenu(3)
+            R.id.menu_item5-> changeMenu(4)
+            R.id.menu_item6-> changeMenu(5)
+            R.id.menu_item7-> changeMenu(6)
+            R.id.menu_item8-> changeMenu(7)
+            R.id.menu_item9-> changeMenu(8)
+            R.id.menu_item10-> changeMenu(9)
+
+        }
+
         mBinding.dlActivityMainDrawer.closeDrawer(mBinding.drawerList)
+        return false
     }
+
 
     fun sendUserEvent(screenName : String){
         AppUtils.sendTrackerScreen(this, screenName)
@@ -314,9 +335,15 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
         when (position) {
             0//암호설정
             -> {
-//                var intent = Intent(this, PassWordActivity::class.java)
-//                intent.putExtra("SET", "SET")
-//                startActivity(intent)
+                val fragment = PassFragment()
+                val bundle = Bundle()
+                fragment.arguments = bundle
+                bundle.putString("SET", "SET")
+
+                supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                .add(R.id.fragment_main, fragment)
+                .commit()
 
                 sendUserEvent("암호설정")
             }
@@ -333,33 +360,68 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
             }
             3//별명설정
             -> {
-//                intent = Intent(this, SetNickNameActivity::class.java)
-//                startActivity(intent)
+                val fragment = NameFragment()
+                val bundle = Bundle()
+                fragment.arguments = bundle
+                bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                    .add(R.id.fragment_main, fragment)
+                    .commit()
+
                 sendUserEvent("이름설정")
             }
             4//배경설정
             -> {
-//                intent = Intent(this, SetBackColorActivity::class.java)
-//                startActivity(intent)
+                val fragment = ColorFragment()
+                val bundle = Bundle()
+                fragment.arguments = bundle
+                bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                    .add(R.id.fragment_main, fragment)
+                    .commit()
                 sendUserEvent("배경설정")
 
             }
             5//튜토리얼
             -> {
-                //TODO Intent
-//                intent = Intent(this, TutorialActivity::class.java)
-//                startActivity(intent)
+                val fragment = TutorialFragment()
+                val bundle = Bundle()
+                fragment.arguments = bundle
+                bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                    .add(R.id.fragment_main, fragment)
+                    .commit()
             }
             6//문의하기
             -> {
-//                intent = Intent(this, QuestionActivity::class.java)
-//                startActivity(intent)
+                val fragment = UpgradeFragment()
+                val bundle = Bundle()
+                fragment.arguments = bundle
+                bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                    .add(R.id.fragment_main, fragment)
+                    .commit()
                 sendUserEvent("문의개선")
             }
             9//관심 버킷 추가하기
             -> {
-//                intent = Intent(this, AddBucketActivity::class.java)
-//                startActivity(intent)
+                val fragment = AddFragement()
+                val bundle = Bundle()
+                fragment.arguments = bundle
+                bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                    .add(R.id.fragment_main, fragment)
+                    .commit()
                 sendUserEvent("관심버킷추가화면")
             }
         }
@@ -367,6 +429,10 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback, AdapterView.
     fun setBackReceive(receive: IBackReceive?){
         KLog.log("@@ setBackReceive receive : "+ receive)
         backReceive = receive
+    }
 
+    override fun onLongClick(p0: View?): Boolean {
+        KLog.log("@@ onLongClick view : "+ p0)
+        return true
     }
 }

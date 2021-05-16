@@ -25,8 +25,6 @@
             app:destination="@id/NoticeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
             />
 
         <action
@@ -34,8 +32,6 @@
             app:destination="@id/RankFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
             />
 
         <action
@@ -171,10 +167,6 @@
         <action
             android:id="@+id/action_NoticeFragment_to_MainFragement"
             app:destination="@id/MainFragement"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left"
             />
     </fragment>/
 
@@ -186,10 +178,6 @@
         <action
             android:id="@+id/action_RankFragment_to_MainFragement"
             app:destination="@id/MainFragement"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left"
             />
     </fragment>
 
