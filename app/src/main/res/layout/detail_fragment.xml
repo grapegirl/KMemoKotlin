@@ -133,6 +133,7 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/ballon2"
                 android:padding="5dp"
+                android:inputType="text"
                 android:singleLine="true"/>
         </LinearLayout>
 

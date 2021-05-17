@@ -57,10 +57,15 @@ class ConfirmPopup
     override fun onClick(v: View) {
         KLog.d("@@ ConfirmDialog onClick!")
         when (v.id) {
-            R.id.popup_close_button, R.id.popup_cancle_button -> mPopupReceive!!.onPopupAction(mPopId,
-                IPopupReceive.POPUP_BTN_CLOSEE, null)
-            R.id.popup_ok_button -> mPopupReceive!!.onPopupAction(mPopId,
-                IPopupReceive.POPUP_BTN_OK, null)
+            R.id.popup_close_button, R.id.popup_cancle_button ->
+            {
+                mPopupReceive!!.onPopupAction(mPopId,
+                    IPopupReceive.POPUP_BTN_CLOSEE, null)
+            }
+            R.id.popup_ok_button -> {
+                mPopupReceive!!.onPopupAction(mPopId,
+                    IPopupReceive.POPUP_BTN_OK, null)
+            }
         }
     }
 }

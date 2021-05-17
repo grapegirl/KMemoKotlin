@@ -73,7 +73,6 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
         val view = inflater.inflate(R.layout.bucket_list_activity, container, false)
         binding = BucketListActivityBinding.bind(view)
         setBackgroundColor()
-        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         return view
     }
 

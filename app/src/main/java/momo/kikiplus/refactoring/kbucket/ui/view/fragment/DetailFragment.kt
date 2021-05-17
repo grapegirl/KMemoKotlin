@@ -6,11 +6,13 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.os.Message
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -65,7 +67,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
     private var mImageIdx = -1
     private var mCategory = 1
 
-    private var mHandler: android.os.Handler? = null
+    private var mHandler: Handler = Handler(this)
     private val TOAST_MASSEGE = 10
     private val UPLOAD_IMAGE = 20
     private val UPLOAD_BUCKET = 30
@@ -85,6 +87,8 @@ class DetailFragment : Fragment() , View.OnClickListener,
         val view = inflater.inflate(R.layout.detail_fragment, container, false)
         binding = DetailFragmentBinding.bind(view)
         setBackgroundColor()
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+
         return view
     }
 
@@ -98,6 +102,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
         setData()
+
     }
 
     fun setData(){
@@ -228,11 +233,12 @@ class DetailFragment : Fragment() , View.OnClickListener,
             R.id.write_shareButton -> {
                 var title = getString(R.string.share_popup_title)
                 var content = getString(R.string.share_popup_content)
+                var data = buckets!!.content + "\n\n" + content
                 mConfirmPopup =
                     ConfirmPopup(
                         requireContext(),
                         title,
-                        ": $buckets!!.content!!\n\n $content",
+                         data,
                         R.layout.popup_confirm,
                         this,
                         PopupConst.POPUP_BUCKET_SHARE
@@ -480,11 +486,13 @@ class DetailFragment : Fragment() , View.OnClickListener,
 
     private val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
         val msg = String.format("%d-%02d-%02d", year, monthOfYear + 1, dayOfMonth)
+        buckets!!.date = msg
         binding.detailDateView.setText(msg)
     }
 
     private val dateSetListener2 = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
         val msg = String.format("%d-%02d-%02d", year, monthOfYear + 1, dayOfMonth)
+        buckets!!.deadLine = msg
         binding.detailDeadline.setText(msg)
     }
 }
