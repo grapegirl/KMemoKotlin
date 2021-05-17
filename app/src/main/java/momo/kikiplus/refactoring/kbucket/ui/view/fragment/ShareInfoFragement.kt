@@ -8,6 +8,7 @@ import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -80,6 +81,7 @@ class ShareInfoFragement : Fragment(), IBackReceive ,  IHttpReceive, View.OnClic
         val view = inflater.inflate(R.layout.share_detail_activity, container, false)
         binding = ShareDetailActivityBinding.bind(view)
         setBackgroundColor()
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         return view
     }
 

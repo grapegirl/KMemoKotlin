@@ -3,6 +3,7 @@ package momo.kikiplus.refactoring.kbucket.ui.view.activity
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.pm.ShortcutManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -70,6 +71,44 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
         supportActionBar!!.hide()
 
         initialize()
+
+
+        val shortcutAction = intent.action
+        if(shortcutAction != null){
+            Log.d("KMemo", "@@ MainFragmentActivity shortcutAction : " + shortcutAction)
+            val bundle = Bundle()
+            bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+             if(shortcutAction == DataConst.SHORTCUT_LIST){
+                val fragment = WriteFragment()
+                fragment.arguments = bundle
+
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_main, fragment)
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_left, R.anim.slide_out_right)
+                    .commit()
+            }else if(shortcutAction == DataConst.SHORTCUT_RANK){
+                 val fragment = RankFragment()
+                 fragment.arguments =bundle
+
+                 supportFragmentManager.beginTransaction()
+                     .replace(R.id.fragment_main, fragment)
+                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                         R.anim.slide_in_left, R.anim.slide_out_right)
+                     .commit()
+            }else if(shortcutAction == DataConst.SHORTCUT_SHARE){
+                 val fragment = ShareFragment()
+                 fragment.arguments =bundle
+
+                 supportFragmentManager.beginTransaction()
+                     .replace(R.id.fragment_main, fragment)
+                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                         R.anim.slide_in_left, R.anim.slide_out_right)
+                     .commit()
+             }
+
+        }
 
         val data = intent.getStringExtra(DataConst.WIDGET_SEND_DATA)
         Log.d("KMemo", "@@ MainFragmentActivity WIDGET_SEND_DATA : " + data)

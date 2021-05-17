@@ -148,9 +148,15 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
                 mHandler.sendEmptyMessage(REQUEST_AI)
             }
             R.id.main_bucketRankBtn -> {
-                NavHostFragment
-                    .findNavController(this)
-                    .navigate(R.id.action_MainFragment_to_RankFragment)
+
+                val fragment = RankFragment()
+                fragment.arguments =bundle
+                bundle.putString("BACK", DataConst.VIEW_MAIN)
+
+                (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                    .add(R.id.fragment_main, fragment)
+                    .commit()
 
                 (activity as MainFragmentActivity).sendUserEvent("버킷랭킹")
             }

@@ -85,4 +85,10 @@ object DataConst {
      * Sort
      */
     val KBUCKET_SORT_KEY = "KBUCKET_SORT"
+
+    val SHORTCUT_MAIN : String = "android.intent.action.VIEW.WRITE"
+    val SHORTCUT_LIST : String = "android.intent.action.VIEW.LIST"
+    val SHORTCUT_SHARE : String = "android.intent.action.VIEW.SHARE"
+    val SHORTCUT_RANK : String = "android.intent.action.VIEW.RANK"
+
 }

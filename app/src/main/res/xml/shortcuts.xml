@@ -6,9 +6,9 @@
         android:icon="@drawable/anim2"
         android:shortcutShortLabel="@string/appshortcuts1">
         <intent
-            android:action="android.intent.action.VIEW"
+            android:action="android.intent.action.VIEW.MAIN"
             android:targetPackage="momo.kikiplus.com.kbucket"
-            android:targetClass="momo.kikiplus.refactoring.kbucket.ui.view.activity.IntroActivity" />
+            android:targetClass="momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity" />
     </shortcut>
 
     <shortcut
@@ -16,30 +16,32 @@
         android:enabled="true"
         android:icon="@drawable/anim2"
         android:shortcutShortLabel="@string/appshortcuts2">
-<!--        <intent-->
-<!--            android:action="android.intent.action.VIEW"-->
-<!--            android:targetPackage="momo.kikiplus.com.kbucket"-->
-<!--            android:targetClass="momo.kikiplus.deprecated.activity.BucketListActivity" />-->
+        <intent
+            android:action="android.intent.action.VIEW.LIST"
+            android:targetPackage="momo.kikiplus.com.kbucket"
+            android:targetClass="momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity" />
     </shortcut>
     <shortcut
         android:shortcutId="shortcuts3"
         android:enabled="true"
         android:icon="@drawable/anim2"
         android:shortcutShortLabel="@string/appshortcuts3">
-<!--        <intent-->
-<!--            android:action="android.intent.action.VIEW"-->
-<!--            android:targetPackage="momo.kikiplus.com.kbucket"-->
-<!--            android:targetClass="momo.kikiplus.deprecated.activity.ShareListActivity" />-->
+
+        <intent
+            android:action="android.intent.action.VIEW.SHARE"
+            android:targetPackage="momo.kikiplus.com.kbucket"
+            android:targetClass="momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity" />
     </shortcut>
     <shortcut
         android:shortcutId="shortcuts4"
         android:enabled="true"
         android:icon="@drawable/anim2"
         android:shortcutShortLabel="@string/appshortcuts4">
+
         <intent
-            android:action="android.intent.action.VIEW"
+            android:action="android.intent.action.VIEW.RANK"
             android:targetPackage="momo.kikiplus.com.kbucket"
-            android:targetClass="momo.kikiplus.deprecated.activity.RankListActivity" />
+            android:targetClass="momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity" />
     </shortcut>
 
 

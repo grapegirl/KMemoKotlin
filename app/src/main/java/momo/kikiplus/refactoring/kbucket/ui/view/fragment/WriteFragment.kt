@@ -2,10 +2,7 @@ package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -58,7 +55,7 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
         mBinding.sortMemo.setOnClickListener(this)
         mBinding.writeLayoutTitleView.setOnKeyListener(this)
 
-        var layoutMgr : LinearLayoutManager = LinearLayoutManager(activity)
+        var layoutMgr = LinearLayoutManager(activity)
         mBinding.writeListListview.layoutManager = layoutMgr
         mBinding.writeListListview.adapter = mAdapter
 

@@ -6,6 +6,7 @@ import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -72,6 +73,7 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
         val view = inflater.inflate(R.layout.bucket_list_activity, container, false)
         binding = BucketListActivityBinding.bind(view)
         setBackgroundColor()
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         return view
     }
 

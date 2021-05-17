@@ -20,6 +20,7 @@ import momo.kikiplus.refactoring.common.util.NetworkUtils
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.common.util.StringUtils
 import momo.kikiplus.refactoring.common.view.KProgressDialog
+import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.data.vo.Bucket
@@ -231,9 +232,12 @@ class RankFragment : Fragment(), Handler.Callback , IBackReceive, IHttpReceive, 
     override fun onBackKey() {
         KLog.log("@@ RankFragment onBackKey")
         (activity as MainFragmentActivity).setBackReceive(null)
-        NavHostFragment
-            .findNavController(this)
-            .navigate(R.id.action_RankFragment_to_MainFragement)
+        if(requireArguments().getString("BACK") == DataConst.VIEW_MAIN){
+            (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
+                // .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                .replace(R.id.fragment_main, MainFragment.newInstance())
+                .commit()
+        }
     }
 
     override fun onAttach(context: Context) {
