@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
@@ -118,8 +119,9 @@ class DetailFragment : Fragment() , View.OnClickListener,
         val yn = memoMap["complete_yn"]
         binding.writeCompleteCheckbox.isChecked  = yn != null && yn == "Y"
 
-        val bytes = viewModel.loadDBImage(requireContext(), buckets!!.completeYN.toString(),
+        val bytes = viewModel.loadDBImage(requireContext(), buckets!!.content.toString(),
             buckets!!.date.toString())
+        KLog.log( "@@ setData img bytes  : " + bytes)
         if (bytes != null) {
             KLog.log( "@@ bytes  : " + bytes)
             Glide.with(this)
@@ -211,6 +213,9 @@ class DetailFragment : Fragment() , View.OnClickListener,
                 contents = binding.detailContentView.text.toString()
                 KLog.log("@@ 저장하기 내용 : " + contents!!)
                 KLog.log("@@ 저장하기 내용2 : " + buckets!!)
+                if(mPhotoPath == null){
+                    buckets!!.imageUrl = ""
+                }
                 viewModel.updateDBDate(requireContext(), contents!!, buckets!!)
                 onBackKey()
             }
@@ -249,7 +254,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
             R.id.write_image_camera -> {
                 mPhotoPath = DataUtils.newFileName
                 var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(File(mPhotoPath)))
+               // intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(File(mPhotoPath)))
                 startActivityForResult(intent, REQ_CODE_PICKCUTRE)
             }
             //갤러리로 부터 이미지 가져오기
@@ -439,16 +444,20 @@ class DetailFragment : Fragment() , View.OnClickListener,
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        KLog.log("@@ DETAIL onActivityResult requestCode : "+ requestCode)
+        KLog.log("@@ DETAIL onActivityResult resultCode : "+ resultCode)
+        KLog.log("@@ DETAIL onActivityResult data : "+ data)
+
         if (requestCode == REQ_CODE_PICKCUTRE) {
             if (resultCode == Activity.RESULT_OK) {
-                val bm = ByteUtils.getFileBitmap(mPhotoPath!!)
-                if (bm != null) {
-                    hideImageAttachButton(true)
-                    binding.detailImageview.visibility = View.VISIBLE
-                    binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
-                    binding.detailImageview.setImageBitmap(bm)
-                    binding.detailRemove.visibility = View.VISIBLE
-                }
+              //  val bm = ByteUtils.getFileBitmap(mPhotoPath!!)
+                //if (bm != null) {
+//                    hideImageAttachButton(true)
+//                    binding.detailImageview.visibility = View.VISIBLE
+//                    binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
+//                    binding.detailImageview.setImageBitmap(bm)
+//                    binding.detailRemove.visibility = View.VISIBLE
+              //  }
             }
         } else if (requestCode == REQ_CODE_GALLERY) {
             if (data != null) {
@@ -458,20 +467,22 @@ class DetailFragment : Fragment() , View.OnClickListener,
                     mPhotoPath = DataUtils.newFileName
                     try {
                         val imagePath = DataUtils.getMediaScanPath(requireContext(), imgUri)
-                        KLog.log("@@ photo imagePath :$imagePath")
                         if (imagePath.isEmpty()) {
                             val message = getString(R.string.write_bucekt_image_attch)
                             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
-                        }
-                        DataUtils.copyFile(imagePath, mPhotoPath!!)
-                        ByteUtils.setFileResize(mPhotoPath!!, 400, 800, false)
-                        val photo = ByteUtils.getFileBitmap(mPhotoPath!!)
-                        if (photo != null) {
-                            hideImageAttachButton(true)
-                            binding.detailImageview.visibility = View.VISIBLE
-                            binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
-                            binding.detailImageview.setImageBitmap(photo)
-                            binding.detailRemove.visibility = View.VISIBLE
+                        }else{
+                            val photo = ByteUtils.getFileBitmap(imagePath)
+                            if (photo != null) {
+                                hideImageAttachButton(true)
+                                binding.detailImageview.visibility = View.VISIBLE
+                                binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
+                                binding.detailImageview.setImageBitmap(photo)
+                                binding.detailRemove.visibility = View.VISIBLE
+                            }
+
+                             DataUtils.copyFile(imagePath, mPhotoPath!!, requireContext())
+                             ByteUtils.setFileResize(requireContext(), mPhotoPath!!, 400, 800, false)
+                             buckets!!.imageUrl = mPhotoPath as String
                         }
                     } catch (e: IOException) {
                         e.printStackTrace()
@@ -495,4 +506,5 @@ class DetailFragment : Fragment() , View.OnClickListener,
         buckets!!.deadLine = msg
         binding.detailDeadline.setText(msg)
     }
+
 }

@@ -29,14 +29,11 @@ object DataUtils {
      */
     val newFileName: String
         get() {
-            val path = File(Environment.getExternalStorageDirectory().absolutePath + "/" + DataConst.KEY_FILE_FOLDER)
-            if (!path.exists()) {
-                path.mkdirs()
-            }
             val calendar = Calendar.getInstance()
             val sdf = SimpleDateFormat("yyyyMMdd_HHmmss")
             val dateTime = sdf.format(calendar.time)
-            return path.path + "/" + dateTime + ".jpg"
+
+            return dateTime + ".jpg"
         }
 
     /**
@@ -44,13 +41,25 @@ object DataUtils {
      *
      * @return 파일 생성 완료 여부
      */
-    fun createFile(): Boolean {
-        val path = File(Environment.getExternalStorageDirectory().absolutePath + "/" + DataConst.KEY_FILE_FOLDER)
-        val noMediaFile = File(Environment.getExternalStorageDirectory().absolutePath + "/" + DataConst.KEY_FILE_FOLDER + "/.nomedia")
-        if (!noMediaFile.exists()) {
-            noMediaFile.mkdir()
-        }
+    fun createFolder(context: Context): Boolean {
+        val path = File(context.filesDir, DataConst.KEY_FILE_FOLDER)
+//        val noMediaFile = File(context.filesDir, DataConst.KEY_FILE_FOLDER + "/.nomedia")
+//        if (!noMediaFile.exists()) {
+//            noMediaFile.mkdir()
+//        }
 
+        if (path.exists()) {
+            return true
+        }
+        if (!path.exists()) {
+            path.mkdirs()
+            return true
+        }
+        return false
+    }
+
+    fun createFile(context: Context, fileName: String): Boolean {
+        val path = File(context.filesDir, fileName)
         if (path.exists()) {
             return true
         }
@@ -67,26 +76,25 @@ object DataUtils {
      * @throws IOException
      */
     @Throws(IOException::class)
-    fun copyFile(selectedImagePath: String, string: String) {
+    fun copyFile(selectedImagePath: String, newFile: String, context: Context) {
         val inn = FileInputStream(selectedImagePath)
-        val out = FileOutputStream(string)
 
-        // Transfer bytes from in to out
+        val saveFile = File(context.filesDir, newFile)
+        saveFile.createNewFile()
+
+        val fos = FileOutputStream(saveFile)
+
         val buf = ByteArray(1024)
         var len: Int = 0
 
         do{
             len = inn.read(buf)
-
             if(len <= 0){
                 break
             }
-            out.write(buf, 0, len)
+            fos.write(buf)
         }while (true)
-
-
         inn.close()
-        out.close()
     }
 
     /**

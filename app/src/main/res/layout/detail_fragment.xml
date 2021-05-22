@@ -177,6 +177,14 @@
                 android:background="@drawable/remove"
                 android:visibility="invisible"/>
 
+            <ImageView
+                android:id="@+id/detail_imageview"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_horizontal|center_vertical"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
@@ -209,14 +217,6 @@
                     android:textSize="15sp"
                     android:textStyle="bold"/>
 
-
-                <ImageView
-                    android:id="@+id/detail_imageview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center_horizontal|center_vertical"/>
             </LinearLayout>
         </RelativeLayout>
 

@@ -150,7 +150,7 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
                     PreferConst.KEY_USER_NICKNAME,
                     SharedPreferenceUtils.SHARED_PREF_VALUE_STRING
                 ) as String?
-                val bytes = ByteUtils.getByteArrayFromFile(path)
+                val bytes = ByteUtils.getByteArrayFromFile(context = applicationContext, path)
                 val httpUrlFileUploadManager = HttpUrlFileUploadManager(
                     NetworkConst.KBUCKET_UPLOAD_DB_URL,
                     this,

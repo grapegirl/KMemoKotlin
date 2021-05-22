@@ -343,7 +343,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             MY_PERMISSION_REQUEST -> {
-                val isReulst = DataUtils.createFile()
+                val isReulst = DataUtils.createFolder(context = applicationContext)
                 if (!isReulst) {
                     handler.sendMessage(handler.obtainMessage(TOAST_MASSEGE, "권한을 모두 허용해주셔야 앱을 정상적으로 사용할 수 있습니다."))
                 }
@@ -488,5 +488,13 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     fun setBackReceive(receive: IBackReceive?){
         KLog.log("@@ setBackReceive receive : "+ receive)
         backReceive = receive
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        KLog.log("@@ MAIN onActivityResult requestCode : "+ requestCode)
+        KLog.log("@@ MAIN onActivityResult resultCode : "+ resultCode)
+        KLog.log("@@ MAIN onActivityResult data : "+ data)
+
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }

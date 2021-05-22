@@ -22,6 +22,8 @@ class DetailViewModel : ViewModel() {
 
     fun loadDBImage(context : Context, contents: String, date : String) : ByteArray?{
         val bytes = mSqlQuery.selectImage(context, contents, date)
+        KLog.d( "@@ loadDBImage bytes : " + bytes)
+        KLog.d( "@@ loadDBImage contents : " + contents + ", data : " + date)
         return bytes
     }
 
@@ -36,7 +38,7 @@ class DetailViewModel : ViewModel() {
             mSqlQuery.deleteMemoImage(context, contents, bucket.date)
         } else {
             //신규로 추가한 경우
-            val bitmaps = ByteUtils.getByteArrayFromFile(bucket.imageUrl)
+            val bitmaps = ByteUtils.getByteArrayFromFile(context, bucket.imageUrl)
             KLog.d("@@ bitmaps : " + bitmaps)
             if(bitmaps != null){
                 mSqlQuery.updateMemoImage(context, contents, bucket.date, bitmaps)

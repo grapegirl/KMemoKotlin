@@ -55,10 +55,13 @@ object ByteUtils {
      *
      * @param photoPath 파일경로
      */
-    fun setFileResize(photoPath: String, width: Int, height: Int, filter: Boolean) {
-        val bitmap = BitmapFactory.decodeFile(photoPath)
+    fun setFileResize(context: Context, photoPath: String, width: Int, height: Int, filter: Boolean) {
+        KLog.log("@@ setFileResize start")
+        val file = File(context.filesDir, photoPath)
+        val bitmap = BitmapFactory.decodeFile(file.path)
         val newBitmap = Bitmap.createScaledBitmap(bitmap, width, height, filter)
-        saveBitmapToFile(newBitmap, photoPath)
+        saveBitmapToFile(context, newBitmap, photoPath)
+        KLog.log("@@ setFileResize End")
     }
 
     /**
@@ -67,23 +70,25 @@ object ByteUtils {
      * @param bitmap      저장할 비트맵 이미지
      * @param strFilePath 저장할 파일 경로
      */
-    fun saveBitmapToFile(bitmap: Bitmap, strFilePath: String) {
-        val fileCacheItem = File(strFilePath)
-        var out: OutputStream? = null
+    fun saveBitmapToFile(context: Context, bitmap: Bitmap, strFilePath: String) {
+        KLog.log("@@ saveBitmapToFile start")
+        val file = File(context.filesDir, strFilePath)
+        if(!file.exists()){
+            file.createNewFile()
+        }
+
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+
+        val byteArray = stream.toByteArray()
         try {
-            fileCacheItem.createNewFile()
-            out = FileOutputStream(fileCacheItem)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
+            context.openFileOutput(strFilePath, Context.MODE_PRIVATE).use {
+                it.write(byteArray)
+            }
         } catch (e: Exception) {
             e.printStackTrace()
-        } finally {
-            try {
-                out!!.close()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-
         }
+        KLog.log("@@ saveBitmapToFile end")
     }
 
     /***
@@ -102,22 +107,35 @@ object ByteUtils {
      * @param path 경로
      * @return 바이트 배열
      */
-    fun getByteArrayFromFile(path: String): ByteArray? {
-        val file = File(path)
-        val size = file.length().toInt()
-        val bytes = ByteArray(size)
-        try {
-            val buf = BufferedInputStream(FileInputStream(file))
-            buf.read(bytes, 0, bytes.size)
-            buf.close()
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-            return null
-        } catch (e: IOException) {
-            e.printStackTrace()
-            return null
-        }
+    fun getByteArrayFromFile(context: Context, path: String): ByteArray? {
+        //val file = File(path)
+        //val size = file.length().toInt()
+//        val bytes = ByteArray(size)
+//        try {
+//            val buf = BufferedInputStream(FileInputStream(file))
+//            buf.read(bytes, 0, bytes.size)
+//            buf.close()
+//        } catch (e: FileNotFoundException) {
+//            e.printStackTrace()
+//            return null
+//        } catch (e: IOException) {
+//            e.printStackTrace()
+//            return null
+//        }
 
+        val file = File(context.filesDir, path)
+        KLog.log("@@ getByteArrayFromFile file : " +  file)
+        val size = file.length()
+        val bytes = ByteArray(size.toInt())
+        val stream = ByteArrayInputStream(bytes)
+        try {
+            context.openFileInput(path).use {
+                it.read(bytes, 0, size.toInt())
+                it.close()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         return bytes
     }
 }
