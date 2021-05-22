@@ -169,38 +169,42 @@ object DataUtils {
      *
      * @return 백업 여부(성공 true, 실패 false 반환)
      */
-    fun exportDB(NewdbName: String): Boolean {
+    fun exportDB(context: Context, NewdbName: String): Boolean {
+        KLog.log("@@ exportDB start")
         try {
-            val sd = Environment.getExternalStorageDirectory()
-            val data = Environment.getDataDirectory()
+            val currentDBPath = ("/data/data/" +  context.packageName
+                    + "/databases/" + DataConst.KBUCKET_DB_NAME)
+            KLog.log("@@ exportDB currentDBPath : " + currentDBPath)
 
-            if (sd.canWrite()) {
-                val currentDBPath = ("//data//" + DataConst.PACKAGE_NAME
-                        + "/databases/" + DataConst.KBUCKET_DB_NAME)
+            val currentDB = File(currentDBPath)
+            KLog.log("@@ exportDB currentDB : " + currentDB)
 
-                val backupDBPath = DataConst.KEY_FILE_FOLDER + "/" + NewdbName + ".db"
-                val currentDB = File(data, currentDBPath)
-
-                val kmemoFile = File(sd, DataConst.KEY_FILE_FOLDER)
-                if (!kmemoFile.exists()) {
-                    kmemoFile.mkdirs()
-                }
-                val backupDB = File(sd, backupDBPath)
-                if (!backupDB.exists()) {
-                    backupDB.createNewFile()
-                }
-                val src = FileInputStream(currentDB).channel
-                val dst = FileOutputStream(backupDB).channel
-                dst.transferFrom(src, 0, src.size())
-                src.close()
-                dst.close()
-                KLog.d( "@@ DB 파일 백업 완료 ")
+            val kmemoFile = File(context.filesDir, DataConst.KEY_FILE_FOLDER)
+            if (!kmemoFile.exists()) {
+                kmemoFile.mkdirs()
+                KLog.log("@@ kmemoFile folder create")
             }
+
+            val backupDBPath = DataConst.KEY_FILE_FOLDER + "/" + NewdbName + ".db"
+            KLog.log("@@ exportDB backupDBPath : " + backupDBPath)
+            val backupDB = File(context.filesDir, backupDBPath)
+            if (!backupDB.exists()) {
+                backupDB.createNewFile()
+                KLog.log("@@ backupDB file  create")
+            }
+
+            val src = FileInputStream(currentDB).channel
+            val dst = FileOutputStream(backupDB).channel
+            dst.transferFrom(src, 0, src.size())
+            src.close()
+            dst.close()
+            KLog.d( "@@ DB 파일 백업 완료 ")
+
         } catch (e: Exception) {
             KLog.e("@@ DB 파일 백업 에러 : " + e.toString())
             return false
         }
-
+        KLog.log("@@ exportDB End")
         return true
     }
 

@@ -4,7 +4,11 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.media.MediaActionSound
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
@@ -210,11 +214,16 @@ class DetailFragment : Fragment() , View.OnClickListener,
             // 저장 버튼
             R.id.write_saveButton -> {
 
+                if(binding.writeCompleteCheckbox.isChecked){
+                    buckets!!.completeYN = "Y"
+                }else{
+                    buckets!!.completeYN = "N"
+                }
                 contents = binding.detailContentView.text.toString()
-                KLog.log("@@ 저장하기 내용 : " + contents!!)
-                KLog.log("@@ 저장하기 내용2 : " + buckets!!)
                 if(mPhotoPath == null){
                     buckets!!.imageUrl = ""
+                }else{
+                    buckets!!.imageUrl = mPhotoPath!!
                 }
                 viewModel.updateDBDate(requireContext(), contents!!, buckets!!)
                 onBackKey()
@@ -253,8 +262,14 @@ class DetailFragment : Fragment() , View.OnClickListener,
             //이미지 첨부(카메라로 가져오기)
             R.id.write_image_camera -> {
                 mPhotoPath = DataUtils.newFileName
+                KLog.log("@@ write image camera mPhotoPath : " + mPhotoPath)
                 var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-               // intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(File(mPhotoPath)))
+                val file = File(requireContext().filesDir, mPhotoPath)
+                if(!file.exists()){
+                    KLog.log("@@ create file  mPhotoPath : " + mPhotoPath)
+                    file.createNewFile()
+                }
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file))
                 startActivityForResult(intent, REQ_CODE_PICKCUTRE)
             }
             //갤러리로 부터 이미지 가져오기
@@ -408,7 +423,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
         } else if (popId == PopupConst.POPUP_BUCKET_DELETE) {
             if (what == IPopupReceive.POPUP_BTN_OK) {
                 viewModel.removeDBData(requireContext(), buckets!!.content!!, buckets!!.date!!)
-
+                onBackKey()
             }
             mConfirmPopup!!.closeDialog()
         } else if (popId == PopupConst.POPUP_BUCKET_CATEGORY) {
@@ -450,20 +465,28 @@ class DetailFragment : Fragment() , View.OnClickListener,
 
         if (requestCode == REQ_CODE_PICKCUTRE) {
             if (resultCode == Activity.RESULT_OK) {
-              //  val bm = ByteUtils.getFileBitmap(mPhotoPath!!)
-                //if (bm != null) {
-//                    hideImageAttachButton(true)
-//                    binding.detailImageview.visibility = View.VISIBLE
-//                    binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
-//                    binding.detailImageview.setImageBitmap(bm)
-//                    binding.detailRemove.visibility = View.VISIBLE
-              //  }
+                val file = File(requireContext().filesDir, mPhotoPath!!)
+                val selectedUrl = Uri.fromFile(file)
+                KLog.d("@@ DETAIL CAMERA selectedUrl : "+ selectedUrl)
+                val url = MediaStore.Images.Media.getContentUri(selectedUrl.toString())
+                KLog.d("@@ DETAIL CAMERA url : "+ url)
+
+               val bm : Bitmap = data!!.extras!!.get("data") as Bitmap
+               // val bm = ByteUtils.getFileBitmap(requireContext(), mPhotoPath!!)
+                ByteUtils.saveBitmapToFile(requireContext(), bm ,mPhotoPath!!)
+                KLog.d("@@ DETAIL CAMERA bm : "+ bm)
+                if (bm != null) {
+                    hideImageAttachButton(true)
+                    binding.detailImageview.visibility = View.VISIBLE
+                    binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
+                    binding.detailImageview.setImageBitmap(bm)
+                    binding.detailRemove.visibility = View.VISIBLE
+                }
             }
         } else if (requestCode == REQ_CODE_GALLERY) {
             if (data != null) {
                 val imgUri = data.data
                 if (imgUri != null) {
-                    KLog.log("@@ photo data: " + imgUri.path!!)
                     mPhotoPath = DataUtils.newFileName
                     try {
                         val imagePath = DataUtils.getMediaScanPath(requireContext(), imgUri)
@@ -471,7 +494,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
                             val message = getString(R.string.write_bucekt_image_attch)
                             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
                         }else{
-                            val photo = ByteUtils.getFileBitmap(imagePath)
+                            val photo = ByteUtils.getFileBitmap(requireContext(), imagePath)
                             if (photo != null) {
                                 hideImageAttachButton(true)
                                 binding.detailImageview.visibility = View.VISIBLE
@@ -487,11 +510,9 @@ class DetailFragment : Fragment() , View.OnClickListener,
                     } catch (e: IOException) {
                         e.printStackTrace()
                     }
-
                 }
             }
         }
-
     }
 
 
@@ -506,5 +527,6 @@ class DetailFragment : Fragment() , View.OnClickListener,
         buckets!!.deadLine = msg
         binding.detailDeadline.setText(msg)
     }
+
 
 }

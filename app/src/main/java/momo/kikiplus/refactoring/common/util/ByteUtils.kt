@@ -97,8 +97,12 @@ object ByteUtils {
      * @param photoPath
      * @return
      */
-    fun getFileBitmap(photoPath: String): Bitmap {
-        return BitmapFactory.decodeFile(photoPath)
+    fun getFileBitmap(context: Context,photoPath: String): Bitmap {
+        KLog.log("@@ getFileBitmap start")
+        val file = File(photoPath)
+        KLog.log("@@ getFileBitmap End")
+        return BitmapFactory.decodeFile(file.absolutePath)
+
     }
 
     /**
@@ -108,23 +112,9 @@ object ByteUtils {
      * @return 바이트 배열
      */
     fun getByteArrayFromFile(context: Context, path: String): ByteArray? {
-        //val file = File(path)
-        //val size = file.length().toInt()
-//        val bytes = ByteArray(size)
-//        try {
-//            val buf = BufferedInputStream(FileInputStream(file))
-//            buf.read(bytes, 0, bytes.size)
-//            buf.close()
-//        } catch (e: FileNotFoundException) {
-//            e.printStackTrace()
-//            return null
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//            return null
-//        }
+        KLog.log("@@ getByteArrayFromFile start")
 
         val file = File(context.filesDir, path)
-        KLog.log("@@ getByteArrayFromFile file : " +  file)
         val size = file.length()
         val bytes = ByteArray(size.toInt())
         val stream = ByteArrayInputStream(bytes)
@@ -137,5 +127,6 @@ object ByteUtils {
             e.printStackTrace()
         }
         return bytes
+        KLog.log("@@ getByteArrayFromFile End")
     }
 }

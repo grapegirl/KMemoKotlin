@@ -41,7 +41,7 @@
     <string name="version_lastest_string">It uses the latest version</string>
 
     <string name="db_backup_faile_string">Failed to backup the KMemo Bucket DB. \n I would appreciate your inquiry in order to improve.</string>
-    <string name="db_backup_path_string">KMemo Bucket DB backup path</string>
+    <string name="db_backup_path_string">KMemo Bucket DB backup Complete</string>
     <string name="db_import_success_string">KMemo Bucket DB import Completed!</string>
     <string name="db_import_fail_string">Failed to restore the KMemo Bucket DB.\n I would appreciate your inquiry in order to improve.</string>
     <string name="db_delete_bucket">Deleted bucket list. \n Create a new bucket list.</string>

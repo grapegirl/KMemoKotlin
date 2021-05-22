@@ -307,7 +307,7 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
                 val photoPath = mDataList!![mShareIdx].imageUrl
                 KLog.log("@@ UPLOAD IMAGE 전송 시작 !")
                 if (photoPath != null && photoPath != "") {
-                    val bitmap = ByteUtils.getFileBitmap(photoPath)
+                    val bitmap = ByteUtils.getFileBitmap(requireContext(), photoPath)
                     val calendar = Calendar.getInstance()
                     val sdf = SimpleDateFormat("yyyyMMdd_hhmmss")
                     val fileName = sdf.format(calendar.time)

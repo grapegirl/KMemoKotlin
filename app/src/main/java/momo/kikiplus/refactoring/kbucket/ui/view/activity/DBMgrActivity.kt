@@ -1,6 +1,7 @@
 package momo.kikiplus.refactoring.kbucket.ui.view.activity
 
 import android.app.Activity
+import android.app.DownloadManager
 import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
@@ -110,16 +111,17 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
             -> {
                 val date = Date()
                 val newDBName =
-                    DateUtils.getStringDateFormat(DateUtils.KBUCKET_DB_DATE_PATTER, date)
-                val isResult = DataUtils.exportDB(newDBName)
+                    DateUtils.getStringDateFormat(DateUtils.KBUCKET_MEMO_DATE_PATTER, date)
+                KLog.log("@@ newDBName: " + newDBName)
+                val isResult = DataUtils.exportDB(applicationContext, newDBName)
+                KLog.log("@@ isResult: " + isResult)
                 if (isResult) {
                     val mssage = getString(R.string.db_backup_path_string)
-                    val path = Environment.getExternalStorageDirectory()
-                        .toString() + "/" + DataConst.KEY_FILE_FOLDER + "/" + newDBName + ".db"
+                    val path = DataConst.KEY_FILE_FOLDER + "/" + newDBName + ".db"
                     mHandler!!.sendMessage(mHandler!!.obtainMessage(UPLOAD_DB, path))
                     Toast.makeText(
                         applicationContext,
-                        mssage + "\n" + DataConst.KEY_FILE_FOLDER + "/" + newDBName + ".db",
+                        mssage + "\n"  + "/" + newDBName + ".db",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {

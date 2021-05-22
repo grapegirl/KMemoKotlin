@@ -55,6 +55,7 @@ class WriteViewModel : ViewModel() {
             if (data.completeYN == "Y") {
                 continue
             }
+            KLog.log("@@ list add : "+ data.toString())
             list.add(data.content)
         }
         return list
