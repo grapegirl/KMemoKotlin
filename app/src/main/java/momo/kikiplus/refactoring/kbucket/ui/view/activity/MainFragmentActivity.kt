@@ -3,23 +3,16 @@ package momo.kikiplus.refactoring.kbucket.ui.view.activity
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.pm.ShortcutManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
@@ -27,7 +20,6 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
-import kotlinx.android.synthetic.main.pager_item.*
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
 import momo.kikiplus.deprecated.sqlite.SQLQuery
@@ -41,7 +33,6 @@ import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.*
 import momo.kikiplus.refactoring.task.AppUpdateTask
 import momo.kikiplus.refactoring.task.UserUpdateTask
-import kotlin.reflect.typeOf
 
 class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     NavigationView.OnNavigationItemSelectedListener{

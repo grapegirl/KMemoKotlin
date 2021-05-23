@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.RankListActivityBinding
 import momo.kikiplus.deprecated.http.HttpUrlTaskManager

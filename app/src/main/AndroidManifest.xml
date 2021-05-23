@@ -19,7 +19,7 @@
         android:allowBackup="true"
         android:appComponentFactory="whatevetString"
         android:icon="@mipmap/ic_launcher"
-        android:label="${appLabel}"
+        android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_configuration"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">

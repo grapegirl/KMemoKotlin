@@ -1,10 +1,8 @@
 package momo.kikiplus.refactoring.kbucket.ui.view.activity
 
 import android.app.Activity
-import android.app.DownloadManager
 import android.content.Intent
 import android.os.Bundle
-import android.os.Environment
 import android.os.Handler
 import android.os.Message
 import android.view.View
@@ -14,10 +12,14 @@ import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.deprecated.http.HttpUrlFileUploadManager
 import momo.kikiplus.deprecated.http.IHttpReceive
 import momo.kikiplus.deprecated.sqlite.SQLQuery
-import momo.kikiplus.refactoring.common.util.*
+import momo.kikiplus.refactoring.common.util.DataUtils
+import momo.kikiplus.refactoring.common.util.DateUtils
+import momo.kikiplus.refactoring.common.util.KLog
+import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
+import java.io.File
 import java.util.*
 
 class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Callback {
@@ -111,7 +113,7 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
             -> {
                 val date = Date()
                 val newDBName =
-                    DateUtils.getStringDateFormat(DateUtils.KBUCKET_MEMO_DATE_PATTER, date)
+                    DateUtils.getStringDateFormat(DateUtils.KBUCKET_DB_DATE_PATTER, date)
                 KLog.log("@@ newDBName: " + newDBName)
                 val isResult = DataUtils.exportDB(applicationContext, newDBName)
                 KLog.log("@@ isResult: " + isResult)
@@ -152,8 +154,16 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
                     PreferConst.KEY_USER_NICKNAME,
                     SharedPreferenceUtils.SHARED_PREF_VALUE_STRING
                 ) as String?
-                val bytes = ByteUtils.getByteArrayFromFile(context = applicationContext, path)
-                val httpUrlFileUploadManager = HttpUrlFileUploadManager(
+                KLog.log("@@ UPLOAD_DB path : " + path)
+                KLog.log("@@ UPLOAD_DB fileName : " + fileName)
+                KLog.log("@@ UPLOAD_DB userNickName : " + userNickName)
+                val file = File(applicationContext.filesDir, path)
+                KLog.log("@@ UPLOAD_DB file : " + file)
+                val bytes =  file.readBytes()
+                KLog.log("@@ UPLOAD_DB bytes : " + bytes)
+                KLog.log("@@ UPLOAD_DB bytes sie : " + bytes.size)
+
+                  val httpUrlFileUploadManager = HttpUrlFileUploadManager(
                     NetworkConst.KBUCKET_UPLOAD_DB_URL,
                     this,
                     IHttpReceive.UPLOAD_DB,
@@ -166,7 +176,8 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
     }
 
     override fun onHttpReceive(type: Int, actionId: Int, obj: Any?) {
-        KLog.d("@@ onHttpReceive : $obj")
+        KLog.d("@@ onHttpReceive : $actionId")
+        KLog.d("@@ onHttpReceive : $type")
         // 버킷 공유 결과
         if (actionId == IHttpReceive.UPLOAD_DB) {
             if (type == IHttpReceive.HTTP_OK) {

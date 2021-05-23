@@ -111,15 +111,15 @@ object ByteUtils {
      * @param path 경로
      * @return 바이트 배열
      */
-    fun getByteArrayFromFile(context: Context, path: String): ByteArray? {
+    fun getByteArrayFromFile(context: Context, name: String): ByteArray? {
         KLog.log("@@ getByteArrayFromFile start")
 
-        val file = File(context.filesDir, path)
+        val file = File(context.filesDir, name)
         val size = file.length()
         val bytes = ByteArray(size.toInt())
         val stream = ByteArrayInputStream(bytes)
         try {
-            context.openFileInput(path).use {
+            context.openFileInput(name).use {
                 it.read(bytes, 0, size.toInt())
                 it.close()
             }

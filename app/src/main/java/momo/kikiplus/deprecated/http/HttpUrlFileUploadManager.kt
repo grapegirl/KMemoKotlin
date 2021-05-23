@@ -83,9 +83,10 @@ class HttpUrlFileUploadManager
 
             val buffer = ByteArray(bufferSize)
             var bytesRead = byteArrayInputStream.read(buffer, 0, bufferSize)
-
+            KLog.d( "bufferSize = $bufferSize")
             // read image
             while (bytesRead > 0) {
+                KLog.d( "bytesRead = $bytesRead")
                 dos.write(buffer, 0, bufferSize)
                 bytesAvailable = byteArrayInputStream.available()
                 bufferSize = Math.min(bytesAvailable, maxBufferSize)
@@ -112,7 +113,7 @@ class HttpUrlFileUploadManager
             }while (ch == -1)
 
             val s = b.toString()
-            KLog.e( "result = $s")
+            KLog.d( "result = $s")
             dos.close()
             mIHttpReceive!!.onHttpReceive(IHttpReceive.HTTP_OK, mId, s)
 

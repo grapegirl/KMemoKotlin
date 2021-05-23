@@ -43,10 +43,6 @@ object DataUtils {
      */
     fun createFolder(context: Context): Boolean {
         val path = File(context.filesDir, DataConst.KEY_FILE_FOLDER)
-//        val noMediaFile = File(context.filesDir, DataConst.KEY_FILE_FOLDER + "/.nomedia")
-//        if (!noMediaFile.exists()) {
-//            noMediaFile.mkdir()
-//        }
 
         if (path.exists()) {
             return true
