@@ -78,7 +78,7 @@ object DataConst {
     /**
      * 구글 Ads ID
      */
-    val KBUCKET_AD_UNIT_ID = "ca-app-pub-9950741145331464/5719370666"
+    val KBUCKET_AD_UNIT_ID = "ca-app-pub-9950741145331464/3074095529"
 
 
     /**

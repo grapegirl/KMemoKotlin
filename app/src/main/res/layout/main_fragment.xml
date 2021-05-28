@@ -1,6 +1,4 @@
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dl_activity_main_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -127,13 +125,13 @@
                 xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/main_ad_layout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="30dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
                 android:layout_weight="1"
                 android:visibility="visible"
                 ads:adSize="BANNER"
-                ads:adUnitId="ca-app-pub-9950741145331464/3074095529"
-                tools:visibility="visible">
+                ads:adUnitId="ca-app-pub-9950741145331464/3074095529">
 
             </com.google.android.gms.ads.AdView>
         </LinearLayout>

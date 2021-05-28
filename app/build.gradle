@@ -57,8 +57,8 @@ android {
         applicationId "momo.kikiplus.com.kbucket"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 80
-        versionName "2.0.07"
+        versionCode 81
+        versionName "2.0.08"
         multiDexEnabled true
 
         setProperty("archivesBaseName", "KMemo-${versionName}")
@@ -82,7 +82,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.google.android.gms:play-services-basement:17.6.0'
-    implementation 'com.google.android.gms:play-services-ads:20.0.0'
+    implementation 'com.google.android.gms:play-services-ads:20.1.0'
     implementation 'com.google.android.gms:play-services-analytics:17.0.0'
     implementation 'com.google.firebase:firebase-core:18.0.3'
     implementation 'com.google.firebase:firebase-messaging:21.1.0'

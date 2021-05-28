@@ -14,10 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
 import momo.kikiplus.com.kbucket.R
@@ -180,46 +176,6 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
         mBinding.drawerList.setupWithNavController(navController)
         mBinding.drawerList.setNavigationItemSelectedListener(this)
         mBinding.drawerList.bringToFront()
-
-        MobileAds.initialize(this){}
-
-        val adRequest = AdRequest.Builder().build()
-        //mBinding.mainAdLayout.loadAd(adRequest)
-        mBinding.mainAdLayout.adListener = object : AdListener() {
-            override fun onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-                Log.d("mhkim", "@@ onAdLoaded  ")
-            }
-
-            override fun onAdFailedToLoad(error: LoadAdError) {
-                super.onAdFailedToLoad(error)
-                Log.d("mhkim", "@@ onAdFailedToLoad errorCode :   " + error.code)
-                Log.d("mhkim", "@@ onAdFailedToLoad errorMessage :   " + error.message)
-            }
-
-            override fun onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-                Log.d("mhkim", "@@ onAdOpened")
-            }
-
-            override fun onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-                Log.d("mhkim", "@@ onAdClicked")
-            }
-
-            override fun onAdImpression() {
-                super.onAdImpression()
-                Log.d("mhkim", "@@ onAdImpression")
-            }
-
-            override fun onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-                Log.d("mhkim", "@@ onAdClosed")
-            }
-        }
-
     }
 
     private fun setBackgroundColor() {

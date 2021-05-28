@@ -34,19 +34,5 @@
         android:divider="@android:color/transparent"
         app:menu="@menu/menu_main"
         android:dividerHeight="0dp" />
-
-
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/main_ad_layout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_weight="1"
-        android:visibility="visible"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-9950741145331464/5719370666">
-
-    </com.google.android.gms.ads.AdView>
 </androidx.drawerlayout.widget.DrawerLayout>
 

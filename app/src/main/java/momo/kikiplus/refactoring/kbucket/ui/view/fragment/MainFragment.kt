@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentBinding
 import momo.kikiplus.refactoring.common.util.AppUtils
@@ -81,6 +83,13 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
         setBackgroundColor()
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         mActivity = activity
+
+        MobileAds.initialize(mActivity){}
+
+        var adviewRequset = AdRequest.Builder().build()
+        //mBinding.mainAdLayout.adUnitId = DataConst.KBUCKET_AD_UNIT_ID
+        //mBinding.mainAdLayout.adUnitId = "ca-app-pub-3940256099942544/6300978111" //TESTING
+        mBinding.mainAdLayout.loadAd(adviewRequset)
     }
 
     private fun setBackgroundColor() {
