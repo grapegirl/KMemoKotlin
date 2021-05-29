@@ -16,6 +16,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
 import momo.kikiplus.deprecated.sqlite.SQLQuery
@@ -29,6 +30,7 @@ import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
 import momo.kikiplus.refactoring.kbucket.ui.view.fragment.*
 import momo.kikiplus.refactoring.task.AppUpdateTask
 import momo.kikiplus.refactoring.task.UserUpdateTask
+import java.lang.RuntimeException
 
 class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     NavigationView.OnNavigationItemSelectedListener{
@@ -162,8 +164,9 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
 
     private fun initialize() {
         FirebaseApp.initializeApp(this)
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
 
-        //Thread.setDefaultUncaughtExceptionHandler(ErrorLogUtils.UncaughtExceptionHandlerApplication())
+        //throw RuntimeException("Test Crash");
 
         val sqlQuery = SQLQuery()
         sqlQuery.createTable(applicationContext)
