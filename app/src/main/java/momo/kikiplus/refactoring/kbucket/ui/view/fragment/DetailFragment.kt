@@ -463,14 +463,14 @@ class DetailFragment : Fragment() , View.OnClickListener,
             if (resultCode == Activity.RESULT_OK) {
                 val file = File(requireContext().filesDir, mPhotoPath!!)
                 val selectedUrl = Uri.fromFile(file)
-                KLog.d("@@ DETAIL CAMERA selectedUrl : "+ selectedUrl)
+                KLog.log("@@ DETAIL CAMERA selectedUrl : "+ selectedUrl)
                 val url = MediaStore.Images.Media.getContentUri(selectedUrl.toString())
-                KLog.d("@@ DETAIL CAMERA url : "+ url)
+                KLog.log("@@ DETAIL CAMERA url : "+ url)
 
                val bm : Bitmap = data!!.extras!!.get("data") as Bitmap
                // val bm = ByteUtils.getFileBitmap(requireContext(), mPhotoPath!!)
                 ByteUtils.saveBitmapToFile(requireContext(), bm ,mPhotoPath!!)
-                KLog.d("@@ DETAIL CAMERA bm : "+ bm)
+                KLog.log("@@ DETAIL CAMERA bm : "+ bm)
                 if (bm != null) {
                     hideImageAttachButton(true)
                     binding.detailImageview.visibility = View.VISIBLE
@@ -482,10 +482,12 @@ class DetailFragment : Fragment() , View.OnClickListener,
         } else if (requestCode == REQ_CODE_GALLERY) {
             if (data != null) {
                 val imgUri = data.data
+                KLog.log("@@ imgUri : " + imgUri)
                 if (imgUri != null) {
                     mPhotoPath = DataUtils.newFileName
                     try {
                         val imagePath = DataUtils.getMediaScanPath(requireContext(), imgUri)
+                        KLog.log("@@ imagePath : " + imagePath)
                         if (imagePath.isEmpty()) {
                             val message = getString(R.string.write_bucekt_image_attch)
                             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()

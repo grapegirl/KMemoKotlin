@@ -8,6 +8,7 @@ import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -74,6 +75,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
         mBinding.mainConfBtn.setOnClickListener(this)
         mBinding.mainBucketRankBtn.setOnClickListener(this)
 
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
         return view
     }
 

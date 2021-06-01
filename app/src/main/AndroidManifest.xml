@@ -22,7 +22,9 @@
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_configuration"
         android:theme="@style/AppTheme"
-        tools:replace="android:appComponentFactory">
+        android:debuggable="false"
+        tools:replace="android:appComponentFactory"
+        tools:ignore="HardcodedDebugMode">
 
         <activity
             android:name="momo.kikiplus.refactoring.kbucket.ui.view.activity.IntroActivity"

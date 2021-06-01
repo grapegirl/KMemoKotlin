@@ -1,5 +1,6 @@
 package momo.kikiplus.refactoring.common.util
 
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
@@ -7,10 +8,9 @@ import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.IOException
+import retrofit2.http.Url
+import java.io.*
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -128,31 +128,29 @@ object DataUtils {
      *
      * @return 복원 여부(성공 true, 실패 false 반환)
      */
-    fun importDB(backupDBPath: String): Boolean {
-        var backupDBPath = backupDBPath
-        KLog.d( "@@ DB importDB path :  " +  backupDBPath)
-        try {
-            val sd = Environment.getExternalStorageDirectory()
-            val data = Environment.getDataDirectory()
-            if (sd.canWrite()) {
-                val currentDBPath = ("//data//" + DataConst.PACKAGE_NAME
-                        + "//databases//" + DataConst.KBUCKET_DB_NAME)
-                val backupDB = File(data, currentDBPath)
+    fun importDB(context: Context , contentResolver : ContentResolver, uri : Uri): Boolean {
+        val data = Environment.getDataDirectory()
+        val currentDBPath = ("/data/" + DataConst.PACKAGE_NAME
+                + "/databases/" + DataConst.KBUCKET_DB_NAME)
+        var newFile = File(data, currentDBPath)
+        val inputstream = contentResolver.openInputStream(uri)
+        val outstream = FileOutputStream(newFile)
+        KLog.log("@@ importDB newFile: " + newFile.path)
+        try{
+            if(inputstream != null){
+                var buf = ByteArray(1024)
+                var length : Int = 0
 
-                if (backupDBPath.contains("/KMemo/")) {
-                    val nStartIndex = backupDBPath.indexOf("/KMemo/")
-                    backupDBPath = backupDBPath.substring(nStartIndex, backupDBPath.length)
+                while(true){
+                    length = inputstream.read(buf)
+                    if(length <= 0) break
+                    outstream.write(buf, 0 , length)
                 }
-                val currentDB = File(sd, backupDBPath)
-                val src = FileInputStream(currentDB).channel
-                val dst = FileOutputStream(backupDB).channel
-                dst.transferFrom(src, 0, src.size())
-                src.close()
-                dst.close()
-                KLog.d("@@ DB 파일 복원 완료 ")
             }
-        } catch (e: Exception) {
-            KLog.d("@@ DB 파일 복원 에러 : " + e.toString())
+            outstream.close()
+
+        }catch (e : IOException){
+            KLog.d( "@@ import DB 실패" + e.toString())
             return false
         }
 

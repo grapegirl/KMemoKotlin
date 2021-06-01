@@ -2,6 +2,7 @@ package momo.kikiplus.refactoring.kbucket.ui.view.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
@@ -19,7 +20,7 @@ import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
-import java.io.File
+import java.io.*
 import java.util.*
 
 class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Callback {
@@ -61,7 +62,7 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
     private fun showFileChooser() {
         val intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT
-        intent.type = "application/zip"
+        intent.type = "application/*"
         intent.addCategory(Intent.CATEGORY_OPENABLE)
 
         try {
@@ -81,9 +82,17 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
         when (requestCode) {
             FILE_SELECT_CODE -> if (resultCode == RESULT_OK) {
                 val uri = data.data
-                KLog.log("@@ onActivityResult path :  " + uri!!.path!!)
+                KLog.log("@@ onActivityResult uri :  " + uri!!)
+                KLog.log("@@ onActivityResult data.ptah : " + uri!!.path)
 
-                val isResult = DataUtils.importDB(uri.path!!)
+                var path = uri!!.path
+                if(path!!.contains("/storage")){
+                    val idx = path.indexOf("/storage", 0, false)
+                    path = path.substring(idx)
+                    KLog.log("@@ onActivityResult data.ptah2 : " + path)
+                }
+
+                val isResult = DataUtils.importDB(context = applicationContext, contentResolver, uri!!)
                 if (isResult) {
                     val msaage = getString(R.string.db_import_success_string)
                     Toast.makeText(applicationContext, msaage, Toast.LENGTH_LONG).show()
@@ -94,6 +103,20 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    fun readTextFromUri(uri: Uri): String {
+        val stringBuilder = StringBuilder()
+        contentResolver.openInputStream(uri)?.use { inputStream ->
+            BufferedReader(InputStreamReader(inputStream)).use { reader ->
+                var line: String? = reader.readLine()
+                while (line != null) {
+                    stringBuilder.append(line)
+                    line = reader.readLine()
+                }
+            }
+        }
+        return stringBuilder.toString()
     }
 
     fun setBtnClickListener() {
