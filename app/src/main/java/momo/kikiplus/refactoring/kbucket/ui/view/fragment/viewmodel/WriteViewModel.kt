@@ -23,7 +23,7 @@ class WriteViewModel : ViewModel() {
         KLog.d("@@ setListData map: $map size : ${map.size}" )
         for (i in map.indices) {
             val memoMap = map[i]
-            val bucket = Bucket("", memoMap["contents"]!!, memoMap["date"]!!, i)
+            val bucket = Bucket(memoMap["contents"]!!, memoMap["date"]!!, i)
             bucket.imageUrl = memoMap["image_path"].toString()
             bucket.completeYN = memoMap["complete_yn"].toString()
             bucket.deadLine = memoMap["deadline"].toString()

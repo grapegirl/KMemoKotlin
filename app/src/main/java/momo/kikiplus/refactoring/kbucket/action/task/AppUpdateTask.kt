@@ -1,8 +1,9 @@
-package momo.kikiplus.refactoring.task
+package momo.kikiplus.refactoring.kbucket.action.task
 
 import android.content.Context
 import android.os.AsyncTask
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.widget.Toast
 import momo.kikiplus.com.kbucket.R
@@ -26,12 +27,11 @@ import retrofit2.Response
  * @Description : App 업데이트 Task
  * @since 2020-01-28
  */
-class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>(), android.os.Handler.Callback,
+class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>(), Handler.Callback,
     IPopupReceive {
 
-    private val TAG = this.javaClass.simpleName
     private var mVersion: Version? = null
-    private val mHandler: Handler = Handler(this)
+    private val mHandler: Handler = Handler(Looper.getMainLooper(), this)
 
     private val START_VERSION : Int = 10
     private val CHECK_VERSION : Int = 20
@@ -41,8 +41,10 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
     private var mBasicPopup: BasicPopup? = null
     private var mConfirmPopup: ConfirmPopup? = null
 
+    @Deprecated("Deprecated in Java")
     override fun onPreExecute() {}
 
+    @Deprecated("Deprecated in Java")
     override fun doInBackground(vararg params: Void): Void? {
         mHandler.sendEmptyMessage(START_VERSION)
         return null
@@ -54,22 +56,22 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
             START_VERSION -> {
 
                 val strSender = AppUtils.getVersionName(mContext)!!
-                //KLog.d( "@@ StringUtils.getHTTPPostSendData(map) : " + strSender)
+                KLog.d("@@ StringUtils.getHTTPPostSendData(map) : $strSender")
 
                 val res = NetRetrofit.instance.service.getVersion(strSender)
                 res.enqueue(object : Callback<Version>{
                     override fun onResponse(call: Call<Version>, response: Response<Version>) {
-                        //KLog.d( "@@ onRecv ok : " + response)
-                        //KLog.d( "@@ onRecv response body: " + response.body()!!.toString())
+                        KLog.d("@@ onRecv ok : $response")
+                        KLog.d( "@@ onRecv response body: " + response.body()!!.toString())
 
                         if (response.body()!!.bIsValid) {
                             mVersion = Version()
                             mVersion!!.forceYN = response.body()!!.forceYN
                             mVersion!!.versionCode = response.body()!!.versionCode
                             mVersion!!.versionName = response.body()!!.versionName
-                            //KLog.d( "@@ onRecv forceYN : " + response.body()!!.forceYN)
-                            //KLog.d( "@@ onRecv versionCode : " + response.body()!!.versionCode)
-                            //KLog.d( "@@ onRecv versionName : " + mVersion!!.versionName)
+                            KLog.d( "@@ onRecv forceYN : " + response.body()!!.forceYN)
+                            KLog.d( "@@ onRecv versionCode : " + response.body()!!.versionCode)
+                            KLog.d( "@@ onRecv versionName : " + mVersion!!.versionName)
                             mHandler.sendEmptyMessage(CHECK_VERSION)
                         }
                     }
@@ -91,9 +93,9 @@ class AppUpdateTask(private val mContext: Context) : AsyncTask<Void, Void, Void>
                 val currentVersionName = AppUtils.getVersionName(mContext)
                 val serverVersionName = mVersion!!.versionName
                 if(currentVersionName == null || serverVersionName == null){
-                    // KLog.d( "@@ check version currentVersionName or serverVersionName is null")
-                    //KLog.d( "@@ currentVersionName : " + currentVersionName)
-                    //KLog.d( "@@ serverVersisonName : " + serverVersionName)
+                    KLog.d( "@@ check version currentVersionName or serverVersionName is null")
+                    KLog.d("@@ currentVersionName : $currentVersionName")
+                    KLog.d("@@ serverVersisonName : $serverVersionName")
                     return false
                 }
                 if(mVersion!!.versionCode > 0)

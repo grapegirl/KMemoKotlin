@@ -1,22 +1,21 @@
 package momo.kikiplus.refactoring.kbucket.ui.view.activity
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.FirebaseApp
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
 import momo.kikiplus.deprecated.sqlite.SQLQuery
@@ -27,10 +26,18 @@ import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.FireMessingService
 import momo.kikiplus.refactoring.kbucket.data.finally.DataConst
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
-import momo.kikiplus.refactoring.kbucket.ui.view.fragment.*
-import momo.kikiplus.refactoring.task.AppUpdateTask
-import momo.kikiplus.refactoring.task.UserUpdateTask
-import java.lang.RuntimeException
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.AddFragement
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.ColorFragment
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.DoneFragment
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.NameFragment
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.PassFragment
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.RankFragment
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.ShareFragment
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.TutorialFragment
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.UpgradeFragment
+import momo.kikiplus.refactoring.kbucket.ui.view.fragment.WriteFragment
+import momo.kikiplus.refactoring.kbucket.action.task.AppUpdateTask
+import momo.kikiplus.refactoring.kbucket.action.task.UserUpdateTask
 
 class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     NavigationView.OnNavigationItemSelectedListener{
@@ -38,7 +45,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     private var backKeyPressedTime = 0L
     private var finishToast: Toast? = null
 
-    private var handler: Handler = Handler(this)
+    private var handler: Handler = Handler(Looper.getMainLooper(), this)
     private val CHECK_VERSION           : Int = 1000
     private val MY_PERMISSION_REQUEST   : Int = 1001
     private val TOAST_MASSEGE           : Int = 1002
@@ -53,7 +60,14 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         KLog.log("@@ MainFragmentActivity onCreate")
-        this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+           this.overrideActivityTransition(Activity.OVERRIDE_TRANSITION_OPEN, R.anim.slide_in_right, R.anim.slide_out_left)
+        }else{
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        }
+        //뒤로가기 함수 변경
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
         mBinding = MainFragmentActivityBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
@@ -64,95 +78,105 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
 
         val shortcutAction = intent.action
         if(shortcutAction != null){
-            Log.d("KMemo", "@@ MainFragmentActivity shortcutAction : " + shortcutAction)
+            Log.d("KMemo", "@@ MainFragmentActivity shortcutAction : $shortcutAction")
             val bundle = Bundle()
             bundle.putString("BACK", DataConst.VIEW_MAIN)
 
-             if(shortcutAction == DataConst.SHORTCUT_LIST){
-                val fragment = WriteFragment()
-                fragment.arguments = bundle
+            when (shortcutAction) {
+                DataConst.SHORTCUT_LIST -> {
+                    val fragment = WriteFragment()
+                    fragment.arguments = bundle
 
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_main, fragment)
-                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                        R.anim.slide_in_left, R.anim.slide_out_right)
-                    .commit()
-            }else if(shortcutAction == DataConst.SHORTCUT_RANK){
-                 val fragment = RankFragment()
-                 fragment.arguments =bundle
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_main, fragment)
+                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                            R.anim.slide_in_left, R.anim.slide_out_right)
+                        .commit()
+                }
+                DataConst.SHORTCUT_RANK -> {
+                    val fragment = RankFragment()
+                    fragment.arguments =bundle
 
-                 supportFragmentManager.beginTransaction()
-                     .replace(R.id.fragment_main, fragment)
-                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                         R.anim.slide_in_left, R.anim.slide_out_right)
-                     .commit()
-            }else if(shortcutAction == DataConst.SHORTCUT_SHARE){
-                 val fragment = ShareFragment()
-                 fragment.arguments =bundle
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_main, fragment)
+                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                            R.anim.slide_in_left, R.anim.slide_out_right)
+                        .commit()
+                }
+                DataConst.SHORTCUT_SHARE -> {
+                    val fragment = ShareFragment()
+                    fragment.arguments =bundle
 
-                 supportFragmentManager.beginTransaction()
-                     .replace(R.id.fragment_main, fragment)
-                     .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                         R.anim.slide_in_left, R.anim.slide_out_right)
-                     .commit()
-             }
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_main, fragment)
+                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                            R.anim.slide_in_left, R.anim.slide_out_right)
+                        .commit()
+                }
+            }
 
         }
 
         val data = intent.getStringExtra(DataConst.WIDGET_SEND_DATA)
-        Log.d("KMemo", "@@ MainFragmentActivity WIDGET_SEND_DATA : " + data)
+        Log.d("KMemo", "@@ MainFragmentActivity WIDGET_SEND_DATA : $data")
         Log.d("KMemo", "@@ MainFragmentActivity DATA : " + intent.getStringExtra("DATA"))
         Log.d("KMemo", "@@ MainFragmentActivity SET : " + intent.getStringExtra("SET"))
         if(data != null){
             val bundle = Bundle()
             bundle.putString(DataConst.WIDGET_SEND_DATA, data)
 
-            if(data == DataConst.WIDGET_WRITE_BUCKET){
-                val fragment = WriteFragment()
-                fragment.arguments =bundle
+            when (data) {
+                DataConst.WIDGET_WRITE_BUCKET -> {
+                    val fragment = WriteFragment()
+                    fragment.arguments =bundle
 
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_main, fragment)
-                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                        R.anim.slide_in_left, R.anim.slide_out_right)
-                    .commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_main, fragment)
+                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                            R.anim.slide_in_left, R.anim.slide_out_right)
+                        .commit()
 
-            }else if(data == DataConst.WIDGET_BUCKET_LIST){
+                }
+                DataConst.WIDGET_BUCKET_LIST -> {
 
-                val fragment = DoneFragment()
-                fragment.arguments =bundle
+                    val fragment = DoneFragment()
+                    fragment.arguments =bundle
 
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_main, fragment)
-                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                        R.anim.slide_in_left, R.anim.slide_out_right)
-                    .commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_main, fragment)
+                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                            R.anim.slide_in_left, R.anim.slide_out_right)
+                        .commit()
 
-            }else if(data == DataConst.WIDGET_OURS_BUCKET){
+                }
+                DataConst.WIDGET_OURS_BUCKET -> {
 
-                val fragment = ShareFragment()
-                fragment.arguments =bundle
+                    val fragment = ShareFragment()
+                    fragment.arguments =bundle
 
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_main, fragment)
-                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                        R.anim.slide_in_left, R.anim.slide_out_right)
-                    .commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_main, fragment)
+                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                            R.anim.slide_in_left, R.anim.slide_out_right)
+                        .commit()
 
-            }else if(data == DataConst.WIDGET_SHARE){
-                ShareSocial()
-            }else if(data == DataConst.WIDGET_PASS){
-                val fragment = PassFragment()
-                fragment.arguments =bundle
-                bundle.putString("SET", "GET")
-                bundle.putString("DATA", intent.getStringExtra("DATA"))
-                bundle.putString(DataConst.WIDGET_SEND_DATA,intent.getStringExtra(DataConst.WIDGET_SEND_DATA) )
+                }
+                DataConst.WIDGET_SHARE -> {
+                    shareSocial()
+                }
+                DataConst.WIDGET_PASS -> {
+                    val fragment = PassFragment()
+                    fragment.arguments =bundle
+                    bundle.putString("SET", "GET")
+                    bundle.putString("DATA", intent.getStringExtra("DATA"))
+                    bundle.putString(DataConst.WIDGET_SEND_DATA,intent.getStringExtra(DataConst.WIDGET_SEND_DATA) )
 
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_main, fragment)
-                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
-                        R.anim.slide_in_left, R.anim.slide_out_right)
-                    .commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_main, fragment)
+                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
+                            R.anim.slide_in_left, R.anim.slide_out_right)
+                        .commit()
+                }
             }
         }
 
@@ -163,8 +187,8 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     }
 
     private fun initialize() {
-        FirebaseApp.initializeApp(this)
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
+        //FirebaseApp.initializeApp(this)
+        //FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = true;
 
         //throw RuntimeException("Test Crash");
 
@@ -175,14 +199,13 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
 
         setBackgroundColor()
 
-        val navController =  this.findNavController(R.id.fragment_main)
-        mBinding.drawerList.setupWithNavController(navController)
         mBinding.drawerList.setNavigationItemSelectedListener(this)
-        mBinding.drawerList.bringToFront()
     }
 
     private fun setBackgroundColor() {
         val color = (SharedPreferenceUtils.read(applicationContext, PreferConst.BACK_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER) as Int?)!!
+        Log.d("KMemo", "@@ MainFragmentActivity setBackgroundColor : $color")
+
         if (color != -1) {
             mBinding.mainFragementActivityBackground.setBackgroundColor(color)
         }
@@ -195,7 +218,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
         val sqlQuery = SQLQuery()
         val list = sqlQuery.selectUserTable(applicationContext)
         val strDBNickName = list?.get("nickname")
-
+        Log.d("KMemo", "@@ MainFragmentActivity strDBNickName : $strDBNickName")
         if (strDBNickName != null) {
             SharedPreferenceUtils.write(this, PreferConst.KEY_USER_NICKNAME, strDBNickName)
             userNickName = strDBNickName
@@ -205,8 +228,8 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
             changeMenu(3)
         }
 
-        var strToken = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_FCM, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
-        KLog.log("@@ onStart strToken : " + strToken)
+        val strToken = SharedPreferenceUtils.read(this, PreferConst.KEY_USER_FCM, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
+        KLog.log("@@ onStart strToken : $strToken")
         if(strToken == null){
             val intent = Intent(this, FireMessingService::class.java)
             startService(intent)
@@ -218,6 +241,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
         }
     }
     override fun handleMessage(msg: Message): Boolean {
+        KLog.d("@@ MainFragmentActivity msg : " + msg.what)
         when (msg.what) {
             CHECK_VERSION//버전 체크
             -> {
@@ -241,7 +265,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     /**
      * 소셜로 가지 앱 홍보하기
      */
-    fun ShareSocial() {
+    fun shareSocial() {
         val msg = Intent(Intent.ACTION_SEND)
         msg.addCategory(Intent.CATEGORY_DEFAULT)
         msg.putExtra(Intent.EXTRA_SUBJECT, this.getString(R.string.share_title))
@@ -250,14 +274,17 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
         startActivity(Intent.createChooser(msg, "공유"))
     }
 
-    override fun onBackPressed() {
-        KLog.log("@@ onBackPressed backReceive : " + backReceive)
-        if(backReceive != null ){
-            backReceive!!.onBackKey()
-        }else{
-            openExitToast()
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            KLog.log("@@ onBackPressed backReceive : $backReceive")
+            if(backReceive != null ){
+                backReceive!!.onBackKey()
+            }else{
+                openExitToast()
+            }
         }
     }
+
 
     /**
      * 두번 뒤로가기 누를 시 종료됨
@@ -291,6 +318,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             MY_PERMISSION_REQUEST -> {
                 val isReulst = DataUtils.createFolder(context = applicationContext)
@@ -302,7 +330,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        KLog.d("@@ selectItem position : "  + item)
+        KLog.d("@@ selectItem position : $item")
         KLog.d("@@ selectItem position : "  + item.menuInfo)
         when(item.itemId){
             R.id.menu_item1-> changeMenu(0)
@@ -331,8 +359,8 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
         handler.sendEmptyMessage(OPEN_DRAWER)
     }
 
-    fun changeMenu(position: Int){
-        KLog.d("@@ changeMenu position : " + position)
+    private fun changeMenu(position: Int){
+        KLog.d("@@ changeMenu position : $position")
         when (position) {
             0//암호설정
             -> {
@@ -418,7 +446,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
             }
             8 ->{
                 //공유하기
-                ShareSocial()
+                shareSocial()
             }
             9//관심 버킷 추가하기
             -> {
@@ -436,14 +464,15 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
         }
     }
     fun setBackReceive(receive: IBackReceive?){
-        KLog.log("@@ setBackReceive receive : "+ receive)
+        KLog.log("@@ setBackReceive receive : $receive")
         backReceive = receive
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        KLog.log("@@ MAIN onActivityResult requestCode : "+ requestCode)
-        KLog.log("@@ MAIN onActivityResult resultCode : "+ resultCode)
-        KLog.log("@@ MAIN onActivityResult data : "+ data)
+        KLog.log("@@ MAIN onActivityResult requestCode : $requestCode")
+        KLog.log("@@ MAIN onActivityResult resultCode : $resultCode")
+        KLog.log("@@ MAIN onActivityResult data : $data")
 
         super.onActivityResult(requestCode, resultCode, data)
     }

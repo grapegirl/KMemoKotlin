@@ -1,4 +1,4 @@
-package momo.kikiplus.refactoring.obj
+package momo.kikiplus.refactoring.kbucket.ui.widget
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
@@ -35,7 +35,6 @@ class KWidget : AppWidgetProvider() {
             initUI(context, manager, manager.getAppWidgetIds(ComponentName(context, javaClass)))
         } else if (AppWidgetManager.ACTION_APPWIDGET_DELETED == action) {
             Toast.makeText(context, "메모가지 위젯 삭제", Toast.LENGTH_LONG).show()
-        } else if (AppWidgetManager.ACTION_APPWIDGET_DISABLED == action) {
         }
 
     }
@@ -63,10 +62,10 @@ class KWidget : AppWidgetProvider() {
 
         //KLog.d(ContextUtils.TAG, "@@ widget initUI sdk : " + Build.VERSION.SDK_INT)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val writeEventPIntent = PendingIntent.getBroadcast(context, 0, writeEventIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-            val listEventPIntent = PendingIntent.getBroadcast(context, 0, listEventIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-            val shareEventPIntent = PendingIntent.getBroadcast(context, 0, shareEventIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-            val oursEventPIntent = PendingIntent.getBroadcast(context, 0, oursEventIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+            val writeEventPIntent = PendingIntent.getBroadcast(context, 0, writeEventIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE )
+            val listEventPIntent = PendingIntent.getBroadcast(context, 0, listEventIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE )
+            val shareEventPIntent = PendingIntent.getBroadcast(context, 0, shareEventIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE )
+            val oursEventPIntent = PendingIntent.getBroadcast(context, 0, oursEventIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE )
 
             views.setOnClickPendingIntent(R.id.widget_writebtn, writeEventPIntent)
             views.setOnClickPendingIntent(R.id.widget_listbtn, listEventPIntent)
@@ -74,10 +73,10 @@ class KWidget : AppWidgetProvider() {
             views.setOnClickPendingIntent(R.id.widget_snsbtn, shareEventPIntent)
 
         } else {
-            val writeEventPIntent = PendingIntent.getBroadcast(context, 0, writeEventIntent, 0)
-            val listEventPIntent = PendingIntent.getBroadcast(context, 0, listEventIntent, 0)
-            val shareEventPIntent = PendingIntent.getBroadcast(context, 0, shareEventIntent, 0)
-            val oursEventPIntent = PendingIntent.getBroadcast(context, 0, oursEventIntent, 0)
+            val writeEventPIntent = PendingIntent.getBroadcast(context, 0, writeEventIntent, 0 or PendingIntent.FLAG_IMMUTABLE )
+            val listEventPIntent = PendingIntent.getBroadcast(context, 0, listEventIntent, 0 or PendingIntent.FLAG_IMMUTABLE )
+            val shareEventPIntent = PendingIntent.getBroadcast(context, 0, shareEventIntent, 0 or PendingIntent.FLAG_IMMUTABLE )
+            val oursEventPIntent = PendingIntent.getBroadcast(context, 0, oursEventIntent, 0 or PendingIntent.FLAG_IMMUTABLE )
 
             views.setOnClickPendingIntent(R.id.widget_writebtn, writeEventPIntent)
             views.setOnClickPendingIntent(R.id.widget_listbtn, listEventPIntent)

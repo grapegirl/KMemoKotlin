@@ -1,9 +1,10 @@
-package momo.kikiplus.refactoring.task
+package momo.kikiplus.refactoring.kbucket.action.task
 
 import android.content.Context
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import momo.kikiplus.deprecated.http.HttpUrlTaskManager
 import momo.kikiplus.deprecated.http.IHttpReceive
@@ -20,12 +21,13 @@ import java.util.*
  * @Description : 사용자 버전 업데이트 Task
  * @since 2015-10-08
  */
-class UserUpdateTask(private  val mContext : Context) : AsyncTask<Void, Void, Void>(), IHttpReceive, android.os.Handler.Callback {
+class UserUpdateTask(private  val mContext : Context) : AsyncTask<Void, Void, Void>(), IHttpReceive, Handler.Callback {
 
-    private val mHandler: Handler = Handler(this)
+    private val mHandler: Handler = Handler(Looper.getMainLooper(), this)
 
     private lateinit var mUserData: MobileUser
 
+    @Deprecated("Deprecated in Java", ReplaceWith("setUserData()"))
     override fun onPreExecute() {
         setUserData()
     }
@@ -36,7 +38,7 @@ class UserUpdateTask(private  val mContext : Context) : AsyncTask<Void, Void, Vo
      * @return 사용자 정보
      */
 
-    fun setUserData() {
+    private fun setUserData() {
         val mobileUser = MobileUser()
         val userNickName = SharedPreferenceUtils.read(mContext, PreferConst.KEY_USER_NICKNAME, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
         mobileUser.userNickName = userNickName
@@ -52,6 +54,7 @@ class UserUpdateTask(private  val mContext : Context) : AsyncTask<Void, Void, Vo
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun doInBackground(vararg params: Void): Void? {
         mHandler.sendEmptyMessage(0)
         return null

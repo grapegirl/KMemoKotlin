@@ -1,4 +1,4 @@
-package momo.kikiplus.refactoring.obj
+package momo.kikiplus.refactoring.kbucket.ui.widget
 
 import android.content.BroadcastReceiver
 import android.content.Context

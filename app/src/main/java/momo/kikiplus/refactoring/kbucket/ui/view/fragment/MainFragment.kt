@@ -86,7 +86,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         mActivity = activity
 
-        MobileAds.initialize(mActivity){}
+        mActivity?.let { MobileAds.initialize(it){} }
 
         var adviewRequset = AdRequest.Builder().build()
         //mBinding.mainAdLayout.adUnitId = DataConst.KBUCKET_AD_UNIT_ID

@@ -36,7 +36,7 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
         setContentView(R.layout.activity_dbmgr)
         initialize()
 
-        mHandler = Handler(this)
+        mHandler = Handler(/* callback = */ this)
 
         setBtnClickListener()
     }
@@ -83,16 +83,18 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
             FILE_SELECT_CODE -> if (resultCode == RESULT_OK) {
                 val uri = data.data
                 KLog.log("@@ onActivityResult uri :  " + uri!!)
-                KLog.log("@@ onActivityResult data.ptah : " + uri!!.path)
+                KLog.log("@@ onActivityResult data.ptah : " + uri.path)
 
-                var path = uri!!.path
+                var path = uri.path
                 if(path!!.contains("/storage")){
                     val idx = path.indexOf("/storage", 0, false)
                     path = path.substring(idx)
-                    KLog.log("@@ onActivityResult data.ptah2 : " + path)
+                    KLog.log("@@ onActivityResult data.ptah2 : $path")
                 }
 
-                val isResult = DataUtils.importDB(context = applicationContext, contentResolver, uri!!)
+                val isResult = DataUtils.importDB(context = applicationContext, contentResolver,
+                    uri
+                )
                 if (isResult) {
                     val msaage = getString(R.string.db_import_success_string)
                     Toast.makeText(applicationContext, msaage, Toast.LENGTH_LONG).show()
@@ -119,7 +121,7 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
         return stringBuilder.toString()
     }
 
-    fun setBtnClickListener() {
+    private fun setBtnClickListener() {
         val btn1 = findViewById<Button>(R.id.btn_db_menu01)
         btn1.setOnClickListener(this)
         val btn2 = findViewById<Button>(R.id.btn_db_menu02)
@@ -137,16 +139,16 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
                 val date = Date()
                 val newDBName =
                     DateUtils.getStringDateFormat(DateUtils.KBUCKET_DB_DATE_PATTER, date)
-                KLog.log("@@ newDBName: " + newDBName)
+                KLog.log("@@ newDBName: $newDBName")
                 val isResult = DataUtils.exportDB(applicationContext, newDBName)
-                KLog.log("@@ isResult: " + isResult)
+                KLog.log("@@ isResult: $isResult")
                 if (isResult) {
                     val mssage = getString(R.string.db_backup_path_string)
                     val path = DataConst.KEY_FILE_FOLDER + "/" + newDBName + ".db"
                     mHandler!!.sendMessage(mHandler!!.obtainMessage(UPLOAD_DB, path))
                     Toast.makeText(
                         applicationContext,
-                        mssage + "\n"  + "/" + newDBName + ".db",
+                        "$mssage\n/$newDBName.db",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -177,20 +179,20 @@ class DBMgrActivity : Activity(), View.OnClickListener, IHttpReceive, Handler.Ca
                     PreferConst.KEY_USER_NICKNAME,
                     SharedPreferenceUtils.SHARED_PREF_VALUE_STRING
                 ) as String?
-                KLog.log("@@ UPLOAD_DB path : " + path)
-                KLog.log("@@ UPLOAD_DB fileName : " + fileName)
-                KLog.log("@@ UPLOAD_DB userNickName : " + userNickName)
+                KLog.log("@@ UPLOAD_DB path : $path")
+                KLog.log("@@ UPLOAD_DB fileName : $fileName")
+                KLog.log("@@ UPLOAD_DB userNickName : $userNickName")
                 val file = File(applicationContext.filesDir, path)
-                KLog.log("@@ UPLOAD_DB file : " + file)
+                KLog.log("@@ UPLOAD_DB file : $file")
                 val bytes =  file.readBytes()
-                KLog.log("@@ UPLOAD_DB bytes : " + bytes)
+                KLog.log("@@ UPLOAD_DB bytes : $bytes")
                 KLog.log("@@ UPLOAD_DB bytes sie : " + bytes.size)
 
                   val httpUrlFileUploadManager = HttpUrlFileUploadManager(
                     NetworkConst.KBUCKET_UPLOAD_DB_URL,
                     this,
                     IHttpReceive.UPLOAD_DB,
-                    bytes!!
+                      bytes
                 )
                 httpUrlFileUploadManager.execute(path, "nickname", userNickName, fileName)
             }

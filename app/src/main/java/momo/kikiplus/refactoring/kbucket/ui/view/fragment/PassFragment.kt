@@ -202,7 +202,7 @@ class PassFragment: Fragment(), IBackReceive,  View.OnClickListener  {
                             .replace(R.id.fragment_main, fragment)
                             .commit()
 
-                        (activity as MainFragmentActivity).ShareSocial()
+                        (activity as MainFragmentActivity).shareSocial()
                     } else {
                         (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)

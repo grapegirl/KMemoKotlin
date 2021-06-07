@@ -1,4 +1,4 @@
-package momo.kikiplus.refactoring.obj
+package momo.kikiplus.refactoring.kbucket.ui.widget
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
@@ -27,7 +27,7 @@ class KMemoWidget : AppWidgetProvider() {
             val appWidgetId = appWidgetIds[i]
             val views = RemoteViews(context.packageName, R.layout.activity_layout_memo_widget)
             appWidgetManager.updateAppWidget(appWidgetId, views)
-            KLog.log( "@@ onUpdate appWidgetId : " + appWidgetId)
+            KLog.log("@@ onUpdate appWidgetId : $appWidgetId")
         }
     }
 
@@ -42,11 +42,12 @@ class KMemoWidget : AppWidgetProvider() {
 
         //Toast.makeText(context, "onReceive action : " + action , Toast.LENGTH_LONG).show()
         //기본 Reciver
-        if (AppWidgetManager.ACTION_APPWIDGET_ENABLED == action) {
-        } else if (AppWidgetManager.ACTION_APPWIDGET_DELETED == action) {
-        } else if (AppWidgetManager.ACTION_APPWIDGET_DISABLED == action) {
-        } else {
-            initUI(context, manager, manager.getAppWidgetIds(ComponentName(context, javaClass)))
+        if (AppWidgetManager.ACTION_APPWIDGET_ENABLED != action) {
+            if (AppWidgetManager.ACTION_APPWIDGET_DELETED != action) {
+                if (AppWidgetManager.ACTION_APPWIDGET_DISABLED != action) {
+                    initUI(context, manager, manager.getAppWidgetIds(ComponentName(context, javaClass)))
+                }
+            }
         }
 
 
@@ -68,7 +69,8 @@ class KMemoWidget : AppWidgetProvider() {
         val views = RemoteViews(context.packageName, R.layout.activity_layout_memo_widget)
         val intent = Intent(context, KWidgetReceiver::class.java)
         intent.action = KWidgetReceiver.WIDGET_ACTION_MEMO_WRITE_EVENT
-        val writeEventPIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+
+        val writeEventPIntent = PendingIntent.getBroadcast(context, 0, intent, 0 or PendingIntent.FLAG_IMMUTABLE)
         views.setOnClickPendingIntent(R.id.widget_memo_content, writeEventPIntent)
         views.setOnClickPendingIntent(R.id.widget_memo_modify, writeEventPIntent)
 
@@ -78,7 +80,7 @@ class KMemoWidget : AppWidgetProvider() {
         intent.putExtra(WriteMemoActivity.Intent_WID, appWidgetIds)
 
         for (appWidgetId in appWidgetIds) {
-            KLog.log("@@ initUI appWidgetId : " + appWidgetId)
+            KLog.log("@@ initUI appWidgetId : $appWidgetId")
             SharedPreferenceUtils.write(context, PreferConst.KEY_USER_MEMO_WIDGET, appWidgetId)
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }
@@ -89,11 +91,11 @@ class KMemoWidget : AppWidgetProvider() {
         fun updateWidget(context: Context, nID: Int) {
             val remoteViews = RemoteViews(context.packageName, R.layout.activity_layout_memo_widget)
             val appWidgetManager = AppWidgetManager.getInstance(context)
-            KLog.log( "@@ updateWidget  appWidgetManager : " + appWidgetManager)
+            KLog.log("@@ updateWidget  appWidgetManager : $appWidgetManager")
             val memo = SharedPreferenceUtils.read(context, PreferConst.KEY_USER_MEMO, SharedPreferenceUtils.SHARED_PREF_VALUE_STRING) as String?
             remoteViews.setTextViewText(R.id.widget_memo_content, memo)
-            KLog.log("@@ updateWidget memo : " + memo)
-            KLog.log("@@ updateWidget nId : " + nID)
+            KLog.log("@@ updateWidget memo : $memo")
+            KLog.log("@@ updateWidget nId : $nID")
 
             appWidgetManager.updateAppWidget(nID, remoteViews)
 

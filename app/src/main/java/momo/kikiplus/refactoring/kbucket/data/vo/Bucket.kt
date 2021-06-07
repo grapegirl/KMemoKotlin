@@ -8,7 +8,10 @@ import java.util.*
  * 버킷 클래스
  */
 
-class Bucket : Parcelable {
+class Bucket
+/**
+ * 생성자
+ */() : Parcelable {
 
     var category : Category = Category()
 
@@ -28,34 +31,20 @@ class Bucket : Parcelable {
 
 
     fun toHasnMap(): HashMap<String, Any> {
-        val map = HashMap<String, Any>()
-        if(category != null){
-            map["CATEGORY_CODE"] = category!!.categoryCode
-        }else{
-            map["CATEGORY_CODE"] = 0
-        }
-        if(nickName != null){
-            map["NICKNAME"] = nickName!!
-        }else{
-            map["NICKNAME"] = "-"
-        }
+        val map: HashMap<String, Any> = HashMap<String, Any>()
+        map["CATEGORY_CODE"] = category.categoryCode
+        map["NICKNAME"] = nickName
         map["PHONE"] = "-"
-        map["CONTENT"] = content!!
-        if (imageUrl != null && imageUrl != "") {
+        map["CONTENT"] = content
+        if (imageUrl != "") {
             map["IMAGE_URL"] = "Y"
         } else {
             map["IMAGE_URL"] = "N"
         }
-        map["CREATE_DT"] = date!!
+        map["CREATE_DT"] = date
         return map
     }
 
-
-    /**
-     * 생성자
-     */
-
-    constructor(){}
 
     constructor(contents: String) : this() {
         date = ""
@@ -72,7 +61,7 @@ class Bucket : Parcelable {
     /**
      * 생성자
      */
-    constructor(title: String, contents: String, strDate: String, no: Int) : this() {
+    constructor(contents: String, strDate: String, no: Int) : this() {
         date = strDate
         content = contents
         idx = no
@@ -100,9 +89,8 @@ class Bucket : Parcelable {
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readString().toString())
-        {
-        }
+        parcel.readString().toString()
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(content)

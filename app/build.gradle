@@ -1,32 +1,27 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion '30.0.3'
 
+    compileSdk 35
+    namespace = "momo.kikiplus.com.kbucket"
+
+    buildFeatures {
+        viewBinding = true
+    }
 
     //Netrofit error 해결
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
         disable 'InvalidPackage'
-    }
-    buildFeatures {
-        viewBinding true
-    }
-
-    dexOptions {
-        jumboMode true
-        javaMaxHeapSize "4g"
     }
 
     packagingOptions {
@@ -56,10 +51,10 @@ android {
 //    }
     defaultConfig {
         applicationId "momo.kikiplus.com.kbucket"
-        minSdkVersion 16
-        targetSdkVersion 30
-        versionCode 81
-        versionName "2.0.08"
+        minSdkVersion 21
+        targetSdkVersion 35
+        versionCode 86
+        versionName "2.0.12"
         multiDexEnabled true
 
         setProperty("archivesBaseName", "KMemo-${versionName}")
@@ -67,8 +62,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
-            debuggable false
+            minifyEnabled false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt')
             proguardFile('proguard-rules.pro')
         }
@@ -84,29 +79,30 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.google.android.gms:play-services-basement:17.6.0'
-    implementation 'com.google.android.gms:play-services-ads:20.1.0'
-    implementation 'com.google.android.gms:play-services-analytics:17.0.0'
-    implementation 'com.google.firebase:firebase-core:19.0.0'
-    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.android.gms:play-services-basement:18.5.0'
+    implementation 'com.google.android.gms:play-services-ads:23.6.0'
+    implementation 'com.google.android.gms:play-services-analytics:18.1.1'
+    implementation 'com.google.firebase:firebase-core:21.1.1'
+    implementation 'com.google.firebase:firebase-messaging:24.1.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation "androidx.work:work-runtime-ktx:2.10.0" // kotlin
 
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0-beta02'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
 
     //리사이클러뷰 사용
-    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    testImplementation 'junit:junit:4.13.2'
     //annotation 자동 생성자
-    compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
     //kotlin android extensions
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlin_version"
-    //Glide 안드로이드에서 추천하는 이미지 로딩 라이브러
+    //Glide 안드로이드에서 추천하는 이미지 로딩 라이브러리
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     //Retrofit2 통신 모듈 라이브러리
@@ -115,8 +111,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
     //Navigation Drawer
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.8.7'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.8.7'
     // Firebase Crashtics
-    implementation 'com.google.firebase:firebase-crashlytics-ndk:18.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics-ndk:19.4.0'
 }

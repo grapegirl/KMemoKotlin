@@ -26,7 +26,7 @@ class FireMessingService : com.google.firebase.messaging.FirebaseMessagingServic
 
     override fun onNewToken(p0: String) {
         super.onNewToken(p0)
-        KLog.d("@@ FireMessingService token : " + p0)
+        KLog.d("@@ FireMessingService token : $p0")
         SharedPreferenceUtils.write(this, PreferConst.KEY_USER_FCM, p0)
     }
 
@@ -45,7 +45,7 @@ class FireMessingService : com.google.firebase.messaging.FirebaseMessagingServic
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val notificationChannel = NotificationChannel("channelId","channelName", NotificationManager.IMPORTANCE_LOW)
             notificationManager.createNotificationChannel(notificationChannel)
             val notificationBuilder = NotificationCompat.Builder(this,"channelId")
@@ -58,15 +58,11 @@ class FireMessingService : com.google.firebase.messaging.FirebaseMessagingServic
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent) as NotificationCompat.Builder
+                .setContentIntent(pendingIntent)
 
 
             notificationManager.notify(0, notificationBuilder.build())
         }
 
-    }
-
-    companion object {
-        private val TAG = "FireMessingService"
     }
 }

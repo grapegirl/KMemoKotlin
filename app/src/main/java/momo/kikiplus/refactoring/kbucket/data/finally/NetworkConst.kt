@@ -11,11 +11,7 @@ object NetworkConst {
     /**
      * 서버 IP
      */
-    val KBUCKET_SERVER_IP = "http://kikiplus.cafe24.com"
-    /**
-     * 서버 port
-     */
-    val KBUCKET_PORT = "9000"
+    val KBUCKET_SERVER_IP = "https://kikiplus.cafe24.com"
 
     /**
      * 가지 공유하기 URL

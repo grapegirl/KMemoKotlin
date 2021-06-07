@@ -224,12 +224,11 @@ object AppUtils {
     tjkim
     카카오로그인 키해시생성 코드 , 알아본바에 openssl 버전에 따라 생성되는 키해시값이 달라 , 카카오와 연동이 안되는 경우가 있었음
     이 메소드 현재 배포된 키싸인의 해쉬코드를 가져오는것이기에 , 불편할순있지만 , 카카오 계정 해시코드는 이걸로 사용을 하며 , 다른 sns 로그인에도 필요하면 사용하도록하자.
-     */
     fun getAppKeyHash(context: Context): String? {
         var hashValue: String? = null
         try {
             val info = context.packageManager.getPackageInfo(context.packageName, PackageManager.GET_SIGNATURES)
-            for (signature in info.signatures) {
+            for (signature in info.signatures!!) {
                 val md: MessageDigest
                 md = MessageDigest.getInstance("SHA")
                 md.update(signature.toByteArray())
@@ -242,6 +241,7 @@ object AppUtils {
 
         return hashValue
     }
+     */
 
     /**
      * 패키지로 앱 설치 유무 반환 메소드

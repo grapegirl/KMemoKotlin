@@ -4,14 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.WrietMeoActivityBinding
 import momo.kikiplus.refactoring.common.util.KLog
 import momo.kikiplus.refactoring.common.util.SharedPreferenceUtils
 import momo.kikiplus.refactoring.kbucket.data.finally.PreferConst
-import momo.kikiplus.refactoring.obj.KMemoWidget
+import momo.kikiplus.refactoring.kbucket.ui.widget.KMemoWidget
 
 /**
  * @author grapegirl
@@ -34,13 +33,13 @@ class WriteMemoActivity : Activity(), View.OnClickListener {
 
         mIntent = intent
 
-        (mBinding.writeMeoModify as Button).setOnClickListener(this)
+        (mBinding.writeMeoModify).setOnClickListener(this)
         val memo = SharedPreferenceUtils.read(
             this,
             PreferConst.KEY_USER_MEMO,
             SharedPreferenceUtils.SHARED_PREF_VALUE_STRING
         ) as String?
-        (mBinding.writeMeoContent as EditText).setText(memo)
+        (mBinding.writeMeoContent).setText(memo)
 
         val widgetId = SharedPreferenceUtils.read(
             this,
@@ -48,7 +47,7 @@ class WriteMemoActivity : Activity(), View.OnClickListener {
             SharedPreferenceUtils.SHARED_PREF_VALUE_INTEGER
         ) as Int?
         mWidgetId = widgetId!!
-        KLog.d("@@ WriteMemoActivity  mWidgetId : " + mWidgetId)
+        KLog.d("@@ WriteMemoActivity  mWidgetId : $mWidgetId")
 
     }
 
@@ -62,6 +61,6 @@ class WriteMemoActivity : Activity(), View.OnClickListener {
     }
 
     companion object {
-        val Intent_WID = "WID"        // appWidgetIds
+        const val Intent_WID = "WID"        // appWidgetIds
     }
 }

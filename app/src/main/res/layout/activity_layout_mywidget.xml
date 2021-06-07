@@ -1,52 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="288dp"
     android:layout_height="72dp"
     android:orientation="vertical">
 
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="288dp"
         android:layout_height="36dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/widget_writebtn"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#FFFFBB33"
-            android:text="@string/widget_write_bucket" />
+            android:text="@string/widget_write_bucket"
+            android:textColor="#004D40" />
 
         <Button
             android:id="@+id/widget_listbtn"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#FFCC0000"
-            android:text="@string/widget_your_bucket" />
+            android:text="@string/widget_your_bucket"
+            android:textColor="#B2EBF2" />
 
     </LinearLayout>
 
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="288dp"
         android:layout_height="36dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/widget_sharebtn"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#FFCC0000"
-            android:text="@string/widget_world_bucket" />
+            android:text="@string/widget_world_bucket"
+            android:textColor="#B2EBF2"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/widget_snsbtn"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#FFFFBB33"
-            android:text="@string/widget_share_bucket" />
+            android:text="@string/widget_share_bucket"
+            android:textColor="#004D40"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
 

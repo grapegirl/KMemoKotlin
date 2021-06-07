@@ -135,7 +135,7 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
             if (memoMap["complete_yn"] == "N") {
                 continue
             }
-            val postData = Bucket("", memoMap["contents"]!!, memoMap["date"]!!, i)
+            val postData = Bucket(memoMap["contents"]!!, memoMap["date"]!!, i)
             postData.imageUrl = memoMap["image_path"].toString()
             postData.completeYN = memoMap["complete_yn"].toString()
             mDataList!!.add(postData)
