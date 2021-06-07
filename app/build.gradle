@@ -58,8 +58,8 @@ android {
         applicationId "momo.kikiplus.com.kbucket"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 81
-        versionName "2.0.08"
+        versionCode 82
+        versionName "2.0.09"
         multiDexEnabled true
 
         setProperty("archivesBaseName", "KMemo-${versionName}")
