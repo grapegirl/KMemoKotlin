@@ -3,6 +3,7 @@ package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
@@ -45,7 +46,7 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
 
     private lateinit var binding: ShareListActivityBinding
     private var mCategoryList: ArrayList<Category> = ArrayList()
-    private var mHandler: Handler = Handler(this)
+    private var mHandler: Handler = Handler(Looper.getMainLooper(), this)
     private val mButton = arrayOfNulls<Button>(9)
 
     private var mBucketDataList: ArrayList<Bucket> = ArrayList()

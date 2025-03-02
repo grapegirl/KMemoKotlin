@@ -3,6 +3,7 @@ package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
@@ -76,7 +77,7 @@ class RankFragment : Fragment(), Handler.Callback , IBackReceive, IHttpReceive, 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mHandler = Handler(this)
+        mHandler = Handler(Looper.getMainLooper(), this)
         mBucketDataList = ArrayList()
         mHandler!!.sendEmptyMessage(CHECK_NETWORK)
     }

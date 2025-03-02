@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -45,7 +46,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class DetailFragment : Fragment() , View.OnClickListener,
-    IPopupReceive, IHttpReceive, android.os.Handler.Callback, IBackReceive {
+    IPopupReceive, IHttpReceive, Handler.Callback, IBackReceive {
 
     companion object {
         fun newInstance() = DetailFragment()
@@ -68,7 +69,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
     private var mImageIdx = -1
     private var mCategory = 1
 
-    private var mHandler: Handler = Handler(this)
+    private var mHandler: Handler = Handler(Looper.getMainLooper(), this)
     private val TOAST_MASSEGE = 10
     private val UPLOAD_IMAGE = 20
     private val UPLOAD_BUCKET = 30
@@ -80,7 +81,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
     ): View? {
         if(arguments != null){
             contents = requireArguments().getString("CONTENTS")
-            KLog.d("@@ contents : " + contents)
+            KLog.d("@@ contents : $contents")
             buckets = Bucket(contents!!)
         }else{
             KLog.d("@@ argument is null")
@@ -99,6 +100,8 @@ class DetailFragment : Fragment() , View.OnClickListener,
             binding.writedetailBackColor.setBackgroundColor(color)
         }
     }
+
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
@@ -106,12 +109,13 @@ class DetailFragment : Fragment() , View.OnClickListener,
 
     }
 
-    fun setData(){
-        val memoMap = buckets!!.content ?.let { viewModel.loadDBData(requireContext(), it) }
+    private fun setData(){
+        val content = buckets!!.content
+        val memoMap = content.let { viewModel.loadDBData(requireContext(), it) }
         if (memoMap.isNullOrEmpty()) {
             return
         }
-        KLog.d("@@ memoMap" + memoMap.toString())
+        KLog.d("@@ memoMap$memoMap")
         buckets!!.date = memoMap["date"].toString()
         buckets!!.imageUrl = memoMap["image_path"].toString()
         buckets!!.deadLine = memoMap["deadline"].toString()
@@ -120,10 +124,12 @@ class DetailFragment : Fragment() , View.OnClickListener,
         binding.writeCompleteCheckbox.isChecked  = yn != null && yn == "Y"
 
         val bytes = viewModel.loadDBImage(requireContext(), buckets!!.content.toString(),
-            buckets!!.date.toString())
-        KLog.log( "@@ setData img bytes  : " + bytes)
+            buckets!!.date
+        )
+
+        KLog.log("@@ setData img bytes  : $bytes")
         if (bytes != null) {
-            KLog.log( "@@ bytes  : " + bytes)
+            KLog.log("@@ bytes  : $bytes")
             Glide.with(this)
                 .load(bytes)
                 .into(binding.detailImageview)
@@ -175,7 +181,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
         (activity as MainFragmentActivity).setBackReceive(null)
 
         if (mPhotoPath != null) {
-            KLog.log("@@ DetailFragment mphoto path " + mPhotoPath)
+            KLog.log("@@ DetailFragment mphoto path $mPhotoPath")
             DataUtils.deleteFile(mPhotoPath!!)
         }
 
@@ -226,8 +232,8 @@ class DetailFragment : Fragment() , View.OnClickListener,
             }
             // 삭제 버튼
             R.id.write_deleteButton -> {
-                var title = getString(R.string.delete_popup_title)
-                var content = getString(R.string.delete_popup_content)
+                val title = getString(R.string.delete_popup_title)
+                val content = getString(R.string.delete_popup_content)
                 mConfirmPopup =
                     ConfirmPopup(
                         requireContext(),
@@ -258,11 +264,11 @@ class DetailFragment : Fragment() , View.OnClickListener,
             //이미지 첨부(카메라로 가져오기)
             R.id.write_image_camera -> {
                 mPhotoPath = DataUtils.newFileName
-                KLog.log("@@ write image camera mPhotoPath : " + mPhotoPath)
-                var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                KLog.log("@@ write image camera mPhotoPath : $mPhotoPath")
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 val file = File(requireContext().filesDir, mPhotoPath)
                 if(!file.exists()){
-                    KLog.log("@@ create file  mPhotoPath : " + mPhotoPath)
+                    KLog.log("@@ create file  mPhotoPath : $mPhotoPath")
                     file.createNewFile()
                 }
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file))
@@ -324,13 +330,14 @@ class DetailFragment : Fragment() , View.OnClickListener,
                     KLog.log( "@@ jsonException message : " + e.message)
                 }
 
-                if (isValid == true) {
+                if (isValid) {
                     // 이미지가 있는 경우 전송함
+                    KLog.log("@@ image upload  mPhotoPath : $mPhotoPath")
                     if (mPhotoPath != null && mPhotoPath != "") {
-                        mHandler!!.sendEmptyMessage(UPLOAD_IMAGE)
+                        mHandler.sendEmptyMessage(UPLOAD_IMAGE)
                     } else {
                         val message = getString(R.string.write_bucekt_success_string)
-                        mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
+                        mHandler.sendMessage(mHandler.obtainMessage(TOAST_MASSEGE, message))
                     }
                 }
             }
@@ -347,7 +354,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
                     KLog.e("@@ jsonException message : " + e.message)
                 }
 
-                if (isValid == true) {
+                if (isValid) {
                     val message = getString(R.string.write_bucekt_success_string)
                     mHandler!!.sendMessage(mHandler!!.obtainMessage(TOAST_MASSEGE, message))
                 }
@@ -360,12 +367,12 @@ class DetailFragment : Fragment() , View.OnClickListener,
             TOAST_MASSEGE -> Toast.makeText(requireContext(), msg.obj as String, Toast.LENGTH_LONG).show()
             UPLOAD_IMAGE -> {
                 val photoPath = mPhotoPath
-                val bytes = viewModel.loadDBImage(requireContext(), buckets!!.content!!, buckets!!.date!!)
+                val bytes = viewModel.loadDBImage(requireContext(), buckets!!.content, buckets!!.date)
                 if (bytes != null) {
                     val calendar = Calendar.getInstance()
                     val sdf = SimpleDateFormat("yyyyMMdd_hhmmss")
                     val fileName = sdf.format(calendar.time)
-
+                    KLog.d("@@ UPLOAD IMAGE fileName : $fileName")
                     val httpUrlFileUploadManager = HttpUrlFileUploadManager(NetworkConst.KBUCKET_UPLOAD_IMAGE_URL, this, IHttpReceive.INSERT_IMAGE, bytes)
                     httpUrlFileUploadManager.execute(photoPath, "idx", mImageIdx.toString() + "", "$fileName.jpg")
                 } else {
@@ -411,29 +418,33 @@ class DetailFragment : Fragment() , View.OnClickListener,
     }
 
     override fun onPopupAction(popId: Int, what: Int, obj: Any?) {
-        if (popId == PopupConst.POPUP_BUCKET_SHARE) {
-            if (what == IPopupReceive.POPUP_BTN_OK) {
-                mHandler!!.sendEmptyMessage(SELECT_BUCKET_CATEGORY)
-            }
-            mConfirmPopup!!.closeDialog()
-        } else if (popId == PopupConst.POPUP_BUCKET_DELETE) {
-            if (what == IPopupReceive.POPUP_BTN_OK) {
-                viewModel.removeDBData(requireContext(), buckets!!.content!!, buckets!!.date!!)
-                onBackKey()
-            }
-            mConfirmPopup!!.closeDialog()
-        } else if (popId == PopupConst.POPUP_BUCKET_CATEGORY) {
-            if (what == IPopupReceive.POPUP_BTN_OK) {
-                val json = obj as JSONObject
-                try {
-                    mCategory = Integer.valueOf(json.getString("styleCode"))
-                } catch (e: JSONException) {
-                    mCategory = 1
+        when (popId) {
+            PopupConst.POPUP_BUCKET_SHARE -> {
+                if (what == IPopupReceive.POPUP_BTN_OK) {
+                    mHandler.sendEmptyMessage(SELECT_BUCKET_CATEGORY)
                 }
-
-                mHandler!!.sendEmptyMessage(UPLOAD_BUCKET)
+                mConfirmPopup!!.closeDialog()
             }
-            mCategoryPopup!!.closeDialog()
+            PopupConst.POPUP_BUCKET_DELETE -> {
+                if (what == IPopupReceive.POPUP_BTN_OK) {
+                    viewModel.removeDBData(requireContext(), buckets!!.content, buckets!!.date)
+                    onBackKey()
+                }
+                mConfirmPopup!!.closeDialog()
+            }
+            PopupConst.POPUP_BUCKET_CATEGORY -> {
+                if (what == IPopupReceive.POPUP_BTN_OK) {
+                    val json = obj as JSONObject
+                    mCategory = try {
+                        Integer.valueOf(json.getString("styleCode"))
+                    } catch (e: JSONException) {
+                        1
+                    }
+
+                    mHandler.sendEmptyMessage(UPLOAD_BUCKET)
+                }
+                mCategoryPopup!!.closeDialog()
+            }
         }
     }
 
@@ -449,59 +460,56 @@ class DetailFragment : Fragment() , View.OnClickListener,
         bucket.content = buckets!!.content
         bucket.imageUrl = ""
         bucket.date = buckets!!.date
-        bucket.category!!.categoryCode = mCategory
+        bucket.category.categoryCode = mCategory
         return bucket.toHasnMap()
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        KLog.log("@@ DETAIL onActivityResult requestCode : "+ requestCode)
-        KLog.log("@@ DETAIL onActivityResult resultCode : "+ resultCode)
-        KLog.log("@@ DETAIL onActivityResult data : "+ data)
+        KLog.log("@@ DETAIL onActivityResult requestCode : $requestCode")
+        KLog.log("@@ DETAIL onActivityResult resultCode : $resultCode")
+        KLog.log("@@ DETAIL onActivityResult data : $data")
 
         if (requestCode == REQ_CODE_PICKCUTRE) {
             if (resultCode == Activity.RESULT_OK) {
                 val file = File(requireContext().filesDir, mPhotoPath!!)
                 val selectedUrl = Uri.fromFile(file)
-                KLog.log("@@ DETAIL CAMERA selectedUrl : "+ selectedUrl)
+                KLog.log("@@ DETAIL CAMERA selectedUrl : $selectedUrl")
                 val url = MediaStore.Images.Media.getContentUri(selectedUrl.toString())
-                KLog.log("@@ DETAIL CAMERA url : "+ url)
+                KLog.log("@@ DETAIL CAMERA url : $url")
 
                val bm : Bitmap = data!!.extras!!.get("data") as Bitmap
                // val bm = ByteUtils.getFileBitmap(requireContext(), mPhotoPath!!)
                 ByteUtils.saveBitmapToFile(requireContext(), bm ,mPhotoPath!!)
-                KLog.log("@@ DETAIL CAMERA bm : "+ bm)
-                if (bm != null) {
-                    hideImageAttachButton(true)
-                    binding.detailImageview.visibility = View.VISIBLE
-                    binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
-                    binding.detailImageview.setImageBitmap(bm)
-                    binding.detailRemove.visibility = View.VISIBLE
-                }
+                KLog.log("@@ DETAIL CAMERA bm : $bm")
+                hideImageAttachButton(true)
+                binding.detailImageview.visibility = View.VISIBLE
+                binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
+                binding.detailImageview.setImageBitmap(bm)
+                binding.detailRemove.visibility = View.VISIBLE
             }
         } else if (requestCode == REQ_CODE_GALLERY) {
             if (data != null) {
                 val imgUri = data.data
-                KLog.log("@@ imgUri : " + imgUri)
+                KLog.log("@@ imgUri : $imgUri")
                 if (imgUri != null) {
                     mPhotoPath = DataUtils.newFileName
                     try {
                         val imagePath = DataUtils.getMediaScanPath(requireContext(), imgUri)
-                        KLog.log("@@ imagePath : " + imagePath)
+                        KLog.log("@@ imagePath : $imagePath")
                         if (imagePath.isEmpty()) {
                             val message = getString(R.string.write_bucekt_image_attch)
                             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
                         }else{
                             val photo = ByteUtils.getFileBitmap(requireContext(), imagePath)
-                            if (photo != null) {
-                                hideImageAttachButton(true)
-                                binding.detailImageview.visibility = View.VISIBLE
-                                binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
-                                binding.detailImageview.setImageBitmap(photo)
-                                binding.detailRemove.visibility = View.VISIBLE
-                            }
+                            hideImageAttachButton(true)
+                            binding.detailImageview.visibility = View.VISIBLE
+                            binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
+                            binding.detailImageview.setImageBitmap(photo)
+                            binding.detailRemove.visibility = View.VISIBLE
 
-                             DataUtils.copyFile(imagePath, mPhotoPath!!, requireContext())
+                            DataUtils.copyFile(imagePath, mPhotoPath!!, requireContext())
                              ByteUtils.setFileResize(requireContext(), mPhotoPath!!, 400, 800, false)
                              buckets!!.imageUrl = mPhotoPath as String
                         }

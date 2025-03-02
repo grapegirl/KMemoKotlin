@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
@@ -94,7 +95,7 @@ class ShareInfoFragement : Fragment(), IBackReceive ,  IHttpReceive, View.OnClic
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mHandler = Handler(this)
+        mHandler = Handler(Looper.getMainLooper(), this)
         mCommentList = ArrayList()
         mSqlQuery = SQLQuery()
 

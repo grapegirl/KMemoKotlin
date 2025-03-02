@@ -335,7 +335,7 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
         when(item.itemId){
             R.id.menu_item1-> changeMenu(0)
             R.id.menu_item2-> changeMenu(1)
-            R.id.menu_item3-> changeMenu(2)
+           // R.id.menu_item3-> changeMenu(2)
             R.id.menu_item4-> changeMenu(3)
             R.id.menu_item5-> changeMenu(4)
             R.id.menu_item6-> changeMenu(5)

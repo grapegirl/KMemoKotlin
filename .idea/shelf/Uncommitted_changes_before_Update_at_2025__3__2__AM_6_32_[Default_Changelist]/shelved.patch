@@ -1,0 +1,1451 @@
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_aar.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-livedata:2.2.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c04dddc401f1f4002459b63022054f19/lifecycle-livedata-2.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6c8d4ebc63e3ce3409770c88e90ad0fc/lifecycle-livedata-2.2.0/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ad121a30367261ed1c24d95b76cddb7/lifecycle-livedata-2.2.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ad121a30367261ed1c24d95b76cddb7/lifecycle-livedata-2.2.0/AndroidManifest.xml" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ad121a30367261ed1c24d95b76cddb7/lifecycle-livedata-2.2.0/res" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata/2.2.0/9849dd6833f7e999169e4f9d48949cc92bf58b50/lifecycle-livedata-2.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_crashlytics_ndk_18_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_crashlytics_ndk_18_0_0_aar.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_crashlytics_ndk_18_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_crashlytics_ndk_18_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-crashlytics-ndk:18.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/89358fec8c47d5f76eca82a9bfb4fead/jetified-firebase-crashlytics-ndk-18.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/89358fec8c47d5f76eca82a9bfb4fead/jetified-firebase-crashlytics-ndk-18.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/89358fec8c47d5f76eca82a9bfb4fead/jetified-firebase-crashlytics-ndk-18.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-crashlytics-ndk/18.0.0/d52db8fa89a0d26cec9f2d322483c8752dfc09c4/firebase-crashlytics-ndk-18.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_navigation_navigation_common_ktx_2_3_5_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_navigation_navigation_common_ktx_2_3_5_aar.xml b/.idea/libraries/Gradle__androidx_navigation_navigation_common_ktx_2_3_5_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_navigation_navigation_common_ktx_2_3_5_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.navigation:navigation-common-ktx:2.3.5@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4c143eef68b50a0166318dd6e69b1eda/navigation-common-ktx-2.3.5/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d2ddc9ef1df196bdc8f4cbb345b85ada/navigation-common-ktx-2.3.5/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b04cf780d218d2c6bc2c75d7419fb515/navigation-common-ktx-2.3.5/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b04cf780d218d2c6bc2c75d7419fb515/navigation-common-ktx-2.3.5/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b04cf780d218d2c6bc2c75d7419fb515/navigation-common-ktx-2.3.5/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-common-ktx/2.3.5/1a3ce7c2b9dcc97c1d25ef6ab8e016b5a76de983/navigation-common-ktx-2.3.5-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_multidex_multidex_instrumentation_2_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_multidex_multidex_instrumentation_2_0_0_aar.xml b/.idea/libraries/Gradle__androidx_multidex_multidex_instrumentation_2_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_multidex_multidex_instrumentation_2_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.multidex:multidex-instrumentation:2.0.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e47c1486488ecc8c0e786f6ffe05e204/multidex-instrumentation-2.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/85408a1213f88f6451d703e21bb2bfcd/multidex-instrumentation-2.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/578466befe0300f8bc75fde104c11678/multidex-instrumentation-2.0.0/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/578466befe0300f8bc75fde104c11678/multidex-instrumentation-2.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/578466befe0300f8bc75fde104c11678/multidex-instrumentation-2.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml b/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.arch.core:core-runtime:2.1.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7701c82359622eaf4c085beccf09363f/core-runtime-2.1.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/071ba3acd6ec53207a19986e8c8c788c/core-runtime-2.1.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/68eea4351194e79c7b9b326f08241563/core-runtime-2.1.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/68eea4351194e79c7b9b326f08241563/core-runtime-2.1.0/AndroidManifest.xml" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/68eea4351194e79c7b9b326f08241563/core-runtime-2.1.0/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-runtime/2.1.0/f19886651c9946b39f83d8c184fd0e2ce9f43c16/core-runtime-2.1.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_2_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_2_0_aar.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_2_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_2_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-process:2.2.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/77c56d3db501c0539a1070f1eb3dde72/jetified-lifecycle-process-2.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d03fd10eb11ee7fce61ff0b73db85395/jetified-lifecycle-process-2.2.0/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/caebcb021b11b0891e4e5e30b53a9e47/jetified-lifecycle-process-2.2.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/caebcb021b11b0891e4e5e30b53a9e47/jetified-lifecycle-process-2.2.0/AndroidManifest.xml" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/caebcb021b11b0891e4e5e30b53a9e47/jetified-lifecycle-process-2.2.0/res" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-process/2.2.0/87ad54b3a3ab3e83595fd66749e92beaf8123dd9/lifecycle-process-2.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_encoders_json_18_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_encoders_json_18_0_0_aar.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_encoders_json_18_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_encoders_json_18_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-encoders-json:18.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d45365cdc5066e313f1a769283787730/jetified-firebase-encoders-json-18.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d45365cdc5066e313f1a769283787730/jetified-firebase-encoders-json-18.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d45365cdc5066e313f1a769283787730/jetified-firebase-encoders-json-18.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-encoders-json/18.0.0/8b885e5d8450f7afe805d5efbff0bb6085301c62/firebase-encoders-json-18.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-encoders-json/18.0.0/d1cddbffa2ae77d26fd0c0b2c37b94331be039ef/firebase-encoders-json-18.0.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_activity_activity_1_1_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_activity_activity_1_1_0_aar.xml b/.idea/libraries/Gradle__androidx_activity_activity_1_1_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_activity_activity_1_1_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.activity:activity:1.1.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d22eb26428e4a9c3f54c226fb9b722f5/jetified-activity-1.1.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d22eb26428e4a9c3f54c226fb9b722f5/jetified-activity-1.1.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d22eb26428e4a9c3f54c226fb9b722f5/jetified-activity-1.1.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.activity/activity/1.1.0/4ee68d89e86e4d40bd44c0e2efe7e63716320932/activity-1.1.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_2_0.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_2_0.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_2_0.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_2_0.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,11 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-common:2.2.0">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.2.0/4ef09a745007778eef83b92f8f23987a8ea59496/lifecycle-common-2.2.0.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.2.0/d38861c5e1656c5eb1890b1fa149510f38aa5d42/lifecycle-common-2.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_0_aar.xml b/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,16 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.recyclerview:recyclerview:1.2.0@aar">
+-    <ANNOTATIONS>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/47445b97caec51aad4ee7ba8e1405eae/recyclerview-1.2.0/annotations.zip!/" />
+-    </ANNOTATIONS>
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/47445b97caec51aad4ee7ba8e1405eae/recyclerview-1.2.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/47445b97caec51aad4ee7ba8e1405eae/recyclerview-1.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/47445b97caec51aad4ee7ba8e1405eae/recyclerview-1.2.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.0/3e159bfab49c7e6495fe374e6e5e1e989ee21dcf/recyclerview-1.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_navigation_navigation_ui_ktx_2_3_5_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_navigation_navigation_ui_ktx_2_3_5_aar.xml b/.idea/libraries/Gradle__androidx_navigation_navigation_ui_ktx_2_3_5_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_navigation_navigation_ui_ktx_2_3_5_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.navigation:navigation-ui-ktx:2.3.5@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/50f0257d9d7b8eab628f7200dcf8f9d6/navigation-ui-ktx-2.3.5/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2610295756edfeab34b51520fe5292b9/navigation-ui-ktx-2.3.5/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3d8e167f0283c921983260e0e71d8709/navigation-ui-ktx-2.3.5/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3d8e167f0283c921983260e0e71d8709/navigation-ui-ktx-2.3.5/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3d8e167f0283c921983260e0e71d8709/navigation-ui-ktx-2.3.5/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-ui-ktx/2.3.5/407dd936012d5b65b0af3e897ea62e436a811419/navigation-ui-ktx-2.3.5-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_aar.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.2.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00bd6809631d86fa1967382498693d36/lifecycle-livedata-core-2.2.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00bd6809631d86fa1967382498693d36/lifecycle-livedata-core-2.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00bd6809631d86fa1967382498693d36/lifecycle-livedata-core-2.2.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata-core/2.2.0/6dcd7f31093b360c4a8bced748159e6fd237ba52/lifecycle-livedata-core-2.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml b/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.slidingpanelayout:slidingpanelayout:1.0.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e1241470bd704f2db4b5b6f7f3067020/slidingpanelayout-1.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/091844198202f6a37903b8de55b6cd52/slidingpanelayout-1.0.0/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/df4bda79690328b21881e8a603ccb34b/slidingpanelayout-1.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/df4bda79690328b21881e8a603ccb34b/slidingpanelayout-1.0.0/AndroidManifest.xml" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/df4bda79690328b21881e8a603ccb34b/slidingpanelayout-1.0.0/res" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.slidingpanelayout/slidingpanelayout/1.0.0/f3f2e4fded24d5969a86e1974ad7e96975d970a0/slidingpanelayout-1.0.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_components_17_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_components_17_0_0_aar.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_components_17_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_components_17_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-components:17.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/881f501e60fa787cc6d94d5415e158bf/jetified-firebase-components-17.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/881f501e60fa787cc6d94d5415e158bf/jetified-firebase-components-17.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/881f501e60fa787cc6d94d5415e158bf/jetified-firebase-components-17.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-components/17.0.0/9e60bbf61b1c71e0b01a3e959f2e2111b51f3c83/firebase-components-17.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-components/17.0.0/15fad94dd3f9b6ecf5e03a5a7c08732f8ef3a5be/firebase-components-17.0.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_navigation_navigation_common_2_3_5_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_navigation_navigation_common_2_3_5_aar.xml b/.idea/libraries/Gradle__androidx_navigation_navigation_common_2_3_5_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_navigation_navigation_common_2_3_5_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.navigation:navigation-common:2.3.5@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fd4d80ca02767d4ff697fde3f39f878c/navigation-common-2.3.5/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fd4d80ca02767d4ff697fde3f39f878c/navigation-common-2.3.5/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fd4d80ca02767d4ff697fde3f39f878c/navigation-common-2.3.5/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-common/2.3.5/8ac119554c336ee331c12b667b4e3f5f725616da/navigation-common-2.3.5-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_2_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_2_0_aar.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_2_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_2_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8d870f0555de010ca3a3dceac86c24dc/jetified-lifecycle-viewmodel-savedstate-2.2.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8d870f0555de010ca3a3dceac86c24dc/jetified-lifecycle-viewmodel-savedstate-2.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8d870f0555de010ca3a3dceac86c24dc/jetified-lifecycle-viewmodel-savedstate-2.2.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-viewmodel-savedstate/2.2.0/32a6c5006bb0f1315da92589f3598355b838c5cf/lifecycle-viewmodel-savedstate-2.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_common_20_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_common_20_0_0_aar.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_common_20_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_common_20_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-common:20.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0c975666715666ee4e3fa37b6ded8126/jetified-firebase-common-20.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0c975666715666ee4e3fa37b6ded8126/jetified-firebase-common-20.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0c975666715666ee4e3fa37b6ded8126/jetified-firebase-common-20.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-common/20.0.0/35a489d6cdcfa34dd756120fe574500e30a62d8a/firebase-common-20.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-common/20.0.0/a2cc0a72ed0bc6d121c9bb18517266f1abb36845/firebase-common-20.0.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_android_gms_play_services_analytics_17_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_android_gms_play_services_analytics_17_0_0_aar.xml b/.idea/libraries/Gradle__com_google_android_gms_play_services_analytics_17_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_android_gms_play_services_analytics_17_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.android.gms:play-services-analytics:17.0.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7199954ccee2d9893b6cb4352edcd5f4/jetified-play-services-analytics-17.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/94b4f0fbd947977fe3b075af9bb50cb1/jetified-play-services-analytics-17.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/372a3ae3f8dd9b6686311e57a7c0df0c/jetified-play-services-analytics-17.0.0/AndroidManifest.xml" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/372a3ae3f8dd9b6686311e57a7c0df0c/jetified-play-services-analytics-17.0.0/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/372a3ae3f8dd9b6686311e57a7c0df0c/jetified-play-services-analytics-17.0.0/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-analytics/17.0.0/fa1c40665a4ad8b44e736a1005f5c8ba73300ee7/play-services-analytics-17.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_android_gms_play_services_cloud_messaging_16_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_android_gms_play_services_cloud_messaging_16_0_0_aar.xml b/.idea/libraries/Gradle__com_google_android_gms_play_services_cloud_messaging_16_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_android_gms_play_services_cloud_messaging_16_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.android.gms:play-services-cloud-messaging:16.0.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7415c8cad1a2cf4c227eb9ef2ac57746/jetified-play-services-cloud-messaging-16.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/78558c6283890f1ac3cfd96a0de261a6/jetified-play-services-cloud-messaging-16.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/93e97a8208c688438d010a35636f6d9a/jetified-play-services-cloud-messaging-16.0.0/AndroidManifest.xml" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/93e97a8208c688438d010a35636f6d9a/jetified-play-services-cloud-messaging-16.0.0/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/93e97a8208c688438d010a35636f6d9a/jetified-play-services-cloud-messaging-16.0.0/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-cloud-messaging/16.0.0/66bcaa7ea2458690135561b6053cc71210dbd9dd/play-services-cloud-messaging-16.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_android_gms_play_services_measurement_api_19_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_api_19_0_0_aar.xml b/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_api_19_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_api_19_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.android.gms:play-services-measurement-api:19.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f691dc85faa3936dff054b509f028ffc/jetified-play-services-measurement-api-19.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f691dc85faa3936dff054b509f028ffc/jetified-play-services-measurement-api-19.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f691dc85faa3936dff054b509f028ffc/jetified-play-services-measurement-api-19.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-measurement-api/19.0.0/96ca3a78e54874a350bd808e9f407fc7a7ea93/play-services-measurement-api-19.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_projectlombok_lombok_1_18_20.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_projectlombok_lombok_1_18_20.xml b/.idea/libraries/Gradle__org_projectlombok_lombok_1_18_20.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__org_projectlombok_lombok_1_18_20.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: org.projectlombok:lombok:1.18.20">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.20/18bcea7d5df4d49227b4a0743a536208ce4825bb/lombok-1.18.20.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.20/f4ee9e20d00b5179a5be86ea5e5b961fa2d68b00/lombok-1.18.20-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.20/92f5eddfbd25532de61571429e932dd0186043d0/lombok-1.18.20-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_annotations_16_0_0.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_annotations_16_0_0.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_annotations_16_0_0.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_annotations_16_0_0.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-annotations:16.0.0">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-annotations/16.0.0/dbeae20d6c97b747b59ef47b6dcf770ba1a60fa6/firebase-annotations-16.0.0.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-annotations/16.0.0/547590a65ca39ae1f7c72b5f2028f9e1abe6429e/firebase-annotations-16.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-annotations/16.0.0/c8e0434511a2f8f949f2c4e8af56cf690f596837/firebase-annotations-16.0.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_messaging_22_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_22_0_0_aar.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_22_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_22_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-messaging:22.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/95dc780c69da491c90779e452480f40e/jetified-firebase-messaging-22.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/95dc780c69da491c90779e452480f40e/jetified-firebase-messaging-22.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/95dc780c69da491c90779e452480f40e/jetified-firebase-messaging-22.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-messaging/22.0.0/afa090c79eabeb362da6948c4cc926f3803f8d4e/firebase-messaging-22.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_android_datatransport_transport_backend_cct_3_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_android_datatransport_transport_backend_cct_3_0_0_aar.xml b/.idea/libraries/Gradle__com_google_android_datatransport_transport_backend_cct_3_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_android_datatransport_transport_backend_cct_3_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.android.datatransport:transport-backend-cct:3.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b238b0d55f78bb6cd75184138c984072/jetified-transport-backend-cct-3.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b238b0d55f78bb6cd75184138c984072/jetified-transport-backend-cct-3.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b238b0d55f78bb6cd75184138c984072/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.datatransport/transport-backend-cct/3.0.0/7f506fe3498cda976d1b350c218464a0f1974982/transport-backend-cct-3.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_crashlytics_18_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_crashlytics_18_0_0_aar.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_crashlytics_18_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_crashlytics_18_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-crashlytics:18.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5be535e33ec838516d7d97f1732a6b0a/jetified-firebase-crashlytics-18.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5be535e33ec838516d7d97f1732a6b0a/jetified-firebase-crashlytics-18.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5be535e33ec838516d7d97f1732a6b0a/jetified-firebase-crashlytics-18.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-crashlytics/18.0.0/c091a9f835f184f05e793aa2c260ef1b074bcff2/firebase-crashlytics-18.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_19_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_19_0_0_aar.xml b/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_19_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_19_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.android.gms:play-services-measurement-sdk:19.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/990051e70a70dc26e43d691d5fef66d6/jetified-play-services-measurement-sdk-19.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/990051e70a70dc26e43d691d5fef66d6/jetified-play-services-measurement-sdk-19.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/990051e70a70dc26e43d691d5fef66d6/jetified-play-services-measurement-sdk-19.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-measurement-sdk/19.0.0/c0d58b8efa926b2c607984c54fb3d274490badd1/play-services-measurement-sdk-19.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_transition_transition_1_3_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_transition_transition_1_3_0_aar.xml b/.idea/libraries/Gradle__androidx_transition_transition_1_3_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_transition_transition_1_3_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,16 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.transition:transition:1.3.0@aar">
+-    <ANNOTATIONS>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8c312f3bc49936488ee229db07e58bcc/transition-1.3.0/annotations.zip!/" />
+-    </ANNOTATIONS>
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8c312f3bc49936488ee229db07e58bcc/transition-1.3.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8c312f3bc49936488ee229db07e58bcc/transition-1.3.0/AndroidManifest.xml" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8c312f3bc49936488ee229db07e58bcc/transition-1.3.0/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.transition/transition/1.3.0/1ab749fa90feb756d9cd154f76fce1d8e557cae/transition-1.3.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_ktx_2_2_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_ktx_2_2_0_aar.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_ktx_2_2_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_ktx_2_2_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9f3a1eafc52ec14b55905ba146ccac93/jetified-lifecycle-livedata-core-ktx-2.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b2fee9322a73b2a5efd612a5f9f92ee9/jetified-lifecycle-livedata-core-ktx-2.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ad6a681d87ad0a417b8b775c93e794bb/jetified-lifecycle-livedata-core-ktx-2.2.0/AndroidManifest.xml" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ad6a681d87ad0a417b8b775c93e794bb/jetified-lifecycle-livedata-core-ktx-2.2.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ad6a681d87ad0a417b8b775c93e794bb/jetified-lifecycle-livedata-core-ktx-2.2.0/res" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata-core-ktx/2.2.0/7aa8d50b21a293f7a525ec84869c421a963b0188/lifecycle-livedata-core-ktx-2.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_ktx_2_3_1_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_ktx_2_3_1_aar.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_ktx_2_3_1_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_ktx_2_3_1_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2028d197e36f06c48b097a028fac110e/jetified-lifecycle-viewmodel-ktx-2.3.1/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3a9bfe50239a6dee4c5d08006c10a927/jetified-lifecycle-viewmodel-ktx-2.3.1/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/51b58665fffc33e04668d4ff39e5bbef/jetified-lifecycle-viewmodel-ktx-2.3.1/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/51b58665fffc33e04668d4ff39e5bbef/jetified-lifecycle-viewmodel-ktx-2.3.1/AndroidManifest.xml" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/51b58665fffc33e04668d4ff39e5bbef/jetified-lifecycle-viewmodel-ktx-2.3.1/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-viewmodel-ktx/2.3.1/5039b0b0dd04a2496c1bbbddc897c5dfa6b8ed43/lifecycle-viewmodel-ktx-2.3.1-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_navigation_navigation_runtime_ktx_2_3_5_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_ktx_2_3_5_aar.xml b/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_ktx_2_3_5_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_ktx_2_3_5_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.navigation:navigation-runtime-ktx:2.3.5@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d03b5f50f012842f56f73f0d094d7edb/navigation-runtime-ktx-2.3.5/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/21ae1b18e6a602f5bbf9f1371d9dedda/navigation-runtime-ktx-2.3.5/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/61232beba1d100ef2aa0bb973c316ee6/navigation-runtime-ktx-2.3.5/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/61232beba1d100ef2aa0bb973c316ee6/navigation-runtime-ktx-2.3.5/AndroidManifest.xml" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/61232beba1d100ef2aa0bb973c316ee6/navigation-runtime-ktx-2.3.5/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-runtime-ktx/2.3.5/4d2da12a557444e5706dd6ca99f059ec099a45de/navigation-runtime-ktx-2.3.5-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_android_datatransport_transport_runtime_3_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_android_datatransport_transport_runtime_3_0_0_aar.xml b/.idea/libraries/Gradle__com_google_android_datatransport_transport_runtime_3_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_android_datatransport_transport_runtime_3_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.android.datatransport:transport-runtime:3.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2fb0d534d1e2705597fe8f90cb589e0b/jetified-transport-runtime-3.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2fb0d534d1e2705597fe8f90cb589e0b/jetified-transport-runtime-3.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2fb0d534d1e2705597fe8f90cb589e0b/jetified-transport-runtime-3.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.datatransport/transport-runtime/3.0.0/7f506fe3498cda976d1b350c218464a0f1974982/transport-runtime-3.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_analytics_19_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_19_0_0_aar.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_19_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_19_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-analytics:19.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/038f96467d164bd209425edec1b268a8/jetified-firebase-analytics-19.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/038f96467d164bd209425edec1b268a8/jetified-firebase-analytics-19.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/038f96467d164bd209425edec1b268a8/jetified-firebase-analytics-19.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-analytics/19.0.0/c0d58b8efa926b2c607984c54fb3d274490badd1/firebase-analytics-19.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_activity_activity_ktx_1_1_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_activity_activity_ktx_1_1_0_aar.xml b/.idea/libraries/Gradle__androidx_activity_activity_ktx_1_1_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_activity_activity_ktx_1_1_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.activity:activity-ktx:1.1.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fcfc3ce74b28806772dbb18864b1bf12/jetified-activity-ktx-1.1.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9ec6316f268917dc8ca4a5a1a85ca122/jetified-activity-ktx-1.1.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5adf2747b91f1ca3277fc78fb616caab/jetified-activity-ktx-1.1.0/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5adf2747b91f1ca3277fc78fb616caab/jetified-activity-ktx-1.1.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5adf2747b91f1ca3277fc78fb616caab/jetified-activity-ktx-1.1.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.activity/activity-ktx/1.1.0/8725ce304372d4bab29388b64d09ec683fd4292e/activity-ktx-1.1.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_core_19_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_core_19_0_0_aar.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_core_19_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_core_19_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-core:19.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/121737377414a75f0229a4a9b9a8e5cc/jetified-firebase-core-19.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/121737377414a75f0229a4a9b9a8e5cc/jetified-firebase-core-19.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/121737377414a75f0229a4a9b9a8e5cc/jetified-firebase-core-19.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-core/19.0.0/c0d58b8efa926b2c607984c54fb3d274490badd1/firebase-core-19.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_installations_interop_17_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_installations_interop_17_0_0_aar.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_installations_interop_17_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_installations_interop_17_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-installations-interop:17.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6c98ff4c96b7254301e8518c2f61f323/jetified-firebase-installations-interop-17.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6c98ff4c96b7254301e8518c2f61f323/jetified-firebase-installations-interop-17.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6c98ff4c96b7254301e8518c2f61f323/jetified-firebase-installations-interop-17.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-installations-interop/17.0.0/ac6ab4866e0eefc2f4aa88b449b5c615939c3545/firebase-installations-interop-17.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_multidex_multidex_2_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_multidex_multidex_2_0_0_aar.xml b/.idea/libraries/Gradle__androidx_multidex_multidex_2_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_multidex_multidex_2_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.multidex:multidex:2.0.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f7f29eb5ba248f705b9929374573520b/multidex-2.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f4c38e8cdaf3536360b8a603ec88b1d5/multidex-2.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/781ecf974e22c874a84dc462416a0cf0/multidex-2.0.0/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/781ecf974e22c874a84dc462416a0cf0/multidex-2.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/781ecf974e22c874a84dc462416a0cf0/multidex-2.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_2_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_2_0_aar.xml b/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_2_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_2_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.appcompat:appcompat-resources:1.2.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3c45c6954601104ccf4c8fcb950343e9/jetified-appcompat-resources-1.2.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3c45c6954601104ccf4c8fcb950343e9/jetified-appcompat-resources-1.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3c45c6954601104ccf4c8fcb950343e9/jetified-appcompat-resources-1.2.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat-resources/1.2.0/9c8b428f65a329eeff4f6abe14a44931b12ef3f2/appcompat-resources-1.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_navigation_navigation_ui_2_3_5_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_navigation_navigation_ui_2_3_5_aar.xml b/.idea/libraries/Gradle__androidx_navigation_navigation_ui_2_3_5_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_navigation_navigation_ui_2_3_5_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.navigation:navigation-ui:2.3.5@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/97286b3bb6c6f17fb217784114abc248/navigation-ui-2.3.5/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/97286b3bb6c6f17fb217784114abc248/navigation-ui-2.3.5/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/97286b3bb6c6f17fb217784114abc248/navigation-ui-2.3.5/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-ui/2.3.5/c3b1c72fb42a6c6ea70970fa444614a2aaa64742/navigation-ui-2.3.5-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_navigation_navigation_fragment_2_3_5_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_2_3_5_aar.xml b/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_2_3_5_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_2_3_5_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.navigation:navigation-fragment:2.3.5@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/051c381fd6559c59f77d598fb432ac7b/navigation-fragment-2.3.5/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/051c381fd6559c59f77d598fb432ac7b/navigation-fragment-2.3.5/AndroidManifest.xml" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/051c381fd6559c59f77d598fb432ac7b/navigation-fragment-2.3.5/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-fragment/2.3.5/3622ca880ed637740e391a55d7cd5d0869285d29/navigation-fragment-2.3.5-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_android_gms_play_services_measurement_impl_19_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_impl_19_0_0_aar.xml b/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_impl_19_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_impl_19_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.android.gms:play-services-measurement-impl:19.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/65c1caf0aaaf90eeaac0eef6ca0806b4/jetified-play-services-measurement-impl-19.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/65c1caf0aaaf90eeaac0eef6ca0806b4/jetified-play-services-measurement-impl-19.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/65c1caf0aaaf90eeaac0eef6ca0806b4/jetified-play-services-measurement-impl-19.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-measurement-impl/19.0.0/449d5453b617f030923b1eda6697c8da4661d8f0/play-services-measurement-impl-19.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml b/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.versionedparcelable:versionedparcelable:1.1.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e8bc52a4258d2f8d2d30763bb69b072c/versionedparcelable-1.1.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e8bc52a4258d2f8d2d30763bb69b072c/versionedparcelable-1.1.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e8bc52a4258d2f8d2d30763bb69b072c/versionedparcelable-1.1.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.versionedparcelable/versionedparcelable/1.1.0/d9085927216387af679d18b6f472bc0fc5c7cc81/versionedparcelable-1.1.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_datatransport_18_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_datatransport_18_0_0_aar.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_datatransport_18_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_datatransport_18_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-datatransport:18.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/84ff5f367c800d75bd49597512dd1347/jetified-firebase-datatransport-18.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/84ff5f367c800d75bd49597512dd1347/jetified-firebase-datatransport-18.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/84ff5f367c800d75bd49597512dd1347/jetified-firebase-datatransport-18.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-datatransport/18.0.0/ad06142fd89bf95ed6efba656ca1664685a894a8/firebase-datatransport-18.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-datatransport/18.0.0/7cb13c2847db2f645bedf1fe21976e15bea65b47/firebase-datatransport-18.0.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_android_gms_play_services_tagmanager_v4_impl_17_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_android_gms_play_services_tagmanager_v4_impl_17_0_0_aar.xml b/.idea/libraries/Gradle__com_google_android_gms_play_services_tagmanager_v4_impl_17_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_android_gms_play_services_tagmanager_v4_impl_17_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.android.gms:play-services-tagmanager-v4-impl:17.0.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7581f54fc6408de9e6bcf878ee8c0bf8/jetified-play-services-tagmanager-v4-impl-17.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6a79864c677b942378c59152b7655b47/jetified-play-services-tagmanager-v4-impl-17.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d5d7f709f91951530ea58297e4588c44/jetified-play-services-tagmanager-v4-impl-17.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d5d7f709f91951530ea58297e4588c44/jetified-play-services-tagmanager-v4-impl-17.0.0/AndroidManifest.xml" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d5d7f709f91951530ea58297e4588c44/jetified-play-services-tagmanager-v4-impl-17.0.0/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-tagmanager-v4-impl/17.0.0/d7803a62cd17ee98fb4f0cf3bdf1df8ad8d6f9c1/play-services-tagmanager-v4-impl-17.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_2_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_2_0_aar.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_2_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_2_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-runtime-ktx:2.2.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b5f876d89981386ed0cd450edec94554/jetified-lifecycle-runtime-ktx-2.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cde2acb1087976634b0204039bc97cf3/jetified-lifecycle-runtime-ktx-2.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f555fd1a59b5f872343ec3bea2048b18/jetified-lifecycle-runtime-ktx-2.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f555fd1a59b5f872343ec3bea2048b18/jetified-lifecycle-runtime-ktx-2.2.0/AndroidManifest.xml" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f555fd1a59b5f872343ec3bea2048b18/jetified-lifecycle-runtime-ktx-2.2.0/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-runtime-ktx/2.2.0/d830dc45563157582e0075c25cd10d6cf8d21755/lifecycle-runtime-ktx-2.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_installations_17_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_installations_17_0_0_aar.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_installations_17_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_installations_17_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-installations:17.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f3fcef562740559607e4dbc054de8604/jetified-firebase-installations-17.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f3fcef562740559607e4dbc054de8604/jetified-firebase-installations-17.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f3fcef562740559607e4dbc054de8604/jetified-firebase-installations-17.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-installations/17.0.0/e06d4f72c8a51d321459518b52064a4855c7ac5a/firebase-installations-17.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_core_core_1_3_2_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_core_core_1_3_2_aar.xml b/.idea/libraries/Gradle__androidx_core_core_1_3_2_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_core_core_1_3_2_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,16 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.core:core:1.3.2@aar">
+-    <ANNOTATIONS>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d9f82fbdf2b44917d56db8e166620e21/core-1.3.2/annotations.zip!/" />
+-    </ANNOTATIONS>
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d9f82fbdf2b44917d56db8e166620e21/core-1.3.2/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d9f82fbdf2b44917d56db8e166620e21/core-1.3.2/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d9f82fbdf2b44917d56db8e166620e21/core-1.3.2/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.core/core/1.3.2/71dd65cb480e8e7f9110edb28eb4930d709e551b/core-1.3.2-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_android_gms_play_services_analytics_impl_17_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_android_gms_play_services_analytics_impl_17_0_0_aar.xml b/.idea/libraries/Gradle__com_google_android_gms_play_services_analytics_impl_17_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_android_gms_play_services_analytics_impl_17_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.android.gms:play-services-analytics-impl:17.0.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9c293a4620bd6fc5255aa4a24849e05d/jetified-play-services-analytics-impl-17.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/46c56697f63469e1208809e34238b249/jetified-play-services-analytics-impl-17.0.0/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0e2ec00c88ff9288a1adc86ae09573ba/jetified-play-services-analytics-impl-17.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0e2ec00c88ff9288a1adc86ae09573ba/jetified-play-services-analytics-impl-17.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0e2ec00c88ff9288a1adc86ae09573ba/jetified-play-services-analytics-impl-17.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-analytics-impl/17.0.0/f4c97d9e34d8e671e5914a7a26b71443d123ff4c/play-services-analytics-impl-17.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_3_1_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_3_1_aar.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_3_1_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_3_1_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.3.1@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6b0e62be7273d6842a2b1eafb683f9b3/lifecycle-viewmodel-2.3.1/AndroidManifest.xml" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6b0e62be7273d6842a2b1eafb683f9b3/lifecycle-viewmodel-2.3.1/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6b0e62be7273d6842a2b1eafb683f9b3/lifecycle-viewmodel-2.3.1/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-viewmodel/2.3.1/55d6fa3541ca02167b0bd62a16fbdaec2a71622/lifecycle-viewmodel-2.3.1-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_navigation_navigation_runtime_2_3_5_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_2_3_5_aar.xml b/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_2_3_5_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_2_3_5_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.navigation:navigation-runtime:2.3.5@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b3f33b55f29ad738d974deabe40d90e2/navigation-runtime-2.3.5/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b3f33b55f29ad738d974deabe40d90e2/navigation-runtime-2.3.5/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b3f33b55f29ad738d974deabe40d90e2/navigation-runtime-2.3.5/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-runtime/2.3.5/4f74ea56cca52bece088c25ea260082a3b264d38/navigation-runtime-2.3.5-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_fragment_fragment_ktx_1_2_4_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_fragment_fragment_ktx_1_2_4_aar.xml b/.idea/libraries/Gradle__androidx_fragment_fragment_ktx_1_2_4_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_fragment_fragment_ktx_1_2_4_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.fragment:fragment-ktx:1.2.4@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4acf18ad9d84f3b45353d77f965b2a11/jetified-fragment-ktx-1.2.4/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8bba54e63108b8d4d69ff6eb21874fe2/jetified-fragment-ktx-1.2.4/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f8e208c8bb5d37355439dd31c2146b47/jetified-fragment-ktx-1.2.4/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f8e208c8bb5d37355439dd31c2146b47/jetified-fragment-ktx-1.2.4/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f8e208c8bb5d37355439dd31c2146b47/jetified-fragment-ktx-1.2.4/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment-ktx/1.2.4/1ffa885329ceba2ceb2bea1253d2ca32a0c95fa7/fragment-ktx-1.2.4-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_fragment_fragment_1_2_4_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_fragment_fragment_1_2_4_aar.xml b/.idea/libraries/Gradle__androidx_fragment_fragment_1_2_4_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_fragment_fragment_1_2_4_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,16 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.fragment:fragment:1.2.4@aar">
+-    <ANNOTATIONS>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e2c5cd2127d31fce5cd482e381f648a1/fragment-1.2.4/annotations.zip!/" />
+-    </ANNOTATIONS>
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e2c5cd2127d31fce5cd482e381f648a1/fragment-1.2.4/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e2c5cd2127d31fce5cd482e381f648a1/fragment-1.2.4/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e2c5cd2127d31fce5cd482e381f648a1/fragment-1.2.4/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.2.4/bfa66119813f2997ac526678b7ed354312c83fc/fragment-1.2.4-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-runtime:2.2.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/347b622648862f5de2245ee5dc55bbd5/lifecycle-runtime-2.2.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/347b622648862f5de2245ee5dc55bbd5/lifecycle-runtime-2.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/347b622648862f5de2245ee5dc55bbd5/lifecycle-runtime-2.2.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-runtime/2.2.0/bac4e407cc35ca0fcd4c3c18d699fa632475b019/lifecycle-runtime-2.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml b/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.savedstate:savedstate:1.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/48db22f218ca8c84503797e57af289d4/jetified-savedstate-1.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/48db22f218ca8c84503797e57af289d4/jetified-savedstate-1.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/48db22f218ca8c84503797e57af289d4/jetified-savedstate-1.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.savedstate/savedstate/1.0.0/e6daf87ed227a6f80bb8accb466755a5ee01a652/savedstate-1.0.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_firebase_firebase_measurement_connector_19_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_firebase_firebase_measurement_connector_19_0_0_aar.xml b/.idea/libraries/Gradle__com_google_firebase_firebase_measurement_connector_19_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_firebase_firebase_measurement_connector_19_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.firebase:firebase-measurement-connector:19.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0724849e2276ecea947773c5f588b7eb/jetified-firebase-measurement-connector-19.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0724849e2276ecea947773c5f588b7eb/jetified-firebase-measurement-connector-19.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0724849e2276ecea947773c5f588b7eb/jetified-firebase-measurement-connector-19.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-measurement-connector/19.0.0/c0d58b8efa926b2c607984c54fb3d274490badd1/firebase-measurement-connector-19.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_2_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_2_0_aar.xml b/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_2_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_2_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.lifecycle:lifecycle-service:2.2.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d51b4452c4947cf3df78c90ebb240af3/jetified-lifecycle-service-2.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c4aaaa521a70043a95b56d1cdc912751/jetified-lifecycle-service-2.2.0/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/33eb065ffcd2ad06be6506e6374a7680/jetified-lifecycle-service-2.2.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/33eb065ffcd2ad06be6506e6374a7680/jetified-lifecycle-service-2.2.0/AndroidManifest.xml" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/33eb065ffcd2ad06be6506e6374a7680/jetified-lifecycle-service-2.2.0/res" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-service/2.2.0/e150534c1cf4462034fe447f30f8c07bcd7d8f22/lifecycle-service-2.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_appcompat_appcompat_1_2_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_2_0_aar.xml b/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_2_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_2_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,16 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.appcompat:appcompat:1.2.0@aar">
+-    <ANNOTATIONS>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/635ce3dc49eaec8573540d510b9927ab/appcompat-1.2.0/annotations.zip!/" />
+-    </ANNOTATIONS>
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/635ce3dc49eaec8573540d510b9927ab/appcompat-1.2.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/635ce3dc49eaec8573540d510b9927ab/appcompat-1.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/635ce3dc49eaec8573540d510b9927ab/appcompat-1.2.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.2.0/13e8ff89631c2e101eb6bddd12c2fb4bbd74b15d/appcompat-1.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_android_gms_play_services_measurement_19_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_19_0_0_aar.xml b/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_19_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_19_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.android.gms:play-services-measurement:19.0.0@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9c835226cac76be7774c9dc422dc288c/jetified-play-services-measurement-19.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9c835226cac76be7774c9dc422dc288c/jetified-play-services-measurement-19.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9c835226cac76be7774c9dc422dc288c/jetified-play-services-measurement-19.0.0/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-measurement/19.0.0/2a0cba8dbe8c53b801367204f9d4cb948ac2ea23/play-services-measurement-19.0.0-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_navigation_navigation_fragment_ktx_2_3_5_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_ktx_2_3_5_aar.xml b/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_ktx_2_3_5_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_ktx_2_3_5_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.navigation:navigation-fragment-ktx:2.3.5@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8c7b1dc463c004eeba08575897ec5d6f/navigation-fragment-ktx-2.3.5/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d05a57b7363a2e75d9d83dcb63f98f66/navigation-fragment-ktx-2.3.5/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/39f866da230a2c8c89e1f3418101418d/navigation-fragment-ktx-2.3.5/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/39f866da230a2c8c89e1f3418101418d/navigation-fragment-ktx-2.3.5/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/39f866da230a2c8c89e1f3418101418d/navigation-fragment-ktx-2.3.5/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-fragment-ktx/2.3.5/9bebacd34921c1dd65c0cf5ceb32f70e8c7b17b9/navigation-fragment-ktx-2.3.5-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_android_gms_play_services_stats_17_0_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_android_gms_play_services_stats_17_0_0_aar.xml b/.idea/libraries/Gradle__com_google_android_gms_play_services_stats_17_0_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_android_gms_play_services_stats_17_0_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.android.gms:play-services-stats:17.0.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/af068fd25f35b5c60cb96286f61435c9/jetified-play-services-stats-17.0.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4c1b3cef5253aa32bc0d49f5a187f2ba/jetified-play-services-stats-17.0.0/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c6c3e69f3aa16fe4d3d5f731a1c13d8b/jetified-play-services-stats-17.0.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c6c3e69f3aa16fe4d3d5f731a1c13d8b/jetified-play-services-stats-17.0.0/AndroidManifest.xml" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c6c3e69f3aa16fe4d3d5f731a1c13d8b/jetified-play-services-stats-17.0.0/res" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_transition_transition_1_2_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_transition_transition_1_2_0_aar.xml b/.idea/libraries/Gradle__androidx_transition_transition_1_2_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_transition_transition_1_2_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,16 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.transition:transition:1.2.0@aar">
+-    <ANNOTATIONS>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eef6e58ad3c490d58cad5a66b1e282f9/transition-1.2.0/annotations.zip!/" />
+-    </ANNOTATIONS>
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eef6e58ad3c490d58cad5a66b1e282f9/transition-1.2.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eef6e58ad3c490d58cad5a66b1e282f9/transition-1.2.0/AndroidManifest.xml" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eef6e58ad3c490d58cad5a66b1e282f9/transition-1.2.0/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.transition/transition/1.2.0/65d2a5dab39f120d3f584fdead252ce81ec7dbee/transition-1.2.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_1_0_beta02_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_1_0_beta02_aar.xml b/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_1_0_beta02_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_1_0_beta02_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.constraintlayout:constraintlayout:2.1.0-beta02@aar">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7be8f6578cabb7eed05418cb2dedc274/constraintlayout-2.1.0-beta02/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7be8f6578cabb7eed05418cb2dedc274/constraintlayout-2.1.0-beta02/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7be8f6578cabb7eed05418cb2dedc274/constraintlayout-2.1.0-beta02/AndroidManifest.xml" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.constraintlayout/constraintlayout/2.1.0-beta02/7f14dff8719d4f078812eb538cfc158dd5e3906f/constraintlayout-2.1.0-beta02-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_core_core_ktx_1_1_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_core_core_ktx_1_1_0_aar.xml b/.idea/libraries/Gradle__androidx_core_core_ktx_1_1_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_core_core_ktx_1_1_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.core:core-ktx:1.1.0@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c117ea6c3534b0a889eedd88cfe87dbe/jetified-core-ktx-1.1.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3f881b0ba7af01629698f9a220ea547d/jetified-core-ktx-1.1.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3ce02526ab376116decb7b06674594d3/jetified-core-ktx-1.1.0/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3ce02526ab376116decb7b06674594d3/jetified-core-ktx-1.1.0/AndroidManifest.xml" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3ce02526ab376116decb7b06674594d3/jetified-core-ktx-1.1.0/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.core/core-ktx/1.1.0/8e51cf92327310f53f74ba17a62d465f6fdde392/core-ktx-1.1.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0.xml b/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,11 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.arch.core:core-common:2.1.0">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/80ac2d7c8e6400ce2fbc663cd1a7e1cbef38c4b8/core-common-2.1.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_android_extensions_runtime_1_4_31.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_android_extensions_runtime_1_4_31.xml b/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_android_extensions_runtime_1_4_31.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_android_extensions_runtime_1_4_31.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,13 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.4.31">
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions-runtime/1.4.31/14b0c658501829245368d2b8fdef72171e7e3d17/kotlin-android-extensions-runtime-1.4.31.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions-runtime/1.4.31/5b8f86fea035328fc9e8c660773037a3401ce25f/kotlin-android-extensions-runtime-1.4.31-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions-runtime/1.4.31/6060dd1b23ab4d19b7b76d0c6a9ca562ad5514ae/kotlin-android-extensions-runtime-1.4.31-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__androidx_databinding_viewbinding_4_1_3_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__androidx_databinding_viewbinding_4_1_3_aar.xml b/.idea/libraries/Gradle__androidx_databinding_viewbinding_4_1_3_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__androidx_databinding_viewbinding_4_1_3_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,15 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: androidx.databinding:viewbinding:4.1.3@aar">
+-    <CLASSES>
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c60d9c561732c7d18893da8cb578cd78/jetified-viewbinding-4.1.3/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/713b0b8e33e54dc0ea3ec3dce0dd38c3/jetified-viewbinding-4.1.3/res" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/670ea9a65bb1273b6b370d7d98e75d33/jetified-viewbinding-4.1.3/AndroidManifest.xml" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/670ea9a65bb1273b6b370d7d98e75d33/jetified-viewbinding-4.1.3/res" />
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/670ea9a65bb1273b6b370d7d98e75d33/jetified-viewbinding-4.1.3/jars/classes.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.databinding/viewbinding/4.1.3/9c6cc3c62bca78b82a07a94316b961e4f77c7359/viewbinding-4.1.3-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/Gradle__com_google_android_material_material_1_3_0_aar.xml
+===================================================================
+diff --git a/.idea/libraries/Gradle__com_google_android_material_material_1_3_0_aar.xml b/.idea/libraries/Gradle__com_google_android_material_material_1_3_0_aar.xml
+deleted file mode 100644
+--- a/.idea/libraries/Gradle__com_google_android_material_material_1_3_0_aar.xml	(revision 152fbf321660838bbd9fd558c11b58552352003f)
++++ /dev/null	(revision 152fbf321660838bbd9fd558c11b58552352003f)
+@@ -1,16 +0,0 @@
+-<component name="libraryTable">
+-  <library name="Gradle: com.google.android.material:material:1.3.0@aar">
+-    <ANNOTATIONS>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7f4ab4cb840ff8ed208cbbab6e837e4f/material-1.3.0/annotations.zip!/" />
+-    </ANNOTATIONS>
+-    <CLASSES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7f4ab4cb840ff8ed208cbbab6e837e4f/material-1.3.0/jars/classes.jar!/" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7f4ab4cb840ff8ed208cbbab6e837e4f/material-1.3.0/AndroidManifest.xml" />
+-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7f4ab4cb840ff8ed208cbbab6e837e4f/material-1.3.0/res" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES>
+-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.3.0/b42a5159ef2c670d26ce08246ec5aaf8f92e5a42/material-1.3.0-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file

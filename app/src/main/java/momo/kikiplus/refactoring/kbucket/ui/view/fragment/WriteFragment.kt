@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders.of
 import androidx.recyclerview.widget.LinearLayoutManager
 import momo.kikiplus.com.kbucket.R
 import momo.kikiplus.com.kbucket.databinding.WriteFragmentBinding
@@ -46,9 +46,10 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
         return view
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(WriteViewModel::class.java)
+        super.onActivityCreated(/* savedInstanceState = */ savedInstanceState)
+        viewModel = of(this)[WriteViewModel::class.java]
 
         mBinding.writeLayoutAddBtn.setOnClickListener(this)
         mBinding.sortDate.setOnClickListener(this)
@@ -56,7 +57,7 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
         mBinding.sortMemo.setOnClickListener(this)
         mBinding.writeLayoutTitleView.setOnKeyListener(this)
 
-        var layoutMgr = LinearLayoutManager(activity)
+        val layoutMgr = LinearLayoutManager(activity)
         mBinding.writeListListview.layoutManager = layoutMgr
         mBinding.writeListListview.adapter = mAdapter
 
@@ -87,7 +88,7 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
             }
             // 삭제 버튼
             R.id.bucket_list_deleteBtn -> {
-                var index = Integer.valueOf(v.tag as String)
+                val index = Integer.valueOf(v.tag as String)
                 viewModel.removeData(mDataList[index], requireActivity())
                 setListData()
             }
@@ -131,7 +132,7 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
     override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
         if (event.action == KeyEvent.ACTION_DOWN) {
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                //엔터입력시 할일 처리
+                //엔터 입력시 할일 처리
                 val editText = mBinding.writeLayoutTitleView.text.toString()
                 if (viewModel.checkduplicateData(editText)) {
                     val message = getString(R.string.check_input_bucket_string)
@@ -163,19 +164,19 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
     }
 
     override fun onStart() {
-        KLog.log("@@ WriteFragement onStart")
+        KLog.log("@@ WriteFragment onStart")
         super.onStart()
         setListData()
     }
     override fun onStop() {
-        KLog.log("@@ WriteFragement onStop")
+        KLog.log("@@ WriteFragment onStop")
         super.onStop()
         mDataList.clear()
     }
 
     override fun onBackKey() {
-        KLog.log("@@ WriteFragement onBackKey")
-        KLog.d("@@ WriteFragement back : "+ requireArguments().getString("BACK"))
+        KLog.log("@@ WriteFragment onBackKey")
+        KLog.d("@@ WriteFragment back : "+ requireArguments().getString("BACK"))
         (activity as MainFragmentActivity).setBackReceive(null)
         if(requireArguments().getString("BACK") == DataConst.VIEW_MAIN){
             (activity as MainFragmentActivity).supportFragmentManager.beginTransaction()
@@ -186,7 +187,7 @@ class WriteFragment : Fragment(), View.OnClickListener, View.OnKeyListener, IBac
     }
 
     override fun onAttach(context: Context) {
-        KLog.log("@@  WriteFragement onAttach")
+        KLog.log("@@  WriteFragment onAttach")
         super.onAttach(context)
         (activity as MainFragmentActivity).setBackReceive(this)
     }

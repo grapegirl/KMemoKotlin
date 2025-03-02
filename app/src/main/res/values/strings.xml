@@ -256,6 +256,16 @@
     <string name="appshortcuts2">가지 목록</string>
     <string name="appshortcuts3">세상 가지</string>
     <string name="appshortcuts4">가지 랭킹</string>
+    <string name="navi_menu01">암호설정</string>
+    <string name="navi_menu02">암호해제</string>
+    <string name="navi_menu03">DB관리</string>
+    <string name="navi_menu04">별명설정</string>
+    <string name="navi_menu05">배경설정</string>
+    <string name="navi_menu06">튜토리얼</string>
+    <string name="navi_menu07">문의하기</string>
+    <string name="navi_menu08">현재버전</string>
+    <string name="navi_menu09">공유하기</string>
+    <string name="navi_menu10">Bucket List 100</string>
 </resources>
 
 

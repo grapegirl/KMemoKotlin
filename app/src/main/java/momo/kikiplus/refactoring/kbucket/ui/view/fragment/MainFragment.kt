@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
@@ -50,7 +51,7 @@ class MainFragment : Fragment(), View.OnClickListener, Handler.Callback, IPopupR
     private var mBasicPopup: BasicPopup? = null
     private var mAIPopup: AIPopup? = null
 
-    private var mHandler: Handler = Handler(this)
+    private var mHandler: Handler = Handler(Looper.getMainLooper(), this)
     private val TOAST_MASSEGE   : Int = 0
     private val REQUEST_AI      : Int = 10
     private val FAIL_AI         : Int = 20

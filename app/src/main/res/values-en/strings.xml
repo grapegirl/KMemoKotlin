@@ -257,5 +257,15 @@
     <string name="appshortcuts2">Dream List</string>
     <string name="appshortcuts3">Our Dreams</string>
     <string name="appshortcuts4">Dream Rank</string>
+    <string name="navi_menu01">SET PASSWORD</string>
+    <string name="navi_menu02">NO PASSWORD</string>
+    <string name="navi_menu03">MANAGE DATA</string>
+    <string name="navi_menu04">SET NICKNAME</string>
+    <string name="navi_menu05">SET UI COLOR</string>
+    <string name="navi_menu06">TUTORIAL</string>
+    <string name="navi_menu07">QUESTION</string>
+    <string name="navi_menu08">CHECK VERSION</string>
+    <string name="navi_menu09">SHARE APP</string>
+    <string name="navi_menu10">BUCKET LIST 100</string>
 
 </resources>

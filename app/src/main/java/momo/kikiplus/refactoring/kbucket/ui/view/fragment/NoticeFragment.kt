@@ -3,6 +3,7 @@ package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
@@ -70,7 +71,7 @@ class NoticeFragment : Fragment(), Handler.Callback , IBackReceive {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mHandler = Handler(this)
+        mHandler = Handler(Looper.getMainLooper(), this)
         mList = ArrayList()
         mGroupList = ArrayList()
         mChildList = ArrayList()

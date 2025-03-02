@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.firebase:firebase-sessions:2.0.8@aar" external-system-id="GRADLE">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/8.10.2/transforms/91ef18a42bc891d9f7c9dbd8e763f526/transformed/jetified-firebase-sessions-2.0.8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/8.10.2/transforms/91ef18a42bc891d9f7c9dbd8e763f526/transformed/jetified-firebase-sessions-2.0.8/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-sessions/2.0.8/13b016eb191435f902ed977fb24dc3432f170b3a/firebase-sessions-2.0.8-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

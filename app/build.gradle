@@ -53,7 +53,7 @@ android {
         applicationId "momo.kikiplus.com.kbucket"
         minSdkVersion 21
         targetSdkVersion 35
-        versionCode 86
+        versionCode 88
         versionName "2.0.12"
         multiDexEnabled true
 
@@ -63,7 +63,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            debuggable true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt')
             proguardFile('proguard-rules.pro')
         }

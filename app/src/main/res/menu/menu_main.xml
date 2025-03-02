@@ -4,41 +4,44 @@
     <item
         android:id="@+id/menu_item1"
         android:orderInCategory="100"
-        android:title="암호설정" />
+        android:title="@string/navi_menu01" />
     <item
         android:id="@+id/menu_item2"
         android:orderInCategory="100"
-        android:title="암호해제" />
+        android:title="@string/navi_menu02" />
+    <!--2025.03.02 Temporary
     <item
         android:id="@+id/menu_item3"
         android:orderInCategory="100"
-        android:title="DB관리" />
+        android:title="@string/navi_menu03" />
+
+        -->
     <item
         android:id="@+id/menu_item4"
         android:orderInCategory="100"
-        android:title="별명설정" />
+        android:title="@string/navi_menu04" />
     <item
         android:id="@+id/menu_item5"
         android:orderInCategory="100"
-        android:title="배경설정" />
+        android:title="@string/navi_menu05" />
     <item
         android:id="@+id/menu_item6"
         android:orderInCategory="100"
-        android:title="튜토리얼" />
+        android:title="@string/navi_menu06" />
     <item
         android:id="@+id/menu_item7"
         android:orderInCategory="100"
-        android:title="문의하기" />
+        android:title="@string/navi_menu07" />
     <item
         android:id="@+id/menu_item8"
         android:orderInCategory="100"
-        android:title="현재버전" />
+        android:title="@string/navi_menu08" />
     <item
         android:id="@+id/menu_item9"
         android:orderInCategory="100"
-        android:title="공유하기" />
+        android:title="@string/navi_menu09" />
     <item
         android:id="@+id/menu_item10"
         android:orderInCategory="100"
-        android:title="Bucket List 100" />
+        android:title="@string/navi_menu10" />
 </menu>

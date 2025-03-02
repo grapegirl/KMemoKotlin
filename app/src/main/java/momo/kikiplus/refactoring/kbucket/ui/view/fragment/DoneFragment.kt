@@ -2,6 +2,7 @@ package momo.kikiplus.refactoring.kbucket.ui.view.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Looper
 import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
@@ -89,7 +90,7 @@ class DoneFragment : Fragment(), IBackReceive, View.OnClickListener, View.OnLong
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mHandler = android.os.Handler(this)
+        mHandler = android.os.Handler(Looper.getMainLooper(), this)
         mDataList = ArrayList()
         mSqlQuery = SQLQuery()
         setListData()
