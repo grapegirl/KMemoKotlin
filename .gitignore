@@ -1,14 +1,16 @@
 
-KMemo-master/gradlew
-KMemo-master/.idea/caches/build_file_checksums.ser
-KMemo-master/.idea/encodings.xml
-KMemo-master/.idea/gradle.xml
-KMemo-master/.idea/misc.xml
-KMemo-master/.idea/modules.xml
-KMemo-master/.idea/runConfigurations.xml
-KMemo-master/.idea/vcs.xml
-KMemo-master/gradle/wrapper/gradle-wrapper.jar
-KMemo-master/gradle/wrapper/gradle-wrapper.properties
-KMemo-master/gradle.properties
-KMemo-master/gradlew.bat
-
+*.iml                      		# IntelliJ IDEA 모듈 파일
+.gradle                    		# Gradle 관련 파일과 디렉토리
+/local.properties         		# 로컬 프로젝트 설정 파일
+/.idea/caches              		# IntelliJ IDEA 캐시 디렉토리
+/.idea/libraries           		# IntelliJ IDEA 라이브러리 디렉토리
+/.idea/modules.xml         		# IntelliJ IDEA 모듈 설정 파일
+/.idea/workspace.xml       		# IntelliJ IDEA 작업 공간 설정 파일
+/.idea/navEditor.xml       		# IntelliJ IDEA 네비게이션 에디터 설정 파일
+/.idea/assetWizardSettings.xml  # IntelliJ IDEA 에셋 위저드 설정 파일
+.DS_Store                  		# macOS의 .DS_Store 파일
+/build                     		# 빌드 결과물 디렉토리
+/captures                  		# 스크린샷 또는 동영상 캡처 디렉토리
+.externalNativeBuild       		# Android 외부 네이티브 빌드 디렉토리
+.cxx                       		# C/C++ 소스 코드 빌드 디렉토리
+local.properties          		# 안드로이드 SDK 경로가 지정된 프로젝트 설정 파일
