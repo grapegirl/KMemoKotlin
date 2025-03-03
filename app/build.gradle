@@ -28,33 +28,12 @@ android {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
 
-//    flavorDimensions "version"
-//    productFlavors {
-//        dev {
-//            dimension "version"
-//            versionCode 79
-//            versionName "2.0.07"
-//            applicationIdSuffix ".test"
-//            manifestPlaceholders = [
-//                    appLabel: "꿈가지-DEV"
-//            ]
-//        }
-//        real {
-//            dimension "version"
-//            versionCode 79
-//            versionName "2.0.07"
-//            applicationIdSuffix ".real"
-//            manifestPlaceholders = [
-//                    appLabel: "꿈가지"
-//            ]
-//        }
-//    }
     defaultConfig {
         applicationId "momo.kikiplus.com.kbucket"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 35
-        versionCode 88
-        versionName "2.0.12"
+        versionCode 89
+        versionName "2.0.13"
         multiDexEnabled true
 
         setProperty("archivesBaseName", "KMemo-${versionName}")

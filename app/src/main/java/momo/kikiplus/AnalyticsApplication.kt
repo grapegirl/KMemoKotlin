@@ -3,7 +3,7 @@ package momo.kikiplus
 import android.app.Application
 import com.google.android.gms.analytics.GoogleAnalytics
 import com.google.android.gms.analytics.Tracker
-import momo.kikiplus.refactoring.kbucket.data.finally.NetworkConst
+import momo.kikiplus.com.kbucket.data.finally.NetworkConst
 
 /**
  * Created by mihyeKim on 2016-11-13.

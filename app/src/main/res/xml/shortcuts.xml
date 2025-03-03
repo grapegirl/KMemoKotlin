@@ -6,10 +6,14 @@
         android:enabled="true"
         android:icon="@drawable/anim2"
         android:shortcutShortLabel="@string/appshortcuts1"
-        tools:targetApi="n_mr1">
+        android:shortcutLongLabel="@string/appshortcuts1"
+        android:shortcutDisabledMessage="@string/appshortcuts1">
         <intent
             android:action="android.intent.action.VIEW.MAIN"
-            android:targetClass="momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity" />
+            android:targetPackage="momo.kikiplus.com.kbucket"
+            android:targetClass="momo.kikiplus.com.kbucket.ui.view.activity.MainFragmentActivity" />
+        <categories android:name="android.shortcut.conversation" />
+        <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
     </shortcut>
 
     <shortcut
@@ -17,32 +21,44 @@
         android:enabled="true"
         android:icon="@drawable/anim2"
         android:shortcutShortLabel="@string/appshortcuts2"
-        tools:targetApi="n_mr1">
+        android:shortcutLongLabel="@string/appshortcuts2"
+        android:shortcutDisabledMessage="@string/appshortcuts2">
         <intent
             android:action="android.intent.action.VIEW.LIST"
-            android:targetClass="momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity" />
+            android:targetPackage="momo.kikiplus.com.kbucket"
+            android:targetClass="momo.kikiplus.com.kbucket.ui.view.activity.MainFragmentActivity" />
+        <categories android:name="android.shortcut.conversation" />
+        <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
     </shortcut>
     <shortcut
         android:shortcutId="shortcuts3"
         android:enabled="true"
         android:icon="@drawable/anim2"
         android:shortcutShortLabel="@string/appshortcuts3"
-        tools:targetApi="n_mr1">
+        android:shortcutLongLabel="@string/appshortcuts3"
+        android:shortcutDisabledMessage="@string/appshortcuts3">
 
         <intent
             android:action="android.intent.action.VIEW.SHARE"
-            android:targetClass="momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity" />
+            android:targetPackage="momo.kikiplus.com.kbucket"
+            android:targetClass="momo.kikiplus.com.kbucket.ui.view.activity.MainFragmentActivity" />
+        <categories android:name="android.shortcut.conversation" />
+        <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
     </shortcut>
     <shortcut
         android:shortcutId="shortcuts4"
         android:enabled="true"
         android:icon="@drawable/anim2"
         android:shortcutShortLabel="@string/appshortcuts4"
-        tools:targetApi="n_mr1">
+        android:shortcutLongLabel="@string/appshortcuts4"
+        android:shortcutDisabledMessage="@string/appshortcuts4">
 
         <intent
             android:action="android.intent.action.VIEW.RANK"
-            android:targetClass="momo.kikiplus.refactoring.kbucket.ui.view.activity.MainFragmentActivity" />
+            android:targetPackage="momo.kikiplus.com.kbucket"
+            android:targetClass="momo.kikiplus.com.kbucket.ui.view.activity.MainFragmentActivity" />
+        <categories android:name="android.shortcut.conversation" />
+        <capability-binding android:key="actions.intent.OPEN_APP_FEATURE" />
     </shortcut>
 
 

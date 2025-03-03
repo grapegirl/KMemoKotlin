@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/MainFragement"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.MainFragment"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.MainFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/main_fragment">
 
@@ -108,7 +108,7 @@
     </fragment>
     <fragment
         android:id="@+id/WriteFragement"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.WriteFragment"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.WriteFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/write_fragment">
 
@@ -134,7 +134,7 @@
 
     <fragment
         android:id="@+id/DetailFragment"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.DetailFragment"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.DetailFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/detail_fragment">
 
@@ -161,7 +161,7 @@
 
     <fragment
         android:id="@+id/NoticeFragment"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.NoticeFragment"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.NoticeFragment"
         tools:layout="@layout/notice_extended">
 
         <action
@@ -172,7 +172,7 @@
 
     <fragment
         android:id="@+id/RankFragment"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.RankFragment"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.RankFragment"
         tools:layout="@layout/rank_list_activity">
 
         <action
@@ -183,7 +183,7 @@
 
     <fragment
         android:id="@+id/PassFragement"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.PassFragment"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.PassFragment"
         tools:layout="@layout/password_activity">
 
         <action
@@ -198,7 +198,7 @@
 
     <fragment
         android:id="@+id/NameFragement"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.NameFragment"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.NameFragment"
         tools:layout="@layout/set_nickname_activity">
 
         <action
@@ -213,7 +213,7 @@
 
     <fragment
         android:id="@+id/ColorFragement"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.ColorFragment"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.ColorFragment"
         tools:layout="@layout/set_background_activity">
 
         <action
@@ -228,7 +228,7 @@
 
     <fragment
         android:id="@+id/UpgradeFragement"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.UpgradeFragment"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.UpgradeFragment"
         tools:layout="@layout/question_activity">
 
         <action
@@ -243,7 +243,7 @@
 
     <fragment
         android:id="@+id/ShareFragement"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.ShareFragment"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.ShareFragment"
         tools:layout="@layout/share_list_activity">
 
         <action
@@ -258,7 +258,7 @@
 
     <fragment
         android:id="@+id/DoneFragement"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.DoneFragment"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.DoneFragment"
         tools:layout="@layout/bucket_list_activity">
 
         <action
@@ -273,7 +273,7 @@
 
     <fragment
         android:id="@+id/AddFragement"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.AddFragement"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.AddFragement"
         tools:layout="@layout/interest_bucket_list_activity">
 
         <action
@@ -288,7 +288,7 @@
 
     <fragment
         android:id="@+id/ShareInfoFragement"
-        android:name="momo.kikiplus.refactoring.kbucket.ui.view.fragment.ShareInfoFragement"
+        android:name="momo.kikiplus.com.kbucket.ui.view.fragment.ShareInfoFragement"
         tools:layout="@layout/share_detail_activity">
 
         <action
