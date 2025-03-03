@@ -1,7 +1,9 @@
 
 *.iml                      		# IntelliJ IDEA 모듈 파일
 .gradle                    		# Gradle 관련 파일과 디렉토리
+.gradle/.DS_Store
 /local.properties         		# 로컬 프로젝트 설정 파일
+.idea/.DS_Store
 /.idea/caches              		# IntelliJ IDEA 캐시 디렉토리
 /.idea/libraries           		# IntelliJ IDEA 라이브러리 디렉토리
 /.idea/modules.xml         		# IntelliJ IDEA 모듈 설정 파일
@@ -14,3 +16,6 @@
 .externalNativeBuild       		# Android 외부 네이티브 빌드 디렉토리
 .cxx                       		# C/C++ 소스 코드 빌드 디렉토리
 local.properties          		# 안드로이드 SDK 경로가 지정된 프로젝트 설정 파일
+app/release/baselineProfiles/.DS_Store
+app/src/.DS_Store app/src/main/.DS_Store
+app/src/main/res/.DS_Store
