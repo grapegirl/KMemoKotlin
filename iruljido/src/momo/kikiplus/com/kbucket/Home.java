@@ -24,7 +24,7 @@ import javax.crypto.spec.GCMParameterSpec;
 import org.json.*;
 
 public class Home extends Activity {
- private HomeAdBanner homeBanner;
+ private BottomAdBanner bottomBanner;
  WebView web; boolean consumedIntent; ValueCallback<Uri[]> chooser; Uri capture; FrameLayout root; LinearLayout gate;
  final ExecutorService jobs=Executors.newSingleThreadExecutor();
  android.content.SharedPreferences prefs; volatile boolean unlocked; boolean authenticating,enableLock,loaded,active;
@@ -48,7 +48,7 @@ public class Home extends Activity {
    column.setOrientation(LinearLayout.VERTICAL);
    root.addView(column);
    column.addView(web,new LinearLayout.LayoutParams(-1,0,1f));
-   homeBanner=new HomeAdBanner(column);
+   bottomBanner=new BottomAdBanner(column);
   }
   gate=new LinearLayout(this);gate.setOrientation(1);gate.setGravity(Gravity.CENTER);gate.setBackgroundColor(0xfffcf7ee);
   ImageView icon=new ImageView(this);icon.setImageResource(R.drawable.icon);int size=(int)(getResources().getDisplayMetrics().density*76);gate.addView(icon,size,size);
@@ -108,7 +108,7 @@ public class Home extends Activity {
  }
  protected void onNewIntent(Intent i){super.onNewIntent(i);setIntent(i);acceptIntent(i);}
  private void syncAdForeground(){
-  if(homeBanner!=null)homeBanner.setForeground(active && unlocked && !authenticating);
+  if(bottomBanner!=null)bottomBanner.setAppForeground(active && unlocked && !authenticating);
  }
  @Override protected void onPause(){
   active=false;
@@ -165,7 +165,7 @@ public class Home extends Activity {
  public void onRequestPermissionsResult(int r,String[] p,int[] v){super.onRequestPermissionsResult(r,p,v);if(r==21){if(v.length>0&&v[0]==0)startVoice();else message("음성 메모에는 마이크 권한이 필요해요.");}if(r==22&&v.length>0&&v[0]!=0)message("일정은 저장됐어요. 알림을 받으려면 앱 설정에서 알림을 켜 주세요.");}
  public void onBackPressed(){if(unlocked)js("window.back&&back()");else finish();}
  protected void onDestroy(){
-  if(homeBanner!=null){homeBanner.release();homeBanner=null;}
+  if(bottomBanner!=null){bottomBanner.release();bottomBanner=null;}
   if(recorder!=null){recorder.release();recorder=null;}jobs.shutdownNow();for(OutputStream o:streams.values())try{o.close();}catch(Exception ignored){}
   if(memoWindow() && web!=null){
    loaded=false;
@@ -189,8 +189,8 @@ public class Home extends Activity {
   String[] parts=value.split("\\.");cipher.init(Cipher.DECRYPT_MODE,key,new GCMParameterSpec(128,Base64.decode(parts[0],2)));return Base64.encodeToString(cipher.doFinal(Base64.decode(parts[1],2)),2);
  }
  class Bridge {
-  @JavascriptInterface public void setHomeBannerVisible(boolean visible){
-   runOnUiThread(()->{if(homeBanner!=null)homeBanner.setHomeVisible(visible);});
+  @JavascriptInterface public void journalReady(){
+   runOnUiThread(()->{if(bottomBanner!=null)bottomBanner.onContentReady();});
   }
   @JavascriptInterface public String takeInput(){return memoWindow() ? "" : takeInbox();}
   @JavascriptInterface public boolean isMemoWindow(){return memoWindow();}

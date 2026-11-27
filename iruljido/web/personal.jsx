@@ -1,4 +1,4 @@
-import {h,Fragment} from 'preact';import {useState,useEffect,useLayoutEffect} from 'preact/hooks';
+import {h,Fragment} from 'preact';import {useState,useEffect} from 'preact/hooks';
 import {appName,T,findDream,normalize,clone,personal,active,progress,cover,nextStep,featured,today,stamp,num,money,id,notice,putDream,change,setPref,duplicate,log,freshFrom,focused,allPhotos,blobPut,displayDate} from './store';
 import {Head,Btn,Field,Text,Select,Group,Check,Pic,Pick,Media,Chips,DreamRow,Empty,Meter,go,back,replace,home,safe} from './ui';
 import {savePhotos,saveVideo,bytesFrom64} from './media';
@@ -7,18 +7,6 @@ import {themes,ideas,questions} from './ideas';
 export const statuses=[['active','진행 중'],['someday','언젠가'],['paused','잠시 쉬기'],['archived','보관'],['trash','휴지통']];
 function create(seed={}){go('edit',{seed});}
 export function Home(){
- useLayoutEffect(()=>{
-  const show = () => window.Device?.setHomeBannerVisible?.(true);
-  if (document.getElementById('splash')) {
-   window.addEventListener('splash-finished',show);
-  } else {
-   show();
-  }
-  return () => {
-   window.removeEventListener('splash-finished',show);
-   window.Device?.setHomeBannerVisible?.(false);
-  };
- },[]);
  const d=featured(),all=personal(),count=all.filter(t=>t.complete).length;return <><header class="homehead"><h1>{appName}</h1><Btn onClick={()=>go('shelf')}>내 목록</Btn><Btn aria-label="설정" onClick={()=>go('settings')}>⚙</Btn></header>
  <div class="tiles">{[
    ['✎','꿈 작성','edit'], ['◴','진행 현황','shelf'], ['♡','친구와 공유','friends']

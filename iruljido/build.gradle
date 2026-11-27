@@ -6,8 +6,8 @@ android {
         applicationId 'momo.kikiplus.com.kbucket'
         minSdk 26
         targetSdk 34
-        versionCode 91
-        versionName '2.3.3'
+        versionCode 92
+        versionName '2.3.4'
     }
     buildFeatures { buildConfig = true }
     buildTypes { release { minifyEnabled true; proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'release-rules.pro' } }

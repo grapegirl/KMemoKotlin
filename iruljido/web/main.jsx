@@ -35,5 +35,13 @@ function external(){if(!T.ready||!window.Device)return;
 window.externalInput=external;
 window.appResume=()=>{window.dispatchEvent(new Event('resume-ui'));if(T.ready){if(window.Device?.isMemoWindow?.()){refreshMemos().then(external).catch(e=>notice(e.message));return;}resumeDue().catch(()=>{});external();if(inAppFriendsEnabled && consent())startRemote().then(flush).catch(()=>{});}};
 async function boot(){const since=Date.now();try{const memoWindow=!!window.Device?.isMemoWindow?.();await init(memoWindow);if(memoWindow)openMemoTarget(Device.takeMemoTarget()||'list');render(<App/>,document.querySelector('#root'));external();if(inAppFriendsEnabled && consent())startRemote().then(retryHeld).catch(e=>notice(e.message));}catch(e){let root=document.querySelector('#root');root.textContent='기록을 열지 못했어요. '+e.message;console.error(e);}
- setTimeout(()=>{let el=document.querySelector('#splash');if(el){el.style.opacity='0';setTimeout(()=>{el.remove();window.dispatchEvent(new Event('splash-finished'));},250)}},Math.max(0,850-(Date.now()-since)));}
+ const finishSplash=()=>{
+  if(T.ready && !window.Device?.isMemoWindow?.()) window.Device?.journalReady?.();
+ };
+ setTimeout(()=>{
+  const el=document.querySelector('#splash');
+  if(!el){finishSplash();return;}
+  el.style.opacity='0';
+  setTimeout(()=>{el.remove();finishSplash();},250);
+ },Math.max(0,850-(Date.now()-since)));}
 boot();
