@@ -5,7 +5,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 android {
 
-    compileSdk 35
+    compileSdk 37
     namespace = "momo.kikiplus.com.kbucket"
 
     buildFeatures {
@@ -17,16 +17,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-        disable 'InvalidPackage'
-    }
-
     packagingOptions {
-        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        resources {
+            excludes += ['META-INF/services/javax.annotation.processing.Processor']
+        }
     }
+
 
     defaultConfig {
         applicationId "momo.kikiplus.com.kbucket"
@@ -36,22 +32,25 @@ android {
         versionName "2.0.13"
         multiDexEnabled true
 
-        setProperty("archivesBaseName", "KMemo-${versionName}")
+//        setProperty("archivesBaseName", "KMemo-${versionName}")
     }
 
     buildTypes {
         release {
             minifyEnabled false
             debuggable false
-            proguardFiles getDefaultProguardFile('proguard-android.txt')
             proguardFile('proguard-rules.pro')
         }
         debug {
             minifyEnabled false
             debuggable true
-            proguardFiles getDefaultProguardFile('proguard-android.txt')
             proguardFile('proguard-rules.pro')
         }
+    }
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+        disable 'InvalidPackage'
     }
 }
 
