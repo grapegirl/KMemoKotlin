@@ -1,0 +1,12 @@
+<resources>
+    <string name="memo_widget_name">빠른 메모</string>
+    <string name="progress_widget_name">꿈 진행률</string>
+    <string name="memo_widget_desc">새 메모를 쓰고 최근 메모를 확인하세요.</string>
+    <string name="memo_book_label">메모장</string>
+    <string name="memo_list_action">메모 목록 열기</string>
+    <string name="memo_new_action">새 메모 쓰기</string>
+    <string name="memo_write">＋ 쓰기</string>
+    <string name="memo_recent">최근 메모</string>
+    <string name="memo_empty">눌러서 첫 메모 쓰기</string>
+    <string name="memo_locked">잠금을 해제해 메모를 확인하세요.</string>
+</resources>

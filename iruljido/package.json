@@ -1,0 +1,23 @@
+{
+  "name": "iruljido",
+  "version": "2.3.2",
+  "description": "",
+  "scripts": {
+    "build:web": "esbuild web/main.jsx --bundle --minify --legal-comments=eof --jsx-factory=h --jsx-fragment=Fragment --loader:.jpg=dataurl --target=chrome65 --outfile=assets/main.js && esbuild web/wire.js --bundle --minify --legal-comments=eof --target=chrome75 --outfile=assets/remote.js"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "commonjs",
+  "dependencies": {
+    "@zip.js/zip.js": "^2.7.57",
+    "esbuild": "^0.25.12",
+    "fflate": "^0.8.2",
+    "nostr-tools": "^2.15.0",
+    "pdf-lib": "^1.17.1",
+    "preact": "^10.26.9",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2",
+    "ws": "^8.18.3"
+  },
+  "private": true
+}

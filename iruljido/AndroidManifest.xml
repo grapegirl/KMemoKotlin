@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<uses-permission android:name="android.permission.INTERNET"/><uses-permission android:name="android.permission.RECORD_AUDIO"/><uses-permission android:name="android.permission.POST_NOTIFICATIONS"/><uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/><uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+<uses-feature android:name="android.hardware.microphone" android:required="false"/>
+<queries><package android:name="com.kakao.talk"/></queries>
+<application android:label="@string/app_name" android:icon="@mipmap/launcher" android:allowBackup="false" android:usesCleartextTraffic="false" android:enableOnBackInvokedCallback="false" android:theme="@style/DreamTheme">
+<activity android:name=".Home" android:exported="true" android:launchMode="singleTop" android:configChanges="orientation|screenSize|keyboardHidden">
+<intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
+<intent-filter><action android:name="android.intent.action.SEND"/><category android:name="android.intent.category.DEFAULT"/><data android:mimeType="text/plain"/></intent-filter>
+</activity>
+<activity android:name=".MemoWindow" android:exported="false" android:label="@string/memo_widget_name"
+    android:launchMode="singleTask" android:taskAffinity="${applicationId}.memo" android:excludeFromRecents="true"
+    android:windowSoftInputMode="adjustResize" android:configChanges="orientation|screenSize|keyboardHidden"/>
+<receiver android:name=".MemoWidget" android:label="@string/memo_widget_name" android:exported="false">
+    <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter>
+    <meta-data android:name="android.appwidget.provider" android:resource="@xml/memo_widget"/>
+</receiver>
+<provider android:name=".Images" android:authorities="${applicationId}.images" android:grantUriPermissions="true" android:exported="false"/>
+<receiver android:name=".Reminder" android:exported="false"><intent-filter><action android:name="android.intent.action.BOOT_COMPLETED"/><action android:name="android.intent.action.MY_PACKAGE_REPLACED"/><action android:name="android.intent.action.TIME_SET"/><action android:name="android.intent.action.TIMEZONE_CHANGED"/></intent-filter></receiver>
+<receiver android:name=".DreamWidget" android:label="@string/progress_widget_name" android:exported="false"><intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter><meta-data android:name="android.appwidget.provider" android:resource="@xml/widget"/></receiver>
+</application></manifest>

@@ -1,0 +1,2 @@
+-keepattributes RuntimeVisibleAnnotations,RuntimeInvisibleAnnotations,AnnotationDefault,InnerClasses,EnclosingMethod
+-keep class momo.kikiplus.com.kbucket.** { *; }

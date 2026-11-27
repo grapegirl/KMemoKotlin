@@ -1,0 +1,4 @@
+<resources>
+<style name="DreamTheme" parent="android:style/Theme.Material.Light.NoActionBar"><item name="android:windowBackground">#fcf7ee</item><item name="android:statusBarColor">#fcf7ee</item><item name="android:navigationBarColor">#fcf7ee</item><item name="android:windowLightStatusBar">true</item><item name="android:colorAccent">#24543d</item></style>
+<color name="green">#223e2c</color>
+</resources>

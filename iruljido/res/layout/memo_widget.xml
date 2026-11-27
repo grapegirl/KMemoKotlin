@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@drawable/memo_paper"
+    android:paddingLeft="12dp" android:paddingRight="12dp" android:paddingTop="3dp" android:paddingBottom="7dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="43dp"
+        android:orientation="horizontal" android:gravity="center_vertical">
+        <LinearLayout android:id="@+id/memo_book" android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center_vertical" android:orientation="horizontal"
+            android:contentDescription="@string/memo_list_action">
+            <ImageView android:layout_width="11dp" android:layout_height="20dp"
+                android:src="@drawable/memo_bookmark" android:contentDescription="@null"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp" android:ellipsize="end" android:singleLine="true"
+                android:text="@string/memo_book_label" android:textColor="#244435" android:textSize="17sp"
+                android:fontFamily="serif" android:textStyle="bold"/>
+        </LinearLayout>
+        <FrameLayout android:id="@+id/memo_write" android:layout_width="62dp" android:layout_height="match_parent"
+            android:contentDescription="@string/memo_new_action">
+            <TextView android:layout_width="match_parent" android:layout_height="32dp" android:layout_gravity="center"
+                android:gravity="center" android:background="@drawable/memo_button" android:text="@string/memo_write"
+                android:textColor="#FFFFFF" android:textSize="13sp" android:textStyle="bold" android:singleLine="true"/>
+        </FrameLayout>
+    </LinearLayout>
+    <TextView android:layout_width="match_parent" android:layout_height="1dp" android:background="#DED6C5"/>
+    <LinearLayout android:id="@+id/memo_body" android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1" android:orientation="vertical" android:paddingTop="4dp">
+        <TextView android:id="@+id/memo_caption" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:singleLine="true" android:text="@string/memo_recent" android:textSize="11sp" android:textColor="#71664F" android:visibility="gone"/>
+        <TextView android:id="@+id/memo_preview" android:layout_width="match_parent" android:layout_height="match_parent"
+            android:text="@string/memo_empty" android:textColor="#253E30" android:textSize="15sp"
+            android:ellipsize="end" android:maxLines="8"/>
+    </LinearLayout>
+</LinearLayout>
