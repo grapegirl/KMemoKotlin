@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ClayButton" parent="@style/HannaFontButtonStyle">
+        <item name="android:backgroundTint">@null</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textColor">@color/clay_ink</item>
+    </style>
+
+    <style name="ClayButton.Teal">
+        <item name="android:background">@drawable/btn_clay_teal</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ClayButton.Cream">
+        <item name="android:background">@drawable/btn_clay_cream</item>
+    </style>
+
+    <style name="ClayButton.Coral">
+        <item name="android:background">@drawable/btn_clay_coral</item>
+    </style>
+
+    <style name="ClayButton.Sage">
+        <item name="android:background">@drawable/btn_clay_sage</item>
+    </style>
+
+    <style name="ClayButton.Red">
+        <item name="android:background">@drawable/btn_clay_red</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ClayButton.Choice">
+        <item name="android:background">@drawable/clay_choice</item>
+        <item name="android:textColor">@color/clay_choice_text</item>
+    </style>
+</resources>

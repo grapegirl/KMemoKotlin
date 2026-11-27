@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:padding="12dp"
+    android:background="@color/clay_sand" xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -9,9 +11,10 @@
         android:layout_height="50dp"
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_weight="1"
-        android:background="#FFFFFFFF">
+        android:background="@color/clay_paper">
 
         <TextView
+            android:textColor="@color/clay_ink"
             android:id="@+id/conf_current_textview"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -21,6 +24,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:textColor="@color/clay_ink"
             android:id="@+id/conf_current_version"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -47,10 +51,11 @@
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
-        android:background="#FFAA66CC"
+        android:background="@color/clay_paper"
         android:orientation="horizontal">
 
         <TextView
+            android:textColor="@color/clay_ink"
             android:id="@+id/conf_lastest_textview"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -60,6 +65,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:textColor="@color/clay_ink"
             android:id="@+id/conf_lastest_version"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -70,12 +76,12 @@
             android:textStyle="bold" />
 
         <Button
+            style="@style/ClayButton.Cream"
             android:id="@+id/conf_update_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
             android:text="@string/conf_update"
             android:textStyle="bold" />
     </LinearLayout>
@@ -91,75 +97,75 @@
 
 
         <Button
+            style="@style/ClayButton.Teal"
             android:id="@+id/conf_password_on_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#FFCC0000"
             android:text="@string/conf_set_password"
             android:textStyle="bold" />
 
         <Button
+            style="@style/ClayButton.Cream"
             android:id="@+id/conf_password_off_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#FF99CC00"
             android:text="@string/conf_cancle_password"
             android:textStyle="bold" />
 
         <Button
+            style="@style/ClayButton.Cream"
             android:id="@+id/conf_import_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:background="#FFFFFF"
             android:text="@string/conf_import"
             android:textStyle="bold" />
 
         <Button
+            style="@style/ClayButton.Teal"
             android:id="@+id/conf_export_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#FF33B5E5"
             android:text="@string/conf_export"
             android:textStyle="bold" />
 
         <Button
+            style="@style/ClayButton.Teal"
             android:id="@+id/conf_userSetting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#FFCC0000"
             android:text="@string/conf_set_userSetting"
             android:textStyle="bold" />
 
         <Button
+            style="@style/ClayButton.Cream"
             android:id="@+id/conf_userBackSetting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#FFFFFF"
             android:text="@string/conf_set_userBackSetting"
             android:textStyle="bold" />
 
         <Button
+            style="@style/ClayButton.Cream"
             android:id="@+id/conf_guide_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#FF99CC00"
             android:text="@string/conf_guide"
             android:textStyle="bold" />
 
         <Button
+            style="@style/ClayButton.Teal"
             android:id="@+id/conf_question_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#FF33B5E5"
             android:text="@string/conf_question"
             android:textStyle="bold" />
 

@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
+        android:padding="6dp"
+        android:background="@drawable/clay_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_margin="4dp"
         android:orientation="horizontal">
 
         <TextView
+            android:minHeight="44dp"
+            android:textColor="@color/clay_ink"
             android:id="@+id/comment_list_text"
-            android:layout_width="250dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="8"
-            android:background="@drawable/ballon2"
+            android:layout_weight="1"
             android:gravity="center_vertical"
             android:padding="5dp"
             android:text="" />
 
         <TextView
+            android:padding="6dp"
+            android:maxWidth="96dp"
+            android:textColor="@color/clay_ink"
             android:id="@+id/comment_list_nickname"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="#FF99CC00"
+            android:background="@drawable/clay_badge"
             android:gravity="center_horizontal|center_vertical"
             android:text="dreamgirl"
             android:textAlignment="center"

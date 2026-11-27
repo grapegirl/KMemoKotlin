@@ -6,22 +6,22 @@
     tools:context="momo.kikiplus.com.kbucket.ui.view.fragment.RankFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="10dp"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/share_back_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFBB33"
+        android:background="@color/clay_sand"
         android:orientation="vertical">
 
         <Button
+            style="@style/ClayButton.Teal"
             android:id="@+id/rank_list_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="right"
-            android:background="#FFCC0000"
             android:text="@string/bucketrank_list_title"
-            android:textColor="#FFFFFFFF"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

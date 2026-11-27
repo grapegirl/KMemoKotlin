@@ -7,6 +7,7 @@
     android:fitsSystemWindows="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/clay_paper"
         android:id="@+id/main_fragement_activity_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,11 +27,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
+        app:headerLayout="@layout/clay_settings_header"
+        app:itemBackground="@drawable/clay_drawer_item"
+        app:itemTextColor="@color/clay_ink"
         android:id="@+id/drawer_list"
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#EDEDED"
+        android:background="@color/clay_paper"
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         app:menu="@menu/menu_main"

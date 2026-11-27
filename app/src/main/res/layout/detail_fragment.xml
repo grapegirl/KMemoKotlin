@@ -1,229 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="momo.kikiplus.com.kbucket.ui.view.fragment.DetailFragment">
-
+    android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
-
         <LinearLayout
             android:id="@+id/writedetail_back_color"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFBB33"
-            android:orientation="vertical">
-
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/clay_sand"
+            android:padding="16dp">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:visibility="visible">
-
+                android:gravity="center_vertical"
+                android:background="@drawable/clay_card"
+                android:padding="8dp">
                 <TextView
                     android:id="@+id/write_detail_text1"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_height="wrap_content"
                     android:text="@string/wriete_bucket_completeYN"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/clay_ink"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp" />
 
                 <CheckBox
                     android:id="@+id/write_complete_checkbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:button="@drawable/checkbox_selector"
+                    android:buttonTint="@null"
+                    android:contentDescription="@string/wriete_bucket_completeYN" />
 
                 <Button
                     android:id="@+id/write_saveButton"
-                    android:layout_width="wrap_content"
+                    style="@style/ClayButton.Teal"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right|center"
-                    android:layout_marginLeft="2dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_clay_coral"
-                    android:textColor="#FFFFFF"
                     android:text="@string/write_detail_save"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/write_deleteButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|center"
-                    android:layout_marginLeft="2dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_clay_coral"
-                    android:textColor="#FFFFFF"
-                    android:text="@string/write_detail_delete"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/write_shareButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|center"
-                    android:layout_marginLeft="2dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_clay_coral"
-                    android:textColor="#FFFFFF"
-                    android:text="@string/write_detail_share"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-
+                    android:layout_weight="1" />
             </LinearLayout>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/write_detail_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/write_detail_date"
+                android:textSize="15sp"
+                android:textColor="@color/clay_ink"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" />
+
+            <EditText
+                android:id="@+id/detail_dateView"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:background="@drawable/clay_card"
+                android:layout_marginTop="4dp"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:textColor="@color/clay_ink"
+                android:editable="false" />
 
-                <TextView
-                    android:id="@+id/write_detail_text2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="@string/write_detail_date"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/write_detail_text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wriete_bucket_content"
+                android:textSize="15sp"
+                android:textColor="@color/clay_ink"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" />
 
-                <EditText
-                    android:id="@+id/detail_dateView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/ballon2"
-                    android:editable="false"
-                    android:padding="5dp" />
-            </LinearLayout>
-
-            <LinearLayout
+            <EditText
+                android:id="@+id/detail_contentView"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:background="@drawable/clay_card"
+                android:layout_marginTop="4dp"
+                android:minHeight="76dp"
+                android:padding="12dp"
+                android:textColor="@color/clay_ink"
+                android:inputType="text"
+                android:singleLine="true"
+                android:gravity="top|start" />
 
-                <TextView
-                    android:id="@+id/write_detail_text3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="@string/wriete_bucket_content"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/write_detail_text4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wriete_bucket_deadline"
+                android:textSize="15sp"
+                android:textColor="@color/clay_ink"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" />
 
-                <EditText
-                    android:id="@+id/detail_contentView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/ballon2"
-                    android:inputType="text"
-                    android:padding="5dp"
-                    android:singleLine="true" />
-            </LinearLayout>
-
-            <LinearLayout
+            <EditText
+                android:id="@+id/detail_deadline"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:background="@drawable/clay_card"
+                android:layout_marginTop="4dp"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:textColor="@color/clay_ink"
+                android:editable="false" />
 
-                <TextView
-                    android:id="@+id/write_detail_text4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="@string/wriete_bucket_deadline"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/detail_deadline"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/ballon2"
-                    android:editable="false"
-                    android:padding="5dp"
-                    android:singleLine="true" />
-            </LinearLayout>
-
-            <RelativeLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/detail_remove"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/remove"
-                    android:visibility="invisible" />
-
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp">
                 <ImageView
                     android:id="@+id/detail_imageview"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center_horizontal|center_vertical" />
+                    android:layout_height="210dp"
+                    android:background="@drawable/clay_card"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/detail_remove"
+                    style="@style/ClayButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/remove"
+                    android:layout_gravity="end|top"
+                    android:contentDescription="@string/write_detail_delete"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="10"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
                     <Button
                         android:id="@+id/write_image_gallery"
+                        style="@style/ClayButton.Teal"
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="30dp"
-                        android:background="@drawable/btn_clay_teal"
-                        android:textColor="#FFFFFF"
-                        android:gravity="center_horizontal|center_vertical"
+                        android:layout_height="wrap_content"
                         android:text="@string/write_detail_gallery"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textSize="15sp" />
 
                     <Button
                         android:id="@+id/write_image_camera"
+                        style="@style/ClayButton.Coral"
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="15dp"
-                        android:background="@drawable/btn_clay_coral"
-                        android:textColor="#FFFFFF"
-
-                        android:gravity="center_horizontal|center_vertical"
+                        android:layout_height="wrap_content"
                         android:text="@string/write_detail_camera"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
-
+                        android:layout_marginTop="6dp" />
                 </LinearLayout>
-            </RelativeLayout>
+            </FrameLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="14dp">
+                <Button
+                    android:id="@+id/write_shareButton"
+                    style="@style/ClayButton.Cream"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/write_detail_share"
+                    android:textSize="15sp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/write_deleteButton"
+                    style="@style/ClayButton.Red"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/write_detail_delete"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

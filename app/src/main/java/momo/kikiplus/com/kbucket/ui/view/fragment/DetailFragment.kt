@@ -134,12 +134,12 @@ class DetailFragment : Fragment() , View.OnClickListener,
                 .load(bytes)
                 .into(binding.detailImageview)
             hideImageAttachButton(true)
-            binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
+            binding.detailImageview.scaleType = ImageView.ScaleType.FIT_CENTER
             binding.detailImageview.visibility = View.VISIBLE
             binding.detailRemove.visibility = View.VISIBLE
         } else {
             hideImageAttachButton(false)
-            binding.detailImageview.visibility = View.INVISIBLE
+            binding.detailImageview.visibility = View.GONE
         }
 
         binding.detailDateView.setText(buckets!!.date)
@@ -285,8 +285,8 @@ class DetailFragment : Fragment() , View.OnClickListener,
             R.id.detail_remove -> {
                 mPhotoPath = null
                 hideImageAttachButton(false)
-                binding.detailImageview!!.visibility = View.INVISIBLE
-                binding.detailRemove.visibility = View.INVISIBLE
+                binding.detailImageview.visibility = View.GONE
+                binding.detailRemove.visibility = View.GONE
             }
 
             //날짜 선택하기
@@ -485,7 +485,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
                 KLog.log("@@ DETAIL CAMERA bm : $bm")
                 hideImageAttachButton(true)
                 binding.detailImageview.visibility = View.VISIBLE
-                binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
+                binding.detailImageview.scaleType = ImageView.ScaleType.FIT_CENTER
                 binding.detailImageview.setImageBitmap(bm)
                 binding.detailRemove.visibility = View.VISIBLE
             }
@@ -505,7 +505,7 @@ class DetailFragment : Fragment() , View.OnClickListener,
                             val photo = ByteUtils.getFileBitmap(requireContext(), imagePath)
                             hideImageAttachButton(true)
                             binding.detailImageview.visibility = View.VISIBLE
-                            binding.detailImageview.scaleType = ImageView.ScaleType.FIT_XY
+                            binding.detailImageview.scaleType = ImageView.ScaleType.FIT_CENTER
                             binding.detailImageview.setImageBitmap(photo)
                             binding.detailRemove.visibility = View.VISIBLE
 

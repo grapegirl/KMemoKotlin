@@ -14,6 +14,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:textColor="@color/clay_ink"
             android:id="@+id/rank_list_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -32,36 +33,36 @@
         android:orientation="horizontal">
 
         <Button
+            style="@style/ClayButton.Choice"
             android:id="@+id/rank_btn1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="#FFCC0000"
             android:text="@string/bucketrank_list_contents1"
             android:textAlignment="center"
             android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
+            style="@style/ClayButton.Choice"
             android:id="@+id/rank_btn2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="#FF33B5E5"
             android:text="@string/bucketrank_list_contents2"
             android:textAlignment="center"
             android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
+            style="@style/ClayButton.Choice"
             android:id="@+id/rank_btn3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="#FF99CC00"
             android:text="@string/bucketrank_list_contents3"
             android:textAlignment="center"
             android:textSize="15sp"
@@ -76,6 +77,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:textColor="@color/clay_ink"
             android:id="@+id/rank_text1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -87,6 +89,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:textColor="@color/clay_ink"
             android:id="@+id/rank_text2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -98,6 +101,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:textColor="@color/clay_ink"
             android:id="@+id/rank_text3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
