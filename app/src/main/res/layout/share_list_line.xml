@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
+        android:gravity="center_vertical"
+        android:padding="4dp"
+        android:background="@drawable/clay_card"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:orientation="horizontal">
 
         <EditText
+            android:textColor="@color/clay_ink"
             android:id="@+id/share_list_text"
-            android:layout_width="250dp"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="8"
-            android:background="@drawable/ballon2"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
             android:editable="false"
             android:padding="5dp"
             android:text="" />
 
         <Button
+            android:minWidth="64dp"
+            style="@style/ClayButton.Teal"
             android:id="@+id/share_list_detailBtn"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="#FF99CC00"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_margin="0dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/share_line_show"
             android:textAlignment="center"

@@ -2,7 +2,6 @@ package momo.kikiplus.com.kbucket.ui.view.fragment
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -104,32 +103,9 @@ class UpgradeFragment : Fragment(), IBackReceive , View.OnClickListener{
 
     private fun setTitleIndex(index: Int) {
         mTitleIndex = index
-        when (mTitleIndex) {
-            1 -> {
-                binding.questionLayoutTitleView1.setBackgroundColor(Color.WHITE)
-                binding.questionLayoutTitleView1.setTextColor(Color.parseColor("#FF99CC00"))
-                binding.questionLayoutTitleView2.setBackgroundColor(Color.parseColor("#FF99CC00"))
-                binding.questionLayoutTitleView2.setTextColor(Color.WHITE)
-                binding.questionLayoutTitleView3.setBackgroundColor(Color.parseColor("#FF99CC00"))
-                binding.questionLayoutTitleView3.setTextColor(Color.WHITE)
-            }
-            2 -> {
-                binding.questionLayoutTitleView2.setBackgroundColor(Color.WHITE)
-                binding.questionLayoutTitleView2.setTextColor(Color.parseColor("#FF99CC00"))
-                binding.questionLayoutTitleView1.setBackgroundColor(Color.parseColor("#FF99CC00"))
-                binding.questionLayoutTitleView1.setTextColor(Color.WHITE)
-                binding.questionLayoutTitleView3.setBackgroundColor(Color.parseColor("#FF99CC00"))
-                binding.questionLayoutTitleView3.setTextColor(Color.WHITE)
-            }
-            3 -> {
-                binding.questionLayoutTitleView3.setBackgroundColor(Color.WHITE)
-                binding.questionLayoutTitleView3.setTextColor(Color.parseColor("#FF99CC00"))
-                binding.questionLayoutTitleView1.setBackgroundColor(Color.parseColor("#FF99CC00"))
-                binding.questionLayoutTitleView1.setTextColor(Color.WHITE)
-                binding.questionLayoutTitleView2.setBackgroundColor(Color.parseColor("#FF99CC00"))
-                binding.questionLayoutTitleView2.setTextColor(Color.WHITE)
-            }
-        }
+        binding.questionLayoutTitleView1.isSelected = index == 1
+        binding.questionLayoutTitleView2.isSelected = index == 2
+        binding.questionLayoutTitleView3.isSelected = index == 3
     }
 
     private fun getTitleIndex(index: Int): String {

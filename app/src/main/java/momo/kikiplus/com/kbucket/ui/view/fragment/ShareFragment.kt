@@ -286,14 +286,8 @@ class ShareFragment : Fragment(), IBackReceive, IHttpReceive, View.OnClickListen
      * @param id
      */
     private fun setButtonSelected(id: Int) {
-        for (i in mButton.indices) {
-            if (mButton[i]!!.id == id) {
-                mButton[i]!!.setBackgroundColor(-0x1)
-                mButton[i]!!.setTextColor(-0x663400)
-            } else {
-                mButton[i]!!.setBackgroundColor(-0x663400)
-                mButton[i]!!.setTextColor(-0x1)
-            }
+        for (button in mButton.filterNotNull()) {
+            button.isSelected = button.id == id
         }
     }
 

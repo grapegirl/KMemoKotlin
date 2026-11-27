@@ -4,18 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bg_db_view"
-    android:background="#FFFFBB33"
+    android:background="@color/clay_sand"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="momo.kikiplus.com.kbucket.ui.view.activity.DBMgrActivity">
 
     <Button
+        style="@style/ClayButton.Teal"
         android:id="@+id/db_title_text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#FFCC0000"
         android:text="@string/db"
-        android:textColor="#FFFFFFFF"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,6 +34,7 @@
         />
 
     <Button
+        style="@style/ClayButton.Teal"
         android:id="@+id/btn_db_menu01"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -43,12 +43,11 @@
         app:layout_constraintTop_toBottomOf="@id/iv_db_icon"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="#FF99CC00"
-        android:textColor="#FFFFFFFF"
         android:textStyle="bold"
         />
 
     <Button
+        style="@style/ClayButton.Teal"
         android:id="@+id/btn_db_menu02"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -57,12 +56,11 @@
         app:layout_constraintTop_toBottomOf="@id/btn_db_menu01"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="#FF99CC00"
-        android:textColor="#FFFFFFFF"
         android:textStyle="bold"
         />
 
     <Button
+        style="@style/ClayButton.Red"
         android:id="@+id/btn_db_menu03"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -71,8 +69,6 @@
         app:layout_constraintTop_toBottomOf="@id/btn_db_menu02"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="#FF99CC00"
-        android:textColor="#FFFFFFFF"
         android:textStyle="bold"
         />
 

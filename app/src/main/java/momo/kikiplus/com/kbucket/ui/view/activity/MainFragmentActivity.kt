@@ -23,6 +23,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import momo.kikiplus.com.kbucket.R
+import momo.kikiplus.com.kbucket.databinding.ClaySettingsHeaderBinding
 import momo.kikiplus.com.kbucket.databinding.MainFragmentActivityBinding
 import momo.kikiplus.data.sqlite.SQLQuery
 import momo.kikiplus.com.common.util.AppUtils
@@ -226,6 +227,8 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
 
         setBackgroundColor()
 
+        val header = ClaySettingsHeaderBinding.bind(mBinding.drawerList.getHeaderView(0))
+        header.drawerVersion.text = AppUtils.getVersionName(this)
         mBinding.drawerList.setNavigationItemSelectedListener(this)
     }
 

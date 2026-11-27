@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="64dp"
     android:layout_gravity="center_vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_margin="8dp">
 
         <EditText
+            android:textColor="@color/clay_ink"
             android:id="@+id/comment_layout_text"
-            android:layout_width="250dp"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="8"
+            android:layout_weight="1"
             android:background="@drawable/ballon2"
             android:padding="5dp"
             android:text="" />
 
         <Button
+            android:minWidth="64dp"
+            style="@style/ClayButton.Teal"
             android:id="@+id/comment_layout_sendBtn"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="#FF99CC00"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_margin="0dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/comment_layout_enter"
             android:textAlignment="center"

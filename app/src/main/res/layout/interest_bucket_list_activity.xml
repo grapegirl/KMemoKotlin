@@ -5,32 +5,31 @@
     android:layout_height="match_parent"
     tools:context="momo.kikiplus.com.kbucket.ui.view.fragment.AddFragement">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:padding="10dp"
         android:id="@+id/bucketlist_back_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFBB33"
+        android:background="@color/clay_sand"
         android:orientation="vertical">
 
         <Button
+            style="@style/ClayButton.Teal"
             android:id="@+id/interest_bucket_list_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="right"
-            android:background="#FFCC0000"
             android:text="@string/interest_bucket_list_title"
-            android:textColor="#FFFFFFFF"
             android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
+            style="@style/ClayButton.Teal"
             android:id="@+id/interest_bucket_list_add"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="bottom"
-            android:background="#FF99CC00"
             android:text="@string/interest_bucket_list_add"
-            android:textColor="#FFFFFFFF"
             android:textSize="15sp"
             android:textStyle="bold" />
 

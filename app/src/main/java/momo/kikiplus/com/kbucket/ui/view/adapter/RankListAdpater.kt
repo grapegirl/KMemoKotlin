@@ -1,7 +1,6 @@
 package momo.kikiplus.com.kbucket.ui.view.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -87,36 +86,10 @@ class RankListAdpater
         val comment = mListItem!![position].userComment
 
 
-        if (comment == 3) {
-            (view.findViewById<View>(R.id.rank_btn1) as Button).setBackgroundColor(Color.WHITE)
-            (view.findViewById<View>(R.id.rank_btn1) as Button).setTextColor(Color.parseColor("#FFCC0000"))
-            (view.findViewById<View>(R.id.rank_btn2) as Button).setBackgroundColor(Color.parseColor("#FF33B5E5"))
-            (view.findViewById<View>(R.id.rank_btn2) as Button).setTextColor(Color.BLACK)
-            (view.findViewById<View>(R.id.rank_btn3) as Button).setBackgroundColor(Color.parseColor("#FF99CC00"))
-            (view.findViewById<View>(R.id.rank_btn3) as Button).setTextColor(Color.BLACK)
-        } else if (comment == 2) {
-            (view.findViewById<View>(R.id.rank_btn1) as Button).setBackgroundColor(Color.parseColor("#FFCC0000"))
-            (view.findViewById<View>(R.id.rank_btn1) as Button).setTextColor(Color.BLACK)
-            (view.findViewById<View>(R.id.rank_btn2) as Button).setBackgroundColor(Color.WHITE)
-            (view.findViewById<View>(R.id.rank_btn2) as Button).setTextColor(Color.parseColor("#FF33B5E5"))
-            (view.findViewById<View>(R.id.rank_btn3) as Button).setBackgroundColor(Color.parseColor("#FF99CC00"))
-            (view.findViewById<View>(R.id.rank_btn3) as Button).setTextColor(Color.BLACK)
+        view.findViewById<Button>(R.id.rank_btn1).isSelected = comment == 3
+        view.findViewById<Button>(R.id.rank_btn2).isSelected = comment == 2
+        view.findViewById<Button>(R.id.rank_btn3).isSelected = comment == 1
 
-        } else if (comment == 1) {
-            (view.findViewById<View>(R.id.rank_btn1) as Button).setBackgroundColor(Color.parseColor("#FFCC0000"))
-            (view.findViewById<View>(R.id.rank_btn1) as Button).setTextColor(Color.BLACK)
-            (view.findViewById<View>(R.id.rank_btn2) as Button).setBackgroundColor(Color.parseColor("#FF33B5E5"))
-            (view.findViewById<View>(R.id.rank_btn2) as Button).setTextColor(Color.BLACK)
-            (view.findViewById<View>(R.id.rank_btn3) as Button).setBackgroundColor(Color.WHITE)
-            (view.findViewById<View>(R.id.rank_btn3) as Button).setTextColor(Color.parseColor("#FF99CC00"))
-        } else {
-            (view.findViewById<View>(R.id.rank_btn1) as Button).setBackgroundColor(Color.parseColor("#FFCC0000"))
-            (view.findViewById<View>(R.id.rank_btn1) as Button).setTextColor(Color.BLACK)
-            (view.findViewById<View>(R.id.rank_btn2) as Button).setBackgroundColor(Color.parseColor("#FF33B5E5"))
-            (view.findViewById<View>(R.id.rank_btn2) as Button).setTextColor(Color.BLACK)
-            (view.findViewById<View>(R.id.rank_btn3) as Button).setBackgroundColor(Color.parseColor("#FF99CC00"))
-            (view.findViewById<View>(R.id.rank_btn3) as Button).setTextColor(Color.BLACK)
-        }
         (view.findViewById<View>(R.id.rank_text1) as TextView).text = bestCount.toString() + ""
         (view.findViewById<View>(R.id.rank_text2) as TextView).text = goodCount.toString() + ""
         (view.findViewById<View>(R.id.rank_text3) as TextView).text = sosoCount.toString() + ""

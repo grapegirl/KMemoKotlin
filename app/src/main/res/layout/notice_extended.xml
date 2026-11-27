@@ -9,17 +9,16 @@
         android:id="@+id/notice_back_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFBB33"
+        android:background="@color/clay_sand"
         android:orientation="vertical">
 
     <Button
+        style="@style/ClayButton.Teal"
         android:id="@+id/notice_list_text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="right"
-        android:background="#FFCC0000"
         android:text="공지 목록"
-        android:textColor="#FFFFFFFF"
         android:textSize="15sp"
         android:textStyle="bold" />
 

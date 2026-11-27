@@ -5,22 +5,22 @@
     android:layout_height="match_parent"
     tools:context="momo.kikiplus.com.kbucket.ui.view.fragment.ShareFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="10dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/share_back_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFBB33"
+        android:background="@color/clay_sand"
         android:orientation="vertical">
 
         <Button
+            style="@style/ClayButton.Teal"
             android:id="@+id/share_list_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="right"
-            android:background="#FFCC0000"
             android:text="@string/share_list_title"
-            android:textColor="#FFFFFFFF"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,8 +33,8 @@
             android:id="@+id/share_category_view"
             layout="@layout/category_list"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="15dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/share_list_text"
             app:layout_constraintVertical_chainStyle="spread"

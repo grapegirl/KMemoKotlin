@@ -8,16 +8,15 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFFFF"
+        android:background="@color/clay_paper"
         android:orientation="vertical">
 
         <Button
+            style="@style/ClayButton.Teal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="right"
-            android:background="#FFCC0000"
             android:text="@string/setbackgound_layout_title"
-            android:textColor="#FFFFFFFF"
             android:textSize="15sp"
             android:textStyle="bold" />
 

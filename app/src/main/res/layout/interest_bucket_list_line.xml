@@ -11,6 +11,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:textColor="@color/clay_ink"
             android:id="@+id/bucket_list_text"
             android:layout_width="250dp"
             android:layout_height="match_parent"
@@ -22,13 +23,13 @@
             android:text="" />
 
         <Button
+            style="@style/ClayButton.Teal"
             android:id="@+id/bucket_list_modifyBtn"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="#FF99CC00"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/write_list_add"
             android:textAlignment="center"
@@ -36,13 +37,13 @@
             android:textStyle="bold" />
 
         <Button
+            style="@style/ClayButton.Red"
             android:id="@+id/bucket_list_deleteBtn"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="#FF99CC00"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/write_detail_delete"
             android:textAlignment="center"
