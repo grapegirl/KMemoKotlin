@@ -15,6 +15,10 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import android.view.View
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.activity.enableEdgeToEdge
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -61,6 +65,8 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        enableEdgeToEdge()
         KLog.log("@@ MainFragmentActivity onCreate")
 
        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
@@ -73,6 +79,25 @@ class MainFragmentActivity : AppCompatActivity(), Handler.Callback,
 
         mBinding = MainFragmentActivityBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(mBinding.root) { view, insets ->
+            val safe = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or
+                        WindowInsetsCompat.Type.displayCutout()
+            )
+
+            // 메인 버튼과 하단 광고에 시스템 여백 적용
+            mBinding.mainFragementActivityBackground.setPadding(safe.left, safe.top, safe.right, safe.bottom)
+
+            // 서랍 메뉴에는 위·아래와 서랍이 열리는 쪽 여백 적용
+            val isRtl = view.layoutDirection == View.LAYOUT_DIRECTION_RTL
+            val startInset = if (isRtl) safe.right else safe.left
+            mBinding.drawerList.setPaddingRelative(startInset, safe.top, 0, safe.bottom)
+
+            insets
+        }
+
+        ViewCompat.requestApplyInsets(mBinding.root)
         supportActionBar!!.hide()
 
         initialize()

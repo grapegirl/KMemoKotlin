@@ -27,7 +27,7 @@ android {
     defaultConfig {
         applicationId "momo.kikiplus.com.kbucket"
         minSdkVersion 23
-        targetSdkVersion 35
+        targetSdk 37
         versionCode 89
         versionName "2.0.13"
         multiDexEnabled true
