@@ -72,7 +72,16 @@ class IntroActivity : AppCompatActivity(), Handler.Callback {
 
         supportActionBar?.hide()
 
-        mBinding.root.post {
+        mBinding.root.post{
+            val controller = WindowCompat.getInsetsController(
+                window,
+                mBinding.root
+            )
+
+            // 상태바와 하단 내비게이션 바를 표시
+            controller.show(WindowInsetsCompat.Type.systemBars())
+
+            // 표시된 시스템 바의 크기로 여백을 다시 반영
             ViewCompat.requestApplyInsets(mBinding.root)
         }
 
