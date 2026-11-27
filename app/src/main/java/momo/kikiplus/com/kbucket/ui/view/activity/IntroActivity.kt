@@ -6,7 +6,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
+import android.view.View
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
 import android.view.animation.AlphaAnimation
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import momo.kikiplus.com.kbucket.databinding.IntroActivityBinding
 import momo.kikiplus.com.common.util.KLog
 import momo.kikiplus.com.common.util.SharedPreferenceUtils
@@ -21,7 +28,7 @@ import java.util.*
  * @Description : 인트로
  * @since 2015-11-02
  */
-class IntroActivity : Activity(), Handler.Callback {
+class IntroActivity : AppCompatActivity(), Handler.Callback {
 
     private var mHandler: Handler = Handler(Looper.getMainLooper(), this)
 
@@ -32,8 +39,42 @@ class IntroActivity : Activity(), Handler.Callback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // 앱이 시스템 바 영역까지 배치되고, 인셋을 직접 처리하도록 설정
+        enableEdgeToEdge()
+       // WindowCompat.setDecorFitsSystemWindows(window, false)
+
         mBinding = IntroActivityBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+
+        // 처음 설정된 디자인 패딩을 저장
+        val initialLeft = mBinding.root.paddingLeft
+        val initialTop = mBinding.root.paddingTop
+        val initialRight = mBinding.root.paddingRight
+        val initialBottom = mBinding.root.paddingBottom
+
+        ViewCompat.setOnApplyWindowInsetsListener(mBinding.root) { view, insets ->
+
+            val safe = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or
+                        WindowInsetsCompat.Type.displayCutout()
+            )
+
+            // 계산한 인셋을 실제 화면 여백에 반영
+            view.setPadding(
+                initialLeft + safe.left,
+                initialTop + safe.top,
+                initialRight + safe.right,
+                initialBottom + safe.bottom
+            )
+
+            insets
+        }
+
+        supportActionBar?.hide()
+
+        mBinding.root.post {
+            ViewCompat.requestApplyInsets(mBinding.root)
+        }
 
         setBackgroundColor()
 
