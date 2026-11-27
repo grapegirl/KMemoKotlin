@@ -17,5 +17,9 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        exclusiveContent {
+            forRepository { maven { url = uri('https://devrepo.kakao.com/nexus/content/groups/public/') } }
+            filter { includeGroup 'com.kakao.adfit' }
+        }
     }
 }

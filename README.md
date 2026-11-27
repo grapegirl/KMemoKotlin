@@ -1,6 +1,6 @@
-# 이룰지도 2.3.2
+# 이룰지도 2.3.3
 
-이 브랜치에서 Android Studio의 `:app` 모듈은 `iruljido/`를 사용합니다. 패키지명은 `momo.kikiplus.com.kbucket`이고 버전 코드는 `90`입니다. Java 소스는 `iruljido/src/`, 화면 원본은 `iruljido/web/`, 실행용 파일과 디자인 리소스는 `iruljido/assets/`와 `iruljido/res/`에 있습니다.
+이 브랜치에서 Android Studio의 `:app` 모듈은 `iruljido/`를 사용합니다. 패키지명은 `momo.kikiplus.com.kbucket`이고 버전 코드는 `91`입니다. Java 소스는 `iruljido/src/`, 화면 원본은 `iruljido/web/`, 실행용 파일과 디자인 리소스는 `iruljido/assets/`와 `iruljido/res/`에 있습니다.
 
 Android Studio에서 저장소 루트를 열거나 JDK 17 및 Android SDK 37 환경에서 저장소의 Gradle 래퍼로 `./gradlew :app:assembleDebug`를 실행하세요. 독립 개발 빌드는 자체 디버그 서명을 사용합니다. 기존 설치본을 업데이트하는 출시 빌드에는 기존 출시 서명키가 필요합니다. 서명키와 비밀번호는 이 원본에 포함되어 있지 않습니다.
 
@@ -9,3 +9,5 @@ Android Studio에서 저장소 루트를 열거나 JDK 17 및 Android SDK 37 환
 홈과 하단 탐색에서 친구 메뉴를 숨깁니다. 앱 안의 친구 공유와 공동 도전도 숨기고 원격 동기화를 일시 중지합니다. 기존 친구 관련 데이터는 기기에 보존됩니다. 개별 꿈에서 카카오톡과 다른 SNS로 꿈 카드를 공유할 수 있습니다. 친구 기능의 표시 여부는 web/features.js에서 관리합니다.
 
 빠른 메모 위젯은 최근 저장한 메모를 표시합니다. ＋ 쓰기를 누르면 별도 작성 창이 열리고, 메모장 제목에서 전체 목록을 엽니다. 메모는 기기에 저장되며 기존 ZIP 백업·복원에 포함됩니다. 앱 잠금을 켜면 위젯에서 내용을 가립니다.
+
+홈 화면 하단에 카카오 애드핏 320×50 배너를 표시합니다. 디버그 빌드는 테스트 광고를 요청하고 릴리스 빌드는 실제 광고를 요청합니다. 광고단위는 `iruljido/res/values/strings.xml`의 `home_banner_unit`에서 설정합니다.

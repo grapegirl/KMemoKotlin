@@ -6,9 +6,10 @@ android {
         applicationId 'momo.kikiplus.com.kbucket'
         minSdk 26
         targetSdk 34
-        versionCode 90
-        versionName '2.3.2'
+        versionCode 91
+        versionName '2.3.3'
     }
+    buildFeatures { buildConfig = true }
     buildTypes { release { minifyEnabled true; proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'release-rules.pro' } }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -22,4 +23,9 @@ android {
             assets.srcDirs = ['assets']
         }
     }
+}
+
+dependencies {
+    implementation 'com.kakao.adfit:ads-base:3.23.3'
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.1.0'
 }

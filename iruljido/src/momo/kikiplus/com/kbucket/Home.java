@@ -24,6 +24,7 @@ import javax.crypto.spec.GCMParameterSpec;
 import org.json.*;
 
 public class Home extends Activity {
+ private HomeAdBanner homeBanner;
  WebView web; boolean consumedIntent; ValueCallback<Uri[]> chooser; Uri capture; FrameLayout root; LinearLayout gate;
  final ExecutorService jobs=Executors.newSingleThreadExecutor();
  android.content.SharedPreferences prefs; volatile boolean unlocked; boolean authenticating,enableLock,loaded,active;
@@ -39,13 +40,22 @@ public class Home extends Activity {
   super.onCreate(bundle);prefs=getSharedPreferences("v2",0);
   getWindow().setStatusBarColor(0xfffcf7ee);getWindow().setNavigationBarColor(0xfffcf7ee);
   getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-  root=new FrameLayout(this);setContentView(root);web=new WebView(this);root.addView(web);
+  root=new FrameLayout(this);setContentView(root);web=new WebView(this);
+  if(memoWindow()) {
+   root.addView(web);
+  } else {
+   LinearLayout column=new LinearLayout(this);
+   column.setOrientation(LinearLayout.VERTICAL);
+   root.addView(column);
+   column.addView(web,new LinearLayout.LayoutParams(-1,0,1f));
+   homeBanner=new HomeAdBanner(column);
+  }
   gate=new LinearLayout(this);gate.setOrientation(1);gate.setGravity(Gravity.CENTER);gate.setBackgroundColor(0xfffcf7ee);
   ImageView icon=new ImageView(this);icon.setImageResource(R.drawable.icon);int size=(int)(getResources().getDisplayMetrics().density*76);gate.addView(icon,size,size);
   Button open=new Button(this);open.setText(getString(R.string.app_name) + " 잠금 해제");open.setOnClickListener(v->authenticate(false));gate.addView(open);root.addView(gate);
   unlocked=!locked();gate.setVisibility(unlocked?View.GONE:View.VISIBLE);
   if(locked())getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-  WebSettings s=web.getSettings();s.setJavaScriptEnabled(true);s.setDomStorageEnabled(true);s.setAllowFileAccess(false);s.setAllowFileAccessFromFileURLs(false);s.setAllowUniversalAccessFromFileURLs(false);s.setAllowContentAccess(true);s.setSupportMultipleWindows(false);s.setTextZoom(100);s.setUserAgentString(s.getUserAgentString()+" Iruljido/2.3.2");
+  WebSettings s=web.getSettings();s.setJavaScriptEnabled(true);s.setDomStorageEnabled(true);s.setAllowFileAccess(false);s.setAllowFileAccessFromFileURLs(false);s.setAllowUniversalAccessFromFileURLs(false);s.setAllowContentAccess(true);s.setSupportMultipleWindows(false);s.setTextZoom(100);s.setUserAgentString(s.getUserAgentString()+" Iruljido/"+BuildConfig.VERSION_NAME);
   web.addJavascriptInterface(new Bridge(),"Device");
   web.setWebViewClient(new WebViewClient(){
    public boolean shouldOverrideUrlLoading(WebView w,WebResourceRequest req){return true;}
@@ -97,6 +107,14 @@ public class Home extends Activity {
   return value;
  }
  protected void onNewIntent(Intent i){super.onNewIntent(i);setIntent(i);acceptIntent(i);}
+ private void syncAdForeground(){
+  if(homeBanner!=null)homeBanner.setForeground(active && unlocked && !authenticating);
+ }
+ @Override protected void onPause(){
+  active=false;
+  syncAdForeground();
+  super.onPause();
+ }
  protected void onResume(){
   super.onResume();active=true;
   if(locked()){
@@ -106,6 +124,7 @@ public class Home extends Activity {
    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
    unlocked=true;gate.setVisibility(View.GONE);web.setVisibility(View.VISIBLE);load();
   }
+  syncAdForeground();
   js("window.appResume&&appResume()");
  }
  protected void onStop(){super.onStop();active=false;if(recorder!=null)stopVoice();if((locked()||memoWindow())&&!authenticating){unlocked=false;gate.setVisibility(View.VISIBLE);web.setVisibility(View.INVISIBLE);}}
@@ -114,11 +133,12 @@ public class Home extends Activity {
   if(yes){if(enableLock){prefs.edit().putBoolean("lock",true).apply();getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);DreamWidget.refresh(this);MemoWidget.refresh(this);}unlocked=true;gate.setVisibility(View.GONE);web.setVisibility(View.VISIBLE);load();js("window.appResume&&appResume()");}
   else if(locked()){gate.setVisibility(View.VISIBLE);web.setVisibility(View.INVISIBLE);}
   enableLock=false;
+  syncAdForeground();
  }
  void authenticate(boolean enable){
   if(authenticating)return;KeyguardManager km=getSystemService(KeyguardManager.class);
   if(!km.isDeviceSecure()){fail("먼저 휴대폰 설정에서 화면 잠금을 설정해 주세요.");return;}
-  enableLock=enable;authenticating=true;
+  enableLock=enable;authenticating=true;syncAdForeground();
   if(Build.VERSION.SDK_INT>=30){try{
    BiometricPrompt prompt=new BiometricPrompt.Builder(this).setTitle(getString(R.string.app_name) + " 잠금 해제").setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG|BiometricManager.Authenticators.DEVICE_CREDENTIAL).build();
    prompt.authenticate(new CancellationSignal(),getMainExecutor(),new BiometricPrompt.AuthenticationCallback(){
@@ -144,7 +164,9 @@ public class Home extends Activity {
  void stopVoice(){if(recorder==null)return;MediaRecorder r=recorder;recorder=null;try{r.stop();byte[] b=java.nio.file.Files.readAllBytes(recordFile.toPath());js("window.voiceReady&&voiceReady("+JSONObject.quote(Base64.encodeToString(b,Base64.NO_WRAP))+")");}catch(Exception e){message("녹음이 너무 짧거나 저장할 수 없어요.");}finally{r.release();recordFile.delete();js("window.recordState&&recordState(false)");}}
  public void onRequestPermissionsResult(int r,String[] p,int[] v){super.onRequestPermissionsResult(r,p,v);if(r==21){if(v.length>0&&v[0]==0)startVoice();else message("음성 메모에는 마이크 권한이 필요해요.");}if(r==22&&v.length>0&&v[0]!=0)message("일정은 저장됐어요. 알림을 받으려면 앱 설정에서 알림을 켜 주세요.");}
  public void onBackPressed(){if(unlocked)js("window.back&&back()");else finish();}
- protected void onDestroy(){if(recorder!=null){recorder.release();recorder=null;}jobs.shutdownNow();for(OutputStream o:streams.values())try{o.close();}catch(Exception ignored){}
+ protected void onDestroy(){
+  if(homeBanner!=null){homeBanner.release();homeBanner=null;}
+  if(recorder!=null){recorder.release();recorder=null;}jobs.shutdownNow();for(OutputStream o:streams.values())try{o.close();}catch(Exception ignored){}
   if(memoWindow() && web!=null){
    loaded=false;
    web.removeJavascriptInterface("Device");
@@ -167,6 +189,9 @@ public class Home extends Activity {
   String[] parts=value.split("\\.");cipher.init(Cipher.DECRYPT_MODE,key,new GCMParameterSpec(128,Base64.decode(parts[0],2)));return Base64.encodeToString(cipher.doFinal(Base64.decode(parts[1],2)),2);
  }
  class Bridge {
+  @JavascriptInterface public void setHomeBannerVisible(boolean visible){
+   runOnUiThread(()->{if(homeBanner!=null)homeBanner.setHomeVisible(visible);});
+  }
   @JavascriptInterface public String takeInput(){return memoWindow() ? "" : takeInbox();}
   @JavascriptInterface public boolean isMemoWindow(){return memoWindow();}
   @JavascriptInterface public String takeMemoTarget(){return memoWindow() ? takeInbox() : "";}
